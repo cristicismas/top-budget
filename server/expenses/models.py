@@ -5,6 +5,7 @@ class Expense(models.Model):
     categories = models.ManyToManyField(Category)
     location = models.ForeignKey("Location", null=True, on_delete=models.SET_NULL)
     source = models.ForeignKey("Source", null=True, on_delete=models.SET_NULL)
+    date = models.DateTimeField(auto_now=False, auto_now_add=False, default=datetime.now)
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
