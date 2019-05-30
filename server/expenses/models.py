@@ -2,7 +2,7 @@ from django.db import models
 
 class Expense(models.Model):
     value = models.IntegerField()
-    category = models.ForeignKey("Category", null=True, on_delete=models.SET_NULL)
+    categories = models.ManyToManyField(Category)
     location = models.ForeignKey("Location", null=True, on_delete=models.SET_NULL)
     source = models.ForeignKey("Source", null=True, on_delete=models.SET_NULL)
 
