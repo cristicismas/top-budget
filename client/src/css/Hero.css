@@ -13,3 +13,15 @@
   color: #ccc;
   font-size: 35px;
 }
+
+#hero #features {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 100px;
+  list-style-type: circle;
+}
+
+#hero #features .feature {
+  margin: 30px;
+  font-size: 25px;
+}
