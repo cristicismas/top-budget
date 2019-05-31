@@ -1,0 +1,15 @@
+#hero #intro {
+  text-align: center;
+  padding-top: 100px;
+}
+
+#hero #intro h1 {
+  font-size: 65px;
+  margin: 0;
+}
+
+#hero #intro h2 {
+  font-weight: 300;
+  color: #ccc;
+  font-size: 35px;
+}
