@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <header>
-      <h1><a href='/'>TopBudget</a></h1>
+      <h1><Link to='/'>TopBudget</Link></h1>
 
       <nav>
-        <a href="/signup">Sign Up</a>
-        <a href="/login">Log In</a>
+        <Link to="/signup">Sign Up</Link>
+        <Link to="/login">Log In</Link>
       </nav>
     </header>
   );
