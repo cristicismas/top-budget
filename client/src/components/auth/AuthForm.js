@@ -2,6 +2,29 @@ import React, { Component } from 'react'
 import '../../css/AuthForm.css';
 
 export class AuthForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: ''
+    };
+
+    this.onChange = this.onChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log("Submitted!");
+  }
+
   render() {
     const formAction = this.props.type === 'login' ? 'Log In' : 'Sign Up';
 
