@@ -33,17 +33,34 @@ export class AuthForm extends Component {
         <h2 id="form-title">{formAction}</h2>
 
         <form id="auth-form" onSubmit={this.handleSubmit}>
+          {
+            this.props.type === 'signup' ? (
+              <div className="form-group">
+                <label htmlFor="email">Email:</label>
+                <br />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="name@example.com"
+                  required
+                  onChange={this.onChange} />
+              </div>
+            ) : null
+          }
+
           <div className="form-group">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Username:</label>
             <br />
             <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="name@example.com"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="topbudgeteer_19"
               required
               onChange={this.onChange} />
           </div>
+
           <div className="form-group">
             <label htmlFor="password">Password:</label>
             <br />
