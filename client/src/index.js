@@ -1,3 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './css/index.css';
+import App from './components/App';
+import * as serviceWorker from './serviceWorker';
+
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -9,11 +15,6 @@ const store = createStore(reducer, composeEnhancer(
   applyMiddleware(thunk)
 ));
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './css/index.css';
-import App from './components/App';
-import * as serviceWorker from './serviceWorker';
 
 const app = (
   <Provider store={store}>
