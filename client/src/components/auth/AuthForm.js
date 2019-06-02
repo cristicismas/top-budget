@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/auth';
 import '../../css/AuthForm.css';
 
 export class AuthForm extends Component {
@@ -6,6 +8,7 @@ export class AuthForm extends Component {
     super(props);
 
     this.state = {
+      username: '',
       email: '',
       password: ''
     };
@@ -22,7 +25,15 @@ export class AuthForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("Submitted!");
+    
+    if (this.props.type === 'signup') {
+      this.props.signup({ ...this.state });
+    } else {
+      this.props.login({
+        username: this.state.username,
+        password: this.state.password   
+      });
+    }
   }
 
   render() {
@@ -82,4 +93,11 @@ export class AuthForm extends Component {
   }
 }
 
-export default AuthForm
+const mapDispatchToProps = dispatch => {
+  return {
+    signup: credentials => dispatch(actions.authSignup(credentials)),
+    login: credentials => dispatch(actions.authLogin(credentials))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AuthForm);

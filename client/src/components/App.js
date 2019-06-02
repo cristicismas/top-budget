@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 import '../css/Header.css';
 
+import Loading from './Loading';
 import Header from './Header';
 import Home from './Home';
 import AuthForm from './auth/AuthForm';
@@ -17,6 +18,12 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          {
+            this.props.loading ? (
+              <Loading />
+            ) : null
+          }
+
           <Header {...this.props} />
 
           <Route exact path="/" component={Home} />
@@ -30,7 +37,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.token !== null
+    isAuthenticated: state.token !== null,
+    loading: state.loading,
+    error: state.error
   };
 }
 

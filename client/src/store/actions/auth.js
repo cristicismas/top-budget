@@ -21,15 +21,12 @@ export const authFail = error => {
   };
 }
 
-export const authSignup = (username, email, password, passwordConfirmation) => {
+export const authSignup = credentials => {
   return dispatch => {
     dispatch(authStart());
 
     axios.post('http://localhost:8000/api/auth/signup', {
-      username,
-      email,
-      password,
-      passwordConfirmation
+      ...credentials
     }).then(res => {
       const token = res.data.key;
       localStorage.setItem('token', token);
@@ -41,13 +38,12 @@ export const authSignup = (username, email, password, passwordConfirmation) => {
   };
 }
 
-export const authLogin = (username, password) => {
+export const authLogin = credentials => {
   return dispatch => {
     dispatch(authStart());
 
     axios.post('http://localhost:8000/api/auth/login', {
-      username,
-      password
+      ...credentials
     }).then(res => {
       const token = res.data.key;
       localStorage.setItem('token', token);
