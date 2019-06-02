@@ -61,8 +61,20 @@ export const authLogin = (username, password) => {
 
 export const logout = () => {
   localStorage.removeItem('user');
-  
+
   return {
     type: actionTypes.AUTH_LOGOUT
   };
+}
+
+export const authCheckState = () => {
+  return dispatch => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      dispatch(logout());
+    } else {
+      dispatch(authSuccess(token));
+    }
+  }
 }

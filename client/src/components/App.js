@@ -1,23 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { connect } from 'react-redux';
+import * as actions from '../store/actions/auth';
 import '../css/Header.css';
 
 import Header from './Header';
 import Home from './Home';
 import AuthForm from './auth/AuthForm';
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Header />
+class App extends Component {
+  componentDidMount() {
+    this.props.tryAutoAuthentication();
+  }
 
-        <Route exact path="/" component={Home} />
-        <Route path="/signup" render={() => <AuthForm type="signup" />} />
-        <Route path="/login" render={() => <AuthForm type="login" />} />
-      </div>
-    </Router>
-  );
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Header {...this.props} />
+
+          <Route exact path="/" component={Home} />
+          <Route path="/signup" render={() => <AuthForm type="signup" />} />
+          <Route path="/login" render={() => <AuthForm type="login" />} />
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.token !== null
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    tryAutoAuthentication: () => {
+      dispatch(actions.authCheckState())
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
