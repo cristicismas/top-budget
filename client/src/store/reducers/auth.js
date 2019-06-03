@@ -1,53 +1,52 @@
-import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../utility';
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, AUTH_SUCCESS, AUTH_FAIL, LOGOUT_SUCCESS } from '../actions/actionTypes';
 
 const initialState = {
-  token: null,
-  error: null,
-  loading: false
-};
+  token: localStorage.getItem('token'),
+  isAuthenticated: null,
+  isLoading: false,
+  user: null
+}
 
-const reducer = (state=initialState, action) => {
+export default function(state=initialState, action) {
   switch(action.type) {
-    case actionTypes.AUTH_START:
-      return authStart(state);
-    case actionTypes.AUTH_SUCCESS:
-      return authSuccess(state, action);
-    case actionTypes.AUTH_FAIL:
-      return authFail(state, action);
-    case actionTypes.AUTH_LOGOUT:
-      return authLogout(state);
+    case USER_LOADING:
+      return {
+        ...state,
+        isLoading: true
+      };
+
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        isLoading: false,
+        user: action.payload
+      };
+
+    case AUTH_SUCCESS:
+      localStorage.setItem('token', action.payload.token);
+
+      return {
+        ...state,
+        ...action.payload,
+        isAuthenticated: true,
+        isLoading: false
+      };
+
+    case AUTH_FAIL:
+    case AUTH_ERROR:
+    case LOGOUT_SUCCESS:
+      localStorage.removeItem('token');
+
+      return {
+        ...state,
+        token: null,
+        user: null,
+        isAuthenticated: false,
+        isLoading: false
+      };
+
     default:
       return state;
   }
 }
-
-const authStart = state => {
-  return updateObject(state, {
-    error: null,
-    loading: true
-  });
-}
-
-const authSuccess = (state, action) => {
-  return updateObject(state, {
-    token: action.token,
-    error: null,
-    loading: false
-  });
-}
-
-const authFail = (state, action) => {
-  return updateObject(state, {
-    error: action.error,
-    loading: false
-  });
-}
-
-const authLogout = state => {
-  return updateObject(state, {
-    token: null
-  });
-}
-
-export default reducer;

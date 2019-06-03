@@ -1,76 +1,89 @@
-import * as actionTypes from './actionTypes';
 import axios from 'axios';
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, AUTH_SUCCESS, LOGOUT_SUCCESS } from './actionTypes';
 
-export const authStart = () => {
-  return {
-    type: actionTypes.AUTH_START
-  };
-}
+export const loadUser = () => (dispatch, getState) => {
+  dispatch({ type: USER_LOADING });
 
-export const authSuccess = token => {
-  return {
-    type: actionTypes.AUTH_SUCCESS,
-    token
-  };
-}
-
-export const authFail = error => {
-  return {
-    type: actionTypes.AUTH_FAIL,
-    error
-  };
-}
-
-export const authSignup = credentials => {
-  return dispatch => {
-    dispatch(authStart());
-
-    axios.post('http://localhost:8000/api/auth/signup', {
-      ...credentials
-    }).then(res => {
-      const token = res.data.key;
-      localStorage.setItem('token', token);
-
-      dispatch(authSuccess(token));
-    }).catch(err => {
-      dispatch(authFail(err));
+  axios.get('http://localhost:8000/api/auth/user', tokenConfig(getState)).then(res => {
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data
     });
-  };
+  }).catch(err => {
+    console.error(err);
+  });
 }
 
-export const authLogin = credentials => {
-  return dispatch => {
-    dispatch(authStart());
-
-    axios.post('http://localhost:8000/api/auth/login', {
-      ...credentials
-    }).then(res => {
-      const token = res.data.key;
-      localStorage.setItem('token', token);
-
-      dispatch(authSuccess(token));
-    }).catch(err => {
-      dispatch(authFail(err));
-    });
-  };
-}
-
-export const logout = () => {
-  localStorage.removeItem('user');
-
-  return {
-    type: actionTypes.AUTH_LOGOUT
-  };
-}
-
-export const authCheckState = () => {
-  return dispatch => {
-    const token = localStorage.getItem('token');
-
-    if (!token) {
-      dispatch(logout());
-    } else {
-      dispatch(authSuccess(token));
+export const login = credentials => dispatch => {
+  const axiosConfig = {
+    headers: {
+      'Content-Type': 'application/json'
     }
+  };
+
+  const reqBody = JSON.stringify({ ...credentials });
+
+  axios.post('http://localhost:8000/api/auth/login', reqBody, axiosConfig).then(res => {
+    dispatch({
+      type: AUTH_SUCCESS,
+      payload: res.data
+    });
+  }).catch(err => {
+    console.error(err);
+  });
+}
+
+export const register = credentials => dispatch => {
+  const axiosConfig = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const reqBody = JSON.stringify({ ...credentials });
+
+  axios.post('http://localhost:8000/api/auth/register', reqBody, axiosConfig).then(res => {
+    dispatch({
+      type: AUTH_SUCCESS,
+      payload: res.data
+    });
+  }).catch(err => {
+    console.error(err);
+  });
+}
+
+export const logout = () => (dispatch, getState) => {
+  const token = getState().auth.token;
+
+  const axiosConfig = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  if (token) {
+    axiosConfig.headers['Authorization'] = `Token ${token}`;
   }
+
+  axios.post('http://localhost:8000/api/auth/logout/', null, axiosConfig).then(res => {
+    dispatch({ type: LOGOUT_SUCCESS });
+  }).catch(err => {
+    console.error(err);
+  });
+}
+
+export const tokenConfig = getState => {
+  const token = getState().auth.token;
+
+  const axiosConfig = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  if (token) {
+    axiosConfig.headers['Authorization'] = `Token ${token}`;
+  }
+
+  return axiosConfig;
 }

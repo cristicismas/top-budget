@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/auth';
+import { login, register } from '../../store/actions/auth';
 import '../../css/AuthForm.css';
 
 export class AuthForm extends Component {
@@ -27,7 +27,7 @@ export class AuthForm extends Component {
     e.preventDefault();
     
     if (this.props.type === 'signup') {
-      this.props.signup({ ...this.state });
+      this.props.register(this.state);
     } else {
       this.props.login({
         username: this.state.username,
@@ -37,6 +37,8 @@ export class AuthForm extends Component {
   }
 
   render() {
+    const { username, email, password } = this.state;
+
     const formAction = this.props.type === 'login' ? 'Log In' : 'Sign Up';
 
     return (
@@ -54,6 +56,7 @@ export class AuthForm extends Component {
                   id="email"
                   name="email"
                   placeholder="name@example.com"
+                  value={email}
                   required
                   onChange={this.onChange} />
               </div>
@@ -68,6 +71,7 @@ export class AuthForm extends Component {
               id="username"
               name="username"
               placeholder="topbudgeteer_19"
+              value={username}
               required
               onChange={this.onChange} />
           </div>
@@ -80,6 +84,7 @@ export class AuthForm extends Component {
               id="password"
               name="password"
               placeholder="Min. 5 characters"
+              value={password}
               minLength="5"
               maxLength="70"
               required
@@ -93,11 +98,6 @@ export class AuthForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    signup: credentials => dispatch(actions.authSignup(credentials)),
-    login: credentials => dispatch(actions.authLogin(credentials))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(AuthForm);
+export default connect(null, {
+  login, register
+})(AuthForm);

@@ -6,20 +6,11 @@ class Header extends Component {
     return (
       <header>
         <h1><Link to='/'>TopBudget</Link></h1>
-  
-        {
-          this.props.isAuthenticated ? (
-            <nav>
-              <Link to="/dashboard">Dashboard</Link>
-              <Link to="/logout">Log Out</Link>
-            </nav>
-          ) : (
-            <nav>
-              <Link to="/signup">Sign Up</Link>
-              <Link to="/login">Log In</Link>
-            </nav>
-          )
-        }
+        
+        <nav>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Log In</Link>
+        </nav>
       </header>
     );
   }

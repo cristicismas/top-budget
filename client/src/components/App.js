@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { connect } from 'react-redux';
-import * as actions from '../store/actions/auth';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from '../store/store.js';
 import '../css/Header.css';
 
 import Loading from './Loading';
@@ -10,45 +10,23 @@ import Home from './Home';
 import AuthForm from './auth/AuthForm';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.tryAutoAuthentication();
-  }
-
   render() {
     return (
-      <Router>
-        <div className="App">
-          {
-            this.props.loading ? (
-              <Loading />
-            ) : null
-          }
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Header {...this.props} />
 
-          <Header {...this.props} />
-
-          <Route exact path="/" component={Home} />
-          <Route path="/signup" render={() => <AuthForm type="signup" />} />
-          <Route path="/login" render={() => <AuthForm type="login" />} />
-        </div>
-      </Router>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/signup" render={() => <AuthForm type="signup" />} />
+              <Route exact path="/login" render={() => <AuthForm type="login" />} />
+            </Switch>
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.token !== null,
-    loading: state.loading,
-    error: state.error
-  };
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    tryAutoAuthentication: () => {
-      dispatch(actions.authCheckState())
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
