@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout } from '../store/actions/auth';
 import '../css/Header.css';
 
 class Header extends Component {
@@ -15,7 +16,9 @@ class Header extends Component {
           isAuthenticated ? (
             <nav>
               <Link to="/dashboard">Dashboard</Link>
-              <Link to="/logout">Logout</Link>
+              <Link to="/" onClick={() => { 
+                this.props.logout();
+              }}>Logout</Link>
             </nav>
           ) : (
             <nav>
@@ -33,4 +36,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { logout })(Header);
