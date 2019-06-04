@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux';
 import { loadUser } from '../store/actions/auth';
 
+import Loading from './Loading';
 import Header from './Header';
 import Home from './Home';
 import AuthForm from './auth/AuthForm';
@@ -13,6 +14,13 @@ class App extends Component {
   }
 
   render() {
+    const loading = this.props.auth.isLoading;
+
+    if (loading) {
+      return (
+        <Loading />
+      )
+    }
     return (
       <Router>
         <div className="App">
@@ -29,4 +37,8 @@ class App extends Component {
   }
 }
 
-export default connect(null, { loadUser })(App);
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, { loadUser })(App);

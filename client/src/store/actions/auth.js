@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_LOADING, USER_LOADED, AUTH_ERROR, AUTH_SUCCESS, LOGOUT_SUCCESS } from './actionTypes';
+import { USER_LOADING, USER_LOADED, AUTH_ERROR, AUTH_SUCCESS, LOGOUT_SUCCESS, AUTH_FAIL } from './actionTypes';
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
@@ -10,6 +10,10 @@ export const loadUser = () => (dispatch, getState) => {
       payload: res.data
     });
   }).catch(err => {
+    dispatch({
+      type: AUTH_FAIL,
+      error: err
+    });
     console.error(err);
   });
 }
@@ -29,6 +33,10 @@ export const login = credentials => dispatch => {
       payload: res.data
     });
   }).catch(err => {
+    dispatch({
+      type: AUTH_FAIL,
+      error: err
+    });
     console.error(err);
   });
 }
@@ -48,6 +56,10 @@ export const register = credentials => dispatch => {
       payload: res.data
     });
   }).catch(err => {
+    dispatch({
+      type: AUTH_ERROR,
+      error: err
+    });
     console.error(err);
   });
 }
@@ -68,6 +80,10 @@ export const logout = () => (dispatch, getState) => {
   axios.post('http://localhost:8000/api/auth/logout/', null, axiosConfig).then(res => {
     dispatch({ type: LOGOUT_SUCCESS });
   }).catch(err => {
+    dispatch({
+      type: AUTH_ERROR,
+      error: err
+    });
     console.error(err);
   });
 }
