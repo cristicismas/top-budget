@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { tokenConfig } from './auth';
 
-import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE } from './actionTypes';
+import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, ERROR_MESSAGE } from './actionTypes';
 
 export const getExpenses = () => (dispatch, getState) => {
   axios.get('http://localhost:8000/api/expenses', tokenConfig(getState)).then(res => {
@@ -10,7 +10,10 @@ export const getExpenses = () => (dispatch, getState) => {
       payload: res.data
     });
   }).catch(err => {
-    console.error(err);
+    dispatch({
+      type: ERROR_MESSAGE,
+      payload: err
+    });
   });
 }
 
@@ -20,18 +23,34 @@ export const deleteExpense = id => (dispatch, getState) => {
       type: DELETE_EXPENSE,
       payload: id
     });
+
+    dispatch({
+      type: SUCCESS_MESSAGE,
+      payload: 'Deleted.'
+    });
   }).catch(err => {
-    console.error(err);
+    dispatch({
+      type: ERROR_MESSAGE,
+      payload: err
+    });
   });
 }
 
-export const getExpenses = expense => (dispatch, getState) => {
+export const addExpense = expense => (dispatch, getState) => {
   axios.post('http://localhost:8000/api/expenses', expense, tokenConfig(getState)).then(res => {
     dispatch({
       type: ADD_EXPENSE,
       payload: res.data
     });
+
+    dispatch({
+      type: SUCCESS_MESSAGE,
+      payload: 'Added expense.'
+    });
   }).catch(err => {
-    console.error(err);
+    dispatch({
+      type: ERROR_MESSAGE,
+      payload: err
+    });
   });
 }

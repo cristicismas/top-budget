@@ -5,8 +5,10 @@ export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';
 
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
-export const AUTH_ERROR = 'AUTH_ERROR';
 
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const ERROR_MESSAGE = 'ERROR_MESSAGE';
+export const SUCCESS_MESSAGE = 'SUCCESS_MESSAGE';
+export const DELETE_MESSAGES = 'DELETE_MESSAGES';

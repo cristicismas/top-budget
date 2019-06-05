@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_LOADING, USER_LOADED, AUTH_ERROR, AUTH_SUCCESS, LOGOUT_SUCCESS, AUTH_FAIL } from './actionTypes';
+import { USER_LOADING, USER_LOADED, AUTH_SUCCESS, AUTH_FAIL, ERROR_MESSAGE, SUCCESS_MESSAGE, LOGOUT_SUCCESS } from './actionTypes';
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
@@ -12,9 +12,8 @@ export const loadUser = () => (dispatch, getState) => {
   }).catch(err => {
     dispatch({
       type: AUTH_FAIL,
-      error: err
+      payload: err
     });
-    console.error(err);
   });
 }
 
@@ -28,16 +27,22 @@ export const login = credentials => dispatch => {
   const reqBody = JSON.stringify({ ...credentials });
 
   axios.post('http://localhost:8000/api/auth/login', reqBody, axiosConfig).then(res => {
+    localStorage.setItem('token', res.data.token);
+
     dispatch({
       type: AUTH_SUCCESS,
       payload: res.data
     });
+
+    dispatch({
+      type: SUCCESS_MESSAGE,
+      payload: 'Logged In.'
+    });
   }).catch(err => {
     dispatch({
-      type: AUTH_FAIL,
-      error: err
+      type: ERROR_MESSAGE,
+      payload: err.response.data
     });
-    console.error(err);
   });
 }
 
@@ -51,16 +56,22 @@ export const register = credentials => dispatch => {
   const reqBody = JSON.stringify({ ...credentials });
 
   axios.post('http://localhost:8000/api/auth/register', reqBody, axiosConfig).then(res => {
+    localStorage.setItem('token', res.data.token);
+
     dispatch({
       type: AUTH_SUCCESS,
       payload: res.data
     });
+
+    dispatch({
+      type: SUCCESS_MESSAGE,
+      payload: 'Registration completed.'
+    });
   }).catch(err => {
     dispatch({
-      type: AUTH_ERROR,
-      error: err
+      type: ERROR_MESSAGE,
+      payload: err.response.data
     });
-    console.error(err);
   });
 }
 
@@ -78,13 +89,21 @@ export const logout = () => (dispatch, getState) => {
   }
 
   axios.post('http://localhost:8000/api/auth/logout/', null, axiosConfig).then(res => {
-    dispatch({ type: LOGOUT_SUCCESS });
+    localStorage.removeItem('token');
+
+    dispatch({
+      type: SUCCESS_MESSAGE,
+      payload: 'Logged Out.'
+    });
+
+    dispatch({
+      type: LOGOUT_SUCCESS
+    });
   }).catch(err => {
     dispatch({
-      type: AUTH_ERROR,
-      error: err
+      type: ERROR_MESSAGE,
+      payload: err.response.data
     });
-    console.error(err);
   });
 }
 
