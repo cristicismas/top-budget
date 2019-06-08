@@ -7,6 +7,7 @@ import Loading from './Loading';
 import Header from './Header';
 import Home from './Home';
 import AuthForm from './auth/AuthForm';
+import Dashboard from './dashboard/Dashboard';
 
 class App extends Component {
   componentDidMount() {
@@ -31,6 +32,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/signup" render={() => <AuthForm type="signup" />} />
             <Route exact path="/login" render={() => <AuthForm type="login" />} />
+            <Route path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
       </Router>
