@@ -33,13 +33,6 @@ import {
 
 
 class Dashboard extends Component {
-  componentDidMount() {
-    this.props.getExpenses();
-    this.props.getCategories();
-    this.props.getLocations();
-    this.props.getSources();
-  }
-
   render() {
     const pathname = this.props.location.pathname;
 
@@ -66,7 +59,7 @@ class Dashboard extends Component {
             </Link>
           </nav>
 
-          <Route exact path="/dashboard" component={AddExpense} />
+          <Route exact path="/dashboard" render={() => <AddExpense {...this.props} />} />
           <Route path="/dashboard/settings" component={Settings} />
           <Route path="/dashboard/stats" component={Stats} />
         </section>
