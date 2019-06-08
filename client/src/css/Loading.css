@@ -1,31 +1,64 @@
-#loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 100;
-  background-color: #11101b;
+.radar-spinner,
+.radar-spinner * {
+  box-sizing: border-box;
 }
 
-#loading #spinner {
-  height: 200px;
-  width: 200px;
-  border: 5px dashed #ccc;
-  border-radius: 50%;
-  position: relative;
+.radar-spinner {
+  height: 120px;
+  width: 120px;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: 3.5s spin infinite;
 }
 
-@keyframes spin {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
+.radar-spinner .circle {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  animation: radar-spinner-animation 2s infinite;
+}
 
+.radar-spinner .circle:nth-child(1) {
+  padding: calc(120px * 5 * 2 * 0 / 110);
+  animation-delay: 300ms;
+}
+
+.radar-spinner .circle:nth-child(2) {
+  padding: calc(120px * 5 * 2 * 1 / 110);
+  animation-delay: 300ms;
+}
+
+.radar-spinner .circle:nth-child(3) {
+  padding: calc(120px * 5 * 2 * 2 / 110);
+  animation-delay: 300ms;
+}
+
+.radar-spinner .circle:nth-child(4) {
+  padding: calc(120px * 5 * 2 * 3 / 110);
+  animation-delay: 0ms;
+}
+
+.radar-spinner .circle-inner,
+.radar-spinner .circle-inner-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: calc(100px * 5 / 110) solid transparent;
+}
+
+.radar-spinner .circle-inner {
+  border-left-color: #441eee;
+  border-right-color: #441eee;
+}
+
+@keyframes radar-spinner-animation {
+  50% {
+    transform: rotate(180deg);
+  }
   100% {
-    transform: translate(-50%, -50%) rotate(360deg);
+    transform: rotate(0deg);
   }
 }
