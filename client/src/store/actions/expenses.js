@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { tokenConfig } from './auth';
 
-import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, ERROR_MESSAGE } from './actionTypes';
+import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
 
 export const getExpenses = () => (dispatch, getState) => {
   axios.get('http://localhost:8000/api/expenses', tokenConfig(getState)).then(res => {

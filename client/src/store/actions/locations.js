@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { tokenConfig } from './auth';
 
-import { GET_LOCATIONS, DELETE_LOCATION, ADD_LOCATION, ERROR_MESSAGE } from './actionTypes';
+import { GET_LOCATIONS, DELETE_LOCATION, ADD_LOCATION, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
 
 export const getLocations = () => (dispatch, getState) => {
   axios.get('http://localhost:8000/api/locations', tokenConfig(getState)).then(res => {

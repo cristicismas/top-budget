@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { tokenConfig } from './auth';
 
-import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE, ERROR_MESSAGE } from './actionTypes';
+import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
 
 export const getSources = () => (dispatch, getState) => {
   axios.get('http://localhost:8000/api/sources', tokenConfig(getState)).then(res => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { tokenConfig } from './auth';
 
-import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY, ERROR_MESSAGE } from './actionTypes';
+import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
 
 export const getCategories = () => (dispatch, getState) => {
   axios.get('http://localhost:8000/api/categories', tokenConfig(getState)).then(res => {
