@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { loadUser } from '../store/actions/auth';
 
@@ -28,12 +28,10 @@ class App extends Component {
         <div className="App">
           <Header {...this.props} />
 
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/signup" render={() => <AuthForm type="signup" />} />
-            <Route exact path="/login" render={() => <AuthForm type="login" />} />
-            <Route path="/dashboard" component={Dashboard} />
-          </Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signup" render={() => <AuthForm type="signup" />} />
+          <Route exact path="/login" render={() => <AuthForm type="login" />} />
+          <Route path="/dashboard" component={Dashboard} />
         </div>
       </Router>
     );
