@@ -12,3 +12,15 @@ export const AUTH_FAIL = 'AUTH_FAIL';
 export const ERROR_MESSAGE = 'ERROR_MESSAGE';
 export const SUCCESS_MESSAGE = 'SUCCESS_MESSAGE';
 export const DELETE_MESSAGES = 'DELETE_MESSAGES';
+
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+
+export const GET_LOCATIONS = 'GET_LOCATIONS';
+export const DELETE_LOCATION = 'DELETE_LOCATION';
+export const ADD_LOCATION = 'ADD_LOCATION';
+
+export const GET_SOURCES = 'GET_SOURCES';
+export const DELETE_SOURCE = 'DELETE_SOURCE';
+export const ADD_SOURCE = 'ADD_SOURCE';
