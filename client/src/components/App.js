@@ -21,6 +21,7 @@ class App extends Component {
         <Loading />
       )
     }
+
     return (
       <Router>
         <div className="App">
