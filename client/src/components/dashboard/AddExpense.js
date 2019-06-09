@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import '../../css/AddExpense.css';
 
 export class AddExpense extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: 0,
+      categories: [],
+      locations: [],
+      sources: []
+    };
+  }
+
   componentDidMount() {
     this.props.getExpenses();
     this.props.getCategories();
@@ -9,20 +20,61 @@ export class AddExpense extends Component {
     this.props.getSources();
   }
 
+  handleOptionClick(type, object) {
+    const domElement = document.getElementById(`${type}-${object.id}`);
+
+    if (domElement.classList.contains('selected')) {
+      const currentStateArray = [...this.state[type]];
+      const indexToRemove = currentStateArray.indexOf(object.id);
+
+      currentStateArray.splice(indexToRemove, 1);
+
+      this.setState({ [type]: currentStateArray });
+    } else {
+      this.setState({ [type]: [...this.state[type], object.id] });
+    }
+
+    domElement.classList.toggle('selected');
+  }
+
   render() {
     const data = this.props.expenses;
 
-    const categories = data.categories.map(category => 
-      <div className="option" key={category.id}>{category.name}</div>
-    );
+    const categories = data.categories.map(category => (
+      <div
+        className="option"
+        onClick={() => {
+          this.handleOptionClick('categories', category);
+        }}
+        key={category.id}
+        id={'categories-' + category.id}>
+        {category.name}
+      </div>
+    ));
 
-    const locations = data.locations.map(location => 
-      <div className="option" key={location.id}>{location.name}</div>
-    );
+    const locations = data.locations.map(location => (
+      <div
+        className="option"
+        onClick={() => {
+          this.handleOptionClick('locations', location);
+        }}
+        key={location.id}
+        id={'locations-' + location.id}>
+        {location.name}
+      </div>
+    ));
 
-    const sources = data.sources.map(source => 
-      <div className="option" key={source.id}>{source.name}</div>
-    );
+    const sources = data.sources.map(source => (
+      <div
+        className="option"
+        onClick={() => {
+          this.handleOptionClick('sources', source);
+        }}
+        key={source.id}
+        id={'sources-' + source.id}>
+        {source.name}
+      </div>
+    ));
 
     return (
       <form id="expense-form">

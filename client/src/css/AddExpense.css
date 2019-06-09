@@ -37,18 +37,24 @@
 
 #expense-form .option {
   padding: 5px 10px;
+  user-select: none;
   margin-right: 10px;
   margin-bottom: 10px;
   background-color: #15131A;
   border: 1px solid #2c2c3a;
   border-radius: 5px;
   cursor: pointer;
-  transition: all .1s;
+  transition: color .2s, border .2s, box-shadow .2s;
 }
 
 #expense-form .option:hover,
 #expense-form .option.selected {
   border: 1px solid #441eee;
+}
+
+#expense-form .option.selected {
+  color: #775cf0;
+  box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
 }
 
 #expense-form button[type='submit'] {
