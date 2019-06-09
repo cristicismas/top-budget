@@ -81,7 +81,13 @@ export class AddExpense extends Component {
         <div className="form-group">
           <label htmlFor="value">Value:</label>
           <br />
-          <input type="number" name="value" id="value" required />
+          <input
+            type="number"
+            name="value"
+            id="value"
+            onChange={e => this.setState({ value: e.target.value })}
+            required
+          />
         </div>
 
         <div className="form-group">
