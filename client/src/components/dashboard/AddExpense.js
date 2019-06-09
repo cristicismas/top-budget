@@ -113,6 +113,8 @@ export class AddExpense extends Component {
             id="value"
             onChange={e => this.setState({ value: e.target.value })}
             value={this.state.value}
+            min="0"
+            step="0.01"
             required
           />
         </div>

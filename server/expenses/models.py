@@ -3,7 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 
 class Expense(models.Model):
-    value = models.IntegerField()
+    value = models.DecimalField(max_digits=7, decimal_places=2)
     categories = models.ManyToManyField("Category", blank=True)
     locations = models.ManyToManyField("Location", blank=True)
     sources = models.ManyToManyField("Source", blank=True)
