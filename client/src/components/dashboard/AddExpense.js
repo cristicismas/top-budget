@@ -39,10 +39,28 @@ export class AddExpense extends Component {
     domElement.classList.toggle('selected');
   }
 
+  clearForm() {
+    this.setState({
+      value: 0,
+      categories: [],
+      locations: [],
+      sources: []
+    });
+
+    const selectedOptions = document.querySelectorAll('.selected');
+
+    for (let i = 0; i < selectedOptions.length; i++) {
+      const currentOption = selectedOptions[i];
+
+      currentOption.classList.remove('selected');
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
     this.props.addExpense(this.state);
+    this.clearForm();
   }
 
   render() {
@@ -94,6 +112,7 @@ export class AddExpense extends Component {
             name="value"
             id="value"
             onChange={e => this.setState({ value: e.target.value })}
+            value={this.state.value}
             required
           />
         </div>
