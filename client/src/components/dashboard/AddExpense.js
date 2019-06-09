@@ -11,6 +11,8 @@ export class AddExpense extends Component {
       locations: [],
       sources: []
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +37,12 @@ export class AddExpense extends Component {
     }
 
     domElement.classList.toggle('selected');
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    this.props.addExpense(this.state);
   }
 
   render() {
@@ -77,7 +85,7 @@ export class AddExpense extends Component {
     ));
 
     return (
-      <form id="expense-form">
+      <form id="expense-form" onSubmit={this.handleSubmit}>
         <div className="form-group">
           <label htmlFor="value">Value:</label>
           <br />

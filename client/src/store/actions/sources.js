@@ -18,7 +18,7 @@ export const getSources = () => (dispatch, getState) => {
 }
 
 export const deleteSource = id => (dispatch, getState) => {
-  axios.delete(`http://localhost:8000/api/sources/${id}`, tokenConfig(getState)).then(res => {
+  axios.delete(`http://localhost:8000/api/sources/${id}/`, tokenConfig(getState)).then(res => {
     dispatch({
       type: DELETE_SOURCE,
       payload: id
@@ -37,7 +37,7 @@ export const deleteSource = id => (dispatch, getState) => {
 }
 
 export const addSource = source => (dispatch, getState) => {
-  axios.post('http://localhost:8000/api/sources', source, tokenConfig(getState)).then(res => {
+  axios.post('http://localhost:8000/api/sources/', source, tokenConfig(getState)).then(res => {
     dispatch({
       type: ADD_SOURCE,
       payload: res.data

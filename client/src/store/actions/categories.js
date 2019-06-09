@@ -18,7 +18,7 @@ export const getCategories = () => (dispatch, getState) => {
 }
 
 export const deleteCategory = id => (dispatch, getState) => {
-  axios.delete(`http://localhost:8000/api/categories/${id}`, tokenConfig(getState)).then(res => {
+  axios.delete(`http://localhost:8000/api/categories/${id}/`, tokenConfig(getState)).then(res => {
     dispatch({
       type: DELETE_CATEGORY,
       payload: id
@@ -37,7 +37,7 @@ export const deleteCategory = id => (dispatch, getState) => {
 }
 
 export const addCategory = category => (dispatch, getState) => {
-  axios.post('http://localhost:8000/api/categories', category, tokenConfig(getState)).then(res => {
+  axios.post('http://localhost:8000/api/categories/', category, tokenConfig(getState)).then(res => {
     dispatch({
       type: ADD_CATEGORY,
       payload: res.data

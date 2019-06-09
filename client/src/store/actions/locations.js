@@ -18,7 +18,7 @@ export const getLocations = () => (dispatch, getState) => {
 }
 
 export const deleteLocation = id => (dispatch, getState) => {
-  axios.delete(`http://localhost:8000/api/locations/${id}`, tokenConfig(getState)).then(res => {
+  axios.delete(`http://localhost:8000/api/locations/${id}/`, tokenConfig(getState)).then(res => {
     dispatch({
       type: DELETE_LOCATION,
       payload: id
@@ -37,7 +37,7 @@ export const deleteLocation = id => (dispatch, getState) => {
 }
 
 export const addLocation = location => (dispatch, getState) => {
-  axios.post('http://localhost:8000/api/locations', location, tokenConfig(getState)).then(res => {
+  axios.post('http://localhost:8000/api/locations/', location, tokenConfig(getState)).then(res => {
     dispatch({
       type: ADD_LOCATION,
       payload: res.data

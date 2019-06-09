@@ -18,7 +18,7 @@ export const getExpenses = () => (dispatch, getState) => {
 }
 
 export const deleteExpense = id => (dispatch, getState) => {
-  axios.delete(`http://localhost:8000/api/expenses/${id}`, tokenConfig(getState)).then(res => {
+  axios.delete(`http://localhost:8000/api/expenses/${id}/`, tokenConfig(getState)).then(res => {
     dispatch({
       type: DELETE_EXPENSE,
       payload: id
@@ -37,7 +37,7 @@ export const deleteExpense = id => (dispatch, getState) => {
 }
 
 export const addExpense = expense => (dispatch, getState) => {
-  axios.post('http://localhost:8000/api/expenses', expense, tokenConfig(getState)).then(res => {
+  axios.post('http://localhost:8000/api/expenses/', expense, tokenConfig(getState)).then(res => {
     dispatch({
       type: ADD_EXPENSE,
       payload: res.data
