@@ -41,6 +41,11 @@ class Dashboard extends Component {
     if (!this.props.auth.user) {
       this.props.loadUser();
     }
+
+    this.props.getExpenses();
+    this.props.getCategories();
+    this.props.getLocations();
+    this.props.getSources();
   }
 
   render() {
@@ -83,10 +88,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  expenses: state.expenses,
-  categories: state.categories,
-  locations: state.locations,
-  sources: state.sources
+  expenses: state.expenses
 });
 
 export default connect(

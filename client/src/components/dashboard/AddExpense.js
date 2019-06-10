@@ -15,13 +15,6 @@ export class AddExpense extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.props.getExpenses();
-    this.props.getCategories();
-    this.props.getLocations();
-    this.props.getSources();
-  }
-
   handleOptionClick(type, object) {
     const domElement = document.getElementById(`${type}-${object.id}`);
 
