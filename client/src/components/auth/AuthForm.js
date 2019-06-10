@@ -34,6 +34,8 @@ export class AuthForm extends Component {
         password: this.state.password   
       });
     }
+
+    this.props.history.push('/');
   }
 
   render() {
