@@ -73,4 +73,10 @@
 #expense-form button[type='submit']:hover {
   width: 170px;
   border: 2px solid #3d1eca;
+  box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
+}
+
+#expense-form button[type='submit']:active {
+  color: #775cf0;
+  box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
