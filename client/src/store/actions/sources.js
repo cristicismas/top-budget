@@ -1,13 +1,13 @@
-import axios from 'axios';
+import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
+import { apiCall } from '../../utils/api';
+
 import { tokenConfig } from './auth';
 
-import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
-
 export const getSources = () => (dispatch, getState) => {
-  axios.get('http://localhost:8000/api/sources', tokenConfig(getState)).then(res => {
+  apiCall('get', 'sources', tokenConfig(getState)).then(res => {
     dispatch({
       type: GET_SOURCES,
-      payload: res.data
+      payload: res
     });
   }).catch(err => {
     dispatch({
@@ -18,7 +18,7 @@ export const getSources = () => (dispatch, getState) => {
 }
 
 export const deleteSource = id => (dispatch, getState) => {
-  axios.delete(`http://localhost:8000/api/sources/${id}/`, tokenConfig(getState)).then(res => {
+  apiCall('delete', `sources/${id}/`, tokenConfig(getState)).then(res => {
     dispatch({
       type: DELETE_SOURCE,
       payload: id
@@ -37,10 +37,10 @@ export const deleteSource = id => (dispatch, getState) => {
 }
 
 export const addSource = source => (dispatch, getState) => {
-  axios.post('http://localhost:8000/api/sources/', source, tokenConfig(getState)).then(res => {
+  apiCall('post', 'sources/', source, tokenConfig(getState)).then(res => {
     dispatch({
       type: ADD_SOURCE,
-      payload: res.data
+      payload: res
     });
 
     dispatch({

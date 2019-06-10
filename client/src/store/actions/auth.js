@@ -1,13 +1,13 @@
-import axios from 'axios';
 import { USER_LOADING, USER_LOADED, AUTH_SUCCESS, AUTH_FAIL, ERROR_MESSAGE, SUCCESS_MESSAGE, LOGOUT_SUCCESS } from './actionTypes';
+import { apiCall } from '../../utils/api';
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
-  axios.get('http://localhost:8000/api/auth/user', tokenConfig(getState)).then(res => {
+  apiCall('get', 'auth/user', tokenConfig(getState)).then(res => {
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: res
     });
   }).catch(err => {
     dispatch({
@@ -17,21 +17,15 @@ export const loadUser = () => (dispatch, getState) => {
   });
 }
 
-export const login = credentials => dispatch => {
-  const axiosConfig = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
+export const login = credentials => (dispatch, getState) => {
   const reqBody = JSON.stringify({ ...credentials });
 
-  axios.post('http://localhost:8000/api/auth/login', reqBody, axiosConfig).then(res => {
-    localStorage.setItem('token', res.data.token);
+  apiCall('post', 'auth/login', reqBody, tokenConfig(getState)).then(res => {
+    localStorage.setItem('token', res.token);
 
     dispatch({
       type: AUTH_SUCCESS,
-      payload: res.data
+      payload: res
     });
 
     dispatch({
@@ -39,6 +33,7 @@ export const login = credentials => dispatch => {
       payload: 'Logged In.'
     });
   }).catch(err => {
+    console.warn(err);
     dispatch({
       type: ERROR_MESSAGE,
       payload: err.response.data
@@ -46,21 +41,15 @@ export const login = credentials => dispatch => {
   });
 }
 
-export const register = credentials => dispatch => {
-  const axiosConfig = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
+export const register = credentials => (dispatch, getState) => {
   const reqBody = JSON.stringify({ ...credentials });
 
-  axios.post('http://localhost:8000/api/auth/register', reqBody, axiosConfig).then(res => {
-    localStorage.setItem('token', res.data.token);
+  apiCall('post', 'auth/register', reqBody, tokenConfig(getState)).then(res => {
+    localStorage.setItem('token', res.token);
 
     dispatch({
       type: AUTH_SUCCESS,
-      payload: res.data
+      payload: res
     });
 
     dispatch({
@@ -76,19 +65,7 @@ export const register = credentials => dispatch => {
 }
 
 export const logout = () => (dispatch, getState) => {
-  const token = getState().auth.token;
-
-  const axiosConfig = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
-  if (token) {
-    axiosConfig.headers['Authorization'] = `Token ${token}`;
-  }
-
-  axios.post('http://localhost:8000/api/auth/logout/', null, axiosConfig).then(res => {
+  apiCall('post', 'auth/logout', null, tokenConfig(getState)).then(res => {
     localStorage.removeItem('token');
 
     dispatch({

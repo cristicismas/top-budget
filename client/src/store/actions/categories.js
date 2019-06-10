@@ -1,13 +1,13 @@
-import axios from 'axios';
+import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
+import { apiCall } from '../../utils/api';
+
 import { tokenConfig } from './auth';
 
-import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
-
 export const getCategories = () => (dispatch, getState) => {
-  axios.get('http://localhost:8000/api/categories', tokenConfig(getState)).then(res => {
+  apiCall('get', 'categories', tokenConfig(getState)).then(res => {
     dispatch({
       type: GET_CATEGORIES,
-      payload: res.data
+      payload: res
     });
   }).catch(err => {
     dispatch({
@@ -18,7 +18,7 @@ export const getCategories = () => (dispatch, getState) => {
 }
 
 export const deleteCategory = id => (dispatch, getState) => {
-  axios.delete(`http://localhost:8000/api/categories/${id}/`, tokenConfig(getState)).then(res => {
+  apiCall('delete', `categories/${id}/`, tokenConfig(getState)).then(res => {
     dispatch({
       type: DELETE_CATEGORY,
       payload: id
@@ -37,10 +37,10 @@ export const deleteCategory = id => (dispatch, getState) => {
 }
 
 export const addCategory = category => (dispatch, getState) => {
-  axios.post('http://localhost:8000/api/categories/', category, tokenConfig(getState)).then(res => {
+  apiCall('post', 'categories/', category, tokenConfig(getState)).then(res => {
     dispatch({
       type: ADD_CATEGORY,
-      payload: res.data
+      payload: res
     });
 
     dispatch({

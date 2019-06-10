@@ -1,13 +1,13 @@
-import axios from 'axios';
+import { GET_LOCATIONS, DELETE_LOCATION, ADD_LOCATION, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
+import { apiCall } from '../../utils/api';
+
 import { tokenConfig } from './auth';
 
-import { GET_LOCATIONS, DELETE_LOCATION, ADD_LOCATION, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
-
 export const getLocations = () => (dispatch, getState) => {
-  axios.get('http://localhost:8000/api/locations', tokenConfig(getState)).then(res => {
+  apiCall('get', 'locations', tokenConfig(getState)).then(res => {
     dispatch({
       type: GET_LOCATIONS,
-      payload: res.data
+      payload: res
     });
   }).catch(err => {
     dispatch({
@@ -18,7 +18,7 @@ export const getLocations = () => (dispatch, getState) => {
 }
 
 export const deleteLocation = id => (dispatch, getState) => {
-  axios.delete(`http://localhost:8000/api/locations/${id}/`, tokenConfig(getState)).then(res => {
+  apiCall('delete', `locations/${id}/`, tokenConfig(getState)).then(res => {
     dispatch({
       type: DELETE_LOCATION,
       payload: id
@@ -37,10 +37,10 @@ export const deleteLocation = id => (dispatch, getState) => {
 }
 
 export const addLocation = location => (dispatch, getState) => {
-  axios.post('http://localhost:8000/api/locations/', location, tokenConfig(getState)).then(res => {
+  apiCall('post', 'locations/', location, tokenConfig(getState)).then(res => {
     dispatch({
       type: ADD_LOCATION,
-      payload: res.data
+      payload: res
     });
 
     dispatch({

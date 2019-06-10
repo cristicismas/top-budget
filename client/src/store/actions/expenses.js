@@ -1,13 +1,13 @@
-import axios from 'axios';
+import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
+import { apiCall } from '../../utils/api';
+
 import { tokenConfig } from './auth';
 
-import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
-
 export const getExpenses = () => (dispatch, getState) => {
-  axios.get('http://localhost:8000/api/expenses', tokenConfig(getState)).then(res => {
+  apiCall('get', 'expenses', tokenConfig(getState)).then(res => {
     dispatch({
       type: GET_EXPENSES,
-      payload: res.data
+      payload: res
     });
   }).catch(err => {
     dispatch({
@@ -18,7 +18,7 @@ export const getExpenses = () => (dispatch, getState) => {
 }
 
 export const deleteExpense = id => (dispatch, getState) => {
-  axios.delete(`http://localhost:8000/api/expenses/${id}/`, tokenConfig(getState)).then(res => {
+  apiCall('delete', `expenses/${id}/`, tokenConfig(getState)).then(res => {
     dispatch({
       type: DELETE_EXPENSE,
       payload: id
@@ -37,10 +37,10 @@ export const deleteExpense = id => (dispatch, getState) => {
 }
 
 export const addExpense = expense => (dispatch, getState) => {
-  axios.post('http://localhost:8000/api/expenses/', expense, tokenConfig(getState)).then(res => {
+  apiCall('post', 'expenses/', expense, tokenConfig(getState)).then(res => {
     dispatch({
       type: ADD_EXPENSE,
-      payload: res.data
+      payload: res
     });
 
     dispatch({
