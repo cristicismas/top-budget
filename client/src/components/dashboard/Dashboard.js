@@ -31,12 +31,23 @@ import {
   addSource
 } from '../../store/actions/sources';
 
+import {
+  loadUser
+} from '../../store/actions/auth';
+
 
 class Dashboard extends Component {
+  componentDidMount() {
+    if (!this.props.auth.user) {
+      this.props.loadUser();
+    }
+  }
+
   render() {
     const pathname = this.props.location.pathname;
+    const token = localStorage.getItem('token');
 
-    if (this.props.auth.user) {
+    if (token) {
       return (
         <section id="dashboard">
           <nav>
@@ -95,6 +106,8 @@ export default connect(
 
     getSources,
     deleteSource,
-    addSource
+    addSource,
+
+    loadUser
   }
 )(Dashboard);

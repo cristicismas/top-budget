@@ -10,6 +10,8 @@ export const loadUser = () => (dispatch, getState) => {
       payload: res
     });
   }).catch(err => {
+    localStorage.removeItem('token');
+
     dispatch({
       type: AUTH_FAIL,
       payload: err
