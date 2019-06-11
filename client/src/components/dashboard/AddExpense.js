@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../../css/AddExpense.css';
 
+import OptionsGroup from './OptionsGroup';
+
 export class AddExpense extends Component {
   constructor(props) {
     super(props);
@@ -46,6 +48,22 @@ export class AddExpense extends Component {
       const currentOption = selectedOptions[i];
 
       currentOption.classList.remove('selected');
+    }
+  }
+
+  handleAddOption(type, name) {
+    switch (type) {
+      case 'category':
+        this.props.addCategory({ name });
+        break;
+      case 'location':
+        this.props.addLocation({ name });
+        break;
+      case 'source':
+        this.props.addSource({ name });
+        break;
+      default:
+        break;
     }
   }
 
@@ -112,26 +130,26 @@ export class AddExpense extends Component {
           />
         </div>
 
-        <div className="form-group">
-          <label>Category</label>
-          <div className="options" id="categories">
-            {categories}
-          </div>
-        </div>
+        <OptionsGroup
+          label="Category"
+          type="category"
+          options={categories}
+          handleAddOption={(type, name) => this.handleAddOption(type, name)}
+        />
 
-        <div className="form-group">
-          <label>Location</label>
-          <div className="options" id="locations">
-            {locations}
-          </div>
-        </div>
+        <OptionsGroup
+          label="Location"
+          type="location"
+          options={locations}
+          handleAddOption={(type, name) => this.handleAddOption(type, name)}
+        />
 
-        <div className="form-group">
-          <label>Source</label>
-          <div className="options" id="sources">
-            {sources}
-          </div>
-        </div>
+        <OptionsGroup
+          label="Source"
+          type="source"
+          options={sources}
+          handleAddOption={(type, name) => this.handleAddOption(type, name)}
+        />
 
         <button type="submit">Confirm</button>
       </form>
