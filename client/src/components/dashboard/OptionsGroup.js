@@ -10,6 +10,7 @@ function OptionsGroup(props) {
       <label>
         {label}
         <button
+          type="button"
           className="add-option-button"
           onClick={() => changeInputVisibility(!inputVisible)}>
           +
