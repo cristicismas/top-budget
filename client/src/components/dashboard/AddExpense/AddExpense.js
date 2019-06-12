@@ -8,7 +8,7 @@ export class AddExpense extends Component {
     super(props);
 
     this.state = {
-      value: null,
+      value: '',
       categories: [],
       locations: [],
       sources: []
@@ -81,41 +81,7 @@ export class AddExpense extends Component {
   render() {
     const data = this.props.expenses;
 
-    const categories = data.categories.map(category => (
-      <div
-        className="option"
-        onClick={() => {
-          this.handleOptionClick('categories', category);
-        }}
-        key={category.id}
-        id={'categories-' + category.id}>
-        {category.name}
-      </div>
-    ));
-
-    const locations = data.locations.map(location => (
-      <div
-        className="option"
-        onClick={() => {
-          this.handleOptionClick('locations', location);
-        }}
-        key={location.id}
-        id={'locations-' + location.id}>
-        {location.name}
-      </div>
-    ));
-
-    const sources = data.sources.map(source => (
-      <div
-        className="option"
-        onClick={() => {
-          this.handleOptionClick('sources', source);
-        }}
-        key={source.id}
-        id={'sources-' + source.id}>
-        {source.name}
-      </div>
-    ));
+    const { categories, locations, sources } = data;
 
     return (
       <form id="expense-form" onSubmit={this.handleSubmit}>
@@ -136,23 +102,26 @@ export class AddExpense extends Component {
 
         <OptionsGroup
           label="Category"
-          type="category"
-          options={categories}
+          type="categories"
+          objects={categories}
           handleAddOption={(type, name) => this.handleAddOption(type, name)}
+          handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
         />
 
         <OptionsGroup
           label="Location"
-          type="location"
-          options={locations}
+          type="locations"
+          objects={locations}
           handleAddOption={(type, name) => this.handleAddOption(type, name)}
+          handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
         />
 
         <OptionsGroup
           label="Source"
-          type="source"
-          options={sources}
+          type="sources"
+          objects={sources}
           handleAddOption={(type, name) => this.handleAddOption(type, name)}
+          handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
         />
 
         <button type="submit">Confirm</button>
