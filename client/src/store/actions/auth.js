@@ -35,7 +35,6 @@ export const login = credentials => (dispatch, getState) => {
       payload: 'Logged In.'
     });
   }).catch(err => {
-    console.warn(err);
     dispatch({
       type: ERROR_MESSAGE,
       payload: err.response.data
