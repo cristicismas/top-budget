@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
+import AddOptionOverlay from './AddOptionOverlay';
 
 function OptionsGroup(props) {
   const { type, options, label } = props;
 
-  const [inputVisible, changeInputVisibility] = useState(false);
+  const [overlayVisible, changeOverlayVisibility] = useState(false);
 
   return (
     <div className="form-group">
@@ -12,36 +13,16 @@ function OptionsGroup(props) {
         <button
           type="button"
           className="add-option-button"
-          onClick={() => changeInputVisibility(!inputVisible)}>
+          onClick={() => changeOverlayVisibility(!overlayVisible)}>
           +
         </button>
       </label>
 
-      {inputVisible ? (
-        <Fragment>
-          <label htmlFor="add-option" className="add-option-label">
-            Add {label}
-          </label>
-          <input
-            type="text"
-            name="add-option"
-            className="add-option-input"
-            id={`add-${type}-input`}
-          />
-          
-          <button
-            className="add-option-confirm"
-            onClick={() => {
-              const optionName = document.getElementById(`add-${type}-input`).value;
-
-              props.handleAddOption(type, optionName);
-
-              document.getElementById(`add-${type}-input`).value = '';
-              changeInputVisibility(false);
-            }}>
-            Confirm
-          </button>
-        </Fragment>
+      {overlayVisible ? (
+        <AddOptionOverlay
+          {...props}
+          closeOverlay={() => changeOverlayVisibility(false)}
+        />
       ) : null}
 
       <div className="options" id={type}>
