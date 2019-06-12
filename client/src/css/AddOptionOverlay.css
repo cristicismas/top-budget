@@ -5,6 +5,17 @@
   width: 100vw;
   left: 0;
   top: 0;
+  opacity: 0;
+  animation: fadein forwards .2s;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .overlay {
