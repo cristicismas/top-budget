@@ -8,13 +8,17 @@ export class AddExpense extends Component {
     super(props);
 
     this.state = {
-      value: 0,
+      value: null,
       categories: [],
       locations: [],
       sources: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    document.getElementById('value-input').focus();
   }
 
   handleOptionClick(type, object) {
@@ -121,7 +125,7 @@ export class AddExpense extends Component {
           <input
             type="number"
             name="value"
-            id="value"
+            id="value-input"
             onChange={e => this.setState({ value: e.target.value })}
             value={this.state.value}
             min="0"

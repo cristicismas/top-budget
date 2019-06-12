@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../../css/AddOptionOverlay.css';
 
 function AddOptionOverlay(props) {
   const { type, label } = props;
+
+  useEffect(() => {
+    document.getElementById(`add-${type}-input`).focus();
+  });
 
   return (
     <div className="overlay-container">
@@ -25,6 +29,7 @@ function AddOptionOverlay(props) {
 
         <button
           className="overlay-cta"
+          type="button"
           onClick={() => {
             const input = document.getElementById(`add-${type}-input`);
 
