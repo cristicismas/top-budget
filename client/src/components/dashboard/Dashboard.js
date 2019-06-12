@@ -5,7 +5,7 @@ import '../../css/Dashboard.css';
 
 import Settings from './Settings';
 import Stats from './Stats';
-import AddExpense from './AddExpense';
+import AddExpense from './AddExpense/AddExpense';
 
 import {
   getExpenses,

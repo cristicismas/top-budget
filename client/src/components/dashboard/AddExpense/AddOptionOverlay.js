@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/AddOptionOverlay.css';
+import '../../../css/AddOptionOverlay.css';
 
 function AddOptionOverlay(props) {
   const { type, label } = props;
