@@ -1,9 +1,11 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 
 class Expense(models.Model):
-    value = models.DecimalField(max_digits=7, decimal_places=2)
+    value = models.DecimalField(max_digits=7, decimal_places=2, validators=[MinValueValidator(Decimal('0.01'))])
     categories = models.ManyToManyField("Category", blank=True)
     locations = models.ManyToManyField("Location", blank=True)
     sources = models.ManyToManyField("Source", blank=True)
