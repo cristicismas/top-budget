@@ -30,7 +30,9 @@ function OptionsGroup(props) {
 
       {overlayVisible ? (
         <AddOptionOverlay
-          {...props}
+          type={type}
+          label={label}
+          handleAddOption={(type, name) => props.handleAddOption(type, name)}
           closeOverlay={() => changeOverlayVisibility(false)}
         />
       ) : null}

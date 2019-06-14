@@ -57,13 +57,13 @@ export class AddExpense extends Component {
 
   handleAddOption(type, name) {
     switch (type) {
-      case 'category':
+      case 'categories':
         this.props.addCategory({ name });
         break;
-      case 'location':
+      case 'locations':
         this.props.addLocation({ name });
         break;
-      case 'source':
+      case 'sources':
         this.props.addSource({ name });
         break;
       default:
