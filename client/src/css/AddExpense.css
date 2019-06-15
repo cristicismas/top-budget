@@ -8,7 +8,8 @@
   margin-bottom: 20px;
 }
 
-#expense-form label {
+#expense-form label,
+#expense-form .options-label {
   text-align: center;
   display: block;
 }

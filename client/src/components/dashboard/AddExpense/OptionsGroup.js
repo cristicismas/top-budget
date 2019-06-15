@@ -18,7 +18,7 @@ function OptionsGroup(props) {
 
   return (
     <div className="form-group">
-      <label>
+      <div className="options-label">
         {label}
         <button
           type="button"
@@ -26,7 +26,7 @@ function OptionsGroup(props) {
           onClick={() => changeOverlayVisibility(!overlayVisible)}>
           +
         </button>
-      </label>
+      </div>
 
       {overlayVisible ? (
         <AddOptionOverlay
