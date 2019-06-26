@@ -22,9 +22,9 @@ export class AddExpense extends Component {
   }
 
   handleOptionClick(type, object) {
-    const domElement = document.getElementById(`${type}-${object.id}`);
+    const options = document.getElementById(`${type}-${object.id}`);
 
-    if (domElement.classList.contains('selected')) {
+    if (options.classList.contains('selected')) {
       const currentStateArray = [...this.state[type]];
       const indexToRemove = currentStateArray.indexOf(object.id);
 
@@ -35,7 +35,7 @@ export class AddExpense extends Component {
       this.setState({ [type]: [...this.state[type], object.id] });
     }
 
-    domElement.classList.toggle('selected');
+    options.classList.toggle('selected');
   }
 
   clearForm() {
