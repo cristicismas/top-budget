@@ -40,7 +40,7 @@ export class AddExpense extends Component {
 
   clearForm() {
     this.setState({
-      value: 0,
+      value: '',
       categories: [],
       locations: [],
       sources: []
@@ -53,6 +53,8 @@ export class AddExpense extends Component {
 
       currentOption.classList.remove('selected');
     }
+
+    document.getElementById('value-input').focus();
   }
 
   handleAddOption(type, name, color) {
