@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect, Route } from 'react-router-dom';
 import '../../css/Dashboard.css';
 
-import Settings from './Settings';
+import Settings from './Settings/Settings';
 import Stats from './Stats';
 import AddExpense from './AddExpense/AddExpense';
 
