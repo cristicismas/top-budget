@@ -50,6 +50,15 @@
   justify-content: center;
 }
 
+#expense-form .option-color {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 0;
+}
+
 #expense-form .option {
   padding: 10px 15px;
   font-size: 22px;

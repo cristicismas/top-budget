@@ -55,16 +55,16 @@ export class AddExpense extends Component {
     }
   }
 
-  handleAddOption(type, name) {
+  handleAddOption(type, name, color) {
     switch (type) {
       case 'categories':
-        this.props.addCategory({ name });
+        this.props.addCategory({ name, color });
         break;
       case 'locations':
-        this.props.addLocation({ name });
+        this.props.addLocation({ name, color });
         break;
       case 'sources':
-        this.props.addSource({ name });
+        this.props.addSource({ name, color });
         break;
       default:
         break;
@@ -104,7 +104,7 @@ export class AddExpense extends Component {
           label="Category"
           type="categories"
           objects={categories}
-          handleAddOption={(type, name) => this.handleAddOption(type, name)}
+          handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
           handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
         />
 
@@ -112,7 +112,7 @@ export class AddExpense extends Component {
           label="Location"
           type="locations"
           objects={locations}
-          handleAddOption={(type, name) => this.handleAddOption(type, name)}
+          handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
           handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
         />
 
@@ -120,7 +120,7 @@ export class AddExpense extends Component {
           label="Source"
           type="sources"
           objects={sources}
-          handleAddOption={(type, name) => this.handleAddOption(type, name)}
+          handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
           handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
         />
 
