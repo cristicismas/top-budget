@@ -18,6 +18,8 @@
   background-color: #008cff;
   background: linear-gradient(to bottom right, #00ccff, #7330e0);
   border-radius: 50%;
+  border: none;
+  color: #eee;
   padding: 0;
   width: 35px;
   height: 35px;
