@@ -78,6 +78,8 @@ export class AddExpense extends Component {
 
     this.props.addExpense(this.state);
     this.clearForm();
+
+    this.props.setMessage('Expense added with success', 'success');
   }
 
   render() {

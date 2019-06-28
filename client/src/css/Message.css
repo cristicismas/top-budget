@@ -1,0 +1,17 @@
+.message {
+  color: #333;
+  text-align: center;
+  padding: 5px 10px;
+  margin: 20px auto;
+  opacity: .9;
+  width: 250px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.message .close-message-btn {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  cursor: pointer;
+}

@@ -1,13 +1,15 @@
-import React from 'react'
+import React from 'react';
+import '../css/Message.css';
 
 const Message = props => {
   let style = {
     color: '#333',
     textAlign: 'center',
-    padding: '10px 25px',
+    padding: '5px 10px',
     margin: '20px auto',
     opacity: '.9',
-    width: '50%',
+    width: '250px',
+    position: 'relative',
     borderRadius: '5px'
   };
 
@@ -15,27 +17,35 @@ const Message = props => {
     style = {
       ...style,
       backgroundColor: '#ff2525',
-      border: '1px solid #900404',
+      border: '1px solid #900404'
     };
   } else if (props.type === 'success') {
     style = {
       ...style,
-      backgroundColor: '#7bf175',
-      border: '1px solid #17630a',
-    }
+      backgroundColor: '#27e24b',
+      border: '1px solid #17630a'
+    };
   } else {
     style = {
       ...style,
       backgroundColor: '#f1e979',
-      border: '1px solid #e1b400',
-    }
+      border: '1px solid #e1b400'
+    };
   }
 
-  return (
-    <div style={style}>
-      {props.message}
-    </div>
-  )
-}
+  if (!props.message) return null;
 
-export default Message
+  return (
+    <div className="message" style={style}>
+      <span
+        onClick={props.clearMessage}
+        className="close-message-btn">
+        ✕
+      </span>
+
+      <p>{props.message}</p>
+    </div>
+  );
+};
+
+export default Message;

@@ -6,6 +6,7 @@ import '../../css/Dashboard.css';
 import Settings from './Settings/Settings';
 import Stats from './Stats';
 import AddExpense from './AddExpense/AddExpense';
+import Message from '../Message';
 
 import {
   getExpenses,
@@ -31,12 +32,18 @@ import {
   addSource
 } from '../../store/actions/sources';
 
-import {
-  loadUser
-} from '../../store/actions/auth';
-
+import { loadUser } from '../../store/actions/auth';
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      message: '',
+      type: ''
+    };
+  }
+
   componentDidMount() {
     if (!this.props.auth.user) {
       this.props.loadUser();
@@ -48,7 +55,16 @@ class Dashboard extends Component {
     this.props.getSources();
   }
 
+  setMessage(message, type) {
+    this.setState({
+      message,
+      type
+    });
+  }
+
   render() {
+    const { message, type } = this.state;
+
     const pathname = this.props.location.pathname;
     const token = localStorage.getItem('token');
 
@@ -75,7 +91,23 @@ class Dashboard extends Component {
             </Link>
           </nav>
 
-          <Route exact path="/dashboard" render={() => <AddExpense {...this.props} />} />
+          <Message
+            message={message}
+            type={type}
+            clearMessage={() => this.setMessage('', '')}
+          />
+
+          <Route
+            exact
+            path="/dashboard"
+            render={() => (
+              <AddExpense
+                {...this.props}
+                setMessage={(message, type) => this.setMessage(message, type)}
+              />
+            )}
+          />
+
           <Route path="/dashboard/settings" component={Settings} />
           <Route path="/dashboard/stats" component={Stats} />
         </section>
