@@ -91,25 +91,28 @@ const mapStateToProps = state => ({
   expenses: state.expenses
 });
 
+const mapDispatchToProps = {
+  getExpenses,
+  deleteExpense,
+  addExpense,
+
+  getCategories,
+  deleteCategory,
+  addCategory,
+
+  getLocations,
+  deleteLocation,
+  addLocation,
+
+  getSources,
+  deleteSource,
+  addSource,
+
+  loadUser
+};
+
+
 export default connect(
   mapStateToProps,
-  {
-    getExpenses,
-    deleteExpense,
-    addExpense,
-
-    getCategories,
-    deleteCategory,
-    addCategory,
-
-    getLocations,
-    deleteLocation,
-    addLocation,
-
-    getSources,
-    deleteSource,
-    addSource,
-
-    loadUser
-  }
+  mapDispatchToProps
 )(Dashboard);
