@@ -35,6 +35,20 @@ export class Fields extends Component {
     options.classList.toggle('selected');
   };
 
+  handleDelete = () => {
+    const { categories, locations, sources } = this.state;
+
+    categories.forEach(id => this.props.deleteCategory(id));
+    locations.forEach(id => this.props.deleteLocation(id));
+    sources.forEach(id => this.props.deleteSource(id));
+
+    this.setState({
+      categories: [],
+      locations: [],
+      sources: []
+    });
+  }
+
   render() {
     const data = this.props.expenses;
     const { categories, locations, sources } = data;
@@ -48,7 +62,9 @@ export class Fields extends Component {
         <div className="field-header">
           <h2 className="field-title">Categories</h2>
           <Toggle
-            handleChange={() => this.setState({ dimCategories: !dimCategories })}
+            handleChange={() =>
+              this.setState({ dimCategories: !dimCategories })
+            }
             toggled={!dimCategories}
           />
         </div>
@@ -95,6 +111,14 @@ export class Fields extends Component {
             this.handleOptionClick(type, object)
           }
         />
+
+        {
+          this.state.categories.length ||
+          this.state.locations.length ||
+          this.state.sources.length ? (
+            <button onClick={() => this.handleDelete()} id="delete-options-btn">Delete Selected</button>
+          ) : null
+        }
       </div>
     );
   }

@@ -11,3 +11,25 @@
 #fields .field-title {
   display: inline;
 }
+
+#fields #delete-options-btn {
+  margin: 20px auto 0;
+  display: block;
+  padding: 10px 15px;
+  font-size: 18px;
+  background-color: #15131A;
+  border: 2px solid #b13030;
+  color: #ee3636;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+#fields #delete-options-btn:hover {
+  padding: 10px 20px;
+  border: 2px solid #b13030;
+  box-shadow: 0px 0px 12px rgba(189, 23, 23, 0.6);
+}
+
+#fields #delete-options-btn:active {
+  box-shadow: 0px 0px 15px rgba(189, 23, 23, 0.6);
+}
