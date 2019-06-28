@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AddOptionOverlay from './AddOptionOverlay';
-import Option from './Option';
+import Option from '../Option';
 
 const OptionsGroup = props => {
   const { type, objects, label } = props;

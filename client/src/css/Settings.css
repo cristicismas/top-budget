@@ -1,5 +1,14 @@
+#settings {
+  margin-top: 50px;
+}
+
 #settings * {
   font-weight: normal;
+  text-align: center;
+}
+
+#settings > * {
+  margin: auto;
 }
 
 #settings .settings-group {
@@ -10,6 +19,7 @@
 #settings .settings-group .sub-title {
   color: #aaa;
   font-weight: normal;
+  margin-bottom: 20px;
 }
 
 #settings #currency select {
@@ -28,6 +38,7 @@
 }
 
 #settings #budget input {
+  margin: auto;
   padding: 5px 10px;
   color: #eee;
   display: block;

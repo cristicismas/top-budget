@@ -1,0 +1,44 @@
+.toggle label {
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin: auto;
+}
+
+.toggle label > input {
+  display: none;
+}
+
+.toggle label i {
+  display: inline-block;
+  padding: 2px;
+  width: 40px;
+  height: 20px;
+  border-radius: 13px;
+  vertical-align: middle;
+  transition: .25s;
+  position: relative;
+  background: #202020;
+  box-sizing: initial;
+}
+
+.toggle label i:after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #474747;
+  position: absolute;
+  left: 2px;
+  transition: .25s;
+}
+
+.toggle label > input:checked + i {
+  background: #3d1eca;
+}
+
+.toggle label > input:checked + i:after {
+  left: 22px;
+  background: #eee;
+}

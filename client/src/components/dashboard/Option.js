@@ -1,7 +1,8 @@
 import React from 'react';
+import '../../css/Option.css';
 
 const Option = props => {
-  const { type, object } = props;
+  const { type, object, toDelete } = props;
 
   const Color = () => 
     object.color ?
@@ -10,7 +11,7 @@ const Option = props => {
 
   return (
     <div
-      className="option"
+      className={`option ${toDelete ? 'to-delete' : ''}`}
       onClick={() => props.handleOptionClick()}
       id={`${type}-${object.id}`}>
       <Color />

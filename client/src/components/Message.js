@@ -1,4 +1,5 @@
 import React from 'react';
+import TYPES from '../constants/messageTypes';
 import '../css/Message.css';
 
 const Message = props => {
@@ -13,13 +14,13 @@ const Message = props => {
     borderRadius: '5px'
   };
 
-  if (props.type === 'error') {
+  if (props.type === TYPES.ERROR) {
     style = {
       ...style,
       backgroundColor: '#ff2525',
       border: '1px solid #900404'
     };
-  } else if (props.type === 'success') {
+  } else if (props.type === TYPES.SUCCESS) {
     style = {
       ...style,
       backgroundColor: '#27e24b',

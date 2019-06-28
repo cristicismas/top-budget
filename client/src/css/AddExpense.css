@@ -45,45 +45,6 @@
   border: 1px solid #3d1eca;
 }
 
-#expense-form .options {
-  display: flex;
-  margin-top: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-#expense-form .option-color {
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 10px;
-  margin-left: 0;
-}
-
-#expense-form .option {
-  padding: 10px 15px;
-  font-size: 22px;
-  user-select: none;
-  margin-right: 15px;
-  margin-bottom: 15px;
-  background-color: #15131A;
-  border: 1px solid #2c2c3a;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: color .2s, border .2s, box-shadow .2s;
-}
-
-#expense-form .option:hover,
-#expense-form .option.selected {
-  border: 1px solid #441eee;
-}
-
-#expense-form .option.selected {
-  color: #775cf0;
-  box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
-}
-
 #expense-form button[type='submit'] {
   width: 150px;
   margin: 50px auto 0;

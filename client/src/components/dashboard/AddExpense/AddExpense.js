@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TYPES from '../../../constants/messageTypes';
 import '../../../css/AddExpense.css';
 
 import OptionsGroup from './OptionsGroup';
@@ -79,7 +80,7 @@ export class AddExpense extends Component {
     this.props.addExpense(this.state);
     this.clearForm();
 
-    this.props.setMessage('Expense added with success', 'success');
+    this.props.setMessage('Expense added with success', TYPES.SUCCESS);
   }
 
   render() {

@@ -1,0 +1,13 @@
+#fields .field-header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#fields .field-header > * {
+  margin: auto;
+}
+
+#fields .field-title {
+  display: inline;
+}
