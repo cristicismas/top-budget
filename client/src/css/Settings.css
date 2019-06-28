@@ -34,3 +34,7 @@
   background-color: #15131A;
   border: 1px solid #2c2c3a;
 }
+
+#settings #budget input:focus {
+  border: 1px solid #3d1eca;
+}
