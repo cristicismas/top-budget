@@ -3,7 +3,7 @@ import CURRENCY from '../../../constants/currencies';
 
 const Currency = () => {
   const currencyOptions = Object.keys(CURRENCY).map(currency => (
-    <option value={currency}>{currency}</option>
+    <option value={currency} key={currency}>{currency}</option>
   ));
 
   return (

@@ -111,7 +111,6 @@ const mapDispatchToProps = {
   loadUser
 };
 
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
