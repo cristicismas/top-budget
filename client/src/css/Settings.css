@@ -4,6 +4,7 @@
 
 #settings .settings-group {
   padding-left: 50px;
+  margin-bottom: 50px;
 }
 
 #settings .settings-group .sub-title {
@@ -23,4 +24,13 @@
 
 #settings #currency select option {
   background-color: #222;
+}
+
+#settings #budget input {
+  padding: 5px 10px;
+  color: #eee;
+  display: block;
+  font-size: 20px;
+  background-color: #15131A;
+  border: 1px solid #2c2c3a;
 }
