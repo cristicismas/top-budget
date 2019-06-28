@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/Loading.css";
 
-function Loading() {
+const Loading = () => {
   return (
     <div className="radar-spinner">
       <div className="circle">

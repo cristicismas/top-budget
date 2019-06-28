@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/Hero.css';
 
-function Hero() {
+const Hero = () => {
   return (
     <section id="hero">
       <div id="intro">

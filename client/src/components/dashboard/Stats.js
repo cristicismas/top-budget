@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Stats() {
+const Stats = () => {
   return <h1>Stats</h1>;
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Message(props) {
+const Message = props => {
   let style = {
     color: '#333',
     textAlign: 'center',

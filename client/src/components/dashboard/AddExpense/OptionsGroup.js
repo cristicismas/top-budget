@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AddOptionOverlay from './AddOptionOverlay';
 import Option from './Option';
 
-function OptionsGroup(props) {
+const OptionsGroup = props => {
   const { type, objects, label } = props;
 
   const [overlayVisible, changeOverlayVisibility] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import '../../../css/AddOptionOverlay.css';
 
-function AddOptionOverlay(props) {
+const AddOptionOverlay = props => {
   const { type, label } = props;
 
   useEffect(() => {

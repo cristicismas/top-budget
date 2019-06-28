@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Option(props) {
+const Option = props => {
   const { type, object } = props;
 
   const Color = () => 
