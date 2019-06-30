@@ -1,5 +1,5 @@
 #settings {
-  margin-top: 50px;
+  margin: 50px auto;
 }
 
 #settings * {
@@ -12,7 +12,6 @@
 }
 
 #settings .settings-group {
-  padding-left: 50px;
   margin-bottom: 50px;
 }
 
@@ -49,4 +48,26 @@
 
 #settings #budget input:focus {
   border: 1px solid #3d1eca;
+}
+
+#settings #save-btn {
+  display: block;
+  padding: 10px 15px;
+  font-size: 18px;
+  background-color: #15131A;
+  border: 2px solid #2c2c3a;
+  color: #eee;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+#settings #save-btn:hover {
+  padding: 10px 20px;
+  border: 2px solid #3d1eca;
+  box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
+}
+
+#settings #save-btn:active {
+  color: #775cf0;
+  box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }

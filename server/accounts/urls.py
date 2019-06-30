@@ -2,6 +2,7 @@ from django.urls import path, include
 from .api import RegisterAPI, LoginAPI, UserAPI
 from knox import views as knox_views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.conf.urls import url
 
 urlpatterns = [
     path('api/auth/', include('knox.urls')),

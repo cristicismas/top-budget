@@ -45,7 +45,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.auth.user) {
+    if (!this.props.auth.userdata) {
       this.props.loadUser();
     }
 
@@ -112,7 +112,7 @@ class Dashboard extends Component {
             path="/dashboard/settings"
             render={() => <Settings {...this.props} />}
           />
-          
+
           <Route path="/dashboard/stats" component={Stats} />
         </section>
       );
