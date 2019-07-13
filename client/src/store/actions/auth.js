@@ -13,7 +13,7 @@ import { apiCall } from '../../utils/api';
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
-  apiCall('get', 'auth/user', tokenConfig(getState))
+  apiCall('get', 'user', tokenConfig(getState))
     .then(res => {
       dispatch({
         type: USER_LOADED,
@@ -31,7 +31,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const updateUserSettings = newSettings => (dispatch, getState) => {
-  apiCall('post', 'auth/user', newSettings, tokenConfig(getState))
+  apiCall('post', 'user', newSettings, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: USER_LOADED,

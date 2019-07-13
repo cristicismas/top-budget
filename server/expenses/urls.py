@@ -7,6 +7,6 @@ router.register('api/expenses', ExpenseViewSet, 'expenses')
 router.register('api/categories', CategoryViewSet, 'categories')
 router.register('api/locations', LocationViewSet, 'locations')
 router.register('api/sources', SourceViewSet, 'sources')
-router.register('api/auth/user', UserViewSet, 'user')
+router.register('api/user', UserViewSet, 'user')
 
 urlpatterns = router.urls
