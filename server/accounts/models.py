@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class UserData(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     currency = models.CharField(max_length=10, default="USD")
     budget = models.IntegerField(default=500)
     showCategories = models.BooleanField(default=True)
@@ -10,4 +10,4 @@ class UserData(models.Model):
     showSources = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.user
+        return self.user.username
