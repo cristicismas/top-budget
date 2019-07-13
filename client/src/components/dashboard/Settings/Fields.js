@@ -47,13 +47,18 @@ export class Fields extends Component {
       locations: [],
       sources: []
     });
-  }
+  };
 
   render() {
     const data = this.props.expenses;
     const { categories, locations, sources } = data;
 
     const { dimCategories, dimLocations, dimSources } = this.state;
+
+    const buttonEnabled =
+      this.state.categories.length ||
+      this.state.locations.length ||
+      this.state.sources.length;
 
     return (
       <div id="fields" className="settings-group">
@@ -112,13 +117,9 @@ export class Fields extends Component {
           }
         />
 
-        {
-          this.state.categories.length ||
-          this.state.locations.length ||
-          this.state.sources.length ? (
-            <button onClick={() => this.handleDelete()} id="delete-options-btn">Delete Selected</button>
-          ) : null
-        }
+        <button onClick={() => this.handleDelete()} id="delete-options-btn" className={buttonEnabled ? '' : 'disabled'}>
+          Delete Selected
+        </button>
       </div>
     );
   }
