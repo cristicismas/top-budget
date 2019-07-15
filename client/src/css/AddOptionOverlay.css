@@ -76,7 +76,6 @@
 }
 
 .overlay .overlay-cta:hover {
-  width: 120px;
   border: 2px solid #3d1eca;
   box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
 }

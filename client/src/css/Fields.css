@@ -25,7 +25,6 @@
 }
 
 #fields #delete-options-btn:hover {
-  padding: 10px 20px;
   border: 2px solid #b13030;
   box-shadow: 0px 0px 12px rgba(189, 23, 23, 0.6);
 }
@@ -40,7 +39,6 @@
 }
 
 #fields #delete-options-btn.disabled:hover {
-  padding: 10px 15px;
   box-shadow: none;
   border: 2px solid #2c2c3a;
 }
