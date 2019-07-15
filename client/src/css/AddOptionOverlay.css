@@ -51,6 +51,7 @@
 
 .overlay .close-overlay-btn {
   background-color: transparent;
+  color: #eee;
   font-size: 20px;
   border: none;
   position: absolute;
