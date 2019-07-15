@@ -1,7 +1,7 @@
 import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
 import { apiCall } from '../../utils/api';
 
-import { tokenConfig } from './auth';
+import { tokenConfig } from './user';
 
 export const getSources = () => (dispatch, getState) => {
   apiCall('get', 'sources', tokenConfig(getState)).then(res => {

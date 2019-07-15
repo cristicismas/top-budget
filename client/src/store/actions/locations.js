@@ -1,7 +1,7 @@
 import { GET_LOCATIONS, DELETE_LOCATION, ADD_LOCATION, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
 import { apiCall } from '../../utils/api';
 
-import { tokenConfig } from './auth';
+import { tokenConfig } from './user';
 
 export const getLocations = () => (dispatch, getState) => {
   apiCall('get', 'locations', tokenConfig(getState)).then(res => {

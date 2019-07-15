@@ -1,7 +1,7 @@
 import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
 import { apiCall } from '../../utils/api';
 
-import { tokenConfig } from './auth';
+import { tokenConfig } from './user';
 
 export const getExpenses = () => (dispatch, getState) => {
   apiCall('get', 'expenses', tokenConfig(getState)).then(res => {

@@ -8,7 +8,7 @@ import Fields from './Fields';
 export class Settings extends Component {
   constructor(props) {
     super(props);
-    const userdata = this.props.auth.userdata;
+    const userdata = this.props.user.userdata;
 
     this.state = { ...userdata };
   }

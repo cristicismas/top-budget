@@ -32,7 +32,7 @@ import {
   addSource
 } from '../../store/actions/sources';
 
-import { loadUser, updateUserSettings } from '../../store/actions/auth';
+import { loadUser, updateUserSettings } from '../../store/actions/user';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.auth.userdata) {
+    if (!this.props.user.userdata) {
       this.props.loadUser();
     }
 
@@ -123,7 +123,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth,
+  user: state.user,
   expenses: state.expenses
 });
 

@@ -1,7 +1,7 @@
 import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
 import { apiCall } from '../../utils/api';
 
-import { tokenConfig } from './auth';
+import { tokenConfig } from './user';
 
 export const getCategories = () => (dispatch, getState) => {
   apiCall('get', 'categories', tokenConfig(getState)).then(res => {

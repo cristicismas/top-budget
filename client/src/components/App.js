@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
-import { loadUser } from '../store/actions/auth';
+import { loadUser } from '../store/actions/user';
 
 import Loading from './Loading';
 import Header from './Header';
@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   render() {
-    const loading = this.props.auth.isLoading;
+    const loading = this.props.user.isLoading;
 
     if (loading) {
       return (
@@ -39,7 +39,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  user: state.user
 })
 
 export default connect(mapStateToProps, { loadUser })(App);

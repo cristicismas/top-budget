@@ -31,7 +31,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const updateUserSettings = newSettings => (dispatch, getState) => {
-  const currentUser = getState().auth.userdata.user;
+  const currentUser = getState().user.userdata.user;
 
   const data = {
     ...newSettings,
@@ -126,7 +126,7 @@ export const logout = () => (dispatch, getState) => {
 };
 
 export const tokenConfig = getState => {
-  const token = getState().auth.token;
+  const token = getState().user.token;
 
   const axiosConfig = {
     headers: {

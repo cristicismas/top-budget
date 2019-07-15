@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login, register } from '../../store/actions/auth';
+import { login, register } from '../../store/actions/user';
 import '../../css/AuthForm.css';
 
 export class AuthForm extends Component {
