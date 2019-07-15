@@ -17,7 +17,7 @@ export const loadUser = () => (dispatch, getState) => {
     .then(res => {
       dispatch({
         type: USER_LOADED,
-        payload: res
+        payload: res[0]
       });
     })
     .catch(err => {
@@ -31,11 +31,18 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const updateUserSettings = newSettings => (dispatch, getState) => {
-  apiCall('post', 'user', newSettings, tokenConfig(getState))
+  const currentUser = getState().auth.userdata.user;
+
+  const data = {
+    ...newSettings,
+    user: currentUser
+  };
+
+  apiCall('patch', `user/${currentUser.id}/`, data, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: USER_LOADED,
-        payload: res
+        payload: data
       });
     })
     .catch(err => {

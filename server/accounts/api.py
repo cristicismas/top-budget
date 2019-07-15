@@ -1,8 +1,10 @@
 from rest_framework import generics, viewsets, permissions
 from rest_framework.response import Response
+from django.core import serializers
 from knox.models import AuthToken
 from .serializers import UserSerializer, UserDataSerializer, RegisterSerializer, LoginSerializer
 from .models import UserData
+import json
 
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -36,6 +38,14 @@ class UserViewSet(viewsets.ModelViewSet):
     ]
     
     serializer_class = UserDataSerializer
+
+    def partial_update(self, request, *args, **kwargs):
+        user = UserData.objects.filter(user=self.request.user).update(
+            currency = request.data['currency'],
+            budget = request.data['budget']
+        )
+
+        return Response('Success')
 
     def get_queryset(self):
         return UserData.objects.filter(user=self.request.user)

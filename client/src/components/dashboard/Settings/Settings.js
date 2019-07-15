@@ -19,7 +19,7 @@ export class Settings extends Component {
   }
 
   handleSave = () => {
-    console.log('hi');
+    this.props.updateUserSettings(this.state);
   }
 
   render() {

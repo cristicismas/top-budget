@@ -32,7 +32,7 @@ import {
   addSource
 } from '../../store/actions/sources';
 
-import { loadUser } from '../../store/actions/auth';
+import { loadUser, updateUserSettings } from '../../store/actions/auth';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -144,7 +144,8 @@ const mapDispatchToProps = {
   deleteSource,
   addSource,
 
-  loadUser
+  loadUser,
+  updateUserSettings
 };
 
 export default connect(
