@@ -14,6 +14,7 @@ export class Settings extends Component {
   }
 
   handleSave() {
+    console.log(this.state);
     this.props.updateUserSettings(this.state);
   }
 
@@ -23,28 +24,24 @@ export class Settings extends Component {
     return (
       <section id="settings">
         <Currency
-          changeCurrency={newCurrency =>
-            this.setState({
-              currency: newCurrency
-            })
-          }
+          changeCurrency={newCurrency => {
+            this.setState({ currency: newCurrency }, () => 
+              this.handleSave()
+            );
+          }}
           currency={currency}
         />
 
         <Budget
-          changeBudget={newBudget =>
-            this.setState({
-              budget: Number(newBudget)
-            })
-          }
+          changeBudget={newBudget => {
+            this.setState({ budget: Number(newBudget) }, () =>
+              this.handleSave()
+            );
+          }}
           budget={budget}
         />
 
         <Fields {...this.props} />
-
-        <button onClick={() => this.handleSave()} id="save-btn">
-          Save Settings
-        </button>
       </section>
     );
   }
