@@ -2,7 +2,6 @@
   display: flex;
   margin-top: 15px;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .option-color {

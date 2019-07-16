@@ -1,18 +1,13 @@
 #settings {
-  margin: 50px auto;
+  margin: 50px 100px;
 }
 
 #settings * {
   font-weight: normal;
-  text-align: center;
-}
-
-#settings > * {
-  margin: auto;
 }
 
 #settings .settings-group {
-  margin-bottom: 50px;
+  padding-bottom: 50px;
 }
 
 #settings .settings-group .sub-title {
@@ -37,7 +32,6 @@
 }
 
 #settings #budget input {
-  margin: auto;
   padding: 5px 10px;
   color: #eee;
   display: block;

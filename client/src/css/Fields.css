@@ -1,15 +1,19 @@
 #fields .field-header {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-#fields .field-header > * {
-  margin: auto;
+  margin-left: 20px;
 }
 
 #fields .field-title {
   display: inline;
+}
+
+#fields .field-header .toggle {
+  position: relative;
+  top: 15px;
+}
+
+#fields .options {
+  margin-left: 40px;
 }
 
 #fields #delete-options-btn {
@@ -36,6 +40,7 @@
 #fields #delete-options-btn.disabled {
   border: 2px solid #2c2c3a;
   color: #666;
+  cursor: default;
 }
 
 #fields #delete-options-btn.disabled:hover {
