@@ -18,7 +18,7 @@ const OptionsGroup = props => {
 
   return (
     <div className="form-group">
-      <div className="options-label">
+      <h2 className="options-label">
         {label}
         <button
           type="button"
@@ -26,7 +26,7 @@ const OptionsGroup = props => {
           onClick={() => changeOverlayVisibility(!overlayVisible)}>
           +
         </button>
-      </div>
+      </h2>
 
       {overlayVisible ? (
         <AddOptionOverlay

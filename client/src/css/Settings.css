@@ -16,6 +16,10 @@
   margin-bottom: 20px;
 }
 
+#settings .settings-group .sub-title + * {
+  margin-left: 20px;
+}
+
 #settings #currency select {
   background-color: transparent;
   color: #eee;

@@ -91,7 +91,7 @@ export class AddExpense extends Component {
     return (
       <form id="expense-form" onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="value-input">Value:</label>
+          <label htmlFor="value-input"><h2>Value:</h2></label>
           <br />
           <input
             type="number"

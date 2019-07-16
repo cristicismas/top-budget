@@ -1,17 +1,14 @@
 #expense-form {
-  width: 40vw;
-  margin: auto;
   font-size: 20px;
+  padding: 50px 100px;
+}
+
+#expense-form * {
+  font-weight: normal;
 }
 
 #expense-form .form-group {
   margin-bottom: 20px;
-}
-
-#expense-form label,
-#expense-form .options-label {
-  text-align: center;
-  display: block;
 }
 
 #expense-form .add-option-button {
@@ -23,18 +20,22 @@
   padding: 0;
   width: 35px;
   height: 35px;
-  margin-left: 5px;
+  margin-left: 15px;
   font-size: 20px;
   overflow: hidden;
   cursor: pointer;
   text-align: center;
 }
 
+#expense-form .options {
+  margin-left: 30px;
+}
+
 #expense-form input {
   padding: 5px 10px;
   color: #eee;
   width: 300px;
-  margin: auto;
+  margin: -20px 0 40px 30px;
   display: block;
   font-size: 20px;
   background-color: #15131A;
