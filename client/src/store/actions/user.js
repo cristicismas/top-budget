@@ -73,7 +73,7 @@ export const login = credentials => (dispatch, getState) => {
     .catch(err => {
       dispatch({
         type: ERROR_MESSAGE,
-        payload: err.response.data
+        payload: err
       });
     });
 };
@@ -98,7 +98,7 @@ export const register = credentials => (dispatch, getState) => {
     .catch(err => {
       dispatch({
         type: ERROR_MESSAGE,
-        payload: err.response.data
+        payload: err
       });
     });
 };
@@ -120,7 +120,7 @@ export const logout = () => (dispatch, getState) => {
     .catch(err => {
       dispatch({
         type: ERROR_MESSAGE,
-        payload: err.response.data
+        payload: err
       });
     });
 };
