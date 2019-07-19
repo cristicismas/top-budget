@@ -42,7 +42,10 @@ class UserViewSet(viewsets.ModelViewSet):
     def partial_update(self, request, *args, **kwargs):
         user = UserData.objects.filter(user=self.request.user).update(
             currency = request.data['currency'],
-            budget = request.data['budget']
+            budget = request.data['budget'],
+            showCategories = request.data['showCategories'],
+            showLocations = request.data['showLocations'],
+            showSources = request.data['showSources'],
         )
 
         return Response('Success')

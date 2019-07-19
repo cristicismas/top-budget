@@ -13,8 +13,17 @@ export class Settings extends Component {
     this.state = { ...userdata };
   }
 
+  toggleField(field) {
+    const currentValue = this.state[field];
+
+    this.setState({
+      [field]: !currentValue
+    }, () => {
+      this.handleSave();
+    });
+  }
+
   handleSave() {
-    console.log(this.state);
     this.props.updateUserSettings(this.state);
   }
 
@@ -41,7 +50,7 @@ export class Settings extends Component {
           budget={budget}
         />
 
-        <Fields {...this.props} />
+        <Fields toggleField={field => this.toggleField(field)} {...this.state } {...this.props }/>
       </section>
     );
   }

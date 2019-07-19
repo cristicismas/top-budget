@@ -50,10 +50,8 @@ export class Fields extends Component {
   };
 
   render() {
-    const data = this.props.expenses;
-    const { categories, locations, sources } = data;
-
-    const { dimCategories, dimLocations, dimSources } = this.state;
+    const { expenses, showCategories, showLocations, showSources } = this.props;
+    const { categories, locations, sources } = expenses;
 
     const buttonEnabled =
       this.state.categories.length ||
@@ -67,17 +65,15 @@ export class Fields extends Component {
         <div className="field-header">
           <h2 className="field-title">Categories</h2>
           <Toggle
-            handleChange={() =>
-              this.setState({ dimCategories: !dimCategories })
-            }
-            toggled={!dimCategories}
+            handleChange={() => this.props.toggleField('showCategories')}
+            toggled={showCategories}
           />
         </div>
 
         <OptionsRemoveGroup
           objects={categories}
           type="categories"
-          dim={dimCategories}
+          dim={!showCategories}
           handleOptionClick={(type, object) =>
             this.handleOptionClick(type, object)
           }
@@ -86,15 +82,15 @@ export class Fields extends Component {
         <div className="field-header">
           <h2 className="field-title">Locations</h2>
           <Toggle
-            handleChange={() => this.setState({ dimLocations: !dimLocations })}
-            toggled={!dimLocations}
+            handleChange={() => this.props.toggleField('showLocations')}
+            toggled={showLocations}
           />
         </div>
 
         <OptionsRemoveGroup
           objects={locations}
           type="locations"
-          dim={dimLocations}
+          dim={!showLocations}
           handleOptionClick={(type, object) =>
             this.handleOptionClick(type, object)
           }
@@ -103,15 +99,15 @@ export class Fields extends Component {
         <div className="field-header">
           <h2 className="field-title">Sources</h2>
           <Toggle
-            handleChange={() => this.setState({ dimSources: !dimSources })}
-            toggled={!dimSources}
+            handleChange={() => this.props.toggleField('showSources')}
+            toggled={showSources}
           />
         </div>
 
         <OptionsRemoveGroup
           objects={sources}
           type="sources"
-          dim={dimSources}
+          dim={!showSources}
           handleOptionClick={(type, object) =>
             this.handleOptionClick(type, object)
           }
