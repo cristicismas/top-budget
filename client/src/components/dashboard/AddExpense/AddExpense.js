@@ -84,14 +84,16 @@ export class AddExpense extends Component {
   }
 
   render() {
-    const data = this.props.expenses;
-
-    const { categories, locations, sources } = data;
+    const { expenses, user } = this.props;
+    const { categories, locations, sources } = expenses;
+    const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : {};
 
     return (
       <form id="expense-form" onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="value-input"><h2>Value:</h2></label>
+          <label htmlFor="value-input">
+            <h2>Value:</h2>
+          </label>
           <br />
           <input
             type="number"
@@ -105,29 +107,47 @@ export class AddExpense extends Component {
           />
         </div>
 
-        <OptionsGroup
-          label="Category"
-          type="categories"
-          objects={categories}
-          handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
-          handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
-        />
+        {showCategories && (
+          <OptionsGroup
+            label="Category"
+            type="categories"
+            objects={categories}
+            handleAddOption={(type, name, color) =>
+              this.handleAddOption(type, name, color)
+            }
+            handleOptionClick={(type, object) =>
+              this.handleOptionClick(type, object)
+            }
+          />
+        )}
 
-        <OptionsGroup
-          label="Location"
-          type="locations"
-          objects={locations}
-          handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
-          handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
-        />
+        {showLocations && (
+          <OptionsGroup
+            label="Location"
+            type="locations"
+            objects={locations}
+            handleAddOption={(type, name, color) =>
+              this.handleAddOption(type, name, color)
+            }
+            handleOptionClick={(type, object) =>
+              this.handleOptionClick(type, object)
+            }
+          />
+        )}
 
-        <OptionsGroup
-          label="Source"
-          type="sources"
-          objects={sources}
-          handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
-          handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
-        />
+        {showSources && (
+          <OptionsGroup
+            label="Source"
+            type="sources"
+            objects={sources}
+            handleAddOption={(type, name, color) =>
+              this.handleAddOption(type, name, color)
+            }
+            handleOptionClick={(type, object) =>
+              this.handleOptionClick(type, object)
+            }
+          />
+        )}
 
         <button type="submit">Confirm</button>
       </form>
