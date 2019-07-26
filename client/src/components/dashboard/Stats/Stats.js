@@ -3,10 +3,12 @@ import '../../../css/Stats.css';
 
 import ExpenseSummary from './ExpenseSummary';
 
-const Stats = () => {
+const Stats = props => {
+  const { expenses, user } = props;
+
   return (
     <section id="stats">
-      <ExpenseSummary />
+      <ExpenseSummary expenses={expenses} userdata={user.userdata} />
     </section>
   );
 }

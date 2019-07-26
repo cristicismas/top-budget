@@ -13,7 +13,7 @@
   background-color: transparent;
   border: none;
   border-bottom: 2px solid transparent;
-  color: #bbb;
+  color: #aaa;
   transition: all .2s;
   padding-bottom: 5px;
   cursor: pointer;
@@ -22,7 +22,7 @@
 #stats .filters .filter-btn.active,
 #stats .filters .filter-btn:hover {
   border-bottom: 2px solid #bbb;
-  color: #ccc;
+  color: #eee;
 }
 
 #stats .summary .category-group {
@@ -41,9 +41,7 @@
 }
 
 #stats .summary .expense-bar {
-  width: 150px;
   height: 2px;
-  background-color: orange;
   margin-top: 3px;
 }
 

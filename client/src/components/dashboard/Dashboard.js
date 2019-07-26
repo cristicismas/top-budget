@@ -113,7 +113,10 @@ class Dashboard extends Component {
             render={() => <Settings {...this.props} />}
           />
 
-          <Route path="/dashboard/stats" component={Stats} />
+          <Route
+            path="/dashboard/stats"
+            render={() => <Stats {...this.props} />}
+          />
         </section>
       );
     } else {
