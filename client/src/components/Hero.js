@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../css/Hero.css';
 
 const Hero = () => {
@@ -8,6 +9,7 @@ const Hero = () => {
         <h1>TopBudget</h1>
         <h2>Money management made easy.</h2>
       </div>
+
       <ul id="features">
         <div className="feature-group">
           <li className="feature">Very easy to add expenses</li>
@@ -21,6 +23,11 @@ const Hero = () => {
           <li className="feature">Completely FREE!</li>
         </div>
       </ul>
+
+      <div className="cta-buttons">
+        <Link to="/dashboard" className="secondary">Dashboard</Link>
+        <Link to="/login" className="primary">Get Started</Link>
+      </div>
     </section>
   );
 }
