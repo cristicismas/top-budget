@@ -4,7 +4,7 @@ import { Link, Redirect, Route } from 'react-router-dom';
 import '../../css/Dashboard.css';
 
 import Settings from './Settings/Settings';
-import Stats from './Stats';
+import Stats from './Stats/Stats';
 import AddExpense from './AddExpense/AddExpense';
 import Message from '../Message';
 
