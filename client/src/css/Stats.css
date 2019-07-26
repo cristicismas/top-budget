@@ -38,6 +38,7 @@
 #stats .summary .category-label .category-value {
   margin: 0 5px;
   color: #cecece;
+  font-weight: bold;
 }
 
 #stats .summary .expense-bar {
