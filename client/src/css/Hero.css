@@ -45,7 +45,7 @@
   cursor: pointer;
   transition: all .2s;
   border: 2px solid #3d1eca;
-  box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
+  box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
 
 #hero .cta-buttons .secondary {
@@ -54,6 +54,13 @@
 }
 
 #hero .cta-buttons > *:hover {
+  color: #775cf0;
   border: 2px solid #3d1eca;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
+}
+
+#hero .cta-buttons .secondary:hover {
+  border: 2px solid #47475e;
+  box-shadow: none;
+  color: #eee;
 }
