@@ -17,19 +17,19 @@ const Message = props => {
   if (props.type === TYPES.ERROR) {
     style = {
       ...style,
-      backgroundColor: '#ff2525',
+      color: '#ff2525',
       border: '1px solid #900404'
     };
   } else if (props.type === TYPES.SUCCESS) {
     style = {
       ...style,
-      backgroundColor: '#27e24b',
+      color: '#27e24b',
       border: '1px solid #17630a'
     };
   } else {
     style = {
       ...style,
-      backgroundColor: '#f1e979',
+      color: '#f1e979',
       border: '1px solid #e1b400'
     };
   }
