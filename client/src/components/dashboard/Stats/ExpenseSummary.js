@@ -21,23 +21,28 @@ const ExpenseSummary = props => {
     currencySymbol = CURRENCY[userdata.currency].symbol ? CURRENCY[userdata.currency].symbol : userdata.currency;
   }
 
+  const today = new Date();
+
+  const belongsToTimeline = expense => {
+    const expenseDate = new Date(expense.date);
+
+    const diffTime = Math.abs(today.getTime() - expenseDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    var daysToFilter = 0;
+
+    if (FILTERS[filter] === FILTERS.WEEK) daysToFilter = 7;
+    else if (FILTERS[filter] === FILTERS.MONTH) daysToFilter = 30;
+    else daysToFilter = 356;
+
+    return diffDays < daysToFilter;
+  }
+
   const calculateCategoryValue = category => {
     let value = 0;
-    const today = new Date();
 
     expenses.forEach(expense => {
-      const expenseDate = new Date(expense.date);
-
-      const diffTime = Math.abs(today.getTime() - expenseDate.getTime());
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-      var daysToFilter = 0;
-
-      if (FILTERS[filter] === FILTERS.WEEK) daysToFilter = 7;
-      else if (FILTERS[filter] === FILTERS.MONTH) daysToFilter = 30;
-      else daysToFilter = 356;
-
-      if (diffDays < daysToFilter && expense.categories[0] === category.id) {
+      if (belongsToTimeline(expense) && (expense.categories[0] === category.id || expense.categories[0] === null)) {
         value += Number(expense.value);
       }
     });
@@ -45,8 +50,13 @@ const ExpenseSummary = props => {
     return value;
   };
 
+  const categoriesAndNotDefined = [...categories, {
+    name: 'Not mentioned',
+    color: '#888'
+  }];
+
   // Reverse sort categories by value
-  const sortedCategories = categories.sort((a, b) => {
+  const sortedCategories = categoriesAndNotDefined.sort((a, b) => {
     return calculateCategoryValue(b) - calculateCategoryValue(a);
   });
 
