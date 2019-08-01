@@ -85,7 +85,7 @@ const ExpenseSummary = props => {
           className="expense-bar"
           style={{
             backgroundColor: category.color,
-            width: barWidth ? barWidth : 150
+            width: !isNaN(barWidth) ? barWidth : 250
           }}
         />
       </div>
