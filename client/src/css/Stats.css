@@ -80,6 +80,7 @@
   top: 55px;
   font-size: 23px;
   color: #bbb;
+  text-align: center;
 }
 
 #stats #budget-wheel .wheel-numbers .spent {
