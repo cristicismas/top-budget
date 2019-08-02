@@ -44,6 +44,23 @@ const BudgetWheel = props => {
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
+  // Get wheel colors and icon by amount spent
+  var wheelColor = '';
+  var wheelIcon = '';
+
+  if (userdata) {
+    if (sumOfExpensesPerMonth < (33 / 100) * userdata.budget) {
+      wheelColor = '#aaa';
+      wheelIcon = ICON.THUMBS_UP;
+    } else if (sumOfExpensesPerMonth < (66 / 100) * userdata.budget) {
+      wheelColor = '#f4b92e';
+      wheelIcon = ICON.WARNING;
+    } else {
+      wheelColor = '#ff5500';
+      wheelIcon = ICON.FIRE;
+    }
+  }
+
   return (
     <div id="budget-wheel">
       <div className="wheel-numbers">
@@ -58,9 +75,9 @@ const BudgetWheel = props => {
         xmlns="http://www.w3.org/2000/svg"
         width="60"
         height="60"
-        fill="#ff5000"
+        fill={wheelColor}
         viewBox="0 0 24 24">
-        <path d={ICON.FIRE} />
+        <path d={wheelIcon} />
       </svg>
 
       <svg height={radius * 2} width={radius * 2} className="wheel">
@@ -75,10 +92,10 @@ const BudgetWheel = props => {
           cx={radius}
           cy={radius}
         />
-        
+
         <circle
           id="progress-circle"
-          stroke="#ff5000"
+          stroke={wheelColor}
           fill="transparent"
           strokeWidth={stroke}
           strokeDasharray={circumference + ' ' + circumference}
@@ -88,7 +105,6 @@ const BudgetWheel = props => {
           cy={radius}
         />
       </svg>
-      
     </div>
   );
 };
