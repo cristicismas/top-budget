@@ -84,7 +84,7 @@ const ExpenseSummary = props => {
     const categoryValue = calculateCategoryValue(category);
     const barWidth = calculateBarWidth(categoryValue);
 
-    if (!categoryValue) return;
+    if (!categoryValue) return null;
 
     return (
       <div className="category-group" key={`category-group-${category.id}`}>
