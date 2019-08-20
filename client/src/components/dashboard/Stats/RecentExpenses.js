@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../../css/RecentExpenses.css';
 
 const RecentExpenses = () => {
   return (

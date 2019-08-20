@@ -1,0 +1,35 @@
+#budget-wheel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 140px;
+  margin-top: -40px;
+}
+
+#budget-wheel .wheel-numbers {
+  position: relative;
+  top: 55px;
+  font-size: 23px;
+  color: #bbb;
+  text-align: center;
+}
+
+#budget-wheel .wheel-numbers .spent {
+  font-weight: bold;
+  font-size: 25px;
+  color: #eee;
+  display: inline;
+  margin-right: 5px;
+}
+
+#budget-wheel .wheel-icon {
+  position: relative;
+  top: 95px;
+  left: 40px;
+}
+
+#budget-wheel .wheel circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}

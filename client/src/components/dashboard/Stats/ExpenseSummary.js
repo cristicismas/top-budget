@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import '../../../css/ExpenseSummary.css';
+
 import CURRENCY from '../../../constants/currencies';
 import FILTERS from '../../../constants/filters';
 

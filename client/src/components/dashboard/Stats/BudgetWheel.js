@@ -1,4 +1,6 @@
 import React from 'react';
+import '../../../css/BudgetWheel.css';
+
 import CURRENCY from '../../../constants/currencies';
 import ICON from '../../../constants/icons';
 

@@ -1,0 +1,36 @@
+#expense-summary .summary {
+  margin-left: 60px;
+}
+
+#expense-summary .summary .category-group {
+  margin-bottom: 10px;
+}
+
+#expense-summary .summary .category-label {
+  display: flex;
+  color: #aaa;
+  font-size: 24px;
+}
+
+#expense-summary .summary .category-label .category-value {
+  margin: 0 5px;
+  color: #cecece;
+  font-weight: bold;
+}
+
+#expense-summary .summary .expense-bar {
+  height: 3px;
+  margin-top: 3px;
+  border-radius: 10px;
+  transition: all .3s;
+}
+
+#expense-summary #show-all {
+  background-color: #23232e;
+  color: #bbb;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 100px;
+}
