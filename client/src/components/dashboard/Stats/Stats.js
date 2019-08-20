@@ -3,6 +3,7 @@ import '../../../css/Stats.css';
 
 import ExpenseSummary from './ExpenseSummary';
 import BudgetWheel from './BudgetWheel';
+import RecentExpenses from './RecentExpenses';
 
 const Stats = props => {
   const { expenses, user } = props;
@@ -13,6 +14,8 @@ const Stats = props => {
         <ExpenseSummary expenses={expenses} userdata={user.userdata} />
         <BudgetWheel expenses={expenses} userdata={user.userdata} />
       </div>
+
+      <RecentExpenses />
     </section>
   );
 }

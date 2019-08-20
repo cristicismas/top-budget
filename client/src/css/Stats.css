@@ -4,6 +4,7 @@
 
 #stats .flex-group {
   display: flex;
+  flex-wrap: wrap;
 }
 
 #stats .filters {
@@ -101,4 +102,68 @@
   transition: stroke-dashoffset 0.35s;
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+}
+
+#stats #recent-expenses {
+  margin-left: 50px;
+  margin-top: 80px;
+}
+
+#stats #recent-expenses .expense-color {
+  background-color: orangered;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin: 5px 5px 0 0;
+}
+
+#stats #recent-expenses .expense-color + div {
+  display: inline;
+}
+
+#stats #recent-expenses .day-info {
+  font-size: 18px;
+  margin-top: 40px;
+}
+
+#stats #recent-expenses .day-info .expense-day {
+  margin-right: 110px;
+}
+
+#stats #recent-expenses .expense-date {
+  margin-right: 20px;
+}
+
+#stats .expense-details {
+  margin-top: 15px;
+  font-size: 21px;
+}
+
+#stats .expense-details .details-left > * {
+  background-color: #23232e;
+  padding: 4px 9px;
+  border-radius: 2px;
+  margin: 0 5px;
+  font-size: 16px;
+}
+
+#stats .expense-details .details-right {
+  margin-left: 55px;
+  font-size: 20px;
+}
+
+#stats .expense-details .details-right .expense-ammount {
+  margin-right: 13px;
+}
+
+#stats .expense-details .details-right .expense-delete {
+  font-size: 21px;
+  opacity: .5;
+  cursor: pointer;
+  transition: opacity .2s;
+  transform: scale(1.4);
+}
+
+#stats .expense-details .details-right .expense-delete:hover {
+  opacity: 1;
 }
