@@ -77,9 +77,10 @@ export class AddExpense extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.props.addExpense(this.state);
-    this.clearForm();
+    const currentTimeAndDate = new Date();
+    this.props.addExpense({...this.state, date: currentTimeAndDate});
 
+    this.clearForm();
     this.props.setMessage('Expense added with success', TYPES.SUCCESS);
   }
 
@@ -112,12 +113,8 @@ export class AddExpense extends Component {
             label="Category"
             type="categories"
             objects={categories}
-            handleAddOption={(type, name, color) =>
-              this.handleAddOption(type, name, color)
-            }
-            handleOptionClick={(type, object) =>
-              this.handleOptionClick(type, object)
-            }
+            handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
+            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
           />
         )}
 
@@ -126,12 +123,8 @@ export class AddExpense extends Component {
             label="Location"
             type="locations"
             objects={locations}
-            handleAddOption={(type, name, color) =>
-              this.handleAddOption(type, name, color)
-            }
-            handleOptionClick={(type, object) =>
-              this.handleOptionClick(type, object)
-            }
+            handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
+            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
           />
         )}
 
@@ -140,12 +133,8 @@ export class AddExpense extends Component {
             label="Source"
             type="sources"
             objects={sources}
-            handleAddOption={(type, name, color) =>
-              this.handleAddOption(type, name, color)
-            }
-            handleOptionClick={(type, object) =>
-              this.handleOptionClick(type, object)
-            }
+            handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
+            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
           />
         )}
 
