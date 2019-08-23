@@ -60,7 +60,7 @@ export class Fields extends Component {
 
     return (
       <div id="fields" className="settings-group">
-        <h2 className="sub-title">Fields</h2>
+        <h2 className="sub-title">Remove or Disable Fields</h2>
 
         <div className="field-header">
           <h2 className="field-title">Categories</h2>
