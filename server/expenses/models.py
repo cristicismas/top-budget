@@ -10,7 +10,7 @@ class Expense(models.Model):
     locations = models.ManyToManyField("Location", blank=True)
     sources = models.ManyToManyField("Source", blank=True)
     owner = models.ForeignKey(User, related_name="expenses", on_delete=models.CASCADE, null=True)
-    date = models.DateTimeField(auto_now=False, auto_now_add=False, default=timezone.now())
+    date = models.DateTimeField(auto_now=False, auto_now_add=False, default=timezone.now)
 
     def __str__(self):
         return str(self.value)
