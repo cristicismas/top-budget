@@ -115,9 +115,11 @@ const ExpenseSummary = props => {
 
       <ul className="summary">{showAllCategories ? categoryGroups : categoryGroups.splice(0, 4)}</ul>
 
-      <button onClick={() => toggleShowAll(!showAllCategories)} id="show-all">
-        Show {showAllCategories ? 'less' : 'all'}
-      </button>
+      {categoryGroups.length > 4 ? (
+        <button onClick={() => toggleShowAll(!showAllCategories)} id="show-all">
+          Show {showAllCategories ? 'less' : 'all'}
+        </button>
+      ) : null}
     </section>
   );
 };
