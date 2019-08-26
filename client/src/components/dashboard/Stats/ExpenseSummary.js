@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { getCurrency } from '../../../utils/currency';
 import '../../../css/ExpenseSummary.css';
 
-import CURRENCY from '../../../constants/currencies';
 import FILTERS from '../../../constants/filters';
 
 const ExpenseSummary = props => {
@@ -18,10 +18,7 @@ const ExpenseSummary = props => {
     changeFilter(filter);
   };
 
-  let currencySymbol = '';
-  if (userdata) {
-    currencySymbol = CURRENCY[userdata.currency].symbol ? CURRENCY[userdata.currency].symbol : userdata.currency;
-  }
+  const currencySymbol = getCurrency(userdata);
 
   const today = new Date();
 

@@ -1,18 +1,14 @@
 import React from 'react';
+import { getCurrency } from '../../../utils/currency';
 import '../../../css/BudgetWheel.css';
 
-import CURRENCY from '../../../constants/currencies';
 import ICON from '../../../constants/icons';
 
 const BudgetWheel = props => {
   const { userdata } = props;
   const { expenses } = props.expenses;
 
-  // Get currency symbol
-  let currencySymbol = '';
-  if (userdata) {
-    currencySymbol = CURRENCY[userdata.currency].symbol ? CURRENCY[userdata.currency].symbol : userdata.currency;
-  }
+  const currencySymbol = getCurrency(userdata);
 
   // Get sum of expensess per current month
   var sumOfExpensesPerMonth = 0;

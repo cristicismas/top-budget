@@ -7,7 +7,7 @@ import RecentExpenses from './RecentExpenses';
 import Message from '../../Message';
 
 const Stats = props => {
-  const { expenses, user } = props;
+  const { expenses, user, deleteExpense } = props;
 
   if (expenses.expenses.length) {
     return (
@@ -17,7 +17,7 @@ const Stats = props => {
           <BudgetWheel expenses={expenses} userdata={user.userdata} />
         </div>
 
-        <RecentExpenses />
+        <RecentExpenses deleteExpense={deleteExpense} expenses={expenses} userdata={user.userdata} />
       </section>
     );
   } else {

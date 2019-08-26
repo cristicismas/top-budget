@@ -1,45 +1,79 @@
 import React from 'react';
+import moment from 'moment';
 import '../../../css/RecentExpenses.css';
 
-const RecentExpenses = () => {
-  return (
-    <section id="recent-expenses">
-      <div className="expense-day">
+import DetailedExpense from './DetailedExpense';
+
+const RecentExpenses = props => {
+  const { expenses, categories, sources, locations } = props.expenses;
+
+  const expenseDays = [];
+
+  expenses.forEach(expense => {
+    const expenseDay = moment(expense.date).calendar(null, {
+      sameDay: '[Today]',
+      lastDay: '[Yesterday]',
+      lastWeek: '[Last] dddd',
+      sameElse: 'DD/MM'
+    });
+
+    // Find out if day is already in array and store it in a variable.
+    let dayFromArrayIndex = null;
+    const dayFromArray = expenseDays.find((arrayDay, index) => {
+      if (arrayDay.day === expenseDay) {
+        dayFromArrayIndex = index;
+        return true;
+      }
+      return false;
+    });
+
+    if (dayFromArray) {
+      // If an expense has been added since last render, compare it to the last expense and
+      // add it in the right place in the array.
+      const isExpenseNew = moment(expense.date).isAfter(dayFromArray.expenses[0].date);
+
+      let updatedExpenses = [...dayFromArray.expenses, expense];
+      if (isExpenseNew) {
+        updatedExpenses = [expense, ...dayFromArray.expenses];
+      }
+
+      expenseDays[dayFromArrayIndex] = {
+        day: expenseDay,
+        dayValue: dayFromArray.dayValue + Number(expense.value),
+        expenses: updatedExpenses
+      };
+    } else {
+      expenseDays.push({
+        day: expenseDay,
+        dayValue: Number(expense.value),
+        expenses: [expense]
+      });
+    }
+  });
+
+  const days = expenseDays.map(currentDay => {
+    return (
+      <div className="expense-day" key={currentDay.day}>
         <div className="day-info flex-group">
-          <h3 className="expense-day">Today</h3>
-          <h4 className="day-price">$56</h4>
+          <h3 className="expense-day">{currentDay.day}</h3>
+          <h4 className="day-price">{currentDay.value}</h4>
         </div>
 
-        <div className="expense-info flex-group">
-          <div className="expense-date">12:54 am</div>
-
-          <div className="expense-category flex-group">
-            <div className="expense-color" />
-            Groceries
-          </div>
-        </div>
-
-        <div className="expense-details flex-group">
-          <div className="details-left flex-group">
-            <div className="expense-location flex-group">
-              <div className="expense-color" />
-              Target
-            </div>
-            /
-            <div className="expense-source flex-group">
-              <div className="expense-color" />
-              Work Card
-            </div>
-          </div>
-
-          <div className="details-right flex-group">
-            <div className="expense-ammount">$23</div>
-            <div className="expense-delete">✕</div>
-          </div>
-        </div>
+        {currentDay.expenses.map(expense => (
+          <DetailedExpense
+            key={`expense-${expense.id}`}
+            expense={expense}
+            deleteExpense={props.deleteExpense}
+            categories={categories}
+            sources={sources}
+            locations={locations}
+          />
+        ))}
       </div>
-    </section>
-  );
+    );
+  });
+
+  return <section id="recent-expenses">{days.splice(0, 6)}</section>;
 };
 
 export default RecentExpenses;

@@ -24,13 +24,21 @@
   margin-right: 110px;
 }
 
-#recent-expenses .expense-date {
+#recent-expenses .expense-for-date {
+  margin-bottom: 20px;
+}
+
+#recent-expenses .expense-time {
   margin-right: 20px;
 }
 
 .expense-details {
   margin-top: 15px;
   font-size: 21px;
+}
+
+.expense-details .details-left {
+  min-width: 300px;
 }
 
 .expense-details .details-left > * {
@@ -46,18 +54,23 @@
   font-size: 20px;
 }
 
-.expense-details .details-right .expense-ammount {
+.expense-details .details-right .amount {
   margin-right: 13px;
+  min-width: 50px;
 }
 
-.expense-details .details-right .expense-delete {
-  font-size: 21px;
+.expense-details .details-right .delete-expense {
+  background-color: transparent;
+  border: none;
+  color: #eee;
+  padding: 0;
+  font-size: 16px;
   opacity: .5;
   cursor: pointer;
   transition: opacity .2s;
   transform: scale(1.4);
 }
 
-.expense-details .details-right .expense-delete:hover {
+.expense-details .details-right .delete-expense:hover {
   opacity: 1;
 }
