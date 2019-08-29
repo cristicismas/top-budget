@@ -10,9 +10,9 @@ export class AddExpense extends Component {
 
     this.state = {
       value: '',
-      categories: [],
-      locations: [],
-      sources: []
+      category: null,
+      location: null,
+      source: null
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,28 +23,32 @@ export class AddExpense extends Component {
   }
 
   handleOptionClick(type, object) {
-    const options = document.getElementById(`${type}-${object.id}`);
+    const option = document.getElementById(`${type}-${object.id}`);
 
-    if (options.classList.contains('selected')) {
-      const currentStateArray = [...this.state[type]];
-      const indexToRemove = currentStateArray.indexOf(object.id);
-
-      currentStateArray.splice(indexToRemove, 1);
-
-      this.setState({ [type]: currentStateArray });
+    if (option.classList.contains('selected')) {
+      // If option is already selected, unselect it.
+      this.setState({ [type]: null });
     } else {
-      this.setState({ [type]: [...this.state[type], object.id] });
+      // If option isn't selected, select it and remove the selected class from other siblings.
+      const optionParent = document.getElementById(type);
+      const optionSiblings = optionParent.childNodes;
+
+      for (let i = 0; i < optionSiblings.length; i++) {
+        optionSiblings[i].classList.remove('selected');
+      }
+
+      this.setState({ [type]: object.id });
     }
 
-    options.classList.toggle('selected');
+    option.classList.toggle('selected');
   }
 
   clearForm() {
     this.setState({
       value: '',
-      categories: [],
-      locations: [],
-      sources: []
+      category: null,
+      location: null,
+      source: null
     });
 
     const selectedOptions = document.querySelectorAll('.selected');
@@ -60,13 +64,13 @@ export class AddExpense extends Component {
 
   handleAddOption(type, name, color) {
     switch (type) {
-      case 'categories':
+      case 'category':
         this.props.addCategory({ name, color });
         break;
-      case 'locations':
+      case 'location':
         this.props.addLocation({ name, color });
         break;
-      case 'sources':
+      case 'source':
         this.props.addSource({ name, color });
         break;
       default:
@@ -111,7 +115,7 @@ export class AddExpense extends Component {
         {showCategories && (
           <OptionsGroup
             label="Category"
-            type="categories"
+            type="category"
             objects={categories}
             handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
             handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
@@ -121,7 +125,7 @@ export class AddExpense extends Component {
         {showLocations && (
           <OptionsGroup
             label="Location"
-            type="locations"
+            type="location"
             objects={locations}
             handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
             handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
@@ -131,7 +135,7 @@ export class AddExpense extends Component {
         {showSources && (
           <OptionsGroup
             label="Source"
-            type="sources"
+            type="source"
             objects={sources}
             handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
             handleOptionClick={(type, object) => this.handleOptionClick(type, object)}

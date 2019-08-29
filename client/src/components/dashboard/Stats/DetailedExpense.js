@@ -7,15 +7,15 @@ const DetailedExpense = props => {
   const { expense, categories, locations, sources } = props;
 
   const category = categories.find(category => {
-    return category.id === expense.categories[0];
+    return category.id === expense.category;
   });
 
   const location = locations.find(location => {
-    return location.id === expense.locations[0];
+    return location.id === expense.location;
   });
 
   const source = sources.find(source => {
-    return source.id === expense.sources[0];
+    return source.id === expense.source;
   });
 
   const expenseTime = moment(expense.date).format('h:mm a');

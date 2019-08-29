@@ -49,14 +49,20 @@ const ExpenseSummary = props => {
   const calculateCategoryValue = category => {
     let value = 0;
 
-    expenses.forEach(expense => {
-      if (
-        belongsToTimeline(expense, filter) &&
-        (expense.categories[0] === category.id || expense.categories[0] === null)
-      ) {
-        value += Number(expense.value);
-      }
-    });
+    // If category.id isn't specified it means the category is not specified.
+    if (!category.id) {
+      expenses.forEach(expense => {
+        if (belongsToTimeline(expense, filter) && !expense.category) {
+          value += Number(expense.value);
+        }
+      });
+    } else {
+      expenses.forEach(expense => {
+        if (expense.category === category.id && belongsToTimeline(expense, filter)) {
+          value += Number(expense.value);
+        }
+      });
+    }
 
     return value;
   };
@@ -64,7 +70,7 @@ const ExpenseSummary = props => {
   const categoriesAndNotDefined = [
     ...categories,
     {
-      name: 'Not mentioned',
+      name: 'Not specified',
       color: '#888'
     }
   ];
