@@ -115,13 +115,19 @@ const ExpenseSummary = props => {
     );
   });
 
+  let categoryGroupsLength = 0;
+
+  categoryGroups.forEach(category => {
+    if (category) categoryGroupsLength += 1;
+  });
+
   return (
     <section id="expense-summary">
       <ul className="filters">{filterButtons}</ul>
 
       <ul className="summary">{showAllCategories ? categoryGroups : categoryGroups.slice(0, 4)}</ul>
 
-      {categoryGroups.length > 4 ? (
+      {categoryGroupsLength > 4 ? (
         <button onClick={() => toggleShowAll(!showAllCategories)} id="show-all">
           Show {showAllCategories ? 'less' : 'all'}
         </button>
