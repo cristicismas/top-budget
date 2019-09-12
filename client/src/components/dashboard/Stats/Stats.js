@@ -3,6 +3,7 @@ import '../../../css/Stats.css';
 
 import ExpenseSummary from './ExpenseSummary';
 import BudgetWheel from './BudgetWheel';
+import Chart from './Chart';
 import RecentExpenses from './RecentExpenses';
 import Message from '../../Message';
 
@@ -17,6 +18,7 @@ const Stats = props => {
           <BudgetWheel expenses={expenses} userdata={user.userdata} />
         </div>
 
+        <Chart expenses={expenses} />
         <RecentExpenses deleteExpense={deleteExpense} expenses={expenses} userdata={user.userdata} />
       </section>
     );
