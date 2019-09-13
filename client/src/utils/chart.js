@@ -23,17 +23,31 @@ export const getCategoryValues = (category, expenses) => {
   let values = [];
   const days = getLastSevenDays();
 
-  expenses.forEach(expense => {
-    days.forEach((day, index) => {
-      if (isNaN(values[index])) {
-        values[index] = 0;
-      }
+  if (category) {
+    expenses.forEach(expense => {
+      days.forEach((day, index) => {
+        if (isNaN(values[index])) {
+          values[index] = 0;
+        }
 
-      if (expense.category === category.id && belongsToDate(expense, day)) {
-        values[index] += Number(expense.value);
-      }
+        if (expense.category === category.id && belongsToDate(expense, day)) {
+          values[index] += Number(expense.value);
+        }
+      });
     });
-  });
+  } else {
+    expenses.forEach(expense => {
+      days.forEach((day, index) => {
+        if (isNaN(values[index])) {
+          values[index] = 0;
+        }
+
+        if (!expense.category && belongsToDate(expense, day)) {
+          values[index] += Number(expense.value);
+        }
+      });
+    });
+  }
 
   return values;
 };

@@ -53,6 +53,22 @@ const getDatasets = (categories, expenses) => {
     });
   });
 
+  // Push 'not defined' category.
+  const noCategoryDefinedValues = getCategoryValues(null, expenses);
+
+  const categoryColor = 'rgba(136, 136, 136, .5)';
+  const hoverCategoryColor = 'rgba(136, 136, 136, .7)';
+
+  datasets.push({
+    label: 'Not specified',
+    backgroundColor: categoryColor,
+    borderColor: categoryColor,
+    borderWidth: 3,
+    hoverBackgroundColor: hoverCategoryColor,
+    hoverBorderColor: hoverCategoryColor,
+    data: noCategoryDefinedValues
+  });
+
   return datasets;
 };
 
