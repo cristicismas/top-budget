@@ -30,3 +30,14 @@
   border-bottom: 2px solid #bbb;
   color: #eee;
 }
+
+@media only screen and (max-width: 800px) {
+  #stats .summary-and-wheel {
+    flex-direction: column-reverse;
+    margin: auto;
+  }
+
+  #stats .filters {
+    padding-left: 0;
+  }
+}

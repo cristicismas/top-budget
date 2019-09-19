@@ -3,6 +3,7 @@
   justify-content: center;
   font-size: 25px;
   margin-top: 35px;
+  margin-bottom: 50px;
 }
 
 #dashboard nav > * {
@@ -18,4 +19,20 @@
   font-weight: 500;
   margin-top: 20px;
   border-bottom: 2px solid #eee;
+}
+
+@media only screen and (max-width: 500px) {
+  #dashboard nav {
+    flex-direction: column;
+  }
+
+  #dashboard nav > * {
+    margin: 5px auto;
+    display: inline;
+    text-align: center;
+  }
+
+  #dashboard nav .active {
+    margin-top: 0;
+  }
 }

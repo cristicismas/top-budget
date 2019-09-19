@@ -13,12 +13,15 @@ const Stats = props => {
   if (expenses.expenses.length) {
     return (
       <section id="stats">
-        <div className="flex-group">
-          <ExpenseSummary expenses={expenses} userdata={user.userdata} />
-          <BudgetWheel expenses={expenses} userdata={user.userdata} />
+        <div className="flex-group chart-and-summary">
+          <div className="flex-group summary-and-wheel">
+            <ExpenseSummary expenses={expenses} userdata={user.userdata} />
+            <BudgetWheel expenses={expenses} userdata={user.userdata} />
+          </div>
+
+          <Chart expenses={expenses} />
         </div>
 
-        <Chart expenses={expenses} />
         <RecentExpenses deleteExpense={deleteExpense} expenses={expenses} userdata={user.userdata} />
       </section>
     );

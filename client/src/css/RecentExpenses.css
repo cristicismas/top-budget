@@ -31,16 +31,16 @@
   margin-right: 20px;
 }
 
-.expense-details {
+#recent-expenses .expense-details {
   margin-top: 15px;
   font-size: 21px;
 }
 
-.expense-details .details-left {
+#recent-expenses .expense-details .details-left {
   min-width: 300px;
 }
 
-.expense-details .details-left > * {
+#recent-expenses .expense-details .details-left > * {
   background-color: #23232e;
   padding: 4px 9px;
   border-radius: 2px;
@@ -48,17 +48,17 @@
   font-size: 16px;
 }
 
-.expense-details .details-right {
+#recent-expenses .expense-details .details-right {
   margin-left: 55px;
   font-size: 20px;
 }
 
-.expense-details .details-right .amount {
+#recent-expenses .expense-details .details-right .amount {
   margin-right: 13px;
   min-width: 50px;
 }
 
-.expense-details .details-right .delete-expense {
+#recent-expenses .expense-details .details-right .delete-expense {
   background-color: transparent;
   border: none;
   color: #eee;
@@ -70,6 +70,16 @@
   transform: scale(1.4);
 }
 
-.expense-details .details-right .delete-expense:hover {
+#recent-expenses .expense-details .details-right .delete-expense:hover {
   opacity: 1;
+}
+
+@media only screen and (max-width: 550px) {
+  #recent-expenses {
+    margin-left: 10px;
+  }
+
+  #recent-expenses .expense-details .details-right {
+    margin: 5px 5px 0 10px;
+  }
 }

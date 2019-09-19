@@ -84,7 +84,7 @@ const Chart = props => {
 
   return (
     <section id="expense-chart">
-      <Bar data={chartData} options={chartOptions} height={500} />
+      <Bar data={chartData} options={chartOptions} height={450} />
     </section>
   );
 };
