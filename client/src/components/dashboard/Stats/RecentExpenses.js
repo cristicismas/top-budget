@@ -35,8 +35,6 @@ const RecentExpenses = props => {
     );
   });
 
-  console.log(days.length);
-
   return (
     <section id="recent-expenses">
       {showAllDays ? days : days.slice(0, 6)}
