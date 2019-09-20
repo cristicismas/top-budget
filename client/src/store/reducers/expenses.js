@@ -48,6 +48,9 @@ export default function(state = initialState, action) {
     case DELETE_CATEGORY:
       return {
         ...state,
+        expenses: state.expenses.filter(
+          expense => expense.category !== action.payload
+        ),
         categories: state.categories.filter(
           category => category.id !== action.payload
         )
