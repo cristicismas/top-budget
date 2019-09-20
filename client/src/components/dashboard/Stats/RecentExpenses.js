@@ -39,7 +39,7 @@ const RecentExpenses = props => {
 
   return (
     <section id="recent-expenses">
-      {showAllDays ? days : days.splice(0, 6)}
+      {showAllDays ? days : days.slice(0, 6)}
 
       {recentDays.length > 5 ? (
         <button onClick={() => toggleShowAll(!showAllDays)} id="show-all">
