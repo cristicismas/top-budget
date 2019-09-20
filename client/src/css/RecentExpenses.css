@@ -1,5 +1,6 @@
 #recent-expenses {
   margin-left: 50px;
+  margin-bottom: 100px;
 }
 
 #recent-expenses .expense-color {
@@ -72,6 +73,16 @@
 
 #recent-expenses .expense-details .details-right .delete-expense:hover {
   opacity: 1;
+}
+
+#recent-expenses #show-all {
+  background-color: #23232e;
+  color: #bbb;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 20px 10px;
 }
 
 @media only screen and (max-width: 550px) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getRecentDays, formatDate } from '../../../utils/recent';
 import '../../../css/RecentExpenses.css';
 
@@ -6,6 +6,8 @@ import DetailedExpense from './DetailedExpense';
 
 const RecentExpenses = props => {
   const { expenses, categories, sources, locations } = props.expenses;
+
+  const [showAllDays, toggleShowAll] = useState(false);
 
   const recentDays = getRecentDays(expenses);
 
@@ -33,7 +35,19 @@ const RecentExpenses = props => {
     );
   });
 
-  return <section id="recent-expenses">{days.splice(0, 6)}</section>;
+  console.log(days.length);
+
+  return (
+    <section id="recent-expenses">
+      {showAllDays ? days : days.splice(0, 6)}
+
+      {recentDays.length > 5 ? (
+        <button onClick={() => toggleShowAll(!showAllDays)} id="show-all">
+          Show {showAllDays ? 'less' : 'all'}
+        </button>
+      ) : null}
+    </section>
+  );
 };
 
 export default RecentExpenses;
