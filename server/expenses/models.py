@@ -7,8 +7,8 @@ from decimal import Decimal
 class Expense(models.Model):
     value = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(Decimal('0.01'))])
     category = models.ForeignKey("Category", on_delete=models.CASCADE, null=True, blank=True)
-    location = models.ForeignKey("Location", on_delete=models.CASCADE, null=True, blank=True)
-    source = models.ForeignKey("Source", on_delete=models.CASCADE, null=True, blank=True)
+    location = models.ForeignKey("Location", on_delete=models.SET_NULL, null=True, blank=True)
+    source = models.ForeignKey("Source", on_delete=models.SET_NULL, null=True, blank=True)
     owner = models.ForeignKey(User, related_name="expenses", on_delete=models.CASCADE, null=True)
     date = models.DateTimeField(auto_now=False, auto_now_add=False, default=timezone.now)
 
