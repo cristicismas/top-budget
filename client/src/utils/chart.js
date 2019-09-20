@@ -7,8 +7,7 @@ export const convertHexToRgb = hex => {
   const g = parseInt(result[2], 16);
   const b = parseInt(result[3], 16);
 
-  if (r && g && b) return `${r}, ${g}, ${b}`;
-  else return null;
+  return `${r}, ${g}, ${b}`;
 };
 
 const belongsToDate = (expense, date) => {
