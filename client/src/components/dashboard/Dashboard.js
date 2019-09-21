@@ -40,7 +40,6 @@ class Dashboard extends Component {
   }
 
   setMessage(message, type) {
-    console.log(message);
     this.setState({
       message,
       type

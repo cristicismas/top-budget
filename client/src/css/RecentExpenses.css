@@ -41,7 +41,7 @@
   min-width: 300px;
 }
 
-#recent-expenses .expense-details .details-left > * {
+#recent-expenses .expense-details .details-left .expense-field {
   background-color: #23232e;
   padding: 4px 9px;
   border-radius: 2px;
@@ -52,6 +52,7 @@
 #recent-expenses .expense-details .details-right {
   margin-left: 55px;
   font-size: 20px;
+  flex-wrap: nowrap;
 }
 
 #recent-expenses .expense-details .details-right .amount {

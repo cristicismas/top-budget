@@ -29,6 +29,7 @@ const RecentExpenses = props => {
             categories={categories}
             sources={sources}
             locations={locations}
+            userdata={props.userdata}
           />
         ))}
       </div>
