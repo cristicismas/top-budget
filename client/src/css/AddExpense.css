@@ -1,6 +1,6 @@
 #expense-form {
   font-size: 16px;
-  padding: 50px 100px;
+  padding: 0 100px;
 }
 
 #expense-form * {
@@ -67,4 +67,37 @@
 #expense-form button[type='submit']:active {
   color: #775cf0;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
+}
+
+@media only screen and (max-width: 1000px) {
+  #expense-form {
+    padding: 0 50px;
+  }
+
+  #expense-form .options {
+    margin-left: 0;
+  }
+
+  #expense-form input {
+    margin-left: 0;
+    font-size: 18px;
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  #expense-form {
+    padding: 0 25px;
+  }
+
+  #expense-form .options-label,
+  #expense-form h2 {
+    font-size: 22px;
+  }
+
+  #expense-form .add-option-button {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+  }
 }
