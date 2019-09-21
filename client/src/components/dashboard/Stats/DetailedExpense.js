@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { getCurrency } from '../../../utils/currency';
 
 import ExpenseField from './ExpenseField';
 
@@ -44,6 +45,8 @@ const DetailedExpense = props => {
         }
       : null;
 
+  const currency = getCurrency(userdata);
+
   return (
     <div className="expense-for-date" style={stylesForExpense}>
       <div className="expense-info flex-group">
@@ -62,7 +65,9 @@ const DetailedExpense = props => {
         </div>
 
         <div className="details-right flex-group" style={rightSideStyles}>
-          <div className="amount">${expense.value}</div>
+          <div className="amount">
+            {currency} {expense.value}
+          </div>
           <button className="delete-expense" onClick={() => props.deleteExpense(expense.id)}>
             ✕
           </button>
