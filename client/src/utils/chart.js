@@ -30,7 +30,7 @@ export const getCategoryValues = (category, expenses) => {
         }
 
         if (expense.category === category.id && belongsToDate(expense, day)) {
-          values[index] += Number(expense.value);
+          values[index] += expense.value;
         }
       });
     });
@@ -42,7 +42,7 @@ export const getCategoryValues = (category, expenses) => {
         }
 
         if (!expense.category && belongsToDate(expense, day)) {
-          values[index] += Number(expense.value);
+          values[index] += expense.value;
         }
       });
     });

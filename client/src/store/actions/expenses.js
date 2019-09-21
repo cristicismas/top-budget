@@ -5,9 +5,16 @@ import { tokenConfig } from './user';
 
 export const getExpenses = () => (dispatch, getState) => {
   apiCall('get', 'expenses', tokenConfig(getState)).then(res => {
+    const expenses = res.map(expense => {
+      return {
+        ...expense,
+        value: Number(expense.value)
+      }
+    });
+
     dispatch({
       type: GET_EXPENSES,
-      payload: res
+      payload: expenses
     });
   }).catch(err => {
     dispatch({
@@ -38,9 +45,11 @@ export const deleteExpense = id => (dispatch, getState) => {
 
 export const addExpense = expense => (dispatch, getState) => {
   apiCall('post', 'expenses/', expense, tokenConfig(getState)).then(res => {
+    const newExpense = {...res, value: Number(res.value)}
+
     dispatch({
       type: ADD_EXPENSE,
-      payload: res
+      payload: newExpense
     });
 
     dispatch({

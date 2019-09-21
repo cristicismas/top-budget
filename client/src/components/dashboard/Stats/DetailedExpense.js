@@ -36,7 +36,7 @@ const DetailedExpense = props => {
         </div>
 
         <div className="details-right flex-group">
-          <div className="amount">${Number(expense.value)}</div>
+          <div className="amount">${expense.value}</div>
           <button className="delete-expense" onClick={() => props.deleteExpense(expense.id)}>
             ✕
           </button>

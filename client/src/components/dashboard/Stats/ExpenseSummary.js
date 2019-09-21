@@ -53,13 +53,13 @@ const ExpenseSummary = props => {
     if (!category.id) {
       expenses.forEach(expense => {
         if (belongsToTimeline(expense, filter) && !expense.category) {
-          value += Number(expense.value);
+          value += expense.value;
         }
       });
     } else {
       expenses.forEach(expense => {
         if (expense.category === category.id && belongsToTimeline(expense, filter)) {
-          value += Number(expense.value);
+          value += expense.value;
         }
       });
     }

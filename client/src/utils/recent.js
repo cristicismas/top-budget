@@ -28,7 +28,7 @@ export const getRecentDays = expenses => {
 
       recentDays[dayFromArrayIndex] = {
         day: expenseDay,
-        dayValue: dayFromArray.dayValue + Number(expense.value),
+        dayValue: dayFromArray.dayValue + expense.value,
         expenses: updatedExpenses
       };
     } else {
@@ -38,7 +38,7 @@ export const getRecentDays = expenses => {
         recentDays = [
           {
             day: expenseDay,
-            dayValue: Number(expense.value),
+            dayValue: expense.value,
             expenses: [expense]
           },
           ...recentDays
@@ -46,7 +46,7 @@ export const getRecentDays = expenses => {
       } else {
         recentDays.push({
           day: expenseDay,
-          dayValue: Number(expense.value),
+          dayValue: expense.value,
           expenses: [expense]
         });
       }

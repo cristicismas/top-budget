@@ -43,7 +43,7 @@ export class Settings extends Component {
 
         <Budget
           changeBudget={newBudget => {
-            this.setState({ budget: Number(newBudget) }, () =>
+            this.setState({ budget: newBudget }, () =>
               this.handleSave()
             );
           }}

@@ -23,7 +23,7 @@ const BudgetWheel = props => {
     const daysToFilter = 30;
 
     if (diffDays < daysToFilter) {
-      sumOfExpensesPerMonth += Number(expense.value);
+      sumOfExpensesPerMonth += expense.value;
     }
   });
 
