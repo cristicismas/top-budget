@@ -81,11 +81,16 @@ export class AddExpense extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const currentTimeAndDate = new Date();
-    this.props.addExpense({...this.state, date: currentTimeAndDate});
-
-    this.clearForm();
-    this.props.setMessage('Expense added with success', TYPES.SUCCESS);
+    if (Number(this.state.value) !== 0) {
+      const currentTimeAndDate = new Date();
+      this.props.addExpense({...this.state, date: currentTimeAndDate});
+  
+      this.clearForm();
+      this.props.setMessage('Expense added with success.', TYPES.SUCCESS);
+    } else {
+      this.clearForm();
+      this.props.setMessage('Please add a value higher than zero.', TYPES.ERROR);
+    }
   }
 
   render() {
