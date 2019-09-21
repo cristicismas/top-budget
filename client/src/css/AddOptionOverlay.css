@@ -85,3 +85,9 @@
   color: #775cf0;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
+
+@media only screen and (max-width: 430px) {
+  .overlay {
+    padding: 40px;
+  }
+}
