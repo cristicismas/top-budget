@@ -22,7 +22,12 @@ const Stats = props => {
           <Chart expenses={expenses} />
         </div>
 
-        <RecentExpenses deleteExpense={deleteExpense} expenses={expenses} userdata={user.userdata} />
+        <RecentExpenses
+          deleteExpense={deleteExpense}
+          expenses={expenses}
+          userdata={user.userdata}
+          setMessage={props.setMessage}
+        />
       </section>
     );
   } else {

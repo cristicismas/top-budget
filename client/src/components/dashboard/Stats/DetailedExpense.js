@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import TYPES from '../../../constants/messageTypes';
 import { getCurrency } from '../../../utils/currency';
 
 import ExpenseField from './ExpenseField';
@@ -68,7 +69,12 @@ const DetailedExpense = props => {
           <div className="amount">
             {currency} {expense.value}
           </div>
-          <button className="delete-expense" onClick={() => props.deleteExpense(expense.id)}>
+          <button
+            className="delete-expense"
+            onClick={() => {
+              props.deleteExpense(expense.id);
+              props.setMessage('Expense deleted with success.', TYPES.SUCCESS);
+            }}>
             ✕
           </button>
         </div>

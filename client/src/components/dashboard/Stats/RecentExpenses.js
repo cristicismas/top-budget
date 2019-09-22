@@ -30,6 +30,7 @@ const RecentExpenses = props => {
             sources={sources}
             locations={locations}
             userdata={props.userdata}
+            setMessage={props.setMessage}
           />
         ))}
       </div>
