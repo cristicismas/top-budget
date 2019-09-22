@@ -61,12 +61,12 @@ const BudgetWheel = props => {
 
   return (
     <div id="budget-wheel">
-      <div className="wheel-numbers">
-        <div className="spent">
+      <p className="wheel-numbers">
+        <span className="spent">
           {currencySymbol} {sumOfExpensesPerMonth}
-        </div>
+        </span>
         / {userdata ? userdata.budget : 0}
-      </div>
+      </p>
 
       <svg
         className="wheel-icon"

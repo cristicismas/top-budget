@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin: -90px 150px 0px 140px;
 }
 
@@ -11,20 +12,19 @@
   font-size: 23px;
   color: #bbb;
   text-align: center;
+  margin: 5px 0;
 }
 
 #budget-wheel .wheel-numbers .spent {
   font-weight: bold;
   font-size: 25px;
   color: #eee;
-  display: inline;
   margin-right: 5px;
 }
 
 #budget-wheel .wheel-icon {
   position: relative;
   top: 95px;
-  left: 40px;
 }
 
 #budget-wheel .wheel circle {
