@@ -30,6 +30,7 @@
 
 #recent-expenses .expense-time {
   margin-right: 20px;
+  min-width: 70px;
 }
 
 #recent-expenses .expense-details {
