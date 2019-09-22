@@ -53,6 +53,10 @@
     font-size: 20px;
   }
 
+  #fields .field-header .toggle {
+    top: 10px;
+  }
+
   #fields .options {
     margin-left: 20px;
   }
