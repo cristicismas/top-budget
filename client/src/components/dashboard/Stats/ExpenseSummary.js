@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { getCurrency } from '../../../utils/currency';
-import { handleChangeFilter, calculateBarWidth, calculateCategoryValue } from '../../../utils/summary';
+import { calculateBarWidth, calculateCategoryValue } from '../../../utils/summary';
 import '../../../css/ExpenseSummary.css';
 
-import FILTERS from '../../../constants/filters';
+import FilterButtons from './FilterButtons';
 
 const ExpenseSummary = props => {
   const { userdata, filter, changeFilter } = props;
@@ -27,15 +27,6 @@ const ExpenseSummary = props => {
   });
 
   const topCategoryValue = calculateCategoryValue(sortedCategories[0], expenses, filter);
-
-  const filterButtons = Object.keys(FILTERS).map(filterName => (
-    <button
-      key={'filter-' + filterName}
-      onClick={() => handleChangeFilter(filterName, changeFilter)}
-      className={`filter-btn ${filter === filterName ? 'active' : ''}`}>
-      {FILTERS[filterName]}
-    </button>
-  ));
 
   const categoryGroups = sortedCategories.map(category => {
     const categoryValue = calculateCategoryValue(category, expenses, filter);
@@ -69,7 +60,7 @@ const ExpenseSummary = props => {
 
   return (
     <section id="expense-summary">
-      <ul className="filters">{filterButtons}</ul>
+      <FilterButtons filter={filter} changeFilter={changeFilter} />
 
       <ul className="summary">{showAllCategories ? categoryGroups : categoryGroups.slice(0, 4)}</ul>
 
