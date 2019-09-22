@@ -1,8 +1,9 @@
 import React from 'react';
 import { getCurrency } from '../../../utils/currency';
+import { getFillPercentage, getSumOfExpensesForTimeline, getWheelGeometryData } from '../../../utils/wheel';
+import ICON from '../../../constants/icons';
 import '../../../css/BudgetWheel.css';
 
-import ICON from '../../../constants/icons';
 
 const BudgetWheel = props => {
   const { userdata } = props;
@@ -10,47 +11,20 @@ const BudgetWheel = props => {
 
   const currencySymbol = getCurrency(userdata);
 
-  // Get sum of expensess per current month
-  let sumOfExpensesPerMonth = 0;
-  const today = new Date();
+  const sumOfExpenses = getSumOfExpensesForTimeline(expenses, 'MONTH');
+  const progress = getFillPercentage(sumOfExpenses, userdata.budget);
 
-  expenses.forEach(expense => {
-    const expenseDate = new Date(expense.date);
-
-    const diffTime = Math.abs(today.getTime() - expenseDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-    const daysToFilter = 30;
-
-    if (diffDays < daysToFilter) {
-      sumOfExpensesPerMonth += expense.value;
-    }
-  });
-
-  // Get progress wheel percentage
-  let progress = 0;
-
-  if (userdata) {
-    progress = (sumOfExpensesPerMonth / userdata.budget) * 100;
-    if (progress > 100) progress = 100;
-  }
-
-  // Calculate wheel geometry
-  const radius = 70;
-  const stroke = 7;
-  const normalizedRadius = radius - stroke * 2;
-  const circumference = normalizedRadius * 2 * Math.PI;
-  const strokeDashoffset = circumference - (progress / 100) * circumference;
+  const WHEEL = getWheelGeometryData(progress);
 
   // Get wheel colors and icon by amount spent
   let wheelColor = '';
   let wheelIcon = '';
 
   if (userdata) {
-    if (sumOfExpensesPerMonth < (33 / 100) * userdata.budget) {
+    if (sumOfExpenses < (33 / 100) * userdata.budget) {
       wheelColor = '#aaa';
       wheelIcon = ICON.THUMBS_UP;
-    } else if (sumOfExpensesPerMonth < (66 / 100) * userdata.budget) {
+    } else if (sumOfExpenses < (66 / 100) * userdata.budget) {
       wheelColor = '#f4b92e';
       wheelIcon = ICON.WARNING;
     } else {
@@ -63,7 +37,7 @@ const BudgetWheel = props => {
     <div id="budget-wheel">
       <p className="wheel-numbers">
         <span className="spent">
-          {currencySymbol} {sumOfExpensesPerMonth}
+          {currencySymbol} {sumOfExpenses}
         </span>
         / {userdata ? userdata.budget : 0}
       </p>
@@ -78,29 +52,29 @@ const BudgetWheel = props => {
         <path d={wheelIcon} />
       </svg>
 
-      <svg height={radius * 2} width={radius * 2} className="wheel">
+      <svg height={WHEEL.radius * 2} width={WHEEL.radius * 2} className="wheel">
         <circle
           id="placeholder-circle"
           stroke="#232323"
           fill="transparent"
-          strokeWidth={stroke}
-          strokeDasharray={circumference + ' ' + circumference}
+          strokeWidth={WHEEL.stroke}
+          strokeDasharray={WHEEL.circumference + ' ' + WHEEL.circumference}
           style={{ strokeDashoffset: 0 }}
-          r={normalizedRadius}
-          cx={radius}
-          cy={radius}
+          r={WHEEL.normalizedRadius}
+          cx={WHEEL.radius}
+          cy={WHEEL.radius}
         />
 
         <circle
           id="progress-circle"
           stroke={wheelColor}
           fill="transparent"
-          strokeWidth={stroke}
-          strokeDasharray={circumference + ' ' + circumference}
-          style={{ strokeDashoffset: !isNaN(strokeDashoffset) ? strokeDashoffset : circumference }}
-          r={normalizedRadius}
-          cx={radius}
-          cy={radius}
+          strokeWidth={WHEEL.stroke}
+          strokeDasharray={WHEEL.circumference + ' ' + WHEEL.circumference}
+          style={{ strokeDashoffset: !isNaN(WHEEL.strokeDashoffset) ? WHEEL.strokeDashoffset : WHEEL.circumference }}
+          r={WHEEL.normalizedRadius}
+          cx={WHEEL.radius}
+          cy={WHEEL.radius}
         />
       </svg>
     </div>
