@@ -26,6 +26,8 @@ class Dashboard extends Component {
       message: '',
       type: ''
     };
+
+    this.setMessage = this.setMessage.bind(this);
   }
 
   componentDidMount() {
@@ -70,13 +72,13 @@ class Dashboard extends Component {
           </nav>
 
           {message && (
-            <Message message={message} type={type} setMessage={(message, type) => this.setMessage(message, type)} />
+            <Message message={message} type={type} setMessage={this.setMessage} />
           )}
 
           <Route
             exact
             path="/dashboard"
-            render={() => <AddExpense {...this.props} setMessage={(message, type) => this.setMessage(message, type)} />}
+            render={() => <AddExpense {...this.props} setMessage={this.setMessage} />}
           />
 
           <Route path="/dashboard/settings" render={() => <Settings {...this.props} />} />
