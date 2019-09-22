@@ -1,4 +1,5 @@
 import FILTERS from '../constants/filters';
+import moment from 'moment';
 
 export const handleChangeFilter = (filter, changeFilter) => {
   localStorage.setItem('lastFilter', filter);
@@ -36,11 +37,10 @@ export const calculateCategoryValue = (category, expenses, filter) => {
 };
 
 const belongsToTimeline = (expense, filter) => {
-  const today = new Date();
-  const expenseDate = new Date(expense.date);
+  const today = moment();
+  const expenseDate = moment(expense.date);
 
-  const diffTime = Math.abs(today.getTime() - expenseDate.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const diffDays = today.diff(expenseDate, 'days');
 
   var daysToFilter = 0;
 
