@@ -11,7 +11,7 @@ const BudgetWheel = props => {
   const currencySymbol = getCurrency(userdata);
 
   // Get sum of expensess per current month
-  var sumOfExpensesPerMonth = 0;
+  let sumOfExpensesPerMonth = 0;
   const today = new Date();
 
   expenses.forEach(expense => {
@@ -28,7 +28,7 @@ const BudgetWheel = props => {
   });
 
   // Get progress wheel percentage
-  var progress = 0;
+  let progress = 0;
 
   if (userdata) {
     progress = (sumOfExpensesPerMonth / userdata.budget) * 100;
@@ -43,8 +43,8 @@ const BudgetWheel = props => {
   const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   // Get wheel colors and icon by amount spent
-  var wheelColor = '';
-  var wheelIcon = '';
+  let wheelColor = '';
+  let wheelIcon = '';
 
   if (userdata) {
     if (sumOfExpensesPerMonth < (33 / 100) * userdata.budget) {

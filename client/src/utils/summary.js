@@ -42,7 +42,7 @@ const belongsToTimeline = (expense, filter) => {
 
   const diffDays = today.diff(expenseDate, 'days');
 
-  var daysToFilter = 0;
+  let daysToFilter = 0;
 
   if (FILTERS[filter] === FILTERS.WEEK) daysToFilter = 7;
   else if (FILTERS[filter] === FILTERS.MONTH) daysToFilter = 30;
