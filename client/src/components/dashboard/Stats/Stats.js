@@ -31,7 +31,7 @@ const Stats = props => {
       </section>
     );
   } else {
-    return <Message message={'Please add at least one expense before viewing your stats.'} />;
+    return <Message message='Please add at least one expense before viewing your stats.' />;
   }
 };
 

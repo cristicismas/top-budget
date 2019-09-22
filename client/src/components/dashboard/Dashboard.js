@@ -72,7 +72,7 @@ class Dashboard extends Component {
           </nav>
 
           {message && (
-            <Message message={message} type={type} setMessage={this.setMessage} />
+            <Message message={message} type={type} shouldFadeOut={true} setMessage={this.setMessage} />
           )}
 
           <Route

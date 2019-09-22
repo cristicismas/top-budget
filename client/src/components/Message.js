@@ -3,7 +3,7 @@ import TYPES from '../constants/messageTypes';
 import '../css/Message.css';
 
 const Message = props => {
-  const { message, setMessage } = props;
+  const { message, setMessage, shouldFadeOut } = props;
 
   const [opacity, changeOpacity] = useState(0);
 
@@ -11,22 +11,24 @@ const Message = props => {
   useEffect(() => {
     changeOpacity(1);
 
-    let messageTimeout, opacityTimeout = null;
+    if (shouldFadeOut) {
+      let messageTimeout,
+        opacityTimeout = null;
 
-    opacityTimeout = setTimeout(() => {
-      changeOpacity(0);
+      opacityTimeout = setTimeout(() => {
+        changeOpacity(0);
 
-      messageTimeout = setTimeout(() => {
-        setMessage('', '');
-      }, 500);
-    }, 2500);
+        messageTimeout = setTimeout(() => {
+          setMessage('', '');
+        }, 500);
+      }, 2500);
 
-    return () => {
-      clearTimeout(opacityTimeout);
-      clearTimeout(messageTimeout);
+      return () => {
+        clearTimeout(opacityTimeout);
+        clearTimeout(messageTimeout);
+      };
     }
-  }, [message, setMessage]);
-
+  }, [message, setMessage, shouldFadeOut]);
 
   let style = {};
 
