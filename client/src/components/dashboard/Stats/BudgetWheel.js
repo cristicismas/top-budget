@@ -6,12 +6,12 @@ import '../../../css/BudgetWheel.css';
 
 
 const BudgetWheel = props => {
-  const { userdata } = props;
+  const { userdata, filter } = props;
   const { expenses } = props.expenses;
 
   const currencySymbol = getCurrency(userdata);
 
-  const sumOfExpenses = getSumOfExpensesForTimeline(expenses, 'MONTH');
+  const sumOfExpenses = getSumOfExpensesForTimeline(expenses, filter);
   const progress = getFillPercentage(sumOfExpenses, userdata.budget);
 
   const WHEEL = getWheelGeometryData(progress);

@@ -6,13 +6,10 @@ import '../../../css/ExpenseSummary.css';
 import FILTERS from '../../../constants/filters';
 
 const ExpenseSummary = props => {
-  const { userdata } = props;
+  const { userdata, filter, changeFilter } = props;
   const { categories, expenses } = props.expenses;
 
   const [showAllCategories, toggleShowAll] = useState(false);
-
-  const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : FILTERS.WEEK;
-  const [filter, changeFilter] = useState(lastFilter);
 
   const currencySymbol = getCurrency(userdata);
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FILTERS from '../../../constants/filters';
 import '../../../css/Stats.css';
 
 import ExpenseSummary from './ExpenseSummary';
@@ -10,13 +11,16 @@ import Message from '../../Message';
 const Stats = props => {
   const { expenses, user, deleteExpense } = props;
 
+  const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : FILTERS.WEEK;
+  const [filter, changeFilter] = useState(lastFilter);
+
   if (expenses.expenses.length) {
     return (
       <section id="stats">
         <div className="flex-group chart-and-summary">
           <div className="flex-group summary-and-wheel">
-            <ExpenseSummary expenses={expenses} userdata={user.userdata} />
-            <BudgetWheel expenses={expenses} userdata={user.userdata} />
+            <ExpenseSummary expenses={expenses} userdata={user.userdata} filter={filter} changeFilter={changeFilter} />
+            <BudgetWheel expenses={expenses} userdata={user.userdata} filter={filter} />
           </div>
 
           <Chart expenses={expenses} />
