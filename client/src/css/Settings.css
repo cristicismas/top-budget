@@ -21,14 +21,16 @@
   margin-left: 20px;
 }
 
-#settings #currency {
-  padding-bottom: 0;
+#settings #currency,
+#settings #primary-field {
+  padding-bottom: 20px;
 }
 
-#settings #currency select {
+#settings #currency select,
+#settings #primary-field select {
   background-color: transparent;
   color: #eee;
-  padding: 10px 25px 10px 10px;
+  padding: 10px 25px 10px 5px;
   border: none;
   border-bottom: 2px solid #3d1eca;
   font-size: 25px;
@@ -36,15 +38,24 @@
   cursor: pointer;
 }
 
-#settings #currency select option {
+#settings #currency select option,
+#settings #primary-field select option {
   background-color: #222;
 }
 
-#settings #currency .currency-icon {
+#settings .select-icon {
   position: relative;
-  bottom: 40px;
-  left: 95px;
   z-index: -1;
+}
+
+#settings #currency .select-icon {
+  bottom: 40px;
+  left: 90px;
+}
+
+#settings #primary-field .select-icon {
+  bottom: 40px;
+  left: 160px;
 }
 
 #settings #budget input {
@@ -65,16 +76,25 @@
     margin: 50px;
   }
 
-  #settings #currency select {
+  #settings #currency select,
+  #settings #primary-field select {
     font-size: 20px;
   }
 
-  #settings #currency svg {
+  #settings .select-icon svg {
+    position: relative;
     width: 20px;
     height: 20px;
-    position: relative;
+  }
+
+  #settings #currency .select-icon svg {
     top: 5px;
     right: 10px;
+  }
+
+  #settings #primary-field .select-icon svg {
+    top: 5px;
+    right: 23px;
   }
 
   #settings .settings-group .sub-title {

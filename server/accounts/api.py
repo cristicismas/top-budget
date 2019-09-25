@@ -46,9 +46,10 @@ class UserViewSet(viewsets.ModelViewSet):
             showCategories = request.data['showCategories'],
             showLocations = request.data['showLocations'],
             showSources = request.data['showSources'],
+            primaryField = request.data['primaryField']
         )
 
-        return Response('Success')
+        return Response('User data saved.')
 
     def get_queryset(self):
         return UserData.objects.filter(user=self.request.user)

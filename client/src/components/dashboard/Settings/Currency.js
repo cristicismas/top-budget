@@ -21,7 +21,7 @@ const Currency = props => {
         {currencyOptions}
       </select>
 
-      <div className="currency-icon">
+      <div className="select-icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#eee" viewBox="0 0 24 24"><path d={ICON.ARROW}/></svg>
       </div>
     </div>

@@ -3,6 +3,7 @@ import '../../../css/Settings.css';
 
 import Currency from './Currency';
 import Budget from './Budget';
+import PrimaryField from './Fields/PrimaryField';
 import Fields from './Fields/Fields';
 
 export class Settings extends Component {
@@ -16,11 +17,14 @@ export class Settings extends Component {
   toggleField(field) {
     const currentValue = this.state[field];
 
-    this.setState({
-      [field]: !currentValue
-    }, () => {
-      this.handleSave();
-    });
+    this.setState(
+      {
+        [field]: !currentValue
+      },
+      () => {
+        this.handleSave();
+      }
+    );
   }
 
   handleSave() {
@@ -28,29 +32,32 @@ export class Settings extends Component {
   }
 
   render() {
-    const { currency, budget } = this.state;
+    const { currency, budget, primaryField } = this.state;
 
     return (
       <section id="settings">
         <Currency
           changeCurrency={newCurrency => {
-            this.setState({ currency: newCurrency }, () => 
-              this.handleSave()
-            );
+            this.setState({ currency: newCurrency }, () => this.handleSave());
           }}
           currency={currency}
         />
 
         <Budget
           changeBudget={newBudget => {
-            this.setState({ budget: newBudget }, () =>
-              this.handleSave()
-            );
+            this.setState({ budget: newBudget }, () => this.handleSave());
           }}
           budget={budget}
         />
 
-        <Fields toggleField={field => this.toggleField(field)} {...this.state } {...this.props }/>
+        <PrimaryField
+          changeField={newField => {
+            this.setState({ primaryField: newField }, () => this.handleSave());
+          }}
+          primaryField={primaryField}
+        />
+
+        <Fields toggleField={field => this.toggleField(field)} {...this.state} {...this.props} />
       </section>
     );
   }
