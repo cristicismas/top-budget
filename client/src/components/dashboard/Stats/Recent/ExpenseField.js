@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ColorCircle from '../ColorCircle';
+import ColorCircle from './ColorCircle';
 
 const ExpenseField = props => (
   <div className="expense-field flex-group">
