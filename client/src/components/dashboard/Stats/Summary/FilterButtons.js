@@ -1,6 +1,6 @@
 import React from 'react';
-import { handleChangeFilter } from '../../../utils/summary';
-import FILTERS from '../../../constants/filters';
+import { handleChangeFilter } from '../../../../utils/summary';
+import FILTERS from '../../../../constants/filters';
 
 const FilterButtons = ({ filter, changeFilter }) => {
   const filterButtons = Object.keys(FILTERS).map(filterName => (

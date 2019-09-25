@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { getRecentDays, formatDate } from '../../../utils/recent';
-import '../../../css/RecentExpenses.css';
+import { getRecentDays, formatDate } from '../../../../utils/recent';
+import '../../../../css/RecentExpenses.css';
 
 import DetailedExpense from './DetailedExpense';
 

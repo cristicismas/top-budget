@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import TYPES from '../../../constants/messageTypes';
-import { getCurrency } from '../../../utils/currency';
+import TYPES from '../../../../constants/messageTypes';
+import { getCurrency } from '../../../../utils/currency';
 
 import ExpenseField from './ExpenseField';
 

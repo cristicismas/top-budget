@@ -3,7 +3,7 @@ import '../../../css/Settings.css';
 
 import Currency from './Currency';
 import Budget from './Budget';
-import Fields from './Fields';
+import Fields from './Fields/Fields';
 
 export class Settings extends Component {
   constructor(props) {

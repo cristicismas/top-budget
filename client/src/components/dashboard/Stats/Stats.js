@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import FILTERS from '../../../constants/filters';
 import '../../../css/Stats.css';
 
-import ExpenseSummary from './ExpenseSummary';
+import ExpenseSummary from './Summary/ExpenseSummary';
 import BudgetWheel from './BudgetWheel';
 import Chart from './Chart';
-import RecentExpenses from './RecentExpenses';
+import RecentExpenses from './Recent/RecentExpenses';
 import Message from '../../Message';
 
 const Stats = props => {
