@@ -10,20 +10,33 @@ import Message from '../../Message';
 
 const Stats = props => {
   const { expenses, user, deleteExpense } = props;
+  const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : false;
 
   const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : FILTERS.WEEK;
   const [filter, changeFilter] = useState(lastFilter);
 
+  const areAnyFieldsEnabled = showCategories || showLocations || showSources;
+
   if (expenses.expenses.length) {
     return (
       <section id="stats">
+        {!areAnyFieldsEnabled && <Message message="Please enable at least one field in your settings to see more advanced statistics." />}
+
         <div className="flex-group chart-and-summary">
           <div className="flex-group summary-and-wheel">
-            <ExpenseSummary expenses={expenses} userdata={user.userdata} filter={filter} changeFilter={changeFilter} />
+            {areAnyFieldsEnabled && (
+              <ExpenseSummary
+                expenses={expenses}
+                userdata={user.userdata}
+                filter={filter}
+                changeFilter={changeFilter}
+              />
+            )}
+
             <BudgetWheel expenses={expenses} userdata={user.userdata} filter={filter} />
           </div>
 
-          <Chart expenses={expenses} userdata={user.userdata} />
+          {areAnyFieldsEnabled && <Chart expenses={expenses} userdata={user.userdata} />}
         </div>
 
         <RecentExpenses
@@ -35,7 +48,7 @@ const Stats = props => {
       </section>
     );
   } else {
-    return <Message message='Please add at least one expense before viewing your stats.' />;
+    return <Message message="Please add at least one expense before viewing your stats." />;
   }
 };
 
