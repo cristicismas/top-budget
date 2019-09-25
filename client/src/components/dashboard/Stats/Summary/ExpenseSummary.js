@@ -1,50 +1,63 @@
 import React, { useState } from 'react';
 import { getCurrency } from '../../../../utils/currency';
-import { calculateBarWidth, calculateCategoryValue } from '../../../../utils/summary';
+import { calculateBarWidth, calculateFieldValue } from '../../../../utils/summary';
 import '../../../../css/ExpenseSummary.css';
 
 import FilterButtons from './FilterButtons';
 
 const ExpenseSummary = props => {
   const { userdata, filter, changeFilter } = props;
-  const { categories, expenses } = props.expenses;
+  const { categories, locations, sources, expenses } = props.expenses;
 
-  const [showAllCategories, toggleShowAll] = useState(false);
+  const [showAllFields, toggleShowAll] = useState(false);
 
   const currencySymbol = getCurrency(userdata);
 
-  const categoriesAndNotDefined = [
-    ...categories,
+  let fields, fieldType;
+
+  if (userdata.showCategories) {
+    fields = categories;
+    fieldType = 'category';
+  } else if (userdata.showLocations) {
+    fields = locations;
+    fieldType = 'location';
+  } else {
+    fields = sources;
+    fieldType = 'source';
+  }
+
+  const fieldsAndNotDefined = [
+    ...fields,
     {
       name: 'Not specified',
       color: '#888'
     }
   ];
 
-  // Reverse sort categories by value
-  const sortedCategories = categoriesAndNotDefined.sort((a, b) => {
-    return calculateCategoryValue(b, expenses, filter) - calculateCategoryValue(a, expenses, filter);
+  // Reverse sort fields by value
+  const sortedFields = fieldsAndNotDefined.sort((a, b) => {
+    return calculateFieldValue(b, fieldType, expenses, filter) - calculateFieldValue(a, fieldType, expenses, filter);
   });
 
-  const topCategoryValue = calculateCategoryValue(sortedCategories[0], expenses, filter);
+  const topFieldValue = calculateFieldValue(sortedFields[0], fieldType, expenses, filter);
 
-  const categoryGroups = sortedCategories.map(category => {
-    const categoryValue = calculateCategoryValue(category, expenses, filter);
-    const barWidth = calculateBarWidth(categoryValue, topCategoryValue);
+  const fieldGroups = sortedFields.map(field => {
+    const fieldValue = calculateFieldValue(field, fieldType, expenses, filter);
+    const barWidth = calculateBarWidth(fieldValue, topFieldValue);
 
-    if (!categoryValue) return null;
+    if (!fieldValue) return null;
 
     return (
-      <div className="category-group" key={`category-group-${category.id}`}>
-        <li className="category-label">
+      <div className="field-group" key={`field-group-${field.id}`}>
+        <li className="field-label">
           {currencySymbol}
-          <div className="category-value">{categoryValue}</div>
-          {category.name}
+          <div className="field-value">{fieldValue}</div>
+          {field.name}
         </li>
         <div
           className="expense-bar"
           style={{
-            backgroundColor: category.color,
+            backgroundColor: field.color,
             width: !isNaN(barWidth) ? barWidth : 250
           }}
         />
@@ -52,21 +65,21 @@ const ExpenseSummary = props => {
     );
   });
 
-  let categoryGroupsLength = 0;
+  let fieldGroupsLength = 0;
 
-  categoryGroups.forEach(category => {
-    if (category) categoryGroupsLength += 1;
+  fieldGroups.forEach(field => {
+    if (field) fieldGroupsLength += 1;
   });
 
   return (
     <section id="expense-summary">
       <FilterButtons filter={filter} changeFilter={changeFilter} />
 
-      <ul className="summary">{showAllCategories ? categoryGroups : categoryGroups.slice(0, 4)}</ul>
+      <ul className="summary">{showAllFields ? fieldGroups : fieldGroups.slice(0, 4)}</ul>
 
-      {categoryGroupsLength > 4 ? (
-        <button onClick={() => toggleShowAll(!showAllCategories)} id="show-all">
-          Show {showAllCategories ? 'less' : 'all'}
+      {fieldGroupsLength > 4 ? (
+        <button onClick={() => toggleShowAll(!showAllFields)} id="show-all">
+          Show {showAllFields ? 'less' : 'all'}
         </button>
       ) : null}
     </section>

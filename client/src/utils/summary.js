@@ -5,28 +5,28 @@ export const handleChangeFilter = (filter, changeFilter) => {
   changeFilter(filter);
 };
 
-export const calculateBarWidth = (categoryValue, topCategoryValue) => {
+export const calculateBarWidth = (fieldValue, topFieldValue) => {
   const MAX_WIDTH = 250;
 
-  const fillPercentage = (categoryValue * 100) / topCategoryValue;
+  const fillPercentage = (fieldValue * 100) / topFieldValue;
   const width = MAX_WIDTH / (100 / fillPercentage);
 
   return width;
 };
 
-export const calculateCategoryValue = (category, expenses, filter) => {
+export const calculateFieldValue = (field, fieldType, expenses, filter) => {
   let value = 0;
 
-  // If category.id isn't specified it means the category is not specified.
-  if (!category.id) {
+  // If field.id isn't specified it means the field is not specified.
+  if (!field.id) {
     expenses.forEach(expense => {
-      if (belongsToTimeline(expense, filter) && !expense.category) {
+      if (belongsToTimeline(expense, filter) && !expense[fieldType]) {
         value += expense.value;
       }
     });
   } else {
     expenses.forEach(expense => {
-      if (expense.category === category.id && belongsToTimeline(expense, filter)) {
+      if (expense[fieldType] === field.id && belongsToTimeline(expense, filter)) {
         value += expense.value;
       }
     });

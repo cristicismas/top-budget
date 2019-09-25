@@ -6,17 +6,17 @@
   margin-left: 60px;
 }
 
-#expense-summary .summary .category-group {
+#expense-summary .summary .field-group {
   margin-bottom: 10px;
 }
 
-#expense-summary .summary .category-label {
+#expense-summary .summary .field-label {
   display: flex;
   color: #aaa;
   font-size: 24px;
 }
 
-#expense-summary .summary .category-label .category-value {
+#expense-summary .summary .field-label .field-value {
   margin: 0 5px;
   color: #cecece;
   font-weight: bold;
