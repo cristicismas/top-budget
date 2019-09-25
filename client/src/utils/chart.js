@@ -18,18 +18,18 @@ const belongsToDate = (expense, date) => {
   }
 };
 
-const getCategoryValues = (category, expenses) => {
+const getFieldValues = (field, fieldType, expenses) => {
   let values = [];
   const days = getLastSevenDays();
 
-  if (category) {
+  if (field) {
     expenses.forEach(expense => {
       days.forEach((day, index) => {
         if (isNaN(values[index])) {
           values[index] = 0;
         }
 
-        if (expense.category === category.id && belongsToDate(expense, day)) {
+        if (expense[fieldType] === field.id && belongsToDate(expense, day)) {
           values[index] += expense.value;
         }
       });
@@ -41,7 +41,7 @@ const getCategoryValues = (category, expenses) => {
           values[index] = 0;
         }
 
-        if (!expense.category && belongsToDate(expense, day)) {
+        if (!expense[fieldType] && belongsToDate(expense, day)) {
           values[index] += expense.value;
         }
       });
@@ -51,46 +51,46 @@ const getCategoryValues = (category, expenses) => {
   return values;
 };
 
-export const getDatasets = (categories, expenses) => {
+export const getDatasets = (fields, fieldType, expenses) => {
   let datasets = [];
   const data = {};
 
-  categories.forEach(category => {
-    const categoryValues = getCategoryValues(category, expenses);
-    data[category.name] = categoryValues;
+  fields.forEach(field => {
+    const fieldValues = getFieldValues(field, fieldType, expenses);
+    data[field.name] = fieldValues;
   });
 
-  categories.forEach(category => {
-    const rgb = convertHexToRgb(category.color);
+  fields.forEach(field => {
+    const rgb = convertHexToRgb(field.color);
 
-    const categoryColor = `rgba(${rgb}, .5)`;
-    const hoverCategoryColor = `rgba(${rgb}, .7)`;
+    const fieldColor = `rgba(${rgb}, .5)`;
+    const hoverFieldColor = `rgba(${rgb}, .7)`;
 
     datasets.push({
-      label: category.name,
-      backgroundColor: categoryColor,
-      borderColor: categoryColor,
+      label: field.name,
+      backgroundColor: fieldColor,
+      borderColor: fieldColor,
       borderWidth: 3,
-      hoverBackgroundColor: hoverCategoryColor,
-      hoverBorderColor: hoverCategoryColor,
-      data: data[category.name]
+      hoverBackgroundColor: hoverFieldColor,
+      hoverBorderColor: hoverFieldColor,
+      data: data[field.name]
     });
   });
 
-  // Push 'not defined' category.
-  const noCategoryDefinedValues = getCategoryValues(null, expenses);
+  // Push 'not defined' field.
+  const noFieldDefinedValues = getFieldValues(null, fieldType, expenses);
 
-  const categoryColor = 'rgba(136, 136, 136, .5)';
-  const hoverCategoryColor = 'rgba(136, 136, 136, .7)';
+  const fieldColor = 'rgba(136, 136, 136, .5)';
+  const hoverFieldColor = 'rgba(136, 136, 136, .7)';
 
   datasets.push({
     label: 'Not specified',
-    backgroundColor: categoryColor,
-    borderColor: categoryColor,
+    backgroundColor: fieldColor,
+    borderColor: fieldColor,
     borderWidth: 3,
-    hoverBackgroundColor: hoverCategoryColor,
-    hoverBorderColor: hoverCategoryColor,
-    data: noCategoryDefinedValues
+    hoverBackgroundColor: hoverFieldColor,
+    hoverBorderColor: hoverFieldColor,
+    data: noFieldDefinedValues
   });
 
   return datasets;

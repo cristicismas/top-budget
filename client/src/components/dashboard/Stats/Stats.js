@@ -23,7 +23,7 @@ const Stats = props => {
             <BudgetWheel expenses={expenses} userdata={user.userdata} filter={filter} />
           </div>
 
-          <Chart expenses={expenses} />
+          <Chart expenses={expenses} userdata={user.userdata} />
         </div>
 
         <RecentExpenses

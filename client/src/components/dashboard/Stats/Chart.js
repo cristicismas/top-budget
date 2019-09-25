@@ -7,8 +7,23 @@ import { getDatasets, getChartOptions, getLastSevenDays } from '../../../utils/c
 const chartOptions = getChartOptions();
 
 const Chart = props => {
-  const { categories, expenses } = props.expenses;
-  const datasets = getDatasets(categories, expenses);
+  const { userdata } = props;
+  const { categories, locations, sources, expenses } = props.expenses;
+
+  let fields, fieldType;
+  
+  if (userdata.showCategories) {
+    fields = categories;
+    fieldType = 'category';
+  } else if (userdata.showLocations) {
+    fields = locations;
+    fieldType = 'location';
+  } else {
+    fields = sources;
+    fieldType = 'source';
+  }
+
+  const datasets = getDatasets(fields, fieldType, expenses);
   const labels = getLastSevenDays().map(day => day.format('dddd'));
 
   let chartData = {
