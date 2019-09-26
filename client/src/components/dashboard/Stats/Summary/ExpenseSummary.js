@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FIELDS from '../../../../constants/fields';
 import { getCurrency } from '../../../../utils/currency';
 import { calculateBarWidth, calculateFieldValue } from '../../../../utils/summary';
 import '../../../../css/ExpenseSummary.css';
@@ -16,15 +17,15 @@ const ExpenseSummary = props => {
   let fields, fieldType;
 
   switch(userdata.primaryField) {
-    case 'CATEGORIES':
+    case FIELDS.CATEGORIES:
       fields = categories;
       fieldType = 'category';
       break;
-    case 'LOCATIONS':
+    case FIELDS.LOCATIONS:
       fields = locations;
       fieldType = 'location';
       break;
-    case 'SOURCES':
+    case FIELDS.SOURCES:
       fields = sources;
       fieldType = 'source';
       break;

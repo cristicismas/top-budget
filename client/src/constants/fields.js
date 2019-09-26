@@ -1,5 +1,5 @@
 export default {
-  CATEGORIES: 'Categories',
-  LOCATIONS: 'Locations',
-  SOURCES: 'Sources'
+  CATEGORIES: 'CATEGORIES',
+  LOCATIONS: 'LOCATIONS',
+  SOURCES: 'SOURCES'
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import FIELDS from '../../../constants/fields';
 import { Bar } from 'react-chartjs-2';
 import '../../../css/Chart.css';
 
@@ -13,15 +14,15 @@ const Chart = props => {
   let fields, fieldType;
 
   switch(userdata.primaryField) {
-    case 'CATEGORIES':
+    case FIELDS.CATEGORIES:
       fields = categories;
       fieldType = 'category';
       break;
-    case 'LOCATIONS':
+    case FIELDS.LOCATIONS:
       fields = locations;
       fieldType = 'location';
       break;
-    case 'SOURCES':
+    case FIELDS.SOURCES:
       fields = sources;
       fieldType = 'source';
       break;
