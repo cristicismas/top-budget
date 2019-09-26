@@ -11,16 +11,23 @@ const Chart = props => {
   const { categories, locations, sources, expenses } = props.expenses;
 
   let fields, fieldType;
-  
-  if (userdata.showCategories) {
-    fields = categories;
-    fieldType = 'category';
-  } else if (userdata.showLocations) {
-    fields = locations;
-    fieldType = 'location';
-  } else {
-    fields = sources;
-    fieldType = 'source';
+
+  switch(userdata.primaryField) {
+    case 'CATEGORIES':
+      fields = categories;
+      fieldType = 'category';
+      break;
+    case 'LOCATIONS':
+      fields = locations;
+      fieldType = 'location';
+      break;
+    case 'SOURCES':
+      fields = sources;
+      fieldType = 'source';
+      break;
+    default:
+      fields = null;
+      fieldType = undefined;
   }
 
   const datasets = getDatasets(fields, fieldType, expenses);
