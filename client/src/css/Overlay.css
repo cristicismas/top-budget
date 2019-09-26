@@ -1,0 +1,52 @@
+.overlay-container {
+  background-color: rgba(22, 22, 22, 0.7);
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  animation: fadein forwards .2s;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.overlay {
+  height: 280px;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-top: 2px solid #3d1eca;
+  background-color: #1a1a24;
+  color: #eee;
+  padding: 60px;
+  text-align: center;
+}
+
+.overlay .close-overlay-btn {
+  background-color: transparent;
+  color: #eee;
+  font-size: 20px;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  height: 55px;
+  width: 55px;
+}
+
+@media only screen and (max-width: 430px) {
+  .overlay {
+    padding: 40px;
+  }
+}
+

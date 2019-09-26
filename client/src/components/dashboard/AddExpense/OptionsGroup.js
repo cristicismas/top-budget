@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import AddOptionOverlay from './AddOptionOverlay';
+import AddOptionForm from './AddOptionForm';
+import Overlay from '../Overlay';
 import Option from '../Option';
 
 const OptionsGroup = props => {
@@ -20,21 +21,20 @@ const OptionsGroup = props => {
     <div className="form-group">
       <h2 className="options-label">
         {label}
-        <button
-          type="button"
-          className="add-option-button"
-          onClick={() => changeOverlayVisibility(!overlayVisible)}>
+        <button type="button" className="add-option-button" onClick={() => changeOverlayVisibility(!overlayVisible)}>
           +
         </button>
       </h2>
 
       {overlayVisible ? (
-        <AddOptionOverlay
-          type={type}
-          label={label}
-          handleAddOption={(type, name, color) => props.handleAddOption(type, name, color)}
-          closeOverlay={() => changeOverlayVisibility(false)}
-        />
+        <Overlay closeOverlay={() => changeOverlayVisibility(false)}>
+          <AddOptionForm
+            type={type}
+            label={label}
+            handleAddOption={(type, name, color) => props.handleAddOption(type, name, color)}
+            closeOverlay={() => changeOverlayVisibility(false)}
+          />
+        </Overlay>
       ) : null}
 
       <div className="options" id={type}>
@@ -42,6 +42,6 @@ const OptionsGroup = props => {
       </div>
     </div>
   );
-}
+};
 
 export default OptionsGroup;
