@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TYPES from '../../../constants/messageTypes';
 import '../../../css/AddExpense.css';
 
 import OptionsGroup from './OptionsGroup';
+
+import { addExpense } from '../../../store/actions/expenses';
+import { addCategory } from '../../../store/actions/categories';
+import { addLocation } from '../../../store/actions/locations';
+import { addSource } from '../../../store/actions/sources';
 
 export class AddExpense extends Component {
   constructor(props) {
@@ -152,4 +158,18 @@ export class AddExpense extends Component {
   }
 }
 
-export default AddExpense;
+const mapStateToProps = state => ({
+  user: state.user,
+  categories: state.categories,
+  locations: state.locations,
+  sources: state.sources
+});
+
+const mapDispatchToProps = {
+  addExpense,
+  addCategory,
+  addLocation,
+  addSource
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddExpense);

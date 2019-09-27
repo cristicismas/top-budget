@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link, Redirect, Route } from 'react-router-dom';
 import '../../css/Dashboard.css';
 
@@ -7,13 +6,6 @@ import Settings from './Settings/Settings';
 import Stats from './Stats/Stats';
 import AddExpense from './AddExpense/AddExpense';
 import Message from '../Message';
-
-import { getExpenses, deleteExpense, addExpense } from '../../store/actions/expenses';
-import { getCategories, deleteCategory, addCategory } from '../../store/actions/categories';
-import { getLocations, deleteLocation, addLocation } from '../../store/actions/locations';
-import { getSources, deleteSource, addSource } from '../../store/actions/sources';
-
-import { loadUser, updateUserSettings } from '../../store/actions/user';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -27,17 +19,6 @@ class Dashboard extends Component {
     this.setMessage = this.setMessage.bind(this);
   }
 
-  componentDidMount() {
-    if (!this.props.user.userdata) {
-      this.props.loadUser();
-    }
-
-    this.props.getExpenses();
-    this.props.getCategories();
-    this.props.getLocations();
-    this.props.getSources();
-  }
-
   setMessage(message, type) {
     this.setState({
       message,
@@ -48,22 +29,7 @@ class Dashboard extends Component {
   render() {
     const { message, type } = this.state;
 
-    const {
-      addExpense,
-      addCategory,
-      addLocation,
-      addSource,
-      deleteExpense,
-      deleteCategory,
-      deleteLocation,
-      deleteSource,
-      expenses,
-      categories,
-      locations,
-      sources,
-      user,
-      updateUserSettings
-    } = this.props;
+    const { user } = this.props;
 
     const pathname = this.props.location.pathname;
     const token = localStorage.getItem('token');
@@ -87,54 +53,11 @@ class Dashboard extends Component {
 
           {message && <Message message={message} type={type} shouldFadeOut={true} setMessage={this.setMessage} />}
 
-          <Route
-            exact
-            path="/dashboard"
-            render={() => (
-              <AddExpense
-                addCategory={addCategory}
-                addLocation={addLocation}
-                addSource={addSource}
-                categories={categories}
-                locations={locations}
-                sources={sources}
-                addExpense={addExpense}
-                setMessage={this.setMessage}
-                user={user}
-              />
-            )}
-          />
+          <Route exact path="/dashboard" render={() => <AddExpense setMessage={this.setMessage} user={user} />} />
 
-          <Route
-            path="/dashboard/settings"
-            render={() => (
-              <Settings
-                deleteCategory={deleteCategory}
-                deleteLocation={deleteLocation}
-                deleteSource={deleteSource}
-                categories={categories}
-                locations={locations}
-                sources={sources}
-                user={user}
-                updateUserSettings={updateUserSettings}
-              />
-            )}
-          />
+          <Route path="/dashboard/settings" render={() => <Settings user={user} />} />
 
-          <Route
-            path="/dashboard/stats"
-            render={() => (
-              <Stats
-                expenses={expenses}
-                categories={categories}
-                locations={locations}
-                sources={sources}
-                user={user}
-                deleteExpense={deleteExpense}
-                setMessage={this.setMessage}
-              />
-            )}
-          />
+          <Route path="/dashboard/stats" render={() => <Stats user={user} setMessage={this.setMessage} />} />
         </section>
       );
     } else {
@@ -143,36 +66,4 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user,
-  expenses: state.expenses,
-  categories: state.categories,
-  locations: state.locations,
-  sources: state.sources
-});
-
-const mapDispatchToProps = {
-  getExpenses,
-  deleteExpense,
-  addExpense,
-
-  getCategories,
-  deleteCategory,
-  addCategory,
-
-  getLocations,
-  deleteLocation,
-  addLocation,
-
-  getSources,
-  deleteSource,
-  addSource,
-
-  loadUser,
-  updateUserSettings
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dashboard);
+export default Dashboard;

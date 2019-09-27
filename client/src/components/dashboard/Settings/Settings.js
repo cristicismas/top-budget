@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../../../css/Settings.css';
 
 import Currency from './Currency';
 import Budget from './Budget';
 import PrimaryField from './Fields/PrimaryField';
 import Fields from './Fields/Fields';
+
+import { deleteCategory } from '../../../store/actions/categories';
+import { deleteLocation } from '../../../store/actions/locations';
+import { deleteSource } from '../../../store/actions/sources';
+
+import { updateUserSettings } from '../../../store/actions/user';
 
 export class Settings extends Component {
   constructor(props) {
@@ -33,7 +40,6 @@ export class Settings extends Component {
 
   render() {
     const { currency, budget, primaryField, showCategories, showLocations, showSources } = this.state;
-    const { deleteCategory, deleteLocation, deleteSource, categories, locations, sources } = this.props;
 
     return (
       <section id="settings">
@@ -63,16 +69,30 @@ export class Settings extends Component {
           showCategories={showCategories}
           showLocations={showLocations}
           showSources={showSources}
-          deleteCategory={deleteCategory}
-          deleteLocation={deleteLocation}
-          deleteSource={deleteSource}
-          categories={categories}
-          locations={locations}
-          sources={sources}
+          {...this.props}
         />
       </section>
     );
   }
 }
 
-export default Settings;
+const mapStateToProps = state => ({
+  user: state.user,
+  expenses: state.expenses,
+  categories: state.categories,
+  locations: state.locations,
+  sources: state.sources
+});
+
+const mapDispatchToProps = {
+  deleteCategory,
+  deleteLocation,
+  deleteSource,
+
+  updateUserSettings
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Settings);

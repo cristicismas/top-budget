@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
-import { loadUser } from '../store/actions/user';
 
 import Loading from './Loading';
 import Header from './Header';
@@ -9,9 +8,23 @@ import Home from './Home';
 import AuthForm from './auth/AuthForm';
 import Dashboard from './dashboard/Dashboard';
 
+import { getExpenses } from '../store/actions/expenses';
+import { getCategories } from '../store/actions/categories';
+import { getLocations } from '../store/actions/locations';
+import { getSources } from '../store/actions/sources';
+
+import { loadUser } from '../store/actions/user';
+
 class App extends Component {
   componentDidMount() {
-    this.props.loadUser();
+    if (!this.props.user.userdata) {
+      this.props.loadUser();
+    }
+
+    this.props.getExpenses();
+    this.props.getCategories();
+    this.props.getLocations();
+    this.props.getSources();
   }
 
   render() {
@@ -40,6 +53,17 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   user: state.user
-})
+});
 
-export default connect(mapStateToProps, { loadUser })(App);
+const mapDispatchToProps = {
+  getExpenses,
+  getCategories,
+  getLocations,
+  getSources,
+  loadUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

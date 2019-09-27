@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import FILTERS from '../../../constants/filters';
 import '../../../css/Stats.css';
 
@@ -7,6 +8,8 @@ import BudgetWheel from './BudgetWheel';
 import Chart from './Chart';
 import RecentExpenses from './Recent/RecentExpenses';
 import Message from '../../Message';
+
+import { deleteExpense } from '../../../store/actions/expenses';
 
 const Stats = props => {
   const { expenses, categories, locations, sources, user, deleteExpense } = props;
@@ -68,4 +71,15 @@ const Stats = props => {
   }
 };
 
-export default Stats;
+const mapStateToProps = state => ({
+  user: state.user,
+  expenses: state.expenses,
+  categories: state.categories,
+  locations: state.locations,
+  sources: state.sources
+});
+
+export default connect(
+  mapStateToProps,
+  { deleteExpense }
+)(Stats);
