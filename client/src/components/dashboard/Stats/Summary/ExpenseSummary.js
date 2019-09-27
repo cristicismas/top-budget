@@ -7,8 +7,7 @@ import '../../../../css/ExpenseSummary.css';
 import FilterButtons from './FilterButtons';
 
 const ExpenseSummary = props => {
-  const { userdata, filter, changeFilter } = props;
-  const { categories, locations, sources, expenses } = props.expenses;
+  const { categories, locations, sources, expenses, userdata, filter, changeFilter } = props;
 
   const [showAllFields, toggleShowAll] = useState(false);
 

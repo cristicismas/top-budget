@@ -50,8 +50,7 @@ export class Fields extends Component {
   };
 
   render() {
-    const { expenses, showCategories, showLocations, showSources } = this.props;
-    const { categories, locations, sources } = expenses;
+    const { categories, locations, sources, showCategories, showLocations, showSources } = this.props;
 
     const buttonEnabled =
       this.state.categories.length ||

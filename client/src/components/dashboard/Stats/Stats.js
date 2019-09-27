@@ -9,7 +9,7 @@ import RecentExpenses from './Recent/RecentExpenses';
 import Message from '../../Message';
 
 const Stats = props => {
-  const { expenses, user, deleteExpense } = props;
+  const { expenses, categories, locations, sources, user, deleteExpense } = props;
   const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : false;
 
   const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : FILTERS.WEEK;
@@ -17,16 +17,21 @@ const Stats = props => {
 
   const areAnyFieldsEnabled = showCategories || showLocations || showSources;
 
-  if (expenses.expenses.length) {
+  if (expenses.length) {
     return (
       <section id="stats">
-        {!areAnyFieldsEnabled && <Message message="Please enable at least one field in your settings to see more advanced statistics." />}
+        {!areAnyFieldsEnabled && (
+          <Message message="Please enable at least one field in your settings to see more advanced statistics." />
+        )}
 
         <div className="flex-group chart-and-summary">
           <div className="flex-group summary-and-wheel">
             {areAnyFieldsEnabled && (
               <ExpenseSummary
                 expenses={expenses}
+                categories={categories}
+                locations={locations}
+                sources={sources}
                 userdata={user.userdata}
                 filter={filter}
                 changeFilter={changeFilter}
@@ -36,12 +41,23 @@ const Stats = props => {
             <BudgetWheel expenses={expenses} userdata={user.userdata} filter={filter} />
           </div>
 
-          {areAnyFieldsEnabled && <Chart expenses={expenses} userdata={user.userdata} />}
+          {areAnyFieldsEnabled && (
+            <Chart
+              expenses={expenses}
+              categories={categories}
+              locations={locations}
+              sources={sources}
+              userdata={user.userdata}
+            />
+          )}
         </div>
 
         <RecentExpenses
           deleteExpense={deleteExpense}
           expenses={expenses}
+          categories={categories}
+          locations={locations}
+          sources={sources}
           userdata={user.userdata}
           setMessage={props.setMessage}
         />

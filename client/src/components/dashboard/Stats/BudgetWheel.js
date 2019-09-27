@@ -6,8 +6,7 @@ import '../../../css/BudgetWheel.css';
 
 
 const BudgetWheel = props => {
-  const { userdata, filter } = props;
-  const { expenses } = props.expenses;
+  const { expenses, userdata, filter } = props;
 
   const currencySymbol = getCurrency(userdata);
 

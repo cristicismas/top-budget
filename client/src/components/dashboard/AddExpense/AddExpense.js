@@ -94,8 +94,7 @@ export class AddExpense extends Component {
   }
 
   render() {
-    const { expenses, user } = this.props;
-    const { categories, locations, sources } = expenses;
+    const { categories, locations, sources, user } = this.props;
     const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : {};
 
     return (

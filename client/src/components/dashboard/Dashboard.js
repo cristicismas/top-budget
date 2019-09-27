@@ -9,11 +9,8 @@ import AddExpense from './AddExpense/AddExpense';
 import Message from '../Message';
 
 import { getExpenses, deleteExpense, addExpense } from '../../store/actions/expenses';
-
 import { getCategories, deleteCategory, addCategory } from '../../store/actions/categories';
-
 import { getLocations, deleteLocation, addLocation } from '../../store/actions/locations';
-
 import { getSources, deleteSource, addSource } from '../../store/actions/sources';
 
 import { loadUser, updateUserSettings } from '../../store/actions/user';
@@ -94,7 +91,10 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  expenses: state.expenses
+  expenses: state.expenses,
+  categories: state.categories,
+  locations: state.locations,
+  sources: state.sources
 });
 
 const mapDispatchToProps = {

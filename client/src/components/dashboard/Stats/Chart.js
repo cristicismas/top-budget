@@ -8,8 +8,7 @@ import { getDatasets, getChartOptions, getLastSevenDays } from '../../../utils/c
 const chartOptions = getChartOptions();
 
 const Chart = props => {
-  const { userdata } = props;
-  const { categories, locations, sources, expenses } = props.expenses;
+  const { categories, locations, sources, expenses, userdata } = props;
 
   let fields, fieldType;
 

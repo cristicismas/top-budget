@@ -5,16 +5,15 @@ const initialState = {
   isAuthenticated: null,
   isLoading: false,
   userdata: null
-}
+};
 
-export default function(state=initialState, action) {
-  switch(action.type) {
+export default function(state = initialState, action) {
+  switch (action.type) {
     case USER_LOADING:
       return {
         ...state,
         isLoading: true
       };
-
     case USER_LOADED:
       return {
         ...state,
@@ -22,7 +21,6 @@ export default function(state=initialState, action) {
         isLoading: false,
         userdata: action.payload
       };
-
     case AUTH_SUCCESS:
       return {
         ...state,
@@ -30,7 +28,6 @@ export default function(state=initialState, action) {
         isAuthenticated: true,
         isLoading: false
       };
-
     case AUTH_FAIL:
     case LOGOUT_SUCCESS:
       return {

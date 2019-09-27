@@ -5,7 +5,7 @@ import '../../../../css/RecentExpenses.css';
 import DetailedExpense from './DetailedExpense';
 
 const RecentExpenses = props => {
-  const { expenses, categories, sources, locations } = props.expenses;
+  const { expenses, categories, sources, locations } = props;
 
   const [showAllDays, toggleShowAll] = useState(false);
 

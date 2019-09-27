@@ -3,10 +3,10 @@ import { ERROR_MESSAGE, SUCCESS_MESSAGE, DELETE_MESSAGES } from '../actions/acti
 const initialState = {
   errors: [],
   successes: []
-}
+};
 
-export default function(state=initialState, action) {
-  switch(action.type) {
+export default function(state = initialState, action) {
+  switch (action.type) {
     case ERROR_MESSAGE:
       return {
         ...state,
