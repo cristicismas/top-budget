@@ -32,7 +32,8 @@ export class Settings extends Component {
   }
 
   render() {
-    const { currency, budget, primaryField } = this.state;
+    const { currency, budget, primaryField, showCategories, showLocations, showSources } = this.state;
+    const { deleteCategory, deleteLocation, deleteSource, categories, locations, sources } = this.props;
 
     return (
       <section id="settings">
@@ -57,7 +58,18 @@ export class Settings extends Component {
           primaryField={primaryField}
         />
 
-        <Fields toggleField={field => this.toggleField(field)} {...this.state} {...this.props} />
+        <Fields
+          toggleField={field => this.toggleField(field)}
+          showCategories={showCategories}
+          showLocations={showLocations}
+          showSources={showSources}
+          deleteCategory={deleteCategory}
+          deleteLocation={deleteLocation}
+          deleteSource={deleteSource}
+          categories={categories}
+          locations={locations}
+          sources={sources}
+        />
       </section>
     );
   }

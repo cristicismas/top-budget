@@ -48,6 +48,23 @@ class Dashboard extends Component {
   render() {
     const { message, type } = this.state;
 
+    const {
+      addExpense,
+      addCategory,
+      addLocation,
+      addSource,
+      deleteExpense,
+      deleteCategory,
+      deleteLocation,
+      deleteSource,
+      expenses,
+      categories,
+      locations,
+      sources,
+      user,
+      updateUserSettings
+    } = this.props;
+
     const pathname = this.props.location.pathname;
     const token = localStorage.getItem('token');
 
@@ -68,19 +85,56 @@ class Dashboard extends Component {
             </Link>
           </nav>
 
-          {message && (
-            <Message message={message} type={type} shouldFadeOut={true} setMessage={this.setMessage} />
-          )}
+          {message && <Message message={message} type={type} shouldFadeOut={true} setMessage={this.setMessage} />}
 
           <Route
             exact
             path="/dashboard"
-            render={() => <AddExpense {...this.props} setMessage={this.setMessage} />}
+            render={() => (
+              <AddExpense
+                addCategory={addCategory}
+                addLocation={addLocation}
+                addSource={addSource}
+                categories={categories}
+                locations={locations}
+                sources={sources}
+                addExpense={addExpense}
+                setMessage={this.setMessage}
+                user={user}
+              />
+            )}
           />
 
-          <Route path="/dashboard/settings" render={() => <Settings {...this.props} />} />
+          <Route
+            path="/dashboard/settings"
+            render={() => (
+              <Settings
+                deleteCategory={deleteCategory}
+                deleteLocation={deleteLocation}
+                deleteSource={deleteSource}
+                categories={categories}
+                locations={locations}
+                sources={sources}
+                user={user}
+                updateUserSettings={updateUserSettings}
+              />
+            )}
+          />
 
-          <Route path="/dashboard/stats" render={() => <Stats {...this.props} setMessage={this.setMessage} />} />
+          <Route
+            path="/dashboard/stats"
+            render={() => (
+              <Stats
+                expenses={expenses}
+                categories={categories}
+                locations={locations}
+                sources={sources}
+                user={user}
+                deleteExpense={deleteExpense}
+                setMessage={this.setMessage}
+              />
+            )}
+          />
         </section>
       );
     } else {

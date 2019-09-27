@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header {...this.props} />
+          <Header />
 
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" render={props => <AuthForm type="signup" {...props} />} />
