@@ -1,11 +1,12 @@
 import React from 'react';
 import FIELDS from '../../../../constants/fields';
 import ICON from '../../../../constants/icons';
+import { capitalize } from '../../../../utils/strings';
 
 const PrimaryField = props => {
   const currencyOptions = Object.keys(FIELDS).map(field => (
     <option value={field} key={field}>
-      {FIELDS[field]}
+      {capitalize(FIELDS[field])}
     </option>
   ));
 
@@ -16,7 +17,7 @@ const PrimaryField = props => {
       <select
         name="primary-field-select"
         id="primary-field-select"
-        defaultValue={props.primaryField}
+        defaultValue={capitalize(props.primaryField)}
         onChange={e => props.changeField(e.target.value)}>
         {currencyOptions}
       </select>
