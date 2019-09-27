@@ -11,10 +11,7 @@ export class Fields extends Component {
     this.state = {
       categories: [],
       locations: [],
-      sources: [],
-      dimCategories: false,
-      dimLocations: false,
-      dimSources: false
+      sources: []
     };
   }
 
