@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getRecentDays, formatDate } from '../../../../utils/recent';
+import { getDaysInChronologicalOrder, formatDate } from '../../../../utils/recent';
 import '../../../../css/RecentExpenses.css';
 
 import DetailedExpense from './DetailedExpense';
@@ -9,9 +9,9 @@ const RecentExpenses = props => {
 
   const [daysToShow, changeDaysToShow] = useState(7);
 
-  const recentDays = getRecentDays(expenses);
+  const allDays = getDaysInChronologicalOrder(expenses);
 
-  const days = recentDays.map(currentDay => {
+  const days = allDays.map(currentDay => {
     const formattedDate = formatDate(currentDay.day);
 
     return (
@@ -41,7 +41,7 @@ const RecentExpenses = props => {
     <section id="recent-expenses">
       {days.slice(0, daysToShow)}
 
-      {recentDays.length > daysToShow ? (
+      {allDays.length > daysToShow ? (
         <button onClick={() => changeDaysToShow(daysToShow + 7)} id="show-more">
           Show more
         </button>

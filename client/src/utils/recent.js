@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const getRecentDays = expenses => {
+export const getDaysInChronologicalOrder = expenses => {
   let recentDays = [];
 
   expenses.forEach(expense => {
