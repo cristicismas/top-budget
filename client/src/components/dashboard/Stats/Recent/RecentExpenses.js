@@ -7,7 +7,7 @@ import DetailedExpense from './DetailedExpense';
 const RecentExpenses = props => {
   const { expenses, categories, sources, locations } = props;
 
-  const [showAllDays, toggleShowAll] = useState(false);
+  const [daysToShow, changeDaysToShow] = useState(7);
 
   const recentDays = getRecentDays(expenses);
 
@@ -39,11 +39,11 @@ const RecentExpenses = props => {
 
   return (
     <section id="recent-expenses">
-      {showAllDays ? days : days.slice(0, 6)}
+      {days.slice(0, daysToShow)}
 
-      {recentDays.length > 5 ? (
-        <button onClick={() => toggleShowAll(!showAllDays)} id="show-all">
-          Show {showAllDays ? 'less' : 'all'}
+      {recentDays.length > daysToShow ? (
+        <button onClick={() => changeDaysToShow(daysToShow + 7)} id="show-more">
+          Show more
         </button>
       ) : null}
     </section>
