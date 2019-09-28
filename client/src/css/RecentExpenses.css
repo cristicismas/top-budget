@@ -95,4 +95,8 @@
   #recent-expenses .expense-details .details-right {
     margin: 5px 5px 0 10px;
   }
+
+  #recent-expenses .expense-details .details-right .amount {
+    margin-right: 5px;
+  }
 }
