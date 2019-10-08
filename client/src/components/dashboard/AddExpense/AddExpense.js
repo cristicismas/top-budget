@@ -28,10 +28,10 @@ export class AddExpense extends Component {
     document.getElementById('value-input').focus();
   }
 
-  handleOptionClick(type, object) {
-    const option = document.getElementById(`${type}-${object.id}`);
+  handleOptionClick(type, id) {
+    const selectedOption = document.getElementById(`${type}-${id}`);
 
-    if (option.classList.contains('selected')) {
+    if (selectedOption.classList.contains('selected')) {
       // If option is already selected, unselect it.
       this.setState({ [type]: null });
     } else {
@@ -43,10 +43,10 @@ export class AddExpense extends Component {
         optionSiblings[i].classList.remove('selected');
       }
 
-      this.setState({ [type]: object.id });
+      this.setState({ [type]: id });
     }
 
-    option.classList.toggle('selected');
+    selectedOption.classList.toggle('selected');
   }
 
   clearForm() {
@@ -128,7 +128,7 @@ export class AddExpense extends Component {
             type="category"
             objects={categories}
             handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
-            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
+            handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
           />
         )}
 
@@ -138,7 +138,7 @@ export class AddExpense extends Component {
             type="location"
             objects={locations}
             handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
-            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
+            handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
           />
         )}
 
@@ -148,7 +148,7 @@ export class AddExpense extends Component {
             type="source"
             objects={sources}
             handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
-            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
+            handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
           />
         )}
 

@@ -32,39 +32,37 @@ const EditExpenseField = props => {
     }
   };
 
-  const toggleOption = (type, id) => {
-    if (type === 'category') setCategory(id);
-    if (type === 'location') setLocation(id);
-    if (type === 'source') setSource(id);
+  const handleOptionClick = (type, id) => {
+    let setSelectedField = null;
+
+    // Get the right setSelectedField function
+    if (type === 'category') setSelectedField = setCategory;
+    else if (type === 'location') setSelectedField = setLocation;
+    else setSelectedField = setSource;
 
     const selectedOption = document.getElementById(`${type}-${id}`);
 
-    let isOptionAlreadySelected = false;
-    if (selectedOption && selectedOption.classList.contains('selected')) isOptionAlreadySelected = true;
+    // If option is already selected, unselect it.
+    if (selectedOption.classList.contains('selected')) {
+      setSelectedField(null);
+    } else {
+      const optionParent = document.getElementById(type);
+      const optionSiblings = optionParent.childNodes;
 
-    const optionParent = document.getElementById(type);
-    const optionSiblings = optionParent.childNodes;
-
-    for (let i = 0; i < optionSiblings.length; i++) {
-      optionSiblings[i].classList.remove('selected');
-    }
-
-    if (selectedOption) {
-      if (isOptionAlreadySelected) {
-        selectedOption.classList.remove('selected');
-        if (type === 'category') setCategory(null);
-        if (type === 'location') setLocation(null);
-        if (type === 'source') setSource(null);
-      } else {
-        selectedOption.classList.add('selected');
+      for (let i = 0; i < optionSiblings.length; i++) {
+        optionSiblings[i].classList.remove('selected');
       }
+
+      setSelectedField(id);
     }
-  };
+
+    selectedOption.classList.toggle('selected');
+  }
 
   useEffect(() => {
-    toggleOption('category', expense.category);
-    toggleOption('location', expense.location);
-    toggleOption('source', expense.source);
+    handleOptionClick('category', expense.category);
+    handleOptionClick('location', expense.location);
+    handleOptionClick('source', expense.source);
   }, [expense]);
 
   return (
@@ -94,7 +92,7 @@ const EditExpenseField = props => {
           type="category"
           objects={categories}
           handleAddOption={() => {}}
-          handleOptionClick={(type, object) => toggleOption(type, object.id)}
+          handleOptionClick={(type, object) => handleOptionClick(type, object.id)}
         />
       )}
 
@@ -104,7 +102,7 @@ const EditExpenseField = props => {
           type="location"
           objects={locations}
           handleAddOption={() => {}}
-          handleOptionClick={(type, object) => toggleOption(type, object.id)}
+          handleOptionClick={(type, object) => handleOptionClick(type, object.id)}
         />
       )}
 
@@ -114,7 +112,7 @@ const EditExpenseField = props => {
           type="source"
           objects={sources}
           handleAddOption={() => {}}
-          handleOptionClick={(type, object) => toggleOption(type, object.id)}
+          handleOptionClick={(type, object) => handleOptionClick(type, object.id)}
         />
       )}
 
