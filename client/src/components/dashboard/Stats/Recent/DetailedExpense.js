@@ -23,42 +23,37 @@ const DetailedExpense = props => {
 
   const expenseTime = moment(expense.date).format('h:mm a');
 
-  const rightSideStyles =
+  const conditionalStyles =
     !showLocations && !showSources
       ? {
-          position: 'relative',
-          top: '-40px',
-          right: '60px'
+          details: {
+            flexWrap: 'nowrap',
+          },
+          detailsLeft: {
+            display: 'none'
+          },
+          detailsRight: {
+            marginLeft: '0'
+          }
         }
-      : null;
-
-  const stylesForExpense =
-    !showLocations && !showSources
-      ? {
-          height: '20px'
-        }
-      : null;
-
-  const stylesForDetails =
-    !showLocations && !showSources
-      ? {
-          flexWrap: 'nowrap',
-          height: '0'
-        }
-      : null;
+      : {
+          details: null,
+          detailsLeft: null,
+          detailsRight: null
+        };
 
   const currency = getCurrency(userdata);
 
   return (
-    <div className="detailed-expense" onClick={props.onClick} style={stylesForExpense}>
+    <div className="detailed-expense" onClick={props.onClick}>
       <div className="expense-info flex-group">
         <div className="expense-time">{expenseTime}</div>
 
         {showCategories && <ExpenseField field={category} />}
       </div>
 
-      <div className="expense-details flex-group" style={stylesForDetails}>
-        <div className="details-left flex-group">
+      <div className="expense-details flex-group" style={conditionalStyles.details}>
+        <div className="details-left flex-group" style={conditionalStyles.detailsLeft}>
           {showLocations && <ExpenseField field={location} />}
 
           {showLocations && showSources ? <div>/</div> : null}
@@ -66,7 +61,7 @@ const DetailedExpense = props => {
           {showSources && <ExpenseField field={source} />}
         </div>
 
-        <div className="details-right flex-group" style={rightSideStyles}>
+        <div className="details-right flex-group" style={conditionalStyles.detailsRight}>
           <div className="amount">
             {currency} {expense.value}
           </div>
