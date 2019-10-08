@@ -43,20 +43,22 @@ const EditExpenseField = props => {
     const selectedOption = document.getElementById(`${type}-${id}`);
 
     // If option is already selected, unselect it.
-    if (selectedOption.classList.contains('selected')) {
-      setSelectedField(null);
-    } else {
-      const optionParent = document.getElementById(type);
-      const optionSiblings = optionParent.childNodes;
-
-      for (let i = 0; i < optionSiblings.length; i++) {
-        optionSiblings[i].classList.remove('selected');
+    if (selectedOption) {
+      if (selectedOption.classList.contains('selected')) {
+        setSelectedField(null);
+      } else {
+        const optionParent = document.getElementById(type);
+        const optionSiblings = optionParent.childNodes;
+  
+        for (let i = 0; i < optionSiblings.length; i++) {
+          optionSiblings[i].classList.remove('selected');
+        }
+  
+        setSelectedField(id);
       }
-
-      setSelectedField(id);
+  
+      selectedOption.classList.toggle('selected');
     }
-
-    selectedOption.classList.toggle('selected');
   }
 
   useEffect(() => {
