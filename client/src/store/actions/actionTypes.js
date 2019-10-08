@@ -1,6 +1,7 @@
 export const GET_EXPENSES = 'GET_EXPENSES';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';

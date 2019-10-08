@@ -1,4 +1,4 @@
-import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
+import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, EDIT_EXPENSE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
 import { apiCall } from '../../utils/api';
 
 import { tokenConfig } from './user';
@@ -60,6 +60,29 @@ export const addExpense = expense => (dispatch, getState) => {
       dispatch({
         type: SUCCESS_MESSAGE,
         payload: 'Added expense.'
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: ERROR_MESSAGE,
+        payload: err
+      });
+    });
+};
+
+export const editExpense = expense => (dispatch, getState) => {
+  apiCall('patch', `expenses/${expense.id}/`, expense, tokenConfig(getState))
+    .then(res => {
+      const editedExpense = { ...res, value: Number(res.value) };
+
+      dispatch({
+        type: EDIT_EXPENSE,
+        payload: editedExpense
+      });
+
+      dispatch({
+        type: SUCCESS_MESSAGE,
+        payload: 'Edited expense.'
       });
     })
     .catch(err => {

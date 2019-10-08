@@ -9,10 +9,10 @@ import Chart from './Chart';
 import RecentExpenses from './Recent/RecentExpenses';
 import Message from '../../Message';
 
-import { deleteExpense } from '../../../store/actions/expenses';
+import { deleteExpense, editExpense } from '../../../store/actions/expenses';
 
 const Stats = props => {
-  const { expenses, categories, locations, sources, user, deleteExpense } = props;
+  const { expenses, categories, locations, sources, user, deleteExpense, editExpense } = props;
   const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : false;
 
   const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : FILTERS.WEEK;
@@ -57,6 +57,7 @@ const Stats = props => {
 
         <RecentExpenses
           deleteExpense={deleteExpense}
+          editExpense={editExpense}
           expenses={expenses}
           categories={categories}
           locations={locations}
@@ -81,5 +82,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteExpense }
+  { deleteExpense, editExpense }
 )(Stats);

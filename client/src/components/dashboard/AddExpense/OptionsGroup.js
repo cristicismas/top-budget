@@ -13,7 +13,7 @@ const OptionsGroup = props => {
       type={type}
       object={object}
       handleOptionClick={() => props.handleOptionClick(type, object)}
-      key={object.id}
+      key={`${type}-${object.id}`}
     />
   ));
 

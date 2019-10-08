@@ -35,21 +35,22 @@ const DetailedExpense = props => {
   const stylesForExpense =
     !showLocations && !showSources
       ? {
-          marginBottom: '-20px'
+          height: '20px'
         }
       : null;
 
   const stylesForDetails =
     !showLocations && !showSources
       ? {
-          flexWrap: 'nowrap'
+          flexWrap: 'nowrap',
+          height: '0'
         }
       : null;
 
   const currency = getCurrency(userdata);
 
   return (
-    <div className="expense-for-date" style={stylesForExpense}>
+    <div className="detailed-expense" onClick={props.onClick} style={stylesForExpense}>
       <div className="expense-info flex-group">
         <div className="expense-time">{expenseTime}</div>
 
@@ -71,7 +72,8 @@ const DetailedExpense = props => {
           </div>
           <button
             className="delete-expense"
-            onClick={() => {
+            onClick={e => {
+              e.stopPropagation();
               props.deleteExpense(expense.id);
               props.setMessage('Expense deleted with success.', TYPES.SUCCESS);
             }}>

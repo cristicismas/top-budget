@@ -3,11 +3,14 @@ import { getDaysInChronologicalOrder, formatDate } from '../../../../utils/recen
 import '../../../../css/RecentExpenses.css';
 
 import DetailedExpense from './DetailedExpense';
+import EditExpenseField from './EditExpenseModal';
+import Overlay from '../../Overlay';
 
 const RecentExpenses = props => {
-  const { expenses, categories, sources, locations } = props;
+  const { expenses, categories, sources, locations, userdata } = props;
 
   const [daysToShow, changeDaysToShow] = useState(7);
+  const [expenseToEdit, changeExpenseToEdit] = useState(null);
 
   const allDays = getDaysInChronologicalOrder(expenses);
 
@@ -21,25 +24,43 @@ const RecentExpenses = props => {
           <h4 className="day-price">{currentDay.value}</h4>
         </div>
 
-        {currentDay.expenses.map(expense => (
-          <DetailedExpense
-            key={`expense-${expense.id}`}
-            expense={expense}
-            deleteExpense={props.deleteExpense}
-            categories={categories}
-            sources={sources}
-            locations={locations}
-            userdata={props.userdata}
-            setMessage={props.setMessage}
-          />
-        ))}
+        <div className="detailed-expenses">
+          {currentDay.expenses.map(expense => (
+            <DetailedExpense
+              key={`expense-${expense.id}`}
+              expense={expense}
+              deleteExpense={props.deleteExpense}
+              categories={categories}
+              sources={sources}
+              locations={locations}
+              userdata={props.userdata}
+              setMessage={props.setMessage}
+              onClick={() => changeExpenseToEdit(expense)}
+            />
+          ))}
+        </div>
       </div>
     );
   });
 
   return (
     <section id="recent-expenses">
-      {days.slice(0, daysToShow)}
+      <section className="days">{days.slice(0, daysToShow)}</section>
+
+      {expenseToEdit && (
+        <Overlay closeOverlay={() => changeExpenseToEdit(null)}>
+          <EditExpenseField
+            closeOverlay={() => changeExpenseToEdit(null)}
+            setMessage={props.setMessage}
+            editExpense={props.editExpense}
+            categories={categories}
+            locations={locations}
+            sources={sources}
+            userdata={userdata}
+            expense={expenseToEdit}
+          />
+        </Overlay>
+      )}
 
       {allDays.length > daysToShow ? (
         <button onClick={() => changeDaysToShow(daysToShow + 7)} id="show-more">

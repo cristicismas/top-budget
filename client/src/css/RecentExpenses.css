@@ -16,7 +16,7 @@
 }
 
 #recent-expenses .day-info {
-  font-size: 18px;
+  font-size: 22px;
   margin-top: 40px;
 }
 
@@ -24,8 +24,21 @@
   margin-right: 110px;
 }
 
-#recent-expenses .expense-for-date {
-  margin-bottom: 20px;
+#recent-expenses .detailed-expenses {
+  display: flex;
+  flex-wrap: wrap;
+  border-left: 4px solid #2f2f5c;
+}
+
+#recent-expenses .detailed-expense {
+  margin: 10px 20px;
+  cursor: pointer;
+  transition: all .2s;
+  padding: 10px;
+}
+
+#recent-expenses .detailed-expense:hover {
+  background-color: #1a1a22;
 }
 
 #recent-expenses .expense-time {
@@ -36,10 +49,7 @@
 #recent-expenses .expense-details {
   margin-top: 15px;
   font-size: 21px;
-}
-
-#recent-expenses .expense-details .details-left {
-  min-width: 260px;
+  justify-content: space-between;
 }
 
 #recent-expenses .expense-details .details-left .expense-field {
@@ -56,16 +66,12 @@
   flex-wrap: nowrap;
 }
 
-#recent-expenses .expense-details .details-right .amount {
-  margin-right: 13px;
-  min-width: 50px;
-}
-
 #recent-expenses .expense-details .details-right .delete-expense {
   background-color: transparent;
   border: none;
   color: #eee;
   padding: 0;
+  margin-left: 10px;
   font-size: 16px;
   opacity: .5;
   cursor: pointer;
