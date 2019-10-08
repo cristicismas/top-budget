@@ -27,7 +27,6 @@
 #recent-expenses .detailed-expenses {
   display: flex;
   flex-wrap: wrap;
-  border-left: 4px solid #2f2f5c;
 }
 
 #recent-expenses .detailed-expense {
@@ -35,6 +34,7 @@
   cursor: pointer;
   transition: all .2s;
   padding: 10px;
+  border-left: 4px solid #2f2f5c;
 }
 
 #recent-expenses .detailed-expense:hover {
