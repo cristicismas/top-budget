@@ -27,13 +27,15 @@ const DetailedExpense = props => {
     !showLocations && !showSources
       ? {
           details: {
-            flexWrap: 'nowrap',
+            flexWrap: 'nowrap'
           },
           detailsLeft: {
             display: 'none'
           },
           detailsRight: {
-            marginLeft: '0'
+            marginLeft: '0',
+            width: '100%',
+            justifyContent: 'space-between'
           }
         }
       : {
