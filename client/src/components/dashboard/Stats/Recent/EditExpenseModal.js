@@ -13,6 +13,10 @@ const EditExpenseField = props => {
   const [selectedSource, setSource] = useState(expense.source);
   const [newValue, setValue] = useState(expense.value);
 
+  useEffect(() => {
+    document.getElementById('value-input').focus();
+  }, [])
+
   const handleSubmit = e => {
     e.preventDefault();
 
