@@ -1,4 +1,5 @@
 import { belongsToTimeline } from './time';
+import FILTERS from '../constants/filters';
 
 export const getSumOfExpensesForTimeline = (expenses, filter) => {
   let sumOfExpenses = 0;
@@ -38,3 +39,15 @@ export const getWheelGeometryData = progress => {
     strokeDashoffset
   };
 };
+
+export const getBudgetForFilter = (monthlyBudget, filter) => {
+  let calculatedBudget = monthlyBudget;
+
+  if (FILTERS[filter] === FILTERS.WEEK) {
+    calculatedBudget *= 0.225;
+  } else if (FILTERS[filter] === FILTERS.YEAR) {
+    calculatedBudget *= 12.16;
+  }
+
+  return calculatedBudget;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { getCurrency } from '../../../utils/currency';
-import { getFillPercentage, getSumOfExpensesForTimeline, getWheelGeometryData } from '../../../utils/wheel';
+import { getFillPercentage, getSumOfExpensesForTimeline, getWheelGeometryData, getBudgetForFilter } from '../../../utils/wheel';
 import ICON from '../../../constants/icons';
 import '../../../css/BudgetWheel.css';
 
@@ -10,8 +10,9 @@ const BudgetWheel = props => {
 
   const currencySymbol = getCurrency(userdata);
 
+  const budgetForFilter = getBudgetForFilter(userdata.budget, filter);
   const sumOfExpenses = getSumOfExpensesForTimeline(expenses, filter);
-  const progress = getFillPercentage(sumOfExpenses, userdata.budget);
+  const progress = getFillPercentage(sumOfExpenses, budgetForFilter);
 
   const WHEEL = getWheelGeometryData(progress);
 
@@ -20,10 +21,10 @@ const BudgetWheel = props => {
   let wheelIcon = '';
 
   if (userdata) {
-    if (sumOfExpenses < (33 / 100) * userdata.budget) {
+    if (sumOfExpenses < (33 / 100) * budgetForFilter) {
       wheelColor = '#aaa';
       wheelIcon = ICON.THUMBS_UP;
-    } else if (sumOfExpenses < (66 / 100) * userdata.budget) {
+    } else if (sumOfExpenses < (66 / 100) * budgetForFilter) {
       wheelColor = '#f4b92e';
       wheelIcon = ICON.WARNING;
     } else {
@@ -38,7 +39,7 @@ const BudgetWheel = props => {
         <span className="spent">
           {currencySymbol} {sumOfExpenses}
         </span>
-        / {userdata ? userdata.budget : 0}
+        / {budgetForFilter}
       </p>
 
       <svg
