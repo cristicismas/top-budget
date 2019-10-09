@@ -1,6 +1,7 @@
 import {
   USER_LOADING,
   USER_LOADED,
+  USER_UPDATED,
   AUTH_SUCCESS,
   AUTH_FAIL,
   ERROR_MESSAGE,
@@ -39,7 +40,7 @@ export const updateUserSettings = newSettings => (dispatch, getState) => {
   apiCall('patch', `user/${currentUser.id}/`, data, tokenConfig(getState))
     .then(res => {
       dispatch({
-        type: USER_LOADED,
+        type: USER_UPDATED,
         payload: data
       });
     })

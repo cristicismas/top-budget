@@ -5,6 +5,7 @@ export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';
+export const USER_UPDATED = 'USER_UPDATED';
 
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';

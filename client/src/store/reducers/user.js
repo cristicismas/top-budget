@@ -1,4 +1,4 @@
-import { USER_LOADING, USER_LOADED, LOGOUT_SUCCESS, AUTH_SUCCESS, AUTH_FAIL } from '../actions/actionTypes';
+import { USER_LOADING, USER_LOADED, LOGOUT_SUCCESS, AUTH_SUCCESS, AUTH_FAIL, USER_UPDATED } from '../actions/actionTypes';
 
 const initialState = {
   token: localStorage.getItem('token') || null,
@@ -21,6 +21,12 @@ export default function(state = initialState, action) {
         isLoading: false,
         userdata: action.payload
       };
+    case USER_UPDATED:
+      return {
+        ...state,
+        isLoading: false,
+        userdata: action.payload
+      }
     case AUTH_SUCCESS:
       return {
         ...state,
