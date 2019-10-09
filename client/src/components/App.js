@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Loading from './Loading';
@@ -20,20 +20,13 @@ class App extends Component {
     if (!this.props.user.userdata) {
       this.props.loadUser();
     }
-
-    this.props.getExpenses();
-    this.props.getCategories();
-    this.props.getLocations();
-    this.props.getSources();
   }
 
   render() {
     const loading = this.props.user.isLoading;
 
     if (loading) {
-      return (
-        <Loading />
-      )
+      return <Loading />;
     }
 
     return (
@@ -44,7 +37,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" render={props => <AuthForm type="signup" {...props} />} />
           <Route exact path="/login" render={props => <AuthForm type="login" {...props} />} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard" render={props => <Dashboard {...props} {...this.props} />} />
         </div>
       </Router>
     );

@@ -19,6 +19,13 @@ class Dashboard extends Component {
     this.setMessage = this.setMessage.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getExpenses();
+    this.props.getCategories();
+    this.props.getLocations();
+    this.props.getSources();
+  }
+
   setMessage(message, type) {
     this.setState({
       message,
