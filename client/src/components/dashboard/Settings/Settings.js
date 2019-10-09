@@ -7,6 +7,8 @@ import Budget from './Budget';
 import PrimaryField from './Fields/PrimaryField';
 import Fields from './Fields/Fields';
 
+import FIELDS from '../../../constants/fields';
+
 import { deleteCategory } from '../../../store/actions/categories';
 import { deleteLocation } from '../../../store/actions/locations';
 import { deleteSource } from '../../../store/actions/sources';
@@ -16,22 +18,51 @@ import { updateUserSettings } from '../../../store/actions/user';
 export class Settings extends Component {
   constructor(props) {
     super(props);
-    const userdata = this.props.user.userdata;
+    const { userdata } = this.props.user;
 
     this.state = { ...userdata };
   }
 
   toggleField(field) {
-    const currentValue = this.state[field];
+    const toggledValue = !this.state[field];
+    const primaryField = this.getNewPrimaryField(field, toggledValue);
 
     this.setState(
       {
-        [field]: !currentValue
+        [field]: toggledValue,
+        primaryField
       },
       () => {
         this.handleSave();
       }
     );
+  }
+
+  getNewPrimaryField(toggledField, toggledValue) {
+    const { primaryField, showCategories, showLocations, showSources } = this.state;
+
+    if (!toggledValue) {
+      // Update field toggles locally before pushing to state
+      const fields = {
+        showCategories,
+        showLocations,
+        showSources
+      };
+
+      fields[toggledField] = toggledValue;
+
+      const newPrimaryField = this.getNextEnabledField(fields);
+      return newPrimaryField ? newPrimaryField : primaryField;
+    } else {
+      return primaryField;
+    }
+  }
+
+  getNextEnabledField(fields) {
+    if (fields.showCategories) return FIELDS.CATEGORIES;
+    else if (fields.showLocations) return FIELDS.LOCATIONS;
+    else if (fields.showSources) return FIELDS.SOURCES;
+    else return null;
   }
 
   handleSave() {

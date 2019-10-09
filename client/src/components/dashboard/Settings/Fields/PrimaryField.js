@@ -17,7 +17,7 @@ const PrimaryField = props => {
       <select
         name="primary-field-select"
         id="primary-field-select"
-        defaultValue={props.primaryField}
+        value={props.primaryField}
         onChange={e => props.changeField(e.target.value)}>
         {currencyOptions}
       </select>
