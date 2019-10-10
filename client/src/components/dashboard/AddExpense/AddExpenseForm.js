@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TYPES from '../../../constants/messageTypes';
-import '../../../css/AddExpense.css';
+import '../../../css/AddExpenseForm.css';
 
 import OptionsGroup from './OptionsGroup';
 
@@ -10,7 +10,7 @@ import { addCategory } from '../../../store/actions/categories';
 import { addLocation } from '../../../store/actions/locations';
 import { addSource } from '../../../store/actions/sources';
 
-export class AddExpense extends Component {
+export class AddExpenseForm extends Component {
   constructor(props) {
     super(props);
 
@@ -152,7 +152,7 @@ export class AddExpense extends Component {
           />
         )}
 
-        <button type="submit">Confirm</button>
+        <button id="add-expense-btn" type="submit">Add Expense</button>
       </form>
     );
   }
@@ -172,4 +172,4 @@ const mapDispatchToProps = {
   addSource
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddExpense);
+export default connect(mapStateToProps, mapDispatchToProps)(AddExpenseForm);

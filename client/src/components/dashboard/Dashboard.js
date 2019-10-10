@@ -4,7 +4,7 @@ import '../../css/Dashboard.css';
 
 import Settings from './Settings/Settings';
 import Stats from './Stats/Stats';
-import AddExpense from './AddExpense/AddExpense';
+import AddExpenseForm from './AddExpense/AddExpenseForm';
 import Message from '../Message';
 
 class Dashboard extends Component {
@@ -60,7 +60,7 @@ class Dashboard extends Component {
 
           {message && <Message message={message} type={type} shouldFadeOut={true} setMessage={this.setMessage} />}
 
-          <Route exact path="/dashboard" render={() => <AddExpense setMessage={this.setMessage} user={user} />} />
+          <Route exact path="/dashboard" render={() => <AddExpenseForm setMessage={this.setMessage} user={user} />} />
 
           <Route path="/dashboard/settings" render={() => <Settings user={user} />} />
 
