@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TYPES from '../../../constants/messageTypes';
 import '../../../css/AddExpenseForm.css';
 
-import OptionsGroup from './OptionsGroup';
+import OptionsGroup from '../OptionsGroup';
 
 import { addExpense } from '../../../store/actions/expenses';
 import { addCategory } from '../../../store/actions/categories';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AddFieldModal from './AddFieldModal';
-import Overlay from '../Overlay';
-import Option from '../Option';
+import Overlay from './Overlay';
+import Option from './Option';
 
 const OptionsGroup = props => {
   const { type, objects, label } = props;

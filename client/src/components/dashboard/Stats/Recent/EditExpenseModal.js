@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TYPES from '../../../../constants/messageTypes';
 import '../../../../css/EditExpenseModal.css';
 
-import OptionsGroup from '../../AddExpense/OptionsGroup';
+import OptionsGroup from '../../OptionsGroup';
 
 const EditExpenseField = props => {
   const { categories, locations, sources, expense } = props;
