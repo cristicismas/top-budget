@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import '../../../css/AddOptionForm.css';
+import '../../../css/AddFieldModal.css';
 
-const AddOptionForm = props => {
+const AddFieldModal = props => {
   const { type, label } = props;
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const AddOptionForm = props => {
     const optionColor = colorInput.value;
   
     if (optionName.trim()) {
-      props.handleAddOption(type, optionName, optionColor);
+      props.handleAddField(type, optionName, optionColor);
       nameInput.setCustomValidity('');
   
       document.getElementById(`${type}-name`).value = '';
@@ -53,4 +53,4 @@ const AddOptionForm = props => {
   );
 };
 
-export default AddOptionForm;
+export default AddFieldModal;

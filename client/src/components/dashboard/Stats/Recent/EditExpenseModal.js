@@ -97,7 +97,7 @@ const EditExpenseField = props => {
           label="Category"
           type="category"
           objects={categories}
-          handleAddOption={() => {}}
+          handleAddField={() => {}}
           handleOptionClick={(type, object) => handleOptionClick(type, object.id)}
         />
       )}
@@ -107,7 +107,7 @@ const EditExpenseField = props => {
           label="Location"
           type="location"
           objects={locations}
-          handleAddOption={() => {}}
+          handleAddField={() => {}}
           handleOptionClick={(type, object) => handleOptionClick(type, object.id)}
         />
       )}
@@ -117,7 +117,7 @@ const EditExpenseField = props => {
           label="Source"
           type="source"
           objects={sources}
-          handleAddOption={() => {}}
+          handleAddField={() => {}}
           handleOptionClick={(type, object) => handleOptionClick(type, object.id)}
         />
       )}

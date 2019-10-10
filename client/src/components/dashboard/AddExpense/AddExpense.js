@@ -68,7 +68,7 @@ export class AddExpense extends Component {
     document.getElementById('value-input').focus();
   }
 
-  handleAddOption(type, name, color) {
+  handleAddField(type, name, color) {
     switch (type) {
       case 'category':
         this.props.addCategory({ name, color });
@@ -127,7 +127,7 @@ export class AddExpense extends Component {
             label="Category"
             type="category"
             objects={categories}
-            handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
+            handleAddField={(type, name, color) => this.handleAddField(type, name, color)}
             handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
           />
         )}
@@ -137,7 +137,7 @@ export class AddExpense extends Component {
             label="Location"
             type="location"
             objects={locations}
-            handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
+            handleAddField={(type, name, color) => this.handleAddField(type, name, color)}
             handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
           />
         )}
@@ -147,7 +147,7 @@ export class AddExpense extends Component {
             label="Source"
             type="source"
             objects={sources}
-            handleAddOption={(type, name, color) => this.handleAddOption(type, name, color)}
+            handleAddField={(type, name, color) => this.handleAddField(type, name, color)}
             handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
           />
         )}

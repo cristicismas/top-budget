@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddOptionForm from './AddOptionForm';
+import AddFieldModal from './AddFieldModal';
 import Overlay from '../Overlay';
 import Option from '../Option';
 
@@ -28,10 +28,10 @@ const OptionsGroup = props => {
 
       {overlayVisible ? (
         <Overlay closeOverlay={() => changeOverlayVisibility(false)}>
-          <AddOptionForm
+          <AddFieldModal
             type={type}
             label={label}
-            handleAddOption={(type, name, color) => props.handleAddOption(type, name, color)}
+            handleAddField={(type, name, color) => props.handleAddField(type, name, color)}
             closeOverlay={() => changeOverlayVisibility(false)}
           />
         </Overlay>
