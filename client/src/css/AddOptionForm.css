@@ -1,3 +1,7 @@
+#add-option-form {
+  padding: 60px;
+}
+
 #add-option-form .add-option-title {
   margin-top: -30px;
   margin-bottom: 50px;
@@ -42,6 +46,10 @@
 }
 
 @media only screen and (max-width: 430px) {
+  #add-option-form {
+    padding: 40px;
+  }
+  
   #add-option-form .add-option-title {
     margin-top: -10px;
     margin-bottom: 20px;

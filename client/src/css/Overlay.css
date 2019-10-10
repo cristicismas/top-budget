@@ -17,13 +17,12 @@
 
 .overlay {
   position: fixed;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(.5);
   border-top: 2px solid #3d1eca;
   background-color: #1a1a24;
   color: #eee;
-  padding: 60px;
   text-align: center;
   animation: scalein forwards .2s;
 }
@@ -46,10 +45,3 @@
   height: 55px;
   width: 55px;
 }
-
-@media only screen and (max-width: 430px) {
-  .overlay {
-    padding: 40px;
-  }
-}
-
