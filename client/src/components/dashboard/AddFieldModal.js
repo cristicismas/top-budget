@@ -12,11 +12,11 @@ const AddFieldModal = props => {
     const nameInput = document.getElementById(`${type}-name`);
     const colorInput = document.getElementById(`${type}-color`);
   
-    const optionName = nameInput.value;
-    const optionColor = colorInput.value;
+    const fieldName = nameInput.value;
+    const fieldColor = colorInput.value;
   
-    if (optionName.trim()) {
-      props.handleAddField(type, optionName, optionColor);
+    if (fieldName.trim()) {
+      props.handleAddField(type, fieldName, fieldColor);
       nameInput.setCustomValidity('');
   
       document.getElementById(`${type}-name`).value = '';
@@ -27,24 +27,24 @@ const AddFieldModal = props => {
   };
 
   return (
-    <section id="add-option-form">
-      <h3 className="add-option-title">Add {label}</h3>
+    <section id="add-field-form">
+      <h3 className="add-field-title">Add {label}</h3>
 
-      <label htmlFor="option-name">{label}:</label>
-      <input type="text" name="option-name" className="add-option-input" placeholder={label} id={`${type}-name`} />
+      <label htmlFor="field-name">{label}:</label>
+      <input type="text" name="field-name" className="add-field-input" placeholder={label} id={`${type}-name`} />
 
-      <label htmlFor="option-color">Color:</label>
+      <label htmlFor="field-color">Color:</label>
       <input
         type="color"
-        name="option-color"
-        className="add-option-input"
+        name="field-color"
+        className="add-field-input"
         defaultValue="#15131A"
         placeholder={label}
         id={`${type}-color`}
       />
 
       <button
-        className="add-option-cta"
+        className="add-field-cta"
         type="button"
         onClick={handleSubmit}>
         Confirm
