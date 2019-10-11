@@ -37,9 +37,9 @@ const BudgetWheel = props => {
     <div id="budget-wheel">
       <p className="wheel-numbers">
         <span className="spent">
-          {currencySymbol} {sumOfExpenses}
+          {currencySymbol} {Math.round(sumOfExpenses)}
         </span>
-        / {budgetForFilter}
+        / {Math.round(budgetForFilter)}
       </p>
 
       <svg
