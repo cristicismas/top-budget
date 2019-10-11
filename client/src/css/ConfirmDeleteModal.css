@@ -1,5 +1,6 @@
 #confirm-delete {
   padding: 40px;
+  min-width: 395px;
 }
 
 #confirm-delete .confirm-delete-title {
@@ -30,4 +31,11 @@
 
 #confirm-delete #confirm-delete-btn:active {
   box-shadow: 0px 0px 15px rgba(189, 23, 23, 0.6);
+}
+
+@media only screen and (max-width: 550px) {
+  #confirm-delete {
+    min-width: 80vw;
+    padding: 40px 20px;
+  }
 }

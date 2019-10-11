@@ -8,6 +8,7 @@ const ConfirmDeleteModal = props => {
 
       <p className="confirm-delete-warning">
         Are you sure you want to delete this / these fields?
+        <br />
         Deleting fields is an irreversible action.
       </p>
 
