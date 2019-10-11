@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link, Redirect, Route } from 'react-router-dom';
 import '../../css/Dashboard.css';
 
@@ -7,18 +8,9 @@ import Stats from './Stats/Stats';
 import AddExpenseForm from './AddExpense/AddExpenseForm';
 import Message from '../Message';
 
+import { addMessage, clearMessages } from '../../store/actions/messages';
+
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      message: '',
-      type: ''
-    };
-
-    this.setMessage = this.setMessage.bind(this);
-  }
-
   componentDidMount() {
     this.props.getExpenses();
     this.props.getCategories();
@@ -26,17 +18,8 @@ class Dashboard extends Component {
     this.props.getSources();
   }
 
-  setMessage(message, type) {
-    this.setState({
-      message,
-      type
-    });
-  }
-
   render() {
-    const { message, type } = this.state;
-
-    const { user } = this.props;
+    const { user, messages } = this.props;
 
     const pathname = this.props.location.pathname;
     const token = localStorage.getItem('token');
@@ -58,13 +41,25 @@ class Dashboard extends Component {
             </Link>
           </nav>
 
-          {message && <Message message={message} type={type} shouldFadeOut={true} setMessage={this.setMessage} />}
+          {messages.map((message, index) => (
+            <Message
+              key={`message-${index}`}
+              message={message.text}
+              type={message.type}
+              shouldFadeOut={message.shouldFadeOut}
+              clearMessages={this.props.clearMessages}
+            />
+          ))}
 
-          <Route exact path="/dashboard" render={() => <AddExpenseForm setMessage={this.setMessage} user={user} />} />
+          <Route
+            exact
+            path="/dashboard"
+            render={() => <AddExpenseForm addMessage={this.props.addMessage} user={user} />}
+          />
 
           <Route path="/dashboard/settings" render={() => <Settings user={user} />} />
 
-          <Route path="/dashboard/stats" render={() => <Stats user={user} setMessage={this.setMessage} />} />
+          <Route path="/dashboard/stats" render={() => <Stats user={user} addMessage={this.props.addMessage} />} />
         </section>
       );
     } else {
@@ -73,4 +68,11 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({
+  messages: state.messages
+});
+
+export default connect(
+  mapStateToProps,
+  { addMessage, clearMessages }
+)(Dashboard);

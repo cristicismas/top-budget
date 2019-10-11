@@ -11,8 +11,7 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAIL = 'AUTH_FAIL';
 
-export const ERROR_MESSAGE = 'ERROR_MESSAGE';
-export const SUCCESS_MESSAGE = 'SUCCESS_MESSAGE';
+export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const DELETE_MESSAGES = 'DELETE_MESSAGES';
 
 export const GET_CATEGORIES = 'GET_CATEGORIES';

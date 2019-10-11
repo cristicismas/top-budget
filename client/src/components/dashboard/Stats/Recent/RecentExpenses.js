@@ -34,7 +34,7 @@ const RecentExpenses = props => {
               sources={sources}
               locations={locations}
               userdata={props.userdata}
-              setMessage={props.setMessage}
+              addMessage={props.addMessage}
               onClick={() => changeExpenseToEdit(expense)}
             />
           ))}
@@ -51,7 +51,7 @@ const RecentExpenses = props => {
         <Overlay closeOverlay={() => changeExpenseToEdit(null)}>
           <EditExpenseField
             closeOverlay={() => changeExpenseToEdit(null)}
-            setMessage={props.setMessage}
+            addMessage={props.addMessage}
             editExpense={props.editExpense}
             categories={categories}
             locations={locations}

@@ -92,10 +92,9 @@ export class AddExpenseForm extends Component {
       this.props.addExpense({...this.state, date: currentTimeAndDate});
   
       this.clearForm();
-      this.props.setMessage('Expense added with success.', TYPES.SUCCESS);
     } else {
       this.clearForm();
-      this.props.setMessage('Please add a value higher than zero.', TYPES.ERROR);
+      this.props.addMessage('Please add a value higher than zero.', TYPES.ERROR);
     }
   }
 

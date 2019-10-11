@@ -1,6 +1,8 @@
-import { GET_LOCATIONS, DELETE_LOCATION, ADD_LOCATION, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
+import { GET_LOCATIONS, DELETE_LOCATION, ADD_LOCATION } from './actionTypes';
+import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
+import { addMessage } from './messages';
 import { tokenConfig } from './user';
 
 export const getLocations = () => (dispatch, getState) => {
@@ -12,10 +14,7 @@ export const getLocations = () => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem getting the locations.', MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -27,16 +26,10 @@ export const deleteLocation = id => (dispatch, getState) => {
         payload: id
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Deleted location.'
-      });
+      dispatch(addMessage('Location deleted with success.', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem deleting the location.', MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -48,15 +41,9 @@ export const addLocation = location => (dispatch, getState) => {
         payload: res
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Added location.'
-      });
+      dispatch(addMessage('Location added with success.', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem adding the location.', MESSAGE_TYPES.ERROR));
     });
 };

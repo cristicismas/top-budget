@@ -1,6 +1,8 @@
-import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
+import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY } from './actionTypes';
+import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
+import { addMessage } from './messages';
 import { tokenConfig } from './user';
 
 export const getCategories = () => (dispatch, getState) => {
@@ -12,10 +14,7 @@ export const getCategories = () => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem getting the categories.', MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -27,16 +26,10 @@ export const deleteCategory = id => (dispatch, getState) => {
         payload: id
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Deleted category.'
-      });
+      dispatch(addMessage('Category deleted with success.', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem deleting the category.', MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -48,15 +41,9 @@ export const addCategory = category => (dispatch, getState) => {
         payload: res
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Added category.'
-      });
+      dispatch(addMessage('Category added with success.', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem adding the category.', MESSAGE_TYPES.ERROR));
     });
 };

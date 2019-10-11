@@ -3,32 +3,24 @@ import TYPES from '../constants/messageTypes';
 import '../css/Message.css';
 
 const Message = props => {
-  const { message, setMessage, shouldFadeOut } = props;
+  const { message, shouldFadeOut } = props;
 
   const [opacity, changeOpacity] = useState(0);
 
-  // Fadeout the component and clear the message.
+  // Fadeout the component.
   useEffect(() => {
     changeOpacity(1);
 
     if (shouldFadeOut) {
-      let messageTimeout,
-        opacityTimeout = null;
-
-      opacityTimeout = setTimeout(() => {
+      const opacityTimeout = setTimeout(() => {
         changeOpacity(0);
-
-        messageTimeout = setTimeout(() => {
-          setMessage('', '');
-        }, 500);
       }, 2500);
 
       return () => {
         clearTimeout(opacityTimeout);
-        clearTimeout(messageTimeout);
       };
     }
-  }, [message, setMessage, shouldFadeOut]);
+  }, [message, shouldFadeOut]);
 
   let style = {};
 

@@ -1,6 +1,8 @@
-import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
+import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE } from './actionTypes';
+import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
+import { addMessage } from './messages';
 import { tokenConfig } from './user';
 
 export const getSources = () => (dispatch, getState) => {
@@ -12,10 +14,7 @@ export const getSources = () => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem getting the source.', MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -27,16 +26,10 @@ export const deleteSource = id => (dispatch, getState) => {
         payload: id
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Deleted source.'
-      });
+      dispatch(addMessage('Source deleted with success.', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem deleting the source.', MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -48,15 +41,9 @@ export const addSource = source => (dispatch, getState) => {
         payload: res
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Added source.'
-      });
+      dispatch(addMessage('Source added with success.', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem adding the source.', MESSAGE_TYPES.ERROR));
     });
 };

@@ -1,14 +1,7 @@
-import {
-  USER_LOADING,
-  USER_LOADED,
-  USER_UPDATED,
-  AUTH_SUCCESS,
-  AUTH_FAIL,
-  ERROR_MESSAGE,
-  SUCCESS_MESSAGE,
-  LOGOUT_SUCCESS
-} from './actionTypes';
+import { USER_LOADING, USER_LOADED, USER_UPDATED, AUTH_SUCCESS, AUTH_FAIL, LOGOUT_SUCCESS } from './actionTypes';
+import MESSAGE_TYPES from '../../constants/messageTypes';
 
+import { addMessage } from './messages';
 import { apiCall } from '../../utils/api';
 
 export const loadUser = () => (dispatch, getState) => {
@@ -43,12 +36,11 @@ export const updateUserSettings = newSettings => (dispatch, getState) => {
         type: USER_UPDATED,
         payload: data
       });
+
+      dispatch(addMessage('Settings updated with success!', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was a problem updating the user settings.', MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -64,16 +56,10 @@ export const login = credentials => (dispatch, getState) => {
         payload: res
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Logged In.'
-      });
+      dispatch(addMessage('Welcome back!', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('Password or username are wrong.', MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -89,16 +75,10 @@ export const register = credentials => (dispatch, getState) => {
         payload: res
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Registration completed.'
-      });
+      dispatch(addMessage('Welcome!', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage(err, MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -107,20 +87,14 @@ export const logout = () => (dispatch, getState) => {
     .then(res => {
       localStorage.removeItem('token');
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Logged Out.'
-      });
+      dispatch(addMessage('You are now logged out.', MESSAGE_TYPES.SUCCESS));
 
       dispatch({
         type: LOGOUT_SUCCESS
       });
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('Logout failed.', MESSAGE_TYPES.ERROR));
     });
 };
 

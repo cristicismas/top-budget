@@ -1,6 +1,8 @@
-import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, EDIT_EXPENSE, ERROR_MESSAGE, SUCCESS_MESSAGE } from './actionTypes';
+import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, EDIT_EXPENSE } from './actionTypes';
+import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
+import { addMessage } from './messages';
 import { tokenConfig } from './user';
 
 export const getExpenses = () => (dispatch, getState) => {
@@ -19,10 +21,7 @@ export const getExpenses = () => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was an error getting the expenses.', MESSAGE_TYPES.ERROR));
     });
 };
 
@@ -34,16 +33,10 @@ export const deleteExpense = id => (dispatch, getState) => {
         payload: id
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Expense deleted.'
-      });
+      dispatch(addMessage('Expense deleted with success.', MESSAGE_TYPES.SUCCESS, true));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was an error deleting the expense.', MESSAGE_TYPES.ERROR, true));
     });
 };
 
@@ -57,16 +50,10 @@ export const addExpense = expense => (dispatch, getState) => {
         payload: newExpense
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Added expense.'
-      });
+      dispatch(addMessage('Expense added with success.', MESSAGE_TYPES.SUCCESS, true));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was an error adding the expense.', MESSAGE_TYPES.ERROR, true));
     });
 };
 
@@ -80,15 +67,9 @@ export const editExpense = expense => (dispatch, getState) => {
         payload: editedExpense
       });
 
-      dispatch({
-        type: SUCCESS_MESSAGE,
-        payload: 'Edited expense.'
-      });
+      dispatch(addMessage('Expense edited with success.', MESSAGE_TYPES.SUCCESS, true));
     })
     .catch(err => {
-      dispatch({
-        type: ERROR_MESSAGE,
-        payload: err
-      });
+      dispatch(addMessage('There was an error editing the expense.', MESSAGE_TYPES.ERROR, true));
     });
 };

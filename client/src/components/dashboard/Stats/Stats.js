@@ -24,7 +24,7 @@ const Stats = props => {
     return (
       <section id="stats">
         {!areAnyFieldsEnabled && (
-          <Message message="Please enable at least one field in your settings to see more advanced statistics." setMessage={props.setMessage} shouldFadeOut={true} />
+          <Message message="Please enable at least one field in your settings to see more advanced statistics." shouldFadeOut={true} />
         )}
 
         <div className="flex-group chart-and-summary">
@@ -63,7 +63,7 @@ const Stats = props => {
           locations={locations}
           sources={sources}
           userdata={user.userdata}
-          setMessage={props.setMessage}
+          addMessage={props.addMessage}
         />
       </section>
     );

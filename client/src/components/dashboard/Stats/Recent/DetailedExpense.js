@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import TYPES from '../../../../constants/messageTypes';
 import { getCurrency } from '../../../../utils/currency';
 
 import ExpenseField from './ExpenseField';
@@ -72,7 +71,6 @@ const DetailedExpense = props => {
             onClick={e => {
               e.stopPropagation();
               props.deleteExpense(expense.id);
-              props.setMessage('Expense deleted with success.', TYPES.SUCCESS);
             }}>
             ✕
           </button>

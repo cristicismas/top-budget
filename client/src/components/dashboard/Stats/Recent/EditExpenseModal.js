@@ -21,7 +21,7 @@ const EditExpenseField = props => {
     e.preventDefault();
 
     if (Number(newValue) <= 0) {
-      props.setMessage('Please add a value higher than zero.', TYPES.ERROR);
+      props.addMessage('Please add a value higher than zero.', TYPES.ERROR);
     } else {
       const editedExpense = {
         id: expense.id,
