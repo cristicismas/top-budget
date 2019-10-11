@@ -11,14 +11,14 @@ const AddFieldModal = props => {
   const handleSubmit = () => {
     const nameInput = document.getElementById(`${type}-name`);
     const colorInput = document.getElementById(`${type}-color`);
-  
+
     const fieldName = nameInput.value;
     const fieldColor = colorInput.value;
-  
+
     if (fieldName.trim()) {
       props.handleAddField(type, fieldName, fieldColor);
       nameInput.setCustomValidity('');
-  
+
       document.getElementById(`${type}-name`).value = '';
       props.closeOverlay();
     } else {
@@ -30,23 +30,24 @@ const AddFieldModal = props => {
     <section id="add-field-form">
       <h3 className="add-field-title">Add {label}</h3>
 
-      <label htmlFor="field-name">{label}:</label>
-      <input type="text" name="field-name" className="add-field-input" placeholder={label} id={`${type}-name`} />
+      <div className="form-group">
+        <label htmlFor="field-name">{label}:</label>
+        <input type="text" name="field-name" className="add-field-input" placeholder={label} id={`${type}-name`} />
+      </div>
 
-      <label htmlFor="field-color">Color:</label>
-      <input
-        type="color"
-        name="field-color"
-        className="add-field-input"
-        defaultValue="#15131A"
-        placeholder={label}
-        id={`${type}-color`}
-      />
+      <div className="form-group">
+        <label htmlFor="field-color">Color:</label>
+        <input
+          type="color"
+          name="field-color"
+          className="add-field-input"
+          defaultValue="#15131A"
+          placeholder={label}
+          id={`${type}-color`}
+        />
+      </div>
 
-      <button
-        className="add-field-cta"
-        type="button"
-        onClick={handleSubmit}>
+      <button className="add-field-cta" type="button" onClick={handleSubmit}>
         Confirm
       </button>
     </section>

@@ -5,12 +5,24 @@
 #add-field-form .add-field-title {
   margin-top: -30px;
   margin-bottom: 50px;
+  font-size: 23px;
+}
+
+#add-field-form .form-group label {
+  font-size: 20px;
 }
 
 #add-field-form .add-field-input {
+  display: block;
   margin-bottom: 30px;
   margin-top: 10px;
   margin: 10px auto 30px auto;
+  padding: 5px 10px;
+  color: #eee;
+  display: block;
+  font-size: 20px;
+  background-color: #15131A;
+  border: 1px solid #2c2c3a;
 }
 
 #add-field-form input[type='color'] {
@@ -45,13 +57,31 @@
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
 
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 480px) {
   #add-field-form {
     padding: 40px;
   }
   
   #add-field-form .add-field-title {
-    margin-top: -10px;
-    margin-bottom: 20px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+    font-size: 18px;
+  }
+
+  #add-field-form .form-group label {
+    font-size: 16px;
+  }
+
+  #add-field-form .add-field-input {
+    width: 200px;
+    font-size: 16px;
+  }
+
+  #add-field-form input[type='color'] {
+    height: 34px;
+  }
+
+  #add-field-form .add-field-cta {
+    font-size: 16px;
   }
 }
