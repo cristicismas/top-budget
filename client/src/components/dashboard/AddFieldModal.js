@@ -41,7 +41,7 @@ const AddFieldModal = props => {
           type="color"
           name="field-color"
           className="add-field-input"
-          defaultValue="#15131A"
+          defaultValue="#312184"
           placeholder={label}
           id={`${type}-color`}
         />
