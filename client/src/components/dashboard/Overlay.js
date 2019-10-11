@@ -23,6 +23,15 @@ const Overlay = props => {
   const overlayRef = useRef(null);
   useOutsideClickDetector(overlayRef, props.closeOverlay);
 
+  // When component mounts, disable scrolling on 'body'
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      // When component unmounts, enable scrolling.
+      document.body.style.overflow = 'auto';
+    }
+  })
+
   return (
     <div className="overlay-container">
       <div className="overlay" ref={overlayRef}>
