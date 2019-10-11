@@ -19,7 +19,7 @@
 
 #stats .filters .filter-btn {
   margin: 0 15px;
-  font-size: 30px;
+  font-size: 27px;
   background-color: transparent;
   border: none;
   border-bottom: 2px solid transparent;
@@ -43,5 +43,11 @@
 
   #stats .filters {
     padding-left: 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #stats .filters .filter-btn {
+    margin: 0 5px;
   }
 }

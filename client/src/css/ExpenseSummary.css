@@ -46,6 +46,16 @@
 
   #expense-summary #show-all {
     display: block;
-    margin: 40px auto 0;
+    margin: 30px 40px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #expense-summary .summary {
+    padding: 0 5px;
+  }
+
+  #expense-summary #show-all {
+    margin: 20px 5px 0;
   }
 }
