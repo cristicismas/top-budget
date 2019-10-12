@@ -35,7 +35,7 @@ export class AuthForm extends Component {
       });
     }
 
-    this.props.history.push('/');
+    this.props.history.push('/dashboard');
   }
 
   render() {
