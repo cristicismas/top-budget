@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   render() {
-    const loading = this.props.user.isLoading;
+    const { loading, isAuthenticated } = this.props.user;
 
     if (loading) {
       return <Loading />;
@@ -37,7 +37,8 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" render={props => <AuthForm type="signup" {...props} />} />
           <Route exact path="/login" render={props => <AuthForm type="login" {...props} />} />
-          <Route path="/dashboard" render={props => <Dashboard {...props} {...this.props} />} />
+
+          <Route path="/dashboard">{isAuthenticated ? <Dashboard {...this.props} /> : <Home />}</Route>
         </div>
       </Router>
     );
