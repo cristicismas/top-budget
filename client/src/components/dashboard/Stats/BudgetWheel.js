@@ -1,8 +1,10 @@
 import React from 'react';
+import ICON from '../../../constants/icons';
+import Icon from '../../Icon';
+import '../../../css/BudgetWheel.css';
+
 import { getCurrency } from '../../../utils/currency';
 import { getFillPercentage, getSumOfExpensesForTimeline, getWheelGeometryData, getBudgetForFilter } from '../../../utils/wheel';
-import ICON from '../../../constants/icons';
-import '../../../css/BudgetWheel.css';
 
 
 const BudgetWheel = props => {
@@ -42,15 +44,7 @@ const BudgetWheel = props => {
         / {Math.round(budgetForFilter)}
       </p>
 
-      <svg
-        className="wheel-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="60"
-        height="60"
-        fill={wheelColor}
-        viewBox="0 0 24 24">
-        <path d={wheelIcon} />
-      </svg>
+      <Icon icon={wheelIcon} size={60} fill={wheelColor} className="wheel-icon" />
 
       <svg height={WHEEL.radius * 2} width={WHEEL.radius * 2} className="wheel">
         <circle

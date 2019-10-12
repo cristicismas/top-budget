@@ -1,6 +1,7 @@
 import React from 'react';
 import CURRENCY from '../../../constants/currencies';
-import ICON from '../../../constants/icons';
+import ICONS from '../../../constants/icons';
+import Icon from '../../Icon';
 
 const Currency = props => {
   const currencyOptions = Object.keys(CURRENCY).map(currency => (
@@ -22,7 +23,7 @@ const Currency = props => {
       </select>
 
       <div className="select-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#eee" viewBox="0 0 24 24"><path d={ICON.ARROW}/></svg>
+        <Icon icon={ICONS.ARROW} size={24} fill="#eee" />
       </div>
     </div>
   );

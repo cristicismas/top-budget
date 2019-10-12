@@ -1,6 +1,8 @@
 import React from 'react';
 import FIELDS from '../../../../constants/fields';
-import ICON from '../../../../constants/icons';
+import ICONS from '../../../../constants/icons';
+import Icon from '../../../Icon';
+
 import { capitalize } from '../../../../utils/strings';
 
 const PrimaryField = props => {
@@ -23,9 +25,7 @@ const PrimaryField = props => {
       </select>
 
       <div className="select-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#eee" viewBox="0 0 24 24">
-          <path d={ICON.ARROW} />
-        </svg>
+        <Icon icon={ICONS.ARROW} size={24} fill="#eee" />
       </div>
     </div>
   );

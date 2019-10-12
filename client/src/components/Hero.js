@@ -1,5 +1,6 @@
 import React from 'react';
 import ICONS from '../constants/icons';
+import Icon from './Icon';
 import { Link } from 'react-router-dom';
 import '../css/Hero.css';
 
@@ -21,9 +22,7 @@ const Hero = () => {
       </div>
 
       <button className="scroll-down-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#eee" viewBox="0 0 24 24">
-          <path d={ICONS.ARROW} />
-        </svg>
+        <Icon icon={ICONS.ARROW} size={45} fill='#eee' />
       </button>
     </section>
   );
