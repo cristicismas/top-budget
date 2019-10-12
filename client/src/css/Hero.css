@@ -1,29 +1,22 @@
-#hero #intro {
-  text-align: center;
-  padding-top: 100px;
+#hero {
+  min-height: calc(100vh - 90px);
 }
 
-#hero #intro h1 {
+#hero #intro {
+  text-align: center;
+  padding-top: 25vh;
+  margin-bottom: 100px;
+}
+
+#hero #intro .title {
   font-size: 65px;
   margin: 0;
 }
 
-#hero #intro h2 {
+#hero #intro .subtitle {
   font-weight: 300;
   color: #ccc;
   font-size: 35px;
-}
-
-#hero #features {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 100px;
-  list-style-type: circle;
-}
-
-#hero #features .feature {
-  margin: 30px;
-  font-size: 25px;
 }
 
 #hero .cta-buttons {
@@ -35,7 +28,7 @@
 #hero .cta-buttons > * {
   width: 130px;
   text-align: center;
-  margin: 50px;
+  margin: 50px 25px;
   display: block;
   padding: 10px;
   font-size: 20px;
@@ -61,4 +54,29 @@
   border: 2px solid #3d1eca;
   box-shadow: none;
   color: #eee;
+}
+
+#hero .scroll-down-btn {
+  background-color: transparent;
+  padding: 50px;
+  cursor: pointer;
+  border: none;
+  margin: auto;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: 2s float infinite ease-in-out;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(-50%, 0px);
+  }
+  50% {
+    transform: translate(-50%, 25px);
+  }
+  100% {
+    transform: translate(-50%, 0px);
+  }
 }

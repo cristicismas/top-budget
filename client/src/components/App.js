@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import AOS from 'aos';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import 'aos/dist/aos.css';
 
 import Loading from './Loading';
 import Header from './Header';
@@ -17,6 +19,8 @@ import { loadUser } from '../store/actions/user';
 
 class App extends Component {
   componentDidMount() {
+    AOS.init();
+
     if (!this.props.user.userdata) {
       this.props.loadUser();
     }
