@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router';
 import { Link, Redirect, Route } from 'react-router-dom';
 import '../../css/Dashboard.css';
 
@@ -10,63 +11,60 @@ import Message from '../Message';
 
 import { addMessage, clearMessages } from '../../store/actions/messages';
 
-class Dashboard extends Component {
-  componentDidMount() {
-    this.props.getExpenses();
-    this.props.getCategories();
-    this.props.getLocations();
-    this.props.getSources();
-  }
+const Dashboard = props => {
+  const { getExpenses, getCategories, getLocations, getSources, user, messages } = props;
 
-  render() {
-    const { user, messages } = this.props;
+  const { pathname } = useLocation();
+  const token = localStorage.getItem('token');
 
-    const pathname = this.props.location.pathname;
-    const token = localStorage.getItem('token');
+  // Fetch everything when dashboard mounts.
+  useEffect(() => {
+    getExpenses();
+    getCategories();
+    getLocations();
+    getSources();
+  }, [getExpenses, getCategories, getLocations, getSources]);
 
-    if (token) {
-      return (
-        <section id="dashboard">
-          <nav>
-            <Link to="/dashboard/settings" className={pathname === '/dashboard/settings' ? 'active' : null}>
-              Settings
-            </Link>
+  if (token) {
+    return (
+      <section id="dashboard">
+        <nav>
+          <Link to="/dashboard/settings" className={pathname.includes('settings') ? 'active' : null}>
+            Settings
+          </Link>
 
-            <Link to="/dashboard" className={pathname === '/dashboard' ? 'active' : null}>
-              Add Expense
-            </Link>
+          <Link
+            to="/dashboard"
+            className={!pathname.includes('settings') && !pathname.includes('stats') ? 'active' : null}>
+            Add Expense
+          </Link>
 
-            <Link to="/dashboard/stats" className={pathname === '/dashboard/stats' ? 'active' : null}>
-              Stats
-            </Link>
-          </nav>
+          <Link to="/dashboard/stats" className={pathname.includes('stats') ? 'active' : null}>
+            Stats
+          </Link>
+        </nav>
 
-          {messages.map((message, index) => (
-            <Message
-              key={`message-${index}`}
-              message={message.text}
-              type={message.type}
-              shouldFadeOut={message.shouldFadeOut}
-              clearMessages={this.props.clearMessages}
-            />
-          ))}
-
-          <Route
-            exact
-            path="/dashboard"
-            render={() => <AddExpenseForm addMessage={this.props.addMessage} user={user} />}
+        {messages.map((message, index) => (
+          <Message
+            key={`message-${index}`}
+            message={message.text}
+            type={message.type}
+            shouldFadeOut={message.shouldFadeOut}
+            clearMessages={props.clearMessages}
           />
+        ))}
 
-          <Route path="/dashboard/settings" render={() => <Settings user={user} />} />
+        <Route exact path="/dashboard" render={() => <AddExpenseForm addMessage={props.addMessage} user={user} />} />
 
-          <Route path="/dashboard/stats" render={() => <Stats user={user} addMessage={this.props.addMessage} />} />
-        </section>
-      );
-    } else {
-      return <Redirect to="/" />;
-    }
+        <Route path="/dashboard/settings" render={() => <Settings user={user} />} />
+
+        <Route path="/dashboard/stats" render={() => <Stats user={user} addMessage={props.addMessage} />} />
+      </section>
+    );
+  } else {
+    return <Redirect to="/" />;
   }
-}
+};
 
 const mapStateToProps = state => ({
   messages: state.messages
