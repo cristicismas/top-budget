@@ -25,7 +25,7 @@ const Hero = () => {
         <Link to="/dashboard" data-aos="fade-right" className="secondary">
           Dashboard
         </Link>
-        <Link to="/login" data-aos="fade-left" className="primary">
+        <Link to="/signup" data-aos="fade-left" className="primary">
           Get Started
         </Link>
       </div>
