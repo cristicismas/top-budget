@@ -1,105 +1,99 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { login, register } from '../../store/actions/user';
 import '../../css/AuthForm.css';
 
-export class AuthForm extends Component {
-  constructor(props) {
-    super(props);
+const AuthForm = props => {
+  const history = useHistory();
 
-    this.state = {
-      username: '',
-      email: '',
-      password: ''
-    };
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.onChange = this.onChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  onChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  handleSubmit(e) {
+  const handleSubmit = e => {
     e.preventDefault();
-    
-    if (this.props.type === 'signup') {
-      this.props.register(this.state);
+
+    if (props.type === 'signup') {
+      props.register({
+        username,
+        email,
+        password
+      });
     } else {
-      this.props.login({
-        username: this.state.username,
-        password: this.state.password   
+      props.login({
+        username,
+        password
       });
     }
+    history.push('/dashboard');
+  };
 
-    this.props.history.push('/dashboard');
-  }
+  const formAction = props.type === 'login' ? 'Log In' : 'Sign Up';
 
-  render() {
-    const { username, email, password } = this.state;
+  return (
+    <div id="auth">
+      <h2 id="form-title">{formAction}</h2>
 
-    const formAction = this.props.type === 'login' ? 'Log In' : 'Sign Up';
-
-    return (
-      <div id="auth">
-        <h2 id="form-title">{formAction}</h2>
-
-        <form id="auth-form" onSubmit={this.handleSubmit}>
-          {
-            this.props.type === 'signup' ? (
-              <div className="form-group">
-                <label htmlFor="email">Email:</label>
-                <br />
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="name@example.com"
-                  value={email}
-                  required
-                  onChange={this.onChange} />
-              </div>
-            ) : null
-          }
-
+      <form id="auth-form" onSubmit={handleSubmit}>
+        {props.type === 'signup' ? (
           <div className="form-group">
-            <label htmlFor="email">Username:</label>
+            <label htmlFor="email">Email:</label>
             <br />
             <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="topbudgeteer_19"
-              value={username}
+              type="email"
+              id="email"
+              name="email"
+              placeholder="name@example.com"
+              value={email}
               required
-              onChange={this.onChange} />
+              onChange={e => setEmail(e.target.value)}
+            />
           </div>
+        ) : null}
 
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <br />
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Min. 5 characters"
-              value={password}
-              minLength="5"
-              maxLength="70"
-              required
-              onChange={this.onChange} />
-          </div>
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <br />
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="topbudgeteer_19"
+            value={username}
+            required
+            onChange={e => setUsername(e.target.value)}
+          />
+        </div>
 
-          <button type="submit" id="submit-button">{formAction}</button>
-        </form>
-      </div>
-    )
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Min. 5 characters"
+            value={password}
+            minLength="5"
+            maxLength="70"
+            required
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
+
+        <button type="submit" id="submit-button">
+          {formAction}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default connect(
+  null,
+  {
+    login,
+    register
   }
-}
-
-export default connect(null, {
-  login, register
-})(AuthForm);
+)(AuthForm);
