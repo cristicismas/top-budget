@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TYPES from '../../../constants/messageTypes';
-import '../../../css/AddExpenseForm.css';
+import './AddExpenseForm.css';
 
 import OptionsGroup from '../OptionsGroup';
 
@@ -89,8 +89,8 @@ export class AddExpenseForm extends Component {
 
     if (Number(this.state.value) !== 0) {
       const currentTimeAndDate = new Date();
-      this.props.addExpense({...this.state, date: currentTimeAndDate});
-  
+      this.props.addExpense({ ...this.state, date: currentTimeAndDate });
+
       this.clearForm();
     } else {
       this.clearForm();
@@ -151,7 +151,9 @@ export class AddExpenseForm extends Component {
           />
         )}
 
-        <button id="add-expense-btn" type="submit">Add Expense</button>
+        <button id="add-expense-btn" type="submit">
+          Add Expense
+        </button>
       </form>
     );
   }
@@ -171,4 +173,7 @@ const mapDispatchToProps = {
   addSource
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddExpenseForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddExpenseForm);

@@ -19,11 +19,11 @@
   user-select: none;
   margin-right: 15px;
   margin-bottom: 15px;
-  background-color: #15131A;
+  background-color: #15131a;
   border: 1px solid #2c2c3a;
   border-radius: 5px;
   cursor: pointer;
-  transition: color .2s, border .2s, box-shadow .2s;
+  transition: color 0.2s, border 0.2s, box-shadow 0.2s;
 }
 
 .option:hover {

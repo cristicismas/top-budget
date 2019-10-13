@@ -1,23 +1,23 @@
 import React, { useRef, useEffect } from 'react';
-import '../../css/Overlay.css';
+import './Overlay.css';
 
 const useOutsideClickDetector = (ref, closeOverlay) => {
   const handleOutsideClick = event => {
     if (ref.current && !ref.current.contains(event.target)) {
       closeOverlay();
     }
-  }
+  };
 
   useEffect(() => {
     // Bind the event listener
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener('mousedown', handleOutsideClick);
 
     return () => {
       // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   });
-}
+};
 
 const Overlay = props => {
   const overlayRef = useRef(null);
@@ -29,8 +29,8 @@ const Overlay = props => {
     return () => {
       // When component unmounts, enable scrolling.
       document.body.style.overflow = 'auto';
-    }
-  })
+    };
+  });
 
   return (
     <div className="overlay-container">

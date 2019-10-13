@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../../../css/Settings.css';
+import './Settings.css';
 
 import Currency from './Currency';
 import Budget from './Budget';

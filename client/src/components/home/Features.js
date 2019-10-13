@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../css/Features.css';
+import './Features.css';
 
 import wallet from '../../images/wallet.svg';
 import graph from '../../images/graph.svg';

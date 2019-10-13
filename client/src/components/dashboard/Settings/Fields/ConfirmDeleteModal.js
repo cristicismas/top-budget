@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../../css/ConfirmDeleteModal.css';
+import './ConfirmDeleteModal.css';
 
 const ConfirmDeleteModal = props => {
   return (

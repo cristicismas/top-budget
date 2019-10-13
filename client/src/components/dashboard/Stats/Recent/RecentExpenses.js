@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { getDaysInChronologicalOrder, formatDate } from '../../../../utils/recent';
-import '../../../../css/RecentExpenses.css';
+import './RecentExpenses.css';
 
 import DetailedExpense from './DetailedExpense';
 import EditExpenseField from './EditExpenseModal';

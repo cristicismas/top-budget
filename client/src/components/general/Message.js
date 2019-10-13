@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TYPES from '../../constants/messageTypes';
-import '../../css/Message.css';
+import './Message.css';
 
 const Message = props => {
   const { message, shouldFadeOut } = props;

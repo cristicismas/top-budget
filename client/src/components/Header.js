@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/user';
-import '../css/Header.css';
+import './Header.css';
 
 const Header = props => {
   const isAuthenticated = props.user.isAuthenticated;

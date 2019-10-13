@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../../css/AddFieldModal.css';
+import './AddFieldModal.css';
 
 const AddFieldModal = props => {
   const { type, label } = props;

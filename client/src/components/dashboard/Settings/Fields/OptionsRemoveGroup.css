@@ -1,8 +1,8 @@
 .options {
   margin-bottom: 50px;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 .options.dim {
-  opacity: .3;
+  opacity: 0.3;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TYPES from '../../../../constants/messageTypes';
-import '../../../../css/EditExpenseModal.css';
+import './EditExpenseModal.css';
 
 import OptionsGroup from '../../OptionsGroup';
 
@@ -15,7 +15,7 @@ const EditExpenseField = props => {
 
   useEffect(() => {
     document.getElementById('value-input').focus();
-  }, [])
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -53,17 +53,17 @@ const EditExpenseField = props => {
       } else {
         const optionParent = document.getElementById(type);
         const optionSiblings = optionParent.childNodes;
-  
+
         for (let i = 0; i < optionSiblings.length; i++) {
           optionSiblings[i].classList.remove('selected');
         }
-  
+
         setSelectedField(id);
       }
-  
+
       selectedOption.classList.toggle('selected');
     }
-  }
+  };
 
   useEffect(() => {
     handleOptionClick('category', expense.category);

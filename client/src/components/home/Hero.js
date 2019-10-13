@@ -2,7 +2,7 @@ import React from 'react';
 import ICONS from '../../constants/icons';
 import Icon from '../general/Icon';
 import { Link } from 'react-router-dom';
-import '../../css/Hero.css';
+import './Hero.css';
 
 const scrollToFeatures = () => {
   const features = document.getElementById('features');

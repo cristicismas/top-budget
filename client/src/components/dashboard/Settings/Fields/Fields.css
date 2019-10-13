@@ -21,11 +21,11 @@
   display: block;
   padding: 10px 15px;
   font-size: 18px;
-  background-color: #15131A;
+  background-color: #15131a;
   border: 2px solid #b13030;
   color: #ee3636;
   cursor: pointer;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 #fields #delete-options-btn:hover {

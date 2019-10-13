@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../../../css/Fields.css';
+import './Fields.css';
 
 import Toggle from './Toggle';
 import OptionsRemoveGroup from './OptionsRemoveGroup';

@@ -10,6 +10,6 @@
   transform: translateX(-50%);
   bottom: 50px;
   border-radius: 5px;
-  background-color: #15161D;
-  transition: all .5s;
+  background-color: #15161d;
+  transition: all 0.5s;
 }

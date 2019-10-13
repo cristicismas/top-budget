@@ -1,16 +1,12 @@
 import React from 'react';
-import '../../../../css/Toggle.css';
+import './Toggle.css';
 
 const Toggle = props => {
   return (
     <div className="toggle">
       <label>
-        <input
-          type="checkbox"
-          onChange={() => props.handleChange()}
-          defaultChecked={props.toggled}
-        />
-        
+        <input type="checkbox" onChange={() => props.handleChange()} defaultChecked={props.toggled} />
+
         <i />
       </label>
     </div>

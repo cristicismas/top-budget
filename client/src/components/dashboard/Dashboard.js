@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link, Redirect, Route } from 'react-router-dom';
-import '../../css/Dashboard.css';
+import './Dashboard.css';
 
 import Settings from './Settings/Settings';
 import Stats from './Stats/Stats';

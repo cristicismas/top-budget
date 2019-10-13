@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../../css/OptionsRemoveGroup.css';
+import './OptionsRemoveGroup.css';
 
 import Option from '../../Option';
 
@@ -21,6 +21,6 @@ const OptionsRemoveGroup = props => {
       {options}
     </div>
   );
-}
+};
 
 export default OptionsRemoveGroup;

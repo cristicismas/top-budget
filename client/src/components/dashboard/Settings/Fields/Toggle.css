@@ -16,7 +16,7 @@
   height: 20px;
   border-radius: 13px;
   vertical-align: middle;
-  transition: .25s;
+  transition: 0.25s;
   position: relative;
   background: #202020;
   box-sizing: initial;
@@ -31,7 +31,7 @@
   background: #474747;
   position: absolute;
   left: 2px;
-  transition: .25s;
+  transition: 0.25s;
 }
 
 .toggle label > input:checked + i {

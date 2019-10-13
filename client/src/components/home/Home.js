@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ICONS from '../../constants/icons';
-import '../../css/Home.css';
+import './Home.css';
 
 import Hero from './Hero';
 import Features from './Features';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import FILTERS from '../../../constants/filters';
-import '../../../css/Stats.css';
+import './Stats.css';
 
 import ExpenseSummary from './Summary/ExpenseSummary';
 import BudgetWheel from './BudgetWheel';
@@ -24,7 +24,10 @@ const Stats = props => {
     return (
       <section id="stats">
         {!areAnyFieldsEnabled && (
-          <Message message="Please enable at least one field in your settings to see more advanced statistics." shouldFadeOut={true} />
+          <Message
+            message="Please enable at least one field in your settings to see more advanced statistics."
+            shouldFadeOut={true}
+          />
         )}
 
         <div className="flex-group chart-and-summary">

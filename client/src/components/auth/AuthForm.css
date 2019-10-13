@@ -23,7 +23,7 @@
   margin-top: 10px;
   width: 100%;
   color: #eee;
-  background-color: #15131A;
+  background-color: #15131a;
   border: 1px solid #2c2c3a;
   padding: 5px 10px;
 }
@@ -38,9 +38,9 @@
   padding: 10px;
   font-size: 20px;
   color: #eee;
-  background-color: #15131A;
+  background-color: #15131a;
   border: 2px solid #2c2c3a;
-  transition: all .2s;
+  transition: all 0.2s;
   cursor: pointer;
 }
 

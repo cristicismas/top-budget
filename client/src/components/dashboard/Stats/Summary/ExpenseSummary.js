@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FIELDS from '../../../../constants/fields';
 import { getCurrency } from '../../../../utils/currency';
 import { calculateBarWidth, calculateFieldValue } from '../../../../utils/summary';
-import '../../../../css/ExpenseSummary.css';
+import './ExpenseSummary.css';
 
 import FilterButtons from './FilterButtons';
 
@@ -15,7 +15,7 @@ const ExpenseSummary = props => {
 
   let fields, fieldType;
 
-  switch(userdata.primaryField) {
+  switch (userdata.primaryField) {
     case FIELDS.CATEGORIES:
       fields = categories;
       fieldType = 'category';

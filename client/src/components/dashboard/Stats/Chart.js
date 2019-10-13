@@ -1,7 +1,7 @@
 import React from 'react';
 import FIELDS from '../../../constants/fields';
 import { Bar } from 'react-chartjs-2';
-import '../../../css/Chart.css';
+import './Chart.css';
 
 import { getDatasets, getChartOptions, getLastSevenDays } from '../../../utils/chart';
 
@@ -12,7 +12,7 @@ const Chart = props => {
 
   let fields, fieldType;
 
-  switch(userdata.primaryField) {
+  switch (userdata.primaryField) {
     case FIELDS.CATEGORIES:
       fields = categories;
       fieldType = 'category';

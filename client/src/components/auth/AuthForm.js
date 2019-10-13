@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { login, register } from '../../store/actions/user';
-import '../../css/AuthForm.css';
+import './AuthForm.css';
 
 const AuthForm = props => {
   const history = useHistory();

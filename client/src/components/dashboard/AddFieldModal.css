@@ -21,7 +21,7 @@
   color: #eee;
   display: block;
   font-size: 20px;
-  background-color: #15131A;
+  background-color: #15131a;
   border: 1px solid #2c2c3a;
 }
 
@@ -61,7 +61,7 @@
   #add-field-form {
     padding: 40px;
   }
-  
+
   #add-field-form .add-field-title {
     margin-top: -20px;
     margin-bottom: 30px;
