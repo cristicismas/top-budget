@@ -3,22 +3,22 @@
 }
 
 #features .feature {
-  min-height: calc(100vh - 400px);
+  min-height: 100vh;
+  overflow-x: hidden;
   font-size: 30px;
-  padding: 200px;
   align-items: center;
   justify-content: space-around;
   display: flex;
 }
 
 #features .feature .illustration {
-  width: 60%;
+  width: 900px;
   max-width: 800px;
   height: auto;
 }
 
 #features .feature .text {
-  width: 40%;
+  width: 30%;
 }
 
 #features .feature .text .description {
@@ -48,4 +48,57 @@
 #features #get-started-btn:hover {
   border: 2px solid #3d1eca;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
+}
+
+@media only screen and (max-width: 1500px) {
+  #features .feature {
+    font-size: 25px;
+  }
+
+  #features .feature .illustration {
+    width: 500px;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  #features .feature {
+    font-size: 20px;
+  }
+
+  #features .feature .illustration {
+    width: 350px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #features .feature {
+    flex-direction: column;
+    justify-content: center;
+    min-height: auto;
+    padding: 130px 0;
+  }
+
+  #features .feature:nth-child(even) {
+    flex-direction: column-reverse;
+  }
+
+  #features .feature .illustration {
+    margin-bottom: 80px;
+    width: 450px;
+    max-width: 90%;
+  }
+
+  #features .feature .text {
+    width: auto;
+    max-width: 80%;
+    text-align: center;
+  }
+
+  #features .feature .title {
+    margin-bottom: 50px;
+  }
+
+  #features #get-started-btn {
+    margin: 100px auto;
+  }
 }
