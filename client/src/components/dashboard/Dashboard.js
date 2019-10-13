@@ -54,11 +54,17 @@ const Dashboard = props => {
           />
         ))}
 
-        <Route exact path="/dashboard" render={() => <AddExpenseForm addMessage={props.addMessage} user={user} />} />
+        <Route exact path="/dashboard">
+          <AddExpenseForm addMessage={props.addMessage} user={user} />
+        </Route>
 
-        <Route path="/dashboard/settings" render={() => <Settings user={user} />} />
+        <Route path="/dashboard/settings">
+          <Settings user={user} />
+        </Route>
 
-        <Route path="/dashboard/stats" render={() => <Stats user={user} addMessage={props.addMessage} />} />
+        <Route path="/dashboard/stats">
+          <Stats user={user} addMessage={props.addMessage} />
+        </Route>
       </section>
     );
   } else {
