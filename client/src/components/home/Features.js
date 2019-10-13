@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../css/Features.css';
 
 import wallet from '../../images/wallet.png';
@@ -42,6 +43,10 @@ const Features = () => {
             Our service is completely <span className="bold">free</span>. You can get started right now. Just make an
             account and you're good to go!
           </p>
+
+          <Link to="signup" id="get-started-btn">
+            Get Started
+          </Link>
         </div>
       </section>
     </section>
