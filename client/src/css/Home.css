@@ -1,0 +1,17 @@
+#home #scroll-up-btn {
+  background-color: transparent;
+  border: none;
+  padding: 40px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  transform: rotate(180deg);
+  opacity: 0;
+  transition: all .3s;
+}
+
+@media only screen and (max-width: 1000px) {
+  #home #scroll-up-btn {
+    padding: 20px;
+  }
+}
