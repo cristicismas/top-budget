@@ -38,9 +38,17 @@ class App extends Component {
         <div className="App">
           <Header />
 
-          <Route exact path="/" component={Home} />
-          <Route exact path="/signup" render={props => <AuthForm type="signup" {...props} />} />
-          <Route exact path="/login" render={props => <AuthForm type="login" {...props} />} />
+          <Route exact path="/">
+            <Home />
+          </Route>
+
+          <Route exact path="/signup">
+            <AuthForm type="signup" />
+          </Route>
+
+          <Route exact path="/login">
+            <AuthForm type="login" />
+          </Route>
 
           <Route path="/dashboard">{isAuthenticated ? <Dashboard {...this.props} /> : <Home />}</Route>
         </div>
