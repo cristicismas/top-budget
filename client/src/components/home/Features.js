@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/Features.css';
 
-import wallet from '../../images/wallet.png';
-import graph from '../../images/graph.png';
-import plan from '../../images/plan.png';
+import wallet from '../../images/wallet.svg';
+import graph from '../../images/graph.svg';
+import plan from '../../images/plan.svg';
 
 const Features = () => {
   return (
