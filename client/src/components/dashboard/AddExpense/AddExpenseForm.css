@@ -1,6 +1,8 @@
 #expense-form {
   font-size: 16px;
   padding: 0 100px;
+  width: 50%;
+  margin: auto;
 }
 
 #expense-form * {
@@ -69,9 +71,16 @@
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1900px) {
+  #expense-form {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
   #expense-form {
     padding: 0 50px;
+    width: 90%
   }
 
   #expense-form .options {
@@ -88,6 +97,8 @@
 @media only screen and (max-width: 650px) {
   #expense-form {
     padding: 0 25px;
+    width: 100%;
+    margin: 0;
   }
 
   #expense-form .options-label,
