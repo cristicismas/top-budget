@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import AOS from 'aos';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'aos/dist/aos.css';
 
 import Loading from './general/Loading';
 import Header from './Header';
+import NotFound from './NotFound';
 import Home from './home/Home';
 import AuthForm from './auth/AuthForm';
 import Dashboard from './dashboard/Dashboard';
@@ -20,7 +21,7 @@ import { loadUser } from '../store/actions/user';
 class App extends Component {
   componentDidMount() {
     AOS.init();
-    
+
     this.props.loadUser();
   }
 
@@ -36,21 +37,27 @@ class App extends Component {
         <div className="App">
           <Header />
 
-          <Route exact path="/">
-            <Home />
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
 
-          <Route exact path="/signup">
-            {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="signup" />}
-          </Route>
+            <Route exact path="/signup">
+              {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="signup" />}
+            </Route>
 
-          <Route exact path="/login">
-            {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="login" />}
-          </Route>
+            <Route exact path="/login">
+              {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="login" />}
+            </Route>
 
-          <Route path="/dashboard">
-            {isAuthenticated === false ? <Redirect to="/" /> : <Dashboard {...this.props} />}
-          </Route>
+            <Route path="/dashboard">
+              {isAuthenticated === false ? <Redirect to="/" /> : <Dashboard {...this.props} />}
+            </Route>
+
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
         </div>
       </Router>
     );
