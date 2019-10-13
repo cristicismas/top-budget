@@ -1,10 +1,18 @@
 import { USER_LOADING, USER_LOADED, LOGOUT_SUCCESS, AUTH_SUCCESS, AUTH_FAIL, USER_UPDATED } from '../actions/actionTypes';
+import FIELDS from '../../constants/fields';
 
 const initialState = {
   token: localStorage.getItem('token') || null,
   isAuthenticated: null,
   isLoading: false,
-  userdata: null
+  userdata: {
+    currency: 'USD',
+    budget: 0,
+    showCategories: true,
+    showLocations: true,
+    showSources: true,
+    primaryField: FIELDS.CATEGORIES
+  }
 };
 
 export default function(state = initialState, action) {

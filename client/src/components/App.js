@@ -20,10 +20,8 @@ import { loadUser } from '../store/actions/user';
 class App extends Component {
   componentDidMount() {
     AOS.init();
-
-    if (!this.props.user.userdata) {
-      this.props.loadUser();
-    }
+    
+    this.props.loadUser();
   }
 
   render() {
