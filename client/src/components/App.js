@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AOS from 'aos';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'aos/dist/aos.css';
 
@@ -43,14 +43,14 @@ class App extends Component {
           </Route>
 
           <Route exact path="/signup">
-            <AuthForm type="signup" />
+            {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="signup" />}
           </Route>
 
           <Route exact path="/login">
-            <AuthForm type="login" />
+            {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="login" />}
           </Route>
 
-          <Route path="/dashboard">{isAuthenticated ? <Dashboard {...this.props} /> : <Home />}</Route>
+          <Route path="/dashboard">{isAuthenticated ? <Dashboard {...this.props} /> : <Redirect to="/" />}</Route>
         </div>
       </Router>
     );
