@@ -6,7 +6,7 @@ import 'aos/dist/aos.css';
 
 import Loading from './Loading';
 import Header from './Header';
-import Home from './Home';
+import Home from './home/Home';
 import AuthForm from './auth/AuthForm';
 import Dashboard from './dashboard/Dashboard';
 

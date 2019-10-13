@@ -1,0 +1,31 @@
+#features .feature:nth-child(odd) {
+  background-color: #15131a;
+}
+
+#features .feature {
+  min-height: calc(100vh - 400px);
+  font-size: 30px;
+  padding: 200px;
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+}
+
+#features .feature .illustration {
+  width: 60%;
+  max-width: 800px;
+  height: auto;
+}
+
+#features .feature .text {
+  width: 40%;
+}
+
+#features .feature .text .description {
+  color: #bbb;
+}
+
+#features .feature .bold {
+  color: #eee;
+  font-weight: bold;
+}

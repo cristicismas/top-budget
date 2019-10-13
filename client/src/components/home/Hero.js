@@ -1,8 +1,17 @@
 import React from 'react';
-import ICONS from '../constants/icons';
-import Icon from './Icon';
+import ICONS from '../../constants/icons';
+import Icon from '../Icon';
 import { Link } from 'react-router-dom';
-import '../css/Hero.css';
+import '../../css/Hero.css';
+
+const scrollToFeatures = () => {
+  const features = document.getElementById('features');
+
+  features.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+};
 
 const Hero = () => {
   return (
@@ -21,8 +30,8 @@ const Hero = () => {
         </Link>
       </div>
 
-      <button className="scroll-down-btn">
-        <Icon icon={ICONS.ARROW} size={45} fill='#eee' />
+      <button type="button" className="scroll-down-btn" onClick={scrollToFeatures}>
+        <Icon icon={ICONS.ARROW} size={45} fill="#eee" />
       </button>
     </section>
   );
