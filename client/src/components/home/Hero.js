@@ -22,10 +22,10 @@ const Hero = () => {
       </div>
 
       <div className="cta-buttons">
-        <Link to="/dashboard" className="secondary">
+        <Link to="/dashboard" data-aos="fade-right" className="secondary">
           Dashboard
         </Link>
-        <Link to="/login" className="primary">
+        <Link to="/login" data-aos="fade-left" className="primary">
           Get Started
         </Link>
       </div>
