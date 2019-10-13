@@ -50,7 +50,9 @@ class App extends Component {
             {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="login" />}
           </Route>
 
-          <Route path="/dashboard">{isAuthenticated ? <Dashboard {...this.props} /> : <Redirect to="/" />}</Route>
+          <Route path="/dashboard">
+            {isAuthenticated === false ? <Redirect to="/" /> : <Dashboard {...this.props} />}
+          </Route>
         </div>
       </Router>
     );
