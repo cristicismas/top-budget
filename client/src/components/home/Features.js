@@ -15,7 +15,7 @@ const Features = () => {
         <div data-aos="fade-left" className="text">
           <h3 className="title">Never lose track of your expenses again.</h3>
           <p className="description">
-            With TopBudget, you can easily track every penny you spend and avoid unpleasent surprises.
+            With TopBudget, you can easily track every penny you spend and avoid unpleasant surprises.
           </p>
         </div>
       </section>
