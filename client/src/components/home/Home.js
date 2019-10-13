@@ -4,7 +4,7 @@ import '../../css/Home.css';
 
 import Hero from './Hero';
 import Features from './Features';
-import Icon from '../Icon';
+import Icon from '../general/Icon';
 
 const isElementInViewport = (element, offset) => {
   var rect = element.getBoundingClientRect();
@@ -32,16 +32,12 @@ const Home = () => {
     const scrollUpButton = document.getElementById('scroll-up-btn');
 
     window.onscroll = e => {
-      if (header && scrollUpButton) {
-        if (isElementInViewport(header, 0)) {
-          scrollUpButton.style.opacity = 0;
-          scrollUpButton.style.cursor = 'default';
-        } else {
-          scrollUpButton.style.opacity = 1;
-          scrollUpButton.style.cursor = 'pointer';
-        }
+      if (isElementInViewport(header, 0)) {
+        scrollUpButton.style.opacity = 0;
+        scrollUpButton.style.cursor = 'default';
       } else {
-        console.log(header, scrollUpButton);
+        scrollUpButton.style.opacity = 1;
+        scrollUpButton.style.cursor = 'pointer';
       }
     };
   }, []);

@@ -1,7 +1,7 @@
 import React from 'react';
 import CURRENCY from '../../../constants/currencies';
 import ICONS from '../../../constants/icons';
-import Icon from '../../Icon';
+import Icon from '../../general/Icon';
 
 const Currency = props => {
   const currencyOptions = Object.keys(CURRENCY).map(currency => (

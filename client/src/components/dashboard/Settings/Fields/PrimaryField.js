@@ -1,7 +1,7 @@
 import React from 'react';
 import FIELDS from '../../../../constants/fields';
 import ICONS from '../../../../constants/icons';
-import Icon from '../../../Icon';
+import Icon from '../../../general/Icon';
 
 import { capitalize } from '../../../../utils/strings';
 

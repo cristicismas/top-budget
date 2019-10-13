@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'aos/dist/aos.css';
 
-import Loading from './Loading';
+import Loading from './general/Loading';
 import Header from './Header';
 import Home from './home/Home';
 import AuthForm from './auth/AuthForm';

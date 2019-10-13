@@ -1,6 +1,6 @@
 import React from 'react';
 import ICONS from '../../constants/icons';
-import Icon from '../Icon';
+import Icon from '../general/Icon';
 import { Link } from 'react-router-dom';
 import '../../css/Hero.css';
 

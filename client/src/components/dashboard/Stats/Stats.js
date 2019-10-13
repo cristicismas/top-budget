@@ -7,7 +7,7 @@ import ExpenseSummary from './Summary/ExpenseSummary';
 import BudgetWheel from './BudgetWheel';
 import Chart from './Chart';
 import RecentExpenses from './Recent/RecentExpenses';
-import Message from '../../Message';
+import Message from '../../general/Message';
 
 import { deleteExpense, editExpense } from '../../../store/actions/expenses';
 

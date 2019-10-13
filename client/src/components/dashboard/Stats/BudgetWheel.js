@@ -1,6 +1,6 @@
 import React from 'react';
 import ICON from '../../../constants/icons';
-import Icon from '../../Icon';
+import Icon from '../../general/Icon';
 import '../../../css/BudgetWheel.css';
 
 import { getCurrency } from '../../../utils/currency';

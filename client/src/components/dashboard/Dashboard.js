@@ -7,7 +7,7 @@ import '../../css/Dashboard.css';
 import Settings from './Settings/Settings';
 import Stats from './Stats/Stats';
 import AddExpenseForm from './AddExpense/AddExpenseForm';
-import Message from '../Message';
+import Message from '../general/Message';
 
 import { addMessage, clearMessages } from '../../store/actions/messages';
 
