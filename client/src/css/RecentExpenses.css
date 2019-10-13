@@ -99,6 +99,10 @@
     margin-left: 10px;
   }
 
+  #recent-expenses .day-info {
+    margin-top: 0;
+  }
+
   #recent-expenses .detailed-expense {
     background-color: #1a1a22;
     width: 100%;

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: -90px 150px 0px 140px;
+  margin: -90px 0 0 140px;
 }
 
 #budget-wheel .wheel-numbers {
@@ -32,6 +32,12 @@
   transition: stroke-dashoffset 0.35s;
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+}
+
+@media only screen and (max-width: 1500px) {
+  #budget-wheel {
+    margin: -90px 0 0 70px;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
