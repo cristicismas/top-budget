@@ -26,9 +26,4 @@
   #currency select {
     font-size: 20px;
   }
-
-  #currency .select-icon svg {
-    top: 5px;
-    right: 10px;
-  }
 }
