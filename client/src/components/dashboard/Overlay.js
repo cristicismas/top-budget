@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import './Overlay.css';
 
 const useOutsideClickDetector = (ref, closeOverlay) => {
@@ -19,6 +20,8 @@ const useOutsideClickDetector = (ref, closeOverlay) => {
   });
 };
 
+const modalRoot = document.getElementById('modal-root');
+
 const Overlay = props => {
   const overlayRef = useRef(null);
   useOutsideClickDetector(overlayRef, props.closeOverlay);
@@ -26,13 +29,14 @@ const Overlay = props => {
   // When component mounts, disable scrolling on 'body'
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+
     return () => {
       // When component unmounts, enable scrolling.
       document.body.style.overflow = 'auto';
     };
   });
 
-  return (
+  return createPortal(
     <div className="overlay-container">
       <div className="overlay" ref={overlayRef}>
         <button type="button" className="close-overlay-btn" onClick={() => props.closeOverlay()}>
@@ -40,7 +44,8 @@ const Overlay = props => {
         </button>
         {props.children}
       </div>
-    </div>
+    </div>,
+    modalRoot
   );
 };
 
