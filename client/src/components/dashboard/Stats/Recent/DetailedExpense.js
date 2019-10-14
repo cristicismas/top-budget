@@ -22,27 +22,6 @@ const DetailedExpense = props => {
 
   const expenseTime = moment(expense.date).format('h:mm a');
 
-  const conditionalStyles =
-    !showLocations && !showSources
-      ? {
-          details: {
-            flexWrap: 'nowrap'
-          },
-          detailsLeft: {
-            display: 'none'
-          },
-          detailsRight: {
-            marginLeft: '0',
-            width: '100%',
-            justifyContent: 'space-between'
-          }
-        }
-      : {
-          details: null,
-          detailsLeft: null,
-          detailsRight: null
-        };
-
   const currency = getCurrency(userdata);
 
   return (
@@ -51,31 +30,49 @@ const DetailedExpense = props => {
         <div className="expense-time">{expenseTime}</div>
 
         {showCategories && <ExpenseField field={category} />}
-      </div>
 
-      <div className="expense-details flex-group" style={conditionalStyles.details}>
-        <div className="details-left flex-group" style={conditionalStyles.detailsLeft}>
-          {showLocations && <ExpenseField field={location} />}
-
-          {showLocations && showSources ? <div>/</div> : null}
-
-          {showSources && <ExpenseField field={source} />}
-        </div>
-
-        <div className="details-right flex-group" style={conditionalStyles.detailsRight}>
-          <div className="amount">
-            {currency} {expense.value}
+        {!(showLocations || showSources) ? (
+          <div className="details-right flex-group">
+            <div className="amount">
+              {currency} {expense.value}
+            </div>
+            <button
+              className="delete-expense"
+              onClick={e => {
+                e.stopPropagation();
+                props.deleteExpense(expense.id);
+              }}>
+              ✕
+            </button>
           </div>
-          <button
-            className="delete-expense"
-            onClick={e => {
-              e.stopPropagation();
-              props.deleteExpense(expense.id);
-            }}>
-            ✕
-          </button>
-        </div>
+        ) : null}
       </div>
+
+      {showLocations || showSources ? (
+        <div className="expense-details flex-group">
+          <div className="details-left flex-group">
+            {showLocations && <ExpenseField field={location} />}
+
+            {showLocations && showSources ? <div>/</div> : null}
+
+            {showSources && <ExpenseField field={source} />}
+          </div>
+
+          <div className="details-right flex-group">
+            <div className="amount">
+              {currency} {expense.value}
+            </div>
+            <button
+              className="delete-expense"
+              onClick={e => {
+                e.stopPropagation();
+                props.deleteExpense(expense.id);
+              }}>
+              ✕
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

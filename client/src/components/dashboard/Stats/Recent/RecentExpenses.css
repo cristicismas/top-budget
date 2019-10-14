@@ -60,13 +60,13 @@
   font-size: 16px;
 }
 
-#recent-expenses .expense-details .details-right {
+#recent-expenses .details-right {
   margin-left: 55px;
   font-size: 20px;
   flex-wrap: nowrap;
 }
 
-#recent-expenses .expense-details .details-right .delete-expense {
+#recent-expenses .details-right .delete-expense {
   background-color: transparent;
   border: none;
   color: #eee;
@@ -79,7 +79,7 @@
   transform: scale(1.4);
 }
 
-#recent-expenses .expense-details .details-right .delete-expense:hover {
+#recent-expenses .details-right .delete-expense:hover {
   opacity: 1;
   color: #ee3636;
 }
