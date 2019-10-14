@@ -67,7 +67,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
-CORS_ORIGIN_WHITELIST = os.getenv('ALLOWED_HOSTS').split(', ')
+CORS_ORIGIN_WHITELIST = os.getenv('CORS_ORIGIN_WHITELIST').split(', ')
 
 ROOT_URLCONF = 'topbudget.urls'
 
