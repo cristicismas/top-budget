@@ -53,3 +53,22 @@
   color: #775cf0;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
+
+@media only screen and (max-width: 1000px) {
+  #auth #auth-form {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #auth #auth-form {
+    width: 95%;
+    padding: 60px 30px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #auth-form .form-group {
+    margin: 20px 10px;
+  }
+}
