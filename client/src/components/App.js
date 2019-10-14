@@ -29,7 +29,17 @@ class App extends Component {
   }
 
   render() {
-    const { messages, clearMessages, user } = this.props;
+    const {
+      messages,
+      clearMessages,
+      user,
+      getCategories,
+      getLocations,
+      getSources,
+      getExpenses,
+      addMessage
+    } = this.props;
+
     const { loading, isAuthenticated } = user;
 
     if (loading) {
@@ -55,7 +65,18 @@ class App extends Component {
             </Route>
 
             <Route path="/dashboard">
-              {isAuthenticated === false ? <Redirect to="/" /> : <Dashboard {...this.props} />}
+              {isAuthenticated === false ? (
+                <Redirect to="/" />
+              ) : (
+                <Dashboard
+                  user={user}
+                  getCategories={getCategories}
+                  getLocations={getLocations}
+                  getSources={getSources}
+                  getExpenses={getExpenses}
+                  addMessage={addMessage}
+                />
+              )}
             </Route>
 
             <Route path="*">

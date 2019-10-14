@@ -71,6 +71,7 @@ export class Settings extends Component {
 
   render() {
     const { currency, budget, primaryField, showCategories, showLocations, showSources } = this.state;
+    const { categories, locations, sources } = this.props;
 
     return (
       <section id="settings">
@@ -100,7 +101,9 @@ export class Settings extends Component {
           showCategories={showCategories}
           showLocations={showLocations}
           showSources={showSources}
-          {...this.props}
+          categories={categories}
+          locations={locations}
+          sources={sources}
         />
       </section>
     );
