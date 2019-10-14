@@ -1,6 +1,7 @@
 import React from 'react';
 import { handleChangeFilter } from '../../../../utils/summary';
 import FILTERS from '../../../../constants/filters';
+import './FilterButtons.css';
 
 const FilterButtons = ({ filter, changeFilter }) => {
   const filterButtons = Object.keys(FILTERS).map(filterName => (
@@ -12,7 +13,7 @@ const FilterButtons = ({ filter, changeFilter }) => {
     </button>
   ));
 
-  return <ul className="filters">{filterButtons}</ul>;
+  return <ul id="filters">{filterButtons}</ul>;
 };
 
 export default FilterButtons;

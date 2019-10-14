@@ -21,54 +21,9 @@
   margin-left: 20px;
 }
 
-#settings #currency,
-#settings #primary-field {
-  padding-bottom: 20px;
-}
-
-#settings #currency select,
-#settings #primary-field select {
-  background-color: transparent;
-  color: #eee;
-  padding: 10px 25px 10px 5px;
-  border: none;
-  border-bottom: 2px solid #3d1eca;
-  font-size: 25px;
-  appearance: none;
-  cursor: pointer;
-}
-
-#settings #currency select option,
-#settings #primary-field select option {
-  background-color: #222;
-}
-
 #settings .select-icon {
   position: relative;
   z-index: -1;
-}
-
-#settings #currency .select-icon {
-  bottom: 40px;
-  left: 90px;
-}
-
-#settings #primary-field .select-icon {
-  bottom: 40px;
-  left: 160px;
-}
-
-#settings #budget input {
-  padding: 5px 10px;
-  color: #eee;
-  display: block;
-  font-size: 20px;
-  background-color: #15131a;
-  border: 1px solid #2c2c3a;
-}
-
-#settings #budget input:focus {
-  border: 1px solid #3d1eca;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -76,25 +31,10 @@
     margin: 50px;
   }
 
-  #settings #currency select,
-  #settings #primary-field select {
-    font-size: 20px;
-  }
-
   #settings .select-icon svg {
     position: relative;
     width: 20px;
     height: 20px;
-  }
-
-  #settings #currency .select-icon svg {
-    top: 5px;
-    right: 10px;
-  }
-
-  #settings #primary-field .select-icon svg {
-    top: 5px;
-    right: 23px;
   }
 
   #settings .settings-group .sub-title {
@@ -105,9 +45,5 @@
 @media only screen and (max-width: 600px) {
   #settings {
     margin: 50px 20px;
-  }
-
-  #settings #budget input {
-    font-size: 18px;
   }
 }

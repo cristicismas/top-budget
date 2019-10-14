@@ -24,66 +24,6 @@
   margin-right: 110px;
 }
 
-#recent-expenses .detailed-expenses {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#recent-expenses .detailed-expense {
-  margin: 10px 20px;
-  cursor: pointer;
-  transition: all 0.2s;
-  padding: 10px;
-  border-left: 4px solid #2f2f5c;
-}
-
-#recent-expenses .detailed-expense:hover {
-  background-color: #1a1a22;
-}
-
-#recent-expenses .expense-time {
-  margin-right: 20px;
-  min-width: 70px;
-}
-
-#recent-expenses .expense-details {
-  margin-top: 15px;
-  font-size: 21px;
-  justify-content: space-between;
-}
-
-#recent-expenses .expense-details .details-left .expense-field {
-  background-color: #23232e;
-  padding: 4px 9px;
-  border-radius: 2px;
-  margin: 0 5px;
-  font-size: 16px;
-}
-
-#recent-expenses .details-right {
-  margin-left: 55px;
-  font-size: 20px;
-  flex-wrap: nowrap;
-}
-
-#recent-expenses .details-right .delete-expense {
-  background-color: transparent;
-  border: none;
-  color: #eee;
-  padding: 0;
-  margin-left: 10px;
-  font-size: 16px;
-  opacity: 0.5;
-  cursor: pointer;
-  transition: all 0.3s;
-  transform: scale(1.4);
-}
-
-#recent-expenses .details-right .delete-expense:hover {
-  opacity: 1;
-  color: #ee3636;
-}
-
 #recent-expenses #show-more {
   background-color: #23232e;
   color: #bbb;
@@ -101,19 +41,5 @@
 
   #recent-expenses .day-info {
     margin-top: 0;
-  }
-
-  #recent-expenses .detailed-expense {
-    background-color: #1a1a22;
-    width: 100%;
-    margin: 10px 10px 10px 0;
-  }
-
-  #recent-expenses .expense-details .details-right {
-    margin: 5px 5px 0 10px;
-  }
-
-  #recent-expenses .expense-details .details-right .amount {
-    margin-right: 5px;
   }
 }

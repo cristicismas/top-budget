@@ -1,4 +1,5 @@
 import React from 'react';
+import './Budget.css';
 
 const Budget = props => (
   <div id="budget" className="settings-group">

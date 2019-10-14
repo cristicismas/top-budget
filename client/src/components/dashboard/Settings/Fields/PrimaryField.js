@@ -2,6 +2,7 @@ import React from 'react';
 import FIELDS from '../../../../constants/fields';
 import ICONS from '../../../../constants/icons';
 import Icon from '../../../general/Icon';
+import './PrimaryField.css';
 
 import { capitalize } from '../../../../utils/strings';
 

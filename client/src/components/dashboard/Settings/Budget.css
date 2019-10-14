@@ -1,0 +1,18 @@
+#budget input {
+  padding: 5px 10px;
+  color: #eee;
+  display: block;
+  font-size: 20px;
+  background-color: #15131a;
+  border: 1px solid #2c2c3a;
+}
+
+#budget input:focus {
+  border: 1px solid #3d1eca;
+}
+
+@media only screen and (max-width: 600px) {
+  #budget input {
+    font-size: 18px;
+  }
+}

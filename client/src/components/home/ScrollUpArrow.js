@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import ICONS from '../../constants/icons';
 import Icon from '../general/Icon';
+import './ScrollUpArrow.css';
 
 const isElementInViewport = (element, offset) => {
   var rect = element.getBoundingClientRect();
