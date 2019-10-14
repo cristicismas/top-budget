@@ -7,12 +7,12 @@ import ScrollUpArrow from './ScrollUpArrow';
 
 const Home = () => {
   return (
-    <div id="home">
+    <section id="home">
       <Hero />
       <Features />
 
       <ScrollUpArrow />
-    </div>
+    </section>
   );
 };
 

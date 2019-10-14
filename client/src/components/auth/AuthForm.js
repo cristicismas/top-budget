@@ -37,7 +37,7 @@ const AuthForm = props => {
   const formAction = props.type === 'login' ? 'Log In' : 'Sign Up';
 
   return (
-    <div id="auth">
+    <section id="auth">
       <h2 id="form-title">{formAction}</h2>
 
       <form id="auth-form" onSubmit={handleSubmit}>
@@ -91,7 +91,7 @@ const AuthForm = props => {
           {formAction}
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

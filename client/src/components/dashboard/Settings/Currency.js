@@ -23,9 +23,9 @@ const Currency = props => {
         {currencyOptions}
       </select>
 
-      <div className="select-icon">
+      <span className="select-icon">
         <Icon icon={ICONS.ARROW} size={24} fill="#eee" />
-      </div>
+      </span>
     </div>
   );
 };

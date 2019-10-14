@@ -28,15 +28,15 @@ const DetailedExpense = props => {
   return (
     <div className="detailed-expense" onClick={props.onClick}>
       <div className="expense-info flex-group">
-        <div className="expense-time">{expenseTime}</div>
+        <span className="expense-time">{expenseTime}</span>
 
         {showCategories && <ExpenseField field={category} />}
 
         {!(showLocations || showSources) ? (
           <div className="details-right flex-group">
-            <div className="amount">
+            <span className="amount">
               {currency} {expense.value}
-            </div>
+            </span>
             <button
               className="delete-expense"
               onClick={e => {
@@ -54,15 +54,15 @@ const DetailedExpense = props => {
           <div className="details-left flex-group">
             {showLocations && <ExpenseField field={location} />}
 
-            {showLocations && showSources ? <div>/</div> : null}
+            {showLocations && showSources ? <span>/</span> : null}
 
             {showSources && <ExpenseField field={source} />}
           </div>
 
           <div className="details-right flex-group">
-            <div className="amount">
+            <span className="amount">
               {currency} {expense.value}
-            </div>
+            </span>
             <button
               className="delete-expense"
               onClick={e => {

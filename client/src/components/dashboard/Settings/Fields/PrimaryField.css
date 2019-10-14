@@ -18,8 +18,8 @@
 }
 
 #primary-field .select-icon {
-  bottom: 40px;
-  left: 160px;
+  right: 20px;
+  top: 5px;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -27,7 +27,7 @@
     font-size: 20px;
   }
 
-  #primary-field .select-icon svg {
+  #primary-field .select-icon {
     top: 5px;
     right: 23px;
   }

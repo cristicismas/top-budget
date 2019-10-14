@@ -18,8 +18,8 @@
 }
 
 #currency .select-icon {
-  bottom: 40px;
-  left: 90px;
+  right: 25px;
+  top: 5px;
 }
 
 @media only screen and (max-width: 1000px) {
