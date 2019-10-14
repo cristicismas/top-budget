@@ -73,7 +73,7 @@
 
 @media only screen and (max-width: 700px) {
   #edit-expense-modal {
-    width: calc(80vw - 40px);
+    width: calc(85vw - 40px);
     padding: 40px;
   }
 
@@ -82,7 +82,12 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
+  #edit-expense-modal {
+    width: 90vw;
+    padding: 40px 20px;
+  }
+
   #edit-expense-modal #value-input {
     width: 90%;
   }
