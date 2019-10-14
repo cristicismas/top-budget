@@ -8,7 +8,7 @@ const Budget = props => (
       type="number"
       name="budget-input"
       id="budget-input"
-      defaultValue={props.budget}
+      value={props.budget}
       onChange={e => props.changeBudget(e.target.value)}
     />
   </div>

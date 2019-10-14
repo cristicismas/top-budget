@@ -23,6 +23,19 @@ export class Settings extends Component {
     this.state = { ...userdata };
   }
 
+  componentDidUpdate(prevProps) {
+    // Stringify so you can compare the objects.
+    // Doesn't work if properties aren't in order.
+    const prevUserdata = JSON.stringify(prevProps.user.userdata);
+    const currentUserdata = JSON.stringify(this.props.user.userdata);
+
+    if (prevUserdata !== currentUserdata) {
+      const { userdata } = this.props.user;
+
+      this.setState({ ...userdata });
+    }
+  }
+
   toggleField(field) {
     const toggledValue = !this.state[field];
     const primaryField = this.getNewPrimaryField(field, toggledValue);

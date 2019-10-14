@@ -5,7 +5,7 @@ const Toggle = props => {
   return (
     <div className="toggle">
       <label>
-        <input type="checkbox" onChange={() => props.handleChange()} defaultChecked={props.toggled} />
+        <input type="checkbox" onChange={() => props.handleChange()} checked={props.toggled} />
 
         <i />
       </label>

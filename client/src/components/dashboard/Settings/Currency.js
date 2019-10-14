@@ -18,7 +18,7 @@ const Currency = props => {
       <select
         name="currency"
         id="currency"
-        defaultValue={props.currency}
+        value={props.currency}
         onChange={e => props.changeCurrency(e.target.value)}>
         {currencyOptions}
       </select>
