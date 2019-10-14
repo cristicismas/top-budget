@@ -78,7 +78,7 @@ export const register = credentials => (dispatch, getState) => {
       dispatch(addMessage('Welcome!', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch(addMessage(err, MESSAGE_TYPES.ERROR));
+      dispatch(addMessage('That email / username has already been taken, or your email is invalid.', MESSAGE_TYPES.ERROR));
     });
 };
 
