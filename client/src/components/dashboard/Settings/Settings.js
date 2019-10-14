@@ -114,6 +114,9 @@ export class Settings extends Component {
           showCategories={showCategories}
           showLocations={showLocations}
           showSources={showSources}
+          deleteCategory={id => this.props.deleteCategory(id)}
+          deleteLocation={id => this.props.deleteLocation(id)}
+          deleteSource={id => this.props.deleteSource(id)}
           categories={categories}
           locations={locations}
           sources={sources}
