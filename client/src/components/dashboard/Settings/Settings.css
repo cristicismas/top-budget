@@ -1,5 +1,6 @@
 #settings {
-  margin: 50px 100px;
+  margin: 50px auto;
+  width: 40%;
   overflow-x: hidden;
 }
 
@@ -26,9 +27,22 @@
   z-index: -1;
 }
 
+@media only screen and (max-width: 1900px) {
+  #settings {
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  #settings {
+    width: 85%;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
   #settings {
     margin: 50px;
+    width: auto;
   }
 
   #settings .select-icon svg {
@@ -45,5 +59,11 @@
 @media only screen and (max-width: 600px) {
   #settings {
     margin: 50px 20px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #settings .settings-group .sub-title + * {
+    margin-left: 10px;
   }
 }
