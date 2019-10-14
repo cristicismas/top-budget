@@ -47,7 +47,7 @@ export const updateUserSettings = newSettings => (dispatch, getState) => {
 export const login = credentials => (dispatch, getState) => {
   const reqBody = JSON.stringify({ ...credentials });
 
-  apiCall('post', 'auth/login', reqBody, tokenConfig(getState))
+  return apiCall('post', 'auth/login', reqBody, tokenConfig(getState))
     .then(res => {
       localStorage.setItem('token', res.token);
 
@@ -66,7 +66,7 @@ export const login = credentials => (dispatch, getState) => {
 export const register = credentials => (dispatch, getState) => {
   const reqBody = JSON.stringify({ ...credentials });
 
-  apiCall('post', 'auth/register', reqBody, tokenConfig(getState))
+  return apiCall('post', 'auth/register', reqBody, tokenConfig(getState))
     .then(res => {
       localStorage.setItem('token', res.token);
 

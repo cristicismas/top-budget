@@ -14,19 +14,24 @@ const AuthForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    const { login, register } = props;
+
     if (props.type === 'signup') {
-      props.register({
+      register({
         username,
         email,
         password
+      }).then(() => {
+        history.push('/dashboard');
       });
     } else {
-      props.login({
+      login({
         username,
         password
+      }).then(() => {
+        history.push('/dashboard');
       });
     }
-    history.push('/dashboard');
   };
 
   const formAction = props.type === 'login' ? 'Log In' : 'Sign Up';
