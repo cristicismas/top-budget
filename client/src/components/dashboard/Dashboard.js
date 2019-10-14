@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link, Redirect, Route } from 'react-router-dom';
 import './Dashboard.css';
@@ -7,12 +6,9 @@ import './Dashboard.css';
 import Settings from './Settings/Settings';
 import Stats from './Stats/Stats';
 import AddExpenseForm from './AddExpense/AddExpenseForm';
-import Message from '../general/Message';
-
-import { addMessage, clearMessages } from '../../store/actions/messages';
 
 const Dashboard = props => {
-  const { getExpenses, getCategories, getLocations, getSources, user, messages } = props;
+  const { getExpenses, getCategories, getLocations, getSources, user } = props;
 
   const { pathname } = useLocation();
   const token = localStorage.getItem('token');
@@ -44,16 +40,6 @@ const Dashboard = props => {
           </Link>
         </nav>
 
-        {messages.map((message, index) => (
-          <Message
-            key={`message-${index}`}
-            message={message.text}
-            type={message.type}
-            shouldFadeOut={message.shouldFadeOut}
-            clearMessages={props.clearMessages}
-          />
-        ))}
-
         <Route exact path="/dashboard">
           <AddExpenseForm addMessage={props.addMessage} user={user} />
         </Route>
@@ -72,11 +58,4 @@ const Dashboard = props => {
   }
 };
 
-const mapStateToProps = state => ({
-  messages: state.messages
-});
-
-export default connect(
-  mapStateToProps,
-  { addMessage, clearMessages }
-)(Dashboard);
+export default Dashboard;

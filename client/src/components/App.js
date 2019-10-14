@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import 'aos/dist/aos.css';
 
 import Loading from './general/Loading';
+import Message from './general/Message';
 import Header from './Header';
 import NotFound from './NotFound';
 import Home from './home/Home';
@@ -16,6 +17,8 @@ import { getCategories } from '../store/actions/categories';
 import { getLocations } from '../store/actions/locations';
 import { getSources } from '../store/actions/sources';
 
+import { addMessage, clearMessages } from '../store/actions/messages';
+
 import { loadUser } from '../store/actions/user';
 
 class App extends Component {
@@ -26,7 +29,8 @@ class App extends Component {
   }
 
   render() {
-    const { loading, isAuthenticated } = this.props.user;
+    const { messages, clearMessages, user } = this.props;
+    const { loading, isAuthenticated } = user;
 
     if (loading) {
       return <Loading />;
@@ -58,6 +62,16 @@ class App extends Component {
               <NotFound />
             </Route>
           </Switch>
+
+          {messages.map((message, index) => (
+            <Message
+              key={`message-${index}`}
+              message={message.text}
+              type={message.type}
+              shouldFadeOut={message.shouldFadeOut}
+              clearMessages={clearMessages}
+            />
+          ))}
         </div>
       </Router>
     );
@@ -65,7 +79,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  messages: state.messages
 });
 
 const mapDispatchToProps = {
@@ -73,6 +88,8 @@ const mapDispatchToProps = {
   getCategories,
   getLocations,
   getSources,
+  addMessage,
+  clearMessages,
   loadUser
 };
 
