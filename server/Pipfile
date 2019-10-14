@@ -11,6 +11,10 @@ djangorestframework = "*"
 django-rest-knox = "*"
 django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
+python-dotenv = "*"
+dj-database-url = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.7"
