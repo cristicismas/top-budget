@@ -55,5 +55,11 @@
   .overlay {
     width: 100vw;
     height: 100vh;
+    padding: 50px 0;
+  }
+
+  .overlay .close-overlay-btn {
+    top: 50px;
+    right: 25px;
   }
 }
