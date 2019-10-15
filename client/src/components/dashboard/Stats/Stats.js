@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import FILTERS from '../../../constants/filters';
 import './Stats.css';
 
 import ExpenseSummary from './Summary/ExpenseSummary';
@@ -15,7 +14,7 @@ const Stats = props => {
   const { expenses, categories, locations, sources, user, deleteExpense, editExpense } = props;
   const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : false;
 
-  const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : FILTERS.WEEK;
+  const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : 'WEEK';
   const [filter, changeFilter] = useState(lastFilter);
 
   const areAnyFieldsEnabled = showCategories || showLocations || showSources;
