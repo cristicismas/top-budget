@@ -24,10 +24,6 @@ export class AddExpenseForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    document.getElementById('value-input').focus();
-  }
-
   handleOptionClick(type, id) {
     const selectedOption = document.getElementById(`${type}-${id}`);
 
@@ -64,8 +60,6 @@ export class AddExpenseForm extends Component {
 
       currentOption.classList.remove('selected');
     }
-
-    document.getElementById('value-input').focus();
   }
 
   handleAddField(type, name, color) {
