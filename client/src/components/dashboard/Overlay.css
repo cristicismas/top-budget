@@ -59,9 +59,10 @@
   }
 
   .overlay .close-overlay-btn {
-    top: 60px;
+    top: 70px;
     right: 25px;
     width: 35px;
     height: 35px;
+    font-size: 25px;
   }
 }
