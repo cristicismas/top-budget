@@ -23,6 +23,8 @@ const useOutsideClickDetector = (ref, closeOverlay) => {
 const modalRoot = document.getElementById('modal-root');
 
 const Overlay = props => {
+  const { hideCloseOverlayButton } = props;
+
   const overlayRef = useRef(null);
   useOutsideClickDetector(overlayRef, props.closeOverlay);
 
@@ -36,9 +38,13 @@ const Overlay = props => {
     };
   });
 
+  const overlayStyle = {
+    backgroundColor: props.isTransparent ? 'transparent' : '#1a1a24'
+  };
+
   return createPortal(
     <div className="overlay-container" style={{ height: window.innerHeight }}>
-      <div className="overlay" ref={overlayRef}>
+      <div className="overlay" style={overlayStyle} ref={hideCloseOverlayButton ? null : overlayRef}>
         {!props.hideCloseOverlayButton && (
           <button type="button" className="close-overlay-btn" onClick={() => props.closeOverlay()}>
             ✕

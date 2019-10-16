@@ -93,8 +93,8 @@ class App extends Component {
             />
           ))}
 
-          {isLoading && (
-            <Overlay hideCloseOverlayButton={true}>
+          {true && (
+            <Overlay isTransparent={true} hideCloseOverlayButton={true}>
               <Loading />
             </Overlay>
           )}
