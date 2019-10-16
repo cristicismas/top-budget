@@ -57,6 +57,8 @@
     width: 100vw;
     height: 100vh;
     padding: 0;
+    transform: translate(-50%, -50%) scale(1);
+    animation: none;
   }
 
   .overlay .close-overlay-btn {
