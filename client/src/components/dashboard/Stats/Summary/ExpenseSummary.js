@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import FIELDS from '../../../../constants/fields';
 import { getCurrency } from '../../../../utils/currency';
 import { calculateBarWidth, calculateFieldValue } from '../../../../utils/summary';
@@ -42,11 +42,18 @@ const ExpenseSummary = props => {
   ];
 
   // Reverse sort fields by value
-  const sortedFields = fieldsAndNotDefined.sort((a, b) => {
-    return calculateFieldValue(b, fieldType, expenses, filter) - calculateFieldValue(a, fieldType, expenses, filter);
-  });
+  const sortedFields = useMemo(() => {
+    return fieldsAndNotDefined.sort((a, b) => {
+      return calculateFieldValue(b, fieldType, expenses, filter) - calculateFieldValue(a, fieldType, expenses, filter);
+    });
+  }, [fieldsAndNotDefined, fieldType, expenses, filter]);
 
-  const topFieldValue = calculateFieldValue(sortedFields[0], fieldType, expenses, filter);
+  const topFieldValue = useMemo(() => calculateFieldValue(sortedFields[0], fieldType, expenses, filter), [
+    sortedFields,
+    fieldType,
+    expenses,
+    filter
+  ]);
 
   const fieldGroups = sortedFields.map(field => {
     const fieldValue = calculateFieldValue(field, fieldType, expenses, filter);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import FIELDS from '../../../constants/fields';
 import { Bar } from 'react-chartjs-2';
 import './Chart.css';
@@ -30,7 +30,8 @@ const Chart = props => {
       fieldType = undefined;
   }
 
-  const datasets = getDatasets(fields, fieldType, expenses);
+  const datasets = useMemo(() => getDatasets(fields, fieldType, expenses), [fields, fieldType, expenses]);
+
   const labels = getLastSevenDays().map(day => day.format('dddd'));
 
   let chartData = {
