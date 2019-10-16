@@ -3,7 +3,9 @@ export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
-export const USER_LOADING = 'USER_LOADING';
+export const APP_LOADING = 'APP_LOADING';
+export const APP_LOADED = 'APP_LOADED';
+
 export const USER_LOADED = 'USER_LOADED';
 export const USER_UPDATED = 'USER_UPDATED';
 

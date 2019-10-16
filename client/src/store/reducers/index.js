@@ -7,6 +7,7 @@ import locations from './locations';
 import sources from './sources';
 import user from './user';
 import messages from './messages';
+import app from './app';
 
 const allReducers = combineReducers({
   expenses,
@@ -14,7 +15,8 @@ const allReducers = combineReducers({
   locations,
   sources,
   user,
-  messages
+  messages,
+  app
 });
 
 export default (state, action) => {

@@ -1,11 +1,22 @@
-import { USER_LOADING, USER_LOADED, USER_UPDATED, AUTH_SUCCESS, AUTH_FAIL, LOGOUT_SUCCESS } from './actionTypes';
+import {
+  USER_LOADED,
+  USER_UPDATED,
+  AUTH_SUCCESS,
+  AUTH_FAIL,
+  LOGOUT_SUCCESS,
+  APP_LOADING,
+  APP_LOADED
+} from './actionTypes';
+
 import MESSAGE_TYPES from '../../constants/messageTypes';
 
 import { addMessage } from './messages';
 import { apiCall } from '../../utils/api';
 
 export const loadUser = () => (dispatch, getState) => {
-  dispatch({ type: USER_LOADING });
+  dispatch({
+    type: APP_LOADING
+  });
 
   apiCall('get', 'user', tokenConfig(getState))
     .then(res => {
@@ -13,8 +24,16 @@ export const loadUser = () => (dispatch, getState) => {
         type: USER_LOADED,
         payload: res[0]
       });
+
+      dispatch({
+        type: APP_LOADED
+      });
     })
     .catch(err => {
+      dispatch({
+        type: APP_LOADED
+      });
+
       dispatch({
         type: AUTH_FAIL,
         payload: err
@@ -45,6 +64,10 @@ export const updateUserSettings = newSettings => (dispatch, getState) => {
 };
 
 export const login = credentials => (dispatch, getState) => {
+  dispatch({
+    type: APP_LOADING
+  });
+
   const reqBody = JSON.stringify({ ...credentials });
 
   return apiCall('post', 'auth/login', reqBody, tokenConfig(getState))
@@ -56,14 +79,26 @@ export const login = credentials => (dispatch, getState) => {
         payload: res
       });
 
+      dispatch({
+        type: APP_LOADED
+      });
+
       dispatch(addMessage('Welcome back!', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
+      dispatch({
+        type: APP_LOADED
+      });
+
       dispatch(addMessage('Password or username are wrong.', MESSAGE_TYPES.ERROR));
     });
 };
 
 export const register = credentials => (dispatch, getState) => {
+  dispatch({
+    type: APP_LOADING
+  });
+
   const reqBody = JSON.stringify({ ...credentials });
 
   return apiCall('post', 'auth/register', reqBody, tokenConfig(getState))
@@ -75,10 +110,20 @@ export const register = credentials => (dispatch, getState) => {
         payload: res
       });
 
+      dispatch({
+        type: APP_LOADED
+      });
+
       dispatch(addMessage('Welcome!', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
-      dispatch(addMessage('That email / username has already been taken, or your email is invalid.', MESSAGE_TYPES.ERROR));
+      dispatch({
+        type: APP_LOADED
+      });
+
+      dispatch(
+        addMessage('That email / username has already been taken, or your email is invalid.', MESSAGE_TYPES.ERROR)
+      );
     });
 };
 

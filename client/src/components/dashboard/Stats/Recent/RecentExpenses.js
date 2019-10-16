@@ -4,7 +4,7 @@ import './RecentExpenses.css';
 
 import DetailedExpense from './DetailedExpense';
 import EditExpenseField from './EditExpenseModal';
-import Overlay from '../../Overlay';
+import Overlay from '../../../general/Overlay';
 
 const RecentExpenses = props => {
   const { expenses, categories, sources, locations, userdata } = props;

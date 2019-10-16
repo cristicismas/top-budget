@@ -1,4 +1,4 @@
-import { USER_LOADING, USER_LOADED, LOGOUT_SUCCESS, AUTH_SUCCESS, AUTH_FAIL, USER_UPDATED } from '../actions/actionTypes';
+import { USER_LOADED, LOGOUT_SUCCESS, AUTH_SUCCESS, AUTH_FAIL, USER_UPDATED } from '../actions/actionTypes';
 import FIELDS from '../../constants/fields';
 
 const initialState = {
@@ -17,11 +17,6 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case USER_LOADING:
-      return {
-        ...state,
-        isLoading: true
-      };
     case USER_LOADED:
       return {
         ...state,

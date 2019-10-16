@@ -20,6 +20,7 @@ import { getSources } from '../store/actions/sources';
 import { addMessage, clearMessages } from '../store/actions/messages';
 
 import { loadUser } from '../store/actions/user';
+import Overlay from './general/Overlay';
 
 class App extends Component {
   componentDidMount() {
@@ -30,6 +31,7 @@ class App extends Component {
 
   render() {
     const {
+      app,
       messages,
       clearMessages,
       user,
@@ -40,11 +42,8 @@ class App extends Component {
       addMessage
     } = this.props;
 
-    const { loading, isAuthenticated } = user;
-
-    if (loading) {
-      return <Loading />;
-    }
+    const { isAuthenticated } = user;
+    const { isLoading } = app;
 
     return (
       <Router>
@@ -93,6 +92,12 @@ class App extends Component {
               clearMessages={clearMessages}
             />
           ))}
+
+          {isLoading && (
+            <Overlay hideCloseOverlayButton={true}>
+              <Loading />
+            </Overlay>
+          )}
         </div>
       </Router>
     );
@@ -101,6 +106,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
+  app: state.app,
   messages: state.messages
 });
 
