@@ -60,6 +60,7 @@
   background-color: transparent;
   padding: 50px;
   cursor: pointer;
+  outline: none;
   border: none;
   margin: auto;
   position: absolute;

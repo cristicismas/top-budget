@@ -1,6 +1,7 @@
 #scroll-up-btn {
   background-color: transparent;
   border: none;
+  outline: none;
   padding: 40px;
   position: fixed;
   right: 10px;
