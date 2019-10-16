@@ -1,14 +1,13 @@
-import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE, APP_LOADING, APP_LOADED } from './actionTypes';
+import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE } from './actionTypes';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
+import { beginLoading, finishLoading } from './app';
 import { addMessage } from './messages';
 import { tokenConfig } from './user';
 
 export const getSources = () => (dispatch, getState) => {
-  dispatch({
-    type: APP_LOADING
-  });
+  dispatch(beginLoading());
 
   apiCall('get', 'sources', tokenConfig(getState))
     .then(res => {
@@ -17,14 +16,10 @@ export const getSources = () => (dispatch, getState) => {
         payload: res
       });
 
-      dispatch({
-        type: APP_LOADED
-      });
+      dispatch(finishLoading());
     })
     .catch(err => {
-      dispatch({
-        type: APP_LOADED
-      });
+      dispatch(finishLoading());
 
       dispatch(addMessage('There was a problem getting the source.', MESSAGE_TYPES.ERROR));
     });

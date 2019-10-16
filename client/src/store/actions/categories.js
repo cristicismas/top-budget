@@ -1,14 +1,13 @@
-import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY, APP_LOADING, APP_LOADED } from './actionTypes';
+import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY } from './actionTypes';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
+import { beginLoading, finishLoading } from './app';
 import { addMessage } from './messages';
 import { tokenConfig } from './user';
 
 export const getCategories = () => (dispatch, getState) => {
-  dispatch({
-    type: APP_LOADING
-  });
+  dispatch(beginLoading());
 
   apiCall('get', 'categories', tokenConfig(getState))
     .then(res => {
@@ -17,14 +16,10 @@ export const getCategories = () => (dispatch, getState) => {
         payload: res
       });
 
-      dispatch({
-        type: APP_LOADED
-      });
+      dispatch(finishLoading());
     })
     .catch(err => {
-      dispatch({
-        type: APP_LOADED
-      });
+      dispatch(finishLoading());
 
       dispatch(addMessage('There was a problem getting the categories.', MESSAGE_TYPES.ERROR));
     });

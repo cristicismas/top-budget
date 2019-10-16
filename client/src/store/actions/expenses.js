@@ -1,14 +1,13 @@
-import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, EDIT_EXPENSE, APP_LOADING, APP_LOADED } from './actionTypes';
+import { GET_EXPENSES, DELETE_EXPENSE, ADD_EXPENSE, EDIT_EXPENSE } from './actionTypes';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
+import { beginLoading, finishLoading } from './app';
 import { addMessage } from './messages';
 import { tokenConfig } from './user';
 
 export const getExpenses = () => (dispatch, getState) => {
-  dispatch({
-    type: APP_LOADING
-  });
+  dispatch(beginLoading());
 
   apiCall('get', 'expenses', tokenConfig(getState))
     .then(res => {
@@ -24,14 +23,10 @@ export const getExpenses = () => (dispatch, getState) => {
         payload: expenses
       });
 
-      dispatch({
-        type: APP_LOADED
-      });
+      dispatch(finishLoading());
     })
     .catch(err => {
-      dispatch({
-        type: APP_LOADED
-      });
+      dispatch(finishLoading());
 
       dispatch(addMessage('There was an error getting the expenses.', MESSAGE_TYPES.ERROR));
     });
