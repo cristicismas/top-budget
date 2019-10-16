@@ -37,7 +37,7 @@ const Overlay = props => {
   });
 
   return createPortal(
-    <div className="overlay-container">
+    <div className="overlay-container" style={{ height: window.innerHeight }}>
       <div className="overlay" ref={overlayRef}>
         <button type="button" className="close-overlay-btn" onClick={() => props.closeOverlay()}>
           ✕
