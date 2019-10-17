@@ -6,20 +6,14 @@ import { addMessage } from './messages';
 import { apiCall } from '../../utils/api';
 
 export const loadUser = () => (dispatch, getState) => {
-  dispatch(beginLoading());
-
   apiCall('get', 'user', tokenConfig(getState))
     .then(res => {
       dispatch({
         type: USER_LOADED,
         payload: res[0]
       });
-
-      dispatch(finishLoading());
     })
     .catch(err => {
-      dispatch(finishLoading());
-
       dispatch({
         type: AUTH_FAIL,
         payload: err
