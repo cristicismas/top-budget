@@ -32,7 +32,8 @@ header nav a:before {
   background-color: #eee;
 }
 
-header nav a:hover:before {
+header nav a:hover:before,
+header nav a.active:before {
   transform: scaleX(1);
 }
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../store/actions/user';
 import './Header.css';
 
 const Header = props => {
   const isAuthenticated = props.user.isAuthenticated;
+  const { pathname } = useLocation();
 
   return (
     <header>
@@ -15,13 +15,21 @@ const Header = props => {
 
       {isAuthenticated ? (
         <nav>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/settings">Settings</Link>
+          <Link className={pathname.includes('dashboard') ? 'active' : null} to="/dashboard">
+            Dashboard
+          </Link>
+          <Link className={pathname.includes('settings') ? 'active' : null} to="/settings">
+            Settings
+          </Link>
         </nav>
       ) : (
         <nav>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/login">Log In</Link>
+          <Link className={pathname.includes('signup') ? 'active' : null} to="/signup">
+            Sign Up
+          </Link>
+          <Link className={pathname.includes('login') ? 'active' : null} to="/login">
+            Log In
+          </Link>
         </nav>
       )}
     </header>
@@ -34,5 +42,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logout }
+  null
 )(Header);
