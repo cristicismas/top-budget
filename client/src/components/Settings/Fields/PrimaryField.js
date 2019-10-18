@@ -1,10 +1,10 @@
 import React from 'react';
-import FIELDS from '../../../../constants/fields';
-import ICONS from '../../../../constants/icons';
-import Icon from '../../../general/Icon';
+import FIELDS from '../../../constants/fields';
+import ICONS from '../../../constants/icons';
+import Icon from '../../general/Icon';
 import './PrimaryField.css';
 
-import { capitalize } from '../../../../utils/strings';
+import { capitalize } from '../../../utils/strings';
 
 const PrimaryField = props => {
   const currencyOptions = Object.keys(FIELDS).map(field => (

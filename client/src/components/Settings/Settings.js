@@ -7,13 +7,13 @@ import Budget from './Budget';
 import PrimaryField from './Fields/PrimaryField';
 import Fields from './Fields/Fields';
 
-import FIELDS from '../../../constants/fields';
+import FIELDS from '../../constants/fields';
 
-import { deleteCategory } from '../../../store/actions/categories';
-import { deleteLocation } from '../../../store/actions/locations';
-import { deleteSource } from '../../../store/actions/sources';
+import { deleteCategory } from '../../store/actions/categories';
+import { deleteLocation } from '../../store/actions/locations';
+import { deleteSource } from '../../store/actions/sources';
 
-import { updateUserSettings } from '../../../store/actions/user';
+import { updateUserSettings } from '../../store/actions/user';
 
 export class Settings extends Component {
   constructor(props) {
@@ -88,6 +88,8 @@ export class Settings extends Component {
 
     return (
       <section id="settings">
+        <h1 className="title">Settings</h1>
+
         <Currency
           changeCurrency={newCurrency => {
             this.setState({ currency: newCurrency }, () => this.handleSave());

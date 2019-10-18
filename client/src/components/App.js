@@ -11,6 +11,7 @@ import NotFound from './NotFound';
 import Home from './home/Home';
 import AuthForm from './auth/AuthForm';
 import Dashboard from './dashboard/Dashboard';
+import Settings from './Settings/Settings';
 
 import { getExpenses } from '../store/actions/expenses';
 import { getCategories } from '../store/actions/categories';
@@ -27,20 +28,15 @@ class App extends Component {
     AOS.init();
 
     this.props.loadUser();
+
+    this.props.getExpenses();
+    this.props.getCategories();
+    this.props.getLocations();
+    this.props.getSources();
   }
 
   render() {
-    const {
-      app,
-      messages,
-      clearMessages,
-      user,
-      getCategories,
-      getLocations,
-      getSources,
-      getExpenses,
-      addMessage
-    } = this.props;
+    const { app, messages, clearMessages, user } = this.props;
 
     const { isAuthenticated } = user;
     const { isLoading } = app;
@@ -63,19 +59,10 @@ class App extends Component {
               {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="login" />}
             </Route>
 
-            <Route path="/dashboard">
-              {isAuthenticated === false ? (
-                <Redirect to="/" />
-              ) : (
-                <Dashboard
-                  user={user}
-                  getCategories={getCategories}
-                  getLocations={getLocations}
-                  getSources={getSources}
-                  getExpenses={getExpenses}
-                  addMessage={addMessage}
-                />
-              )}
+            <Route path="/dashboard">{isAuthenticated ? <Dashboard user={user} /> : <Redirect to="/" />}</Route>
+
+            <Route path="/settings">
+              <Settings user={user} />
             </Route>
 
             <Route path="*">

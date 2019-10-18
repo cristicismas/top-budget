@@ -4,6 +4,12 @@
   overflow-x: hidden;
 }
 
+#settings .title {
+  text-align: center;
+  font-size: 35px;
+  margin-top: 0;
+}
+
 #settings * {
   font-weight: normal;
 }

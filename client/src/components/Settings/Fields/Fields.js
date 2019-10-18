@@ -3,7 +3,7 @@ import './Fields.css';
 
 import Toggle from './Toggle';
 import OptionsRemoveGroup from './OptionsRemoveGroup';
-import Overlay from '../../../general/Overlay';
+import Overlay from '../../general/Overlay';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 
 export class Fields extends Component {
