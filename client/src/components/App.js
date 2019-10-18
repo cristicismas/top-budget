@@ -11,7 +11,7 @@ import NotFound from './NotFound';
 import Home from './home/Home';
 import AuthForm from './auth/AuthForm';
 import Dashboard from './dashboard/Dashboard';
-import Settings from './Settings/Settings';
+import Settings from './settings/Settings';
 
 import { getExpenses } from '../store/actions/expenses';
 import { getCategories } from '../store/actions/categories';
@@ -59,7 +59,9 @@ class App extends Component {
               {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="login" />}
             </Route>
 
-            <Route path="/dashboard">{isAuthenticated ? <Dashboard user={user} /> : <Redirect to="/" />}</Route>
+            <Route path="/dashboard">
+              {isAuthenticated === false ? <Redirect to="/" /> : <Dashboard user={user} />}
+            </Route>
 
             <Route path="/settings">
               <Settings user={user} />

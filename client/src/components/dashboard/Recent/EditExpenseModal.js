@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import TYPES from '../../../../constants/messageTypes';
-import './EditExpenseModal.css';
+import TYPES from '../../../constants/messageTypes';
+import '../ExpenseModal.css';
 
-import OptionsGroup from '../../OptionsGroup';
+import OptionsGroup from '../../general/OptionsGroup';
 
 const EditExpenseField = props => {
   const { categories, locations, sources, expense } = props;
@@ -68,7 +68,7 @@ const EditExpenseField = props => {
   }, [expense]);
 
   return (
-    <form id="edit-expense-modal" onSubmit={e => handleSubmit(e)}>
+    <form id="edit-expense-modal" className="expense-modal" onSubmit={e => handleSubmit(e)}>
       <h2 className="title">Edit Expense</h2>
 
       <div className="form-group">
@@ -118,7 +118,7 @@ const EditExpenseField = props => {
         />
       )}
 
-      <button type="submit" id="save-edited-expense">
+      <button type="submit" className="submit-btn">
         Save Changes
       </button>
     </form>

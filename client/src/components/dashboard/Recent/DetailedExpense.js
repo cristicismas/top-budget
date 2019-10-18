@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { getCurrency } from '../../../../utils/currency';
+import { getCurrency } from '../../../utils/currency';
 import './DetailedExpense.css';
 
 import ExpenseField from './ExpenseField';

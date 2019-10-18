@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import FIELDS from '../../../../constants/fields';
-import { getCurrency } from '../../../../utils/currency';
-import { calculateBarWidth, calculateFieldValue } from '../../../../utils/summary';
+import FIELDS from '../../../constants/fields';
+import { getCurrency } from '../../../utils/currency';
+import { calculateBarWidth, calculateFieldValue } from '../../../utils/summary';
 import './ExpenseSummary.css';
 
 import FilterButtons from './FilterButtons';

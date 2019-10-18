@@ -1,15 +1,15 @@
 import React, { useMemo } from 'react';
-import ICON from '../../../constants/icons';
-import Icon from '../../general/Icon';
+import ICON from '../../constants/icons';
+import Icon from '../general/Icon';
 import './BudgetWheel.css';
 
-import { getCurrency } from '../../../utils/currency';
+import { getCurrency } from '../../utils/currency';
 import {
   getFillPercentage,
   getSumOfExpensesForTimeline,
   getWheelGeometryData,
   getBudgetForFilter
-} from '../../../utils/wheel';
+} from '../../utils/wheel';
 
 const BudgetWheel = props => {
   const { expenses, userdata, filter } = props;

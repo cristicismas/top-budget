@@ -1,17 +1,17 @@
-#edit-expense-modal {
+.expense-modal {
   width: 785px;
   overflow: auto;
   padding: 60px;
   max-height: calc(80vh - 60px);
 }
 
-#edit-expense-modal .title {
+.expense-modal .title {
   text-align: center;
   margin-top: -30px;
   margin-bottom: 50px;
 }
 
-#edit-expense-modal #value-input {
+.expense-modal #value-input {
   padding: 5px 10px;
   color: #eee;
   width: 300px;
@@ -22,27 +22,27 @@
   border: 1px solid #2c2c3a;
 }
 
-#edit-expense-modal #value-input:focus {
+.expense-modal #value-input:focus {
   border: 1px solid #3d1eca;
 }
 
-#edit-expense-modal .form-group * {
+.expense-modal .form-group * {
   font-weight: 400;
 }
 
-#edit-expense-modal .form-group .add-option-button {
+.expense-modal .form-group .add-option-button {
   display: none;
 }
 
-#edit-expense-modal .form-group {
+.expense-modal .form-group {
   margin-bottom: 30px;
 }
 
-#edit-expense-modal .form-group .options {
+.expense-modal .form-group .options {
   margin: 0;
 }
 
-#edit-expense-modal #save-edited-expense {
+.expense-modal .submit-btn {
   width: 160px;
   margin: 50px auto 50px;
   display: block;
@@ -55,42 +55,41 @@
   transition: all 0.2s;
 }
 
-#edit-expense-modal #save-edited-expense:hover {
+.expense-modal .submit-btn:hover {
   border: 2px solid #3d1eca;
   box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
 }
 
-#edit-expense-modal #save-edited-expense:active {
+.expense-modal .submit-btn:active {
   color: #775cf0;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
 
 @media only screen and (max-width: 1000px) {
-  #edit-expense-modal {
-    width: 500px;
+  .expense-modal {
+    width: calc(90vw - 40px);
   }
 }
 
 @media only screen and (max-width: 700px) {
-  #edit-expense-modal {
-    width: calc(85vw - 40px);
+  .expense-modal {
     padding: 40px;
   }
 
-  #edit-expense-modal .title {
+  .expense-modal .title {
     margin-top: -20px;
   }
 }
 
 @media only screen and (max-width: 550px) {
-  #edit-expense-modal {
+  .expense-modal {
     width: 100%;
     height: 100%;
     max-height: 100%;
     padding: 90px 20px 40px;
   }
 
-  #edit-expense-modal #value-input {
+  .expense-modal #value-input {
     width: 90%;
   }
 }

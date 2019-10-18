@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TYPES from '../../../constants/messageTypes';
-import './AddExpenseForm.css';
+import TYPES from '../../constants/messageTypes';
+import './ExpenseModal.css';
 
-import OptionsGroup from '../OptionsGroup';
+import OptionsGroup from '../general/OptionsGroup';
 
-import { addExpense } from '../../../store/actions/expenses';
-import { addCategory } from '../../../store/actions/categories';
-import { addLocation } from '../../../store/actions/locations';
-import { addSource } from '../../../store/actions/sources';
+import { addExpense } from '../../store/actions/expenses';
 
-export class AddExpenseForm extends Component {
+export class AddExpenseModal extends Component {
   constructor(props) {
     super(props);
 
@@ -70,8 +67,8 @@ export class AddExpenseForm extends Component {
       this.props.addExpense({ ...this.state, date: currentTimeAndDate });
 
       this.clearForm();
+      this.props.closeOverlay();
     } else {
-      this.clearForm();
       this.props.addMessage('Please add a value higher than zero.', TYPES.ERROR);
     }
   }
@@ -81,7 +78,9 @@ export class AddExpenseForm extends Component {
     const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : {};
 
     return (
-      <form id="expense-form" onSubmit={this.handleSubmit}>
+      <form id="add-expense-modal" className="expense-modal" onSubmit={this.handleSubmit}>
+        <h2 className="title">Add Expense</h2>
+
         <div className="form-group">
           <label htmlFor="value-input">
             <h2>Value:</h2>
@@ -126,7 +125,7 @@ export class AddExpenseForm extends Component {
           />
         )}
 
-        <button id="add-expense-btn" type="submit">
+        <button type="submit" className="submit-btn">
           Add Expense
         </button>
       </form>
@@ -141,14 +140,7 @@ const mapStateToProps = state => ({
   sources: state.sources
 });
 
-const mapDispatchToProps = {
-  addExpense,
-  addCategory,
-  addLocation,
-  addSource
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(AddExpenseForm);
+  { addExpense }
+)(AddExpenseModal);

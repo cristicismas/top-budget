@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
-import FIELDS from '../../../constants/fields';
+import FIELDS from '../../constants/fields';
 import { Bar } from 'react-chartjs-2';
 import './Chart.css';
 
-import { getDatasets, getChartOptions, getLastSevenDays } from '../../../utils/chart';
+import { getDatasets, getChartOptions, getLastSevenDays } from '../../utils/chart';
 
 const chartOptions = getChartOptions();
 

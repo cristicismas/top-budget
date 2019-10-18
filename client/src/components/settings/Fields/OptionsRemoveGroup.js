@@ -1,7 +1,7 @@
 import React from 'react';
 import './OptionsRemoveGroup.css';
 
-import Option from '../../dashboard/Option';
+import Option from '../../general/Option';
 
 const OptionsRemoveGroup = props => {
   const { type, objects, dim } = props;
