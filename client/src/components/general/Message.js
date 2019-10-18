@@ -3,7 +3,7 @@ import TYPES from '../../constants/messageTypes';
 import './Message.css';
 
 const Message = props => {
-  const { message, shouldFadeOut } = props;
+  const { text, shouldFadeOut } = props;
 
   const [opacity, changeOpacity] = useState(0);
 
@@ -20,7 +20,7 @@ const Message = props => {
         clearTimeout(opacityTimeout);
       };
     }
-  }, [message, shouldFadeOut]);
+  }, [text, shouldFadeOut]);
 
   let style = {};
 
@@ -46,7 +46,7 @@ const Message = props => {
 
   return (
     <div className="message" style={style}>
-      <p>{props.message}</p>
+      <p>{text}</p>
     </div>
   );
 };

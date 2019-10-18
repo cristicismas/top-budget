@@ -25,11 +25,11 @@ const Dashboard = props => {
 
   return (
     <section id="dashboard">
-      {!expenses.length && <Message message="Please add at least one expense before viewing the dashboard." />}
+      {!expenses.length && <Message text="Please add at least one expense before viewing the dashboard." />}
 
       {!areAnyFieldsEnabled && (
         <Message
-          message="Please enable at least one field in your settings to see more advanced statistics."
+          text="Please enable at least one field in your settings to see more advanced statistics."
           shouldFadeOut={true}
         />
       )}

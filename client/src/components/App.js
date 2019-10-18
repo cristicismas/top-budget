@@ -75,9 +75,7 @@ class App extends Component {
           {messages.map((message, index) => (
             <Message
               key={`message-${index}`}
-              message={message.text}
-              type={message.type}
-              shouldFadeOut={message.shouldFadeOut}
+              {...message}
               clearMessages={clearMessages}
             />
           ))}
