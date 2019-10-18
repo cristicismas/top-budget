@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import AddFieldModal from './AddFieldModal';
-import Overlay from '../general/Overlay';
+import React from 'react';
 import Option from './Option';
 
 const OptionsGroup = props => {
-  const { type, objects, label } = props;
-
-  const [overlayVisible, changeOverlayVisibility] = useState(false);
+  const { type, label, objects } = props;
 
   const options = objects.map(object => (
     <Option
@@ -19,24 +15,7 @@ const OptionsGroup = props => {
 
   return (
     <div className="form-group">
-      <h2 className="options-label">
-        {label}
-        <button type="button" className="add-option-button" onClick={() => changeOverlayVisibility(!overlayVisible)}>
-          +
-        </button>
-      </h2>
-
-      {overlayVisible ? (
-        <Overlay closeOverlay={() => changeOverlayVisibility(false)}>
-          <AddFieldModal
-            type={type}
-            label={label}
-            handleAddField={(type, name, color) => props.handleAddField(type, name, color)}
-            closeOverlay={() => changeOverlayVisibility(false)}
-          />
-        </Overlay>
-      ) : null}
-
+      <h2 className="options-label">{label}</h2>
       <div className="options" id={type}>
         {options}
       </div>

@@ -12,6 +12,23 @@
   top: 15px;
 }
 
+#fields .field-header .add-option-button {
+  position: relative;
+  background-color: #008cff;
+  background: linear-gradient(to bottom right, #00ccff, #7330e0);
+  border-radius: 50%;
+  border: none;
+  color: #eee;
+  padding: 0;
+  width: 35px;
+  height: 35px;
+  margin: 15px;
+  font-size: 25px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+}
+
 #fields .options {
   margin-left: 40px;
 }
@@ -55,6 +72,13 @@
 
   #fields .field-header .toggle {
     top: 10px;
+  }
+
+  #fields .field-header .add-option-button {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 20px;
   }
 
   #fields .options {

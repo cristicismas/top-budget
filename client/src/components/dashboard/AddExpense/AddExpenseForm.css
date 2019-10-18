@@ -13,22 +13,6 @@
   margin-bottom: 20px;
 }
 
-#expense-form .add-option-button {
-  background-color: #008cff;
-  background: linear-gradient(to bottom right, #00ccff, #7330e0);
-  border-radius: 50%;
-  border: none;
-  color: #eee;
-  padding: 0;
-  width: 35px;
-  height: 35px;
-  margin-left: 15px;
-  font-size: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  text-align: center;
-}
-
 #expense-form .options {
   margin-left: 30px;
 }
@@ -104,11 +88,5 @@
   #expense-form .options-label,
   #expense-form h2 {
     font-size: 22px;
-  }
-
-  #expense-form .add-option-button {
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
   }
 }

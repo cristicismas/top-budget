@@ -62,22 +62,6 @@ export class AddExpenseForm extends Component {
     }
   }
 
-  handleAddField(type, name, color) {
-    switch (type) {
-      case 'category':
-        this.props.addCategory({ name, color });
-        break;
-      case 'location':
-        this.props.addLocation({ name, color });
-        break;
-      case 'source':
-        this.props.addSource({ name, color });
-        break;
-      default:
-        break;
-    }
-  }
-
   handleSubmit(e) {
     e.preventDefault();
 
@@ -120,7 +104,6 @@ export class AddExpenseForm extends Component {
             label="Category"
             type="category"
             objects={categories}
-            handleAddField={(type, name, color) => this.handleAddField(type, name, color)}
             handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
           />
         )}
@@ -130,7 +113,6 @@ export class AddExpenseForm extends Component {
             label="Location"
             type="location"
             objects={locations}
-            handleAddField={(type, name, color) => this.handleAddField(type, name, color)}
             handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
           />
         )}
@@ -140,7 +122,6 @@ export class AddExpenseForm extends Component {
             label="Source"
             type="source"
             objects={sources}
-            handleAddField={(type, name, color) => this.handleAddField(type, name, color)}
             handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
           />
         )}
