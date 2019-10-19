@@ -102,7 +102,7 @@ export class Fields extends Component {
       <section id="fields">
         <h2 className="sub-title">Remove or Disable Fields</h2>
 
-        <div className="field-header">
+        <div className={`field-header ${showCategories ? '' : 'disabled'}`}>
           <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('category')}>
             +
           </button>
@@ -119,7 +119,7 @@ export class Fields extends Component {
           />
         )}
 
-        <div className="field-header">
+        <div className={`field-header ${showLocations ? '' : 'disabled'}`}>
           <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('location')}>
             +
           </button>
@@ -136,7 +136,7 @@ export class Fields extends Component {
           />
         )}
 
-        <div className="field-header">
+        <div className={`field-header ${showSources ? '' : 'disabled'}`}>
           <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('source')}>
             +
           </button>
