@@ -28,19 +28,19 @@ const Message = props => {
     style = {
       opacity,
       color: '#ff2525',
-      border: '1px solid #900404'
+      border: '2px solid #900404'
     };
   } else if (props.type === TYPES.SUCCESS) {
     style = {
       opacity,
       color: '#27e24b',
-      border: '1px solid #17630a'
+      border: '2px solid #17630a'
     };
   } else {
     style = {
       opacity,
       color: '#f1e979',
-      border: '1px solid #e1b400'
+      border: '2px solid #e1b400'
     };
   }
 
