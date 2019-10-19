@@ -1,47 +1,44 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { login, register } from '../../store/actions/user';
+import { useHistory, useLocation } from 'react-router-dom';
+import { authenticate } from '../../store/actions/user';
+import AUTH_TYPES from '../../constants/auth';
 import './AuthForm.css';
 
 const AuthForm = props => {
   const history = useHistory();
+  const { pathname } = useLocation();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const formType = pathname.includes(AUTH_TYPES.LOG_IN) ? AUTH_TYPES.LOG_IN : AUTH_TYPES.SIGN_UP;
+
   const handleSubmit = e => {
     e.preventDefault();
+    const { authenticate } = props;
 
-    const { login, register } = props;
-
-    if (props.type === 'signup') {
-      register({
+    authenticate(
+      {
         username,
         email,
         password
-      }).then(() => {
-        history.push('/dashboard');
-      });
-    } else {
-      login({
-        username,
-        password
-      }).then(() => {
-        history.push('/dashboard');
-      });
-    }
+      },
+      formType
+    ).then(() => {
+      history.push('/dashboard');
+    });
   };
 
-  const formAction = props.type === 'login' ? 'Log In' : 'Sign Up';
+  const formAction = formType === 'login' ? 'Log In' : 'Sign Up';
 
   return (
     <section id="auth">
       <h2 id="form-title">{formAction}</h2>
 
       <form id="auth-form" onSubmit={handleSubmit}>
-        {props.type === 'signup' ? (
+        {formType === AUTH_TYPES.SIGN_UP ? (
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <br />
@@ -98,7 +95,6 @@ const AuthForm = props => {
 export default connect(
   null,
   {
-    login,
-    register
+    authenticate
   }
 )(AuthForm);

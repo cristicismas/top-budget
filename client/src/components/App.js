@@ -51,16 +51,17 @@ class App extends Component {
               <Home />
             </Route>
 
-            <Route exact path="/signup">
-              {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="signup" />}
-            </Route>
-
-            <Route exact path="/login">
-              {isAuthenticated ? <Redirect to="/dashboard" /> : <AuthForm type="login" />}
+            <Route exact path={['/signup', '/login']}>
+              <AuthForm
+                getExpenses={() => this.props.getExpenses()}
+                getCategories={() => this.props.getCategories()}
+                getLocations={() => this.props.getLocations()}
+                getSources={() => this.props.getSources()}
+              />
             </Route>
 
             <Route path="/dashboard">
-              {isAuthenticated === false ? <Redirect to="/" /> : <Dashboard user={user} />}
+              {isAuthenticated === false ? <Redirect to="/signup" /> : <Dashboard user={user} />}
             </Route>
 
             <Route path="/settings">
@@ -73,11 +74,7 @@ class App extends Component {
           </Switch>
 
           {messages.map((message, index) => (
-            <Message
-              key={`message-${index}`}
-              {...message}
-              clearMessages={clearMessages}
-            />
+            <Message key={`message-${index}`} {...message} clearMessages={clearMessages} />
           ))}
 
           {isLoading && (

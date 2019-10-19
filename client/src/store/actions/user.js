@@ -1,4 +1,5 @@
 import { USER_LOADED, USER_UPDATED, AUTH_SUCCESS, AUTH_FAIL, LOGOUT_SUCCESS } from './actionTypes';
+import AUTH_TYPES from '../../constants/messageTypes';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 
 import { beginLoading, finishLoading } from './app';
@@ -43,12 +44,12 @@ export const updateUserSettings = newSettings => (dispatch, getState) => {
     });
 };
 
-export const login = credentials => (dispatch, getState) => {
+export const authenticate = (credentials, type) => (dispatch, getState) => {
   dispatch(beginLoading());
 
   const reqBody = JSON.stringify({ ...credentials });
 
-  return apiCall('post', 'auth/login', reqBody, tokenConfig(getState))
+  return apiCall('post', `auth/${type}`, reqBody, tokenConfig(getState))
     .then(res => {
       localStorage.setItem('token', res.token);
 
@@ -59,41 +60,22 @@ export const login = credentials => (dispatch, getState) => {
 
       dispatch(finishLoading());
 
-      dispatch(addMessage('Welcome back!', MESSAGE_TYPES.SUCCESS));
+      if (type === AUTH_TYPES.SIGN_UP) {
+        dispatch(addMessage('Welcome!.', MESSAGE_TYPES.SUCCESS));
+      } else {
+        dispatch(addMessage('Welcome back!', MESSAGE_TYPES.SUCCESS));
+      }
     })
     .catch(err => {
       dispatch(finishLoading());
 
-      dispatch(addMessage('Password or username are wrong.', MESSAGE_TYPES.ERROR));
+      if (type === AUTH_TYPES.SIGN_UP) {
+        dispatch(addMessage('That email / username has already been taken, or your email is invalid.', MESSAGE_TYPES.ERROR));
+      } else {
+        dispatch(addMessage('Password or username are wrong.', MESSAGE_TYPES.ERROR));
+      }
     });
-};
-
-export const register = credentials => (dispatch, getState) => {
-  dispatch(beginLoading());
-
-  const reqBody = JSON.stringify({ ...credentials });
-
-  return apiCall('post', 'auth/register', reqBody, tokenConfig(getState))
-    .then(res => {
-      localStorage.setItem('token', res.token);
-
-      dispatch({
-        type: AUTH_SUCCESS,
-        payload: res
-      });
-
-      dispatch(finishLoading());
-
-      dispatch(addMessage('Welcome!', MESSAGE_TYPES.SUCCESS));
-    })
-    .catch(err => {
-      dispatch(finishLoading());
-
-      dispatch(
-        addMessage('That email / username has already been taken, or your email is invalid.', MESSAGE_TYPES.ERROR)
-      );
-    });
-};
+}
 
 export const logout = () => (dispatch, getState) => {
   apiCall('post', 'auth/logout', null, tokenConfig(getState))
