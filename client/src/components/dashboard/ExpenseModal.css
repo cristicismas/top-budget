@@ -43,26 +43,7 @@
 }
 
 .expense-modal .submit-btn {
-  width: 160px;
   margin: 50px auto 50px;
-  display: block;
-  padding: 10px;
-  font-size: 20px;
-  background-color: #15131a;
-  border: 2px solid #2c2c3a;
-  color: #eee;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.expense-modal .submit-btn:hover {
-  border: 2px solid #3d1eca;
-  box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
-}
-
-.expense-modal .submit-btn:active {
-  color: #775cf0;
-  box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
 
 @media only screen and (max-width: 1000px) {

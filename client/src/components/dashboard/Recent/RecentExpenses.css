@@ -4,7 +4,6 @@
 }
 
 #recent-expenses .expense-color {
-  background-color: orangered;
   border-radius: 50%;
   width: 10px;
   height: 10px;
@@ -26,12 +25,18 @@
 
 #recent-expenses #show-more {
   background-color: #23232e;
+  font-size: 16px;
   color: #bbb;
   border: none;
   border-radius: 2px;
   padding: 5px 10px;
   cursor: pointer;
   margin: 20px 10px;
+}
+
+#recent-expenses #show-more:hover,
+#recent-expenses #show-more:active {
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 550px) {

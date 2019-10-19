@@ -62,9 +62,11 @@
   transform: scale(1.4);
 }
 
-.detailed-expense .details-right .delete-expense:hover {
+.detailed-expense .details-right .delete-expense:hover,
+.detailed-expense .details-right .delete-expense:active {
   opacity: 1;
   color: #ee3636;
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 550px) {

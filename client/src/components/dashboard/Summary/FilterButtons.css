@@ -7,6 +7,7 @@
 #filters .filter-btn {
   display: inline-block;
   position: relative;
+  padding: 10px;
   margin: 0 15px;
   font-size: 27px;
   background-color: transparent;
@@ -21,6 +22,7 @@
 #filters .filter-btn.active,
 #filters .filter-btn:hover {
   color: #eee;
+  box-shadow: none;
 }
 
 #filters .filter-btn:before {

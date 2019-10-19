@@ -70,6 +70,11 @@
   animation: 2s float infinite ease-in-out;
 }
 
+#hero .scroll-down-btn:hover,
+#hero .scroll-down-btn:active {
+  box-shadow: none;
+}
+
 @keyframes float {
   0% {
     transform: translate(-50%, 0px);

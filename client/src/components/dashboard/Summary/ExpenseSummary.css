@@ -31,12 +31,18 @@
 
 #expense-summary #show-all {
   background-color: #23232e;
+  font-size: 16px;
   color: #bbb;
   border: none;
   border-radius: 2px;
   padding: 5px 10px;
   cursor: pointer;
   margin-left: 100px;
+}
+
+#expense-summary #show-all:hover,
+#expense-summary #show-all:active {
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 800px) {

@@ -39,8 +39,8 @@
   font-size: 35px;
   border: none;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
   cursor: pointer;
   height: 55px;
   width: 55px;
@@ -48,8 +48,10 @@
   transition: all 0.2s;
 }
 
-.overlay .close-overlay-btn:hover {
+.overlay .close-overlay-btn:hover,
+.overlay .close-overlay-btn:active {
   color: #7e68e0;
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 550px) {

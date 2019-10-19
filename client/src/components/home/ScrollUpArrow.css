@@ -11,6 +11,11 @@
   transition: all 0.3s;
 }
 
+#scroll-up-btn:hover,
+#scroll-up-btn:active {
+  box-shadow: none;
+}
+
 @media only screen and (max-width: 1000px) {
   #scroll-up-btn {
     padding: 20px;
