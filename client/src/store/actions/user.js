@@ -7,7 +7,7 @@ import { addMessage } from './messages';
 import { apiCall } from '../../utils/api';
 
 export const loadUser = () => (dispatch, getState) => {
-  apiCall('get', 'user', tokenConfig(getState))
+  return apiCall('get', 'user', tokenConfig(getState))
     .then(res => {
       dispatch({
         type: USER_LOADED,

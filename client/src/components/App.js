@@ -27,12 +27,14 @@ class App extends Component {
   componentDidMount() {
     AOS.init();
 
-    this.props.loadUser();
-
-    this.props.getExpenses();
-    this.props.getCategories();
-    this.props.getLocations();
-    this.props.getSources();
+    this.props.loadUser().then(() => {
+      if (this.props.user.isAuthenticated) {
+        this.props.getExpenses();
+        this.props.getCategories();
+        this.props.getLocations();
+        this.props.getSources();
+      }
+    });
   }
 
   render() {
@@ -60,13 +62,9 @@ class App extends Component {
               />
             </Route>
 
-            <Route path="/dashboard">
-              {isAuthenticated === false ? <Redirect to="/signup" /> : <Dashboard user={user} />}
-            </Route>
+            <Route path="/dashboard">{isAuthenticated === false ? <Redirect to="/signup" /> : <Dashboard />}</Route>
 
-            <Route path="/settings">
-              <Settings user={user} />
-            </Route>
+            <Route path="/settings">{isAuthenticated === false ? <Redirect to="/signup" /> : <Settings />}</Route>
 
             <Route path="*">
               <NotFound />

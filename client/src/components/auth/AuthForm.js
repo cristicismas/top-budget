@@ -27,6 +27,11 @@ const AuthForm = props => {
       },
       formType
     ).then(() => {
+      props.getExpenses();
+      props.getCategories();
+      props.getLocations();
+      props.getSources();
+
       history.push('/dashboard');
     });
   };
