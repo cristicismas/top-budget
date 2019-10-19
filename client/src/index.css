@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: 'Source Sans Pro', sans-serif;
+  letter-spacing: .5px;
 }
 
 body {
