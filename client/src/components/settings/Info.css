@@ -1,10 +1,10 @@
-#info > * {
-  font-size: 18px;
-
+#info .user-info {
+  font-size: 20px;
 }
 
 #info .tertiary-title {
   margin: 5px 0;
+  font-size: 23px;
 }
 
 #info .tertiary-title + * {
