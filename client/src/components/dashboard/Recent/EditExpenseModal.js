@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import TYPES from '../../../constants/messageTypes';
 import '../ExpenseModal.css';
 
 import OptionsGroup from '../../general/OptionsGroup';
 
 const EditExpenseField = props => {
-  const { categories, locations, sources, expense } = props;
+  const { categories, locations, sources } = props;
   const { showCategories, showLocations, showSources } = props.userdata;
+
+  const expense = props.expense
+    ? props.expense
+    : {
+        id: null,
+        value: null,
+        date: null,
+        category: null,
+        location: null,
+        source: null
+      };
 
   const [selectedCategory, setCategory] = useState(expense.category);
   const [selectedLocation, setLocation] = useState(expense.location);
@@ -66,6 +78,8 @@ const EditExpenseField = props => {
     handleOptionClick('location', expense.location);
     handleOptionClick('source', expense.source);
   }, [expense]);
+
+  if (expense.id === null) return <Redirect to="/dashboard" />;
 
   return (
     <form id="edit-expense-modal" className="expense-modal" onSubmit={e => handleSubmit(e)}>

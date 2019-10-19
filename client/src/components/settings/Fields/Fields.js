@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Route } from 'react-router-dom';
 import './Fields.css';
 
 import { addCategory } from '../../../store/actions/categories';
@@ -20,12 +22,7 @@ export class Fields extends Component {
       categories: [],
       locations: [],
       sources: [],
-      fieldToAdd: {
-        type: '',
-        label: ''
-      },
-      showConfirmDeleteOverlay: false,
-      showAddFieldOverlay: false
+      fieldToAdd: null
     };
   }
 
@@ -46,14 +43,22 @@ export class Fields extends Component {
     options.classList.toggle('selected');
   };
 
-  handleAddFieldButton = (type, label) => {
-    this.setState({
-      fieldToAdd: { type, label },
-      showAddFieldOverlay: true
-    });
+  handleAddFieldButton = fieldToAdd => {
+    const { history } = this.props;
+
+    this.setState(
+      {
+        fieldToAdd
+      },
+      () => {
+        history.push('/settings/add-field');
+      }
+    );
   };
 
   handleAddField = (type, name, color) => {
+    const { history } = this.props;
+
     switch (type) {
       case 'category':
         this.props.addCategory({ name, color });
@@ -67,26 +72,33 @@ export class Fields extends Component {
       default:
         break;
     }
+
+    history.goBack();
   };
 
   handleDelete = () => {
     const { categories, locations, sources } = this.state;
+    const { history } = this.props;
 
     categories.forEach(id => this.props.deleteCategory(id));
     locations.forEach(id => this.props.deleteLocation(id));
     sources.forEach(id => this.props.deleteSource(id));
 
-    this.setState({
-      categories: [],
-      locations: [],
-      sources: [],
-      showConfirmDeleteOverlay: false
-    });
+    this.setState(
+      {
+        categories: [],
+        locations: [],
+        sources: []
+      },
+      () => {
+        history.goBack();
+      }
+    );
   };
 
   render() {
-    const { showConfirmDeleteOverlay, showAddFieldOverlay, fieldToAdd } = this.state;
-    const { categories, locations, sources, showCategories, showLocations, showSources } = this.props;
+    const { fieldToAdd } = this.state;
+    const { history, categories, locations, sources, showCategories, showLocations, showSources } = this.props;
 
     const buttonEnabled = this.state.categories.length || this.state.locations.length || this.state.sources.length;
 
@@ -95,10 +107,7 @@ export class Fields extends Component {
         <h2 className="sub-title">Remove or Disable Fields</h2>
 
         <div className="field-header">
-          <button
-            type="button"
-            className="add-option-button"
-            onClick={() => this.handleAddFieldButton('category', 'Category')}>
+          <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('category')}>
             +
           </button>
           <h2 className="field-title">Categories</h2>
@@ -113,10 +122,7 @@ export class Fields extends Component {
         />
 
         <div className="field-header">
-          <button
-            type="button"
-            className="add-option-button"
-            onClick={() => this.handleAddFieldButton('location', 'Location')}>
+          <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('location')}>
             +
           </button>
           <h2 className="field-title">Locations</h2>
@@ -131,10 +137,7 @@ export class Fields extends Component {
         />
 
         <div className="field-header">
-          <button
-            type="button"
-            className="add-option-button"
-            onClick={() => this.handleAddFieldButton('source', 'Source')}>
+          <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('source')}>
             +
           </button>
           <h2 className="field-title">Sources</h2>
@@ -149,28 +152,27 @@ export class Fields extends Component {
         />
 
         <button
-          onClick={() => this.setState({ showConfirmDeleteOverlay: true })}
+          onClick={() => history.push('/settings/confirm-delete')}
           id="delete-options-btn"
           className={buttonEnabled ? '' : 'disabled'}>
           Delete Selected
         </button>
 
-        {showConfirmDeleteOverlay && (
-          <Overlay closeOverlay={() => this.setState({ showConfirmDeleteOverlay: false })}>
+        <Route path="/settings/confirm-delete">
+          <Overlay closeOverlay={history.goBack}>
             <ConfirmDeleteModal handleDelete={() => this.handleDelete()} />
           </Overlay>
-        )}
+        </Route>
 
-        {showAddFieldOverlay ? (
-          <Overlay closeOverlay={() => this.setState({ showAddFieldOverlay: false })}>
+        <Route path="/settings/add-field">
+          <Overlay closeOverlay={history.goBack}>
             <AddFieldModal
-              type={fieldToAdd.type}
-              label={fieldToAdd.label}
+              type={fieldToAdd}
               handleAddField={(type, name, color) => this.handleAddField(type, name, color)}
-              closeOverlay={() => this.setState({ showAddFieldOverlay: false })}
+              closeOverlay={history.goBack}
             />
           </Overlay>
-        ) : null}
+        </Route>
       </div>
     );
   }
@@ -183,4 +185,4 @@ export default connect(
     addLocation,
     addSource
   }
-)(Fields);
+)(withRouter(Fields));

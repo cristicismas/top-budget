@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Route, useHistory } from 'react-router-dom';
 import { getDaysInChronologicalOrder, formatDate } from '../../../utils/recent';
 import './RecentExpenses.css';
 
@@ -11,6 +12,13 @@ const RecentExpenses = props => {
 
   const [daysToShow, changeDaysToShow] = useState(7);
   const [expenseToEdit, changeExpenseToEdit] = useState(null);
+
+  const history = useHistory();
+
+  const handleEditExpense = id => {
+    changeExpenseToEdit(id);
+    history.push('/dashboard/edit-expense');
+  };
 
   const allDays = getDaysInChronologicalOrder(expenses);
 
@@ -35,7 +43,7 @@ const RecentExpenses = props => {
               locations={locations}
               userdata={props.userdata}
               addMessage={props.addMessage}
-              onClick={() => changeExpenseToEdit(expense)}
+              onClick={() => handleEditExpense(expense)}
             />
           ))}
         </div>
@@ -45,12 +53,10 @@ const RecentExpenses = props => {
 
   return (
     <section id="recent-expenses">
-      <section className="days">{days.slice(0, daysToShow)}</section>
-
-      {expenseToEdit && (
-        <Overlay closeOverlay={() => changeExpenseToEdit(null)}>
+      <Route path="/dashboard/edit-expense">
+        <Overlay closeOverlay={history.goBack}>
           <EditExpenseField
-            closeOverlay={() => changeExpenseToEdit(null)}
+            closeOverlay={history.goBack}
             addMessage={props.addMessage}
             editExpense={props.editExpense}
             categories={categories}
@@ -60,7 +66,9 @@ const RecentExpenses = props => {
             expense={expenseToEdit}
           />
         </Overlay>
-      )}
+      </Route>
+
+      <section className="days">{days.slice(0, daysToShow)}</section>
 
       {allDays.length > daysToShow ? (
         <button onClick={() => changeDaysToShow(daysToShow + 7)} id="show-more">

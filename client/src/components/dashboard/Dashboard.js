@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Route, useHistory } from 'react-router-dom';
 import './Dashboard.css';
 
 import AddExpenseModal from './AddExpenseModal';
@@ -19,7 +20,7 @@ const Dashboard = props => {
   const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : 'WEEK';
   const [filter, changeFilter] = useState(lastFilter);
 
-  const [showAddExpenseOverlay, toggleAddExpenseOverlay] = useState(false);
+  const history = useHistory();
 
   const areAnyFieldsEnabled = showCategories || showLocations || showSources;
 
@@ -34,11 +35,11 @@ const Dashboard = props => {
         />
       )}
 
-      {showAddExpenseOverlay && (
-        <Overlay closeOverlay={() => toggleAddExpenseOverlay(false)}>
-          <AddExpenseModal closeOverlay={() => toggleAddExpenseOverlay(false)} />
+      <Route path="/dashboard/add-expense">
+        <Overlay closeOverlay={history.goBack}>
+          <AddExpenseModal closeOverlay={history.goBack} />
         </Overlay>
-      )}
+      </Route>
 
       <div className="flex-group chart-and-summary">
         <div className="flex-group summary-and-wheel">
@@ -79,7 +80,7 @@ const Dashboard = props => {
         addMessage={props.addMessage}
       />
 
-      <button className="floating-button" onClick={() => toggleAddExpenseOverlay(true)}>
+      <button className="floating-button" onClick={() => history.push('/dashboard/add-expense')}>
         +
       </button>
     </section>

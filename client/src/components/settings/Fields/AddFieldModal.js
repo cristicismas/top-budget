@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import { capitalize } from '../../../utils/strings';
 import './AddFieldModal.css';
 
 const AddFieldModal = props => {
-  const { type, label } = props;
+  const { type } = props;
 
   useEffect(() => {
-    document.getElementById(`${type}-name`).focus();
+    const fieldNameInput = document.getElementById(`${type}-name`);
+
+    if (fieldNameInput) fieldNameInput.focus();
   });
 
   const handleSubmit = () => {
@@ -26,13 +30,21 @@ const AddFieldModal = props => {
     }
   };
 
+  if (type === null) return <Redirect to="/settings" />;
+
   return (
     <section id="add-field-form">
-      <h3 className="add-field-title">Add {label}</h3>
+      <h3 className="add-field-title">Add {capitalize(type)}</h3>
 
       <div className="form-group">
-        <label htmlFor="field-name">{label}:</label>
-        <input type="text" name="field-name" className="add-field-input" placeholder={label} id={`${type}-name`} />
+        <label htmlFor="field-name">{capitalize(type)}:</label>
+        <input
+          type="text"
+          name="field-name"
+          className="add-field-input"
+          placeholder={capitalize(type)}
+          id={`${type}-name`}
+        />
       </div>
 
       <div className="form-group">
@@ -42,7 +54,7 @@ const AddFieldModal = props => {
           name="field-color"
           className="add-field-input"
           defaultValue="#1e2f87"
-          placeholder={label}
+          placeholder={capitalize(type)}
           id={`${type}-color`}
         />
       </div>
