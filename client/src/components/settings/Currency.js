@@ -12,7 +12,7 @@ const Currency = props => {
   ));
 
   return (
-    <div id="currency" className="settings-group">
+    <section id="currency" className="settings-group">
       <h2 className="sub-title">Currency</h2>
 
       <select
@@ -26,7 +26,7 @@ const Currency = props => {
       <span className="select-icon">
         <Icon icon={ICONS.ARROW} size={24} fill="#eee" />
       </span>
-    </div>
+    </section>
   );
 };
 

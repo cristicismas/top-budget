@@ -14,7 +14,7 @@ const PrimaryField = props => {
   ));
 
   return (
-    <div id="primary-field" className="settings-group">
+    <section id="primary-field" className="settings-group">
       <h2 className="sub-title">Primary Field</h2>
 
       <select
@@ -28,7 +28,7 @@ const PrimaryField = props => {
       <span className="select-icon">
         <Icon icon={ICONS.ARROW} size={24} fill="#eee" />
       </span>
-    </div>
+    </section>
   );
 };
 
