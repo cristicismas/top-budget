@@ -15,7 +15,7 @@ import { deleteExpense, editExpense } from '../../store/actions/expenses';
 
 const Dashboard = props => {
   const { expenses, categories, locations, sources, user, deleteExpense, editExpense } = props;
-  const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : false;
+  const { showCategories, showLocations, showSources } = user.userdata;
 
   const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : 'WEEK';
   const [filter, changeFilter] = useState(lastFilter);

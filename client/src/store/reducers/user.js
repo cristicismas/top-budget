@@ -11,7 +11,11 @@ const initialState = {
     showCategories: true,
     showLocations: true,
     showSources: true,
-    primaryField: FIELDS.CATEGORIES
+    primaryField: FIELDS.CATEGORIES,
+    credentials: {
+      email: '',
+      username: ''
+    }
   }
 };
 
@@ -29,7 +33,7 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: false,
         userdata: action.payload
-      }
+      };
     case AUTH_SUCCESS:
       return {
         ...state,

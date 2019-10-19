@@ -40,7 +40,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserDataSerializer
 
     def partial_update(self, request, *args, **kwargs):
-        user = UserData.objects.filter(user=self.request.user).update(
+        user = UserData.objects.filter(credentials=self.request.user).update(
             currency = request.data['currency'],
             budget = request.data['budget'],
             showCategories = request.data['showCategories'],
@@ -52,4 +52,4 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response('User data saved.')
 
     def get_queryset(self):
-        return UserData.objects.filter(user=self.request.user)
+        return UserData.objects.filter(credentials=self.request.user)

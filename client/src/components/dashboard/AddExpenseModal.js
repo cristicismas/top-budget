@@ -75,7 +75,7 @@ export class AddExpenseModal extends Component {
 
   render() {
     const { categories, locations, sources, user } = this.props;
-    const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : {};
+    const { showCategories, showLocations, showSources } = user.userdata;
 
     const shouldModalBeLarge =
       (showCategories && categories.length > 3) ||

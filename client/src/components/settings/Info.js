@@ -2,7 +2,7 @@ import React from 'react';
 import './Info.css';
 
 const Info = ({ user, logout }) => {
-  const { username, email } = user.userdata.user ? user.userdata.user : {};
+  const { username, email } = user.userdata.credentials;
 
   return (
     <section id="info">

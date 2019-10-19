@@ -23,14 +23,14 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const updateUserSettings = newSettings => (dispatch, getState) => {
-  const currentUser = getState().user.userdata.user;
+  const currentCredentials = getState().user.userdata.credentials;
 
   const data = {
     ...newSettings,
-    user: currentUser
+    credentials: currentCredentials
   };
 
-  apiCall('patch', `user/${currentUser.id}/`, data, tokenConfig(getState))
+  apiCall('patch', `user/${currentCredentials.id}/`, data, tokenConfig(getState))
     .then(res => {
       dispatch({
         type: USER_UPDATED,
@@ -68,12 +68,14 @@ export const authenticate = (credentials, type) => (dispatch, getState) => {
       dispatch(finishLoading());
 
       if (type === AUTH_TYPES.SIGN_UP) {
-        dispatch(addMessage('That email / username has already been taken, or your email is invalid.', MESSAGE_TYPES.ERROR));
+        dispatch(
+          addMessage('That email / username has already been taken, or your email is invalid.', MESSAGE_TYPES.ERROR)
+        );
       } else {
         dispatch(addMessage('Password or username are wrong.', MESSAGE_TYPES.ERROR));
       }
     });
-}
+};
 
 export const logout = () => (dispatch, getState) => {
   apiCall('post', 'auth/logout', null, tokenConfig(getState))

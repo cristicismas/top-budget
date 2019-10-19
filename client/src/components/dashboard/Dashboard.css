@@ -28,6 +28,7 @@
   color: #eee;
   padding: 0;
   overflow: hidden;
+  outline: none;
   cursor: pointer;
   text-align: center;
   transition: all .3s ease-out;

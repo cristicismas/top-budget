@@ -12,7 +12,7 @@ class UserData(models.Model):
         (SOURCES, 'Sources')
     ]
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
+    credentials = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     currency = models.CharField(max_length=10, default="USD")
     budget = models.IntegerField(default=500)
     showCategories = models.BooleanField(default=True)
