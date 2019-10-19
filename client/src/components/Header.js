@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ICONS from '../constants/icons';
 import './Header.css';
 
-const Header = props => {
-  const isAuthenticated = props.user.isAuthenticated;
+import Icon from './general/Icon';
+
+const Header = ({ user }) => {
+  const { isAuthenticated } = user;
   const { pathname } = useLocation();
 
   return (
@@ -17,9 +20,11 @@ const Header = props => {
         <nav>
           <Link className={pathname.includes('dashboard') ? 'active' : null} to="/dashboard">
             Dashboard
+            <Icon className="nav-icon" size={25} fill="#eee" icon={ICONS.CHART} />
           </Link>
           <Link className={pathname.includes('settings') ? 'active' : null} to="/settings">
             Settings
+            <Icon className="nav-icon" size={25} fill="#eee" icon={ICONS.SETTINGS} />
           </Link>
         </nav>
       ) : (

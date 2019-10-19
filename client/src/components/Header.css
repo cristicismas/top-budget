@@ -19,6 +19,12 @@ header nav a {
   position: relative;
 }
 
+header nav .nav-icon {
+  position: relative;
+  top: 5px;
+  margin-left: 10px;
+}
+
 header nav a:before {
   content: '';
   position: absolute;
