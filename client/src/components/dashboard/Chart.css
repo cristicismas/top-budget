@@ -15,6 +15,7 @@
 @media only screen and (max-width: 800px) {
   #expense-chart {
     width: 95%;
+    height: calc(95vw / 1.3);
     margin: auto;
     padding: 50px 0;
   }
@@ -22,7 +23,7 @@
 
 @media only screen and (max-width: 600px) {
   #expense-chart {
-    height: 300px;
+    height: 350px;
     padding: 0;
   }
 }
