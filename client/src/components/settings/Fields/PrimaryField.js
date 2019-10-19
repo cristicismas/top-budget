@@ -14,7 +14,7 @@ const PrimaryField = props => {
   ));
 
   return (
-    <section id="primary-field" className="settings-group">
+    <section id="primary-field">
       <h2 className="sub-title">Primary Field</h2>
 
       <select

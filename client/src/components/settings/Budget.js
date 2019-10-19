@@ -2,7 +2,7 @@ import React from 'react';
 import './Budget.css';
 
 const Budget = props => (
-  <section id="budget" className="settings-group">
+  <section id="budget">
     <h2 className="sub-title">Monthly Budget</h2>
     <input
       type="number"

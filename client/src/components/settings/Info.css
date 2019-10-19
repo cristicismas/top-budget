@@ -1,0 +1,18 @@
+#info > * {
+  font-size: 18px;
+
+}
+
+#info .tertiary-title {
+  margin: 5px 0;
+}
+
+#info .tertiary-title + * {
+  margin-left: 15px;
+  color: #bbb;
+}
+
+#info #logout-btn {
+  margin-top: 20px;
+  padding: 5px 15px;
+}

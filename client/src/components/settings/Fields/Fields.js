@@ -103,7 +103,7 @@ export class Fields extends Component {
     const buttonEnabled = this.state.categories.length || this.state.locations.length || this.state.sources.length;
 
     return (
-      <section id="fields" className="settings-group">
+      <section id="fields">
         <h2 className="sub-title">Remove or Disable Fields</h2>
 
         <div className="field-header">

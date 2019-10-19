@@ -12,7 +12,7 @@ const Currency = props => {
   ));
 
   return (
-    <section id="currency" className="settings-group">
+    <section id="currency">
       <h2 className="sub-title">Currency</h2>
 
       <select

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Settings.css';
 
+import Info from './Info';
 import Currency from './Currency';
 import Budget from './Budget';
 import PrimaryField from './Fields/PrimaryField';
@@ -13,7 +14,7 @@ import { deleteCategory } from '../../store/actions/categories';
 import { deleteLocation } from '../../store/actions/locations';
 import { deleteSource } from '../../store/actions/sources';
 
-import { updateUserSettings } from '../../store/actions/user';
+import { updateUserSettings, logout } from '../../store/actions/user';
 
 export class Settings extends Component {
   constructor(props) {
@@ -84,11 +85,13 @@ export class Settings extends Component {
 
   render() {
     const { currency, budget, primaryField, showCategories, showLocations, showSources } = this.state;
-    const { categories, locations, sources } = this.props;
+    const { categories, locations, sources, user } = this.props;
 
     return (
       <section id="settings">
         <h1 className="title">Settings</h1>
+
+        <Info user={user} logout={() => this.props.logout()} />
 
         <Currency
           changeCurrency={newCurrency => {
@@ -141,7 +144,8 @@ const mapDispatchToProps = {
   deleteLocation,
   deleteSource,
 
-  updateUserSettings
+  updateUserSettings,
+  logout
 };
 
 export default connect(

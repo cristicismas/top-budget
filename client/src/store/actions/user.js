@@ -87,6 +87,8 @@ export const logout = () => (dispatch, getState) => {
       dispatch({
         type: LOGOUT_SUCCESS
       });
+
+      dispatch(addMessage('You are now logged out.', MESSAGE_TYPES.SUCCESS));
     })
     .catch(err => {
       dispatch(addMessage('Logout failed.', MESSAGE_TYPES.ERROR));
