@@ -32,7 +32,7 @@ const Chart = props => {
 
   const datasets = useMemo(() => getDatasets(fields, fieldType, expenses), [fields, fieldType, expenses]);
 
-  const labels = getLastSevenDays().map(day => day.format('dddd'));
+  const labels = getLastSevenDays().map(day => day.format('ddd'));
 
   let chartData = {
     datasets,
