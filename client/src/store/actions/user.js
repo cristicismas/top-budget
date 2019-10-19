@@ -1,5 +1,5 @@
 import { USER_LOADED, USER_UPDATED, AUTH_SUCCESS, AUTH_FAIL, LOGOUT_SUCCESS } from './actionTypes';
-import AUTH_TYPES from '../../constants/messageTypes';
+import AUTH_TYPES from '../../constants/auth';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 
 import { beginLoading, finishLoading } from './app';
@@ -61,7 +61,9 @@ export const authenticate = (credentials, type) => (dispatch, getState) => {
       dispatch(finishLoading());
 
       if (type === AUTH_TYPES.LOG_IN) {
-        dispatch(addMessage('Welcome back!', MESSAGE_TYPES.SUCCESS));
+        const { username } = res.userdata.credentials;
+
+        dispatch(addMessage(`Welcome back, ${username}!`, MESSAGE_TYPES.SUCCESS));
       }
     })
     .catch(err => {
