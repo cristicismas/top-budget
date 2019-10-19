@@ -77,8 +77,19 @@ export class AddExpenseModal extends Component {
     const { categories, locations, sources, user } = this.props;
     const { showCategories, showLocations, showSources } = user.userdata ? user.userdata : {};
 
+    const shouldModalBeLarge =
+      (showCategories && categories.length > 3) ||
+      (showLocations && locations.length > 3) ||
+      (showSources && sources.length > 3);
+
+    const modalStyle = shouldModalBeLarge
+      ? {}
+      : {
+          width: 'auto'
+        };
+
     return (
-      <form id="add-expense-modal" className="expense-modal" onSubmit={this.handleSubmit}>
+      <form id="add-expense-modal" className="expense-modal" style={modalStyle} onSubmit={this.handleSubmit}>
         <h2 className="title">Add Expense</h2>
 
         <div className="form-group">
@@ -98,7 +109,7 @@ export class AddExpenseModal extends Component {
           />
         </div>
 
-        {showCategories && (
+        {showCategories && categories.length > 0 && (
           <OptionsGroup
             label="Category"
             type="category"
@@ -107,7 +118,7 @@ export class AddExpenseModal extends Component {
           />
         )}
 
-        {showLocations && (
+        {showLocations && locations.length > 0 && (
           <OptionsGroup
             label="Location"
             type="location"
@@ -116,7 +127,7 @@ export class AddExpenseModal extends Component {
           />
         )}
 
-        {showSources && (
+        {showSources && sources.length > 0 && (
           <OptionsGroup
             label="Source"
             type="source"

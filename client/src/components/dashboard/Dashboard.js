@@ -24,67 +24,80 @@ const Dashboard = props => {
 
   const areAnyFieldsEnabled = showCategories || showLocations || showSources;
 
-  return (
-    <section id="dashboard">
-      {!expenses.length && <Message text="Please add at least one expense before viewing the dashboard." />}
+  if (!expenses.length)
+    return (
+      <section id="dashboard">
+        <button className="floating-button" onClick={() => history.push('/dashboard/add-expense')}>
+          +
+        </button>
 
-      {!areAnyFieldsEnabled && (
-        <Message
-          text="Please enable at least one field in your settings to see more advanced statistics."
-          shouldFadeOut={true}
-        />
-      )}
+        <Route path="/dashboard/add-expense">
+          <Overlay closeOverlay={history.goBack}>
+            <AddExpenseModal closeOverlay={history.goBack} />
+          </Overlay>
+        </Route>
 
-      <Route path="/dashboard/add-expense">
-        <Overlay closeOverlay={history.goBack}>
-          <AddExpenseModal closeOverlay={history.goBack} />
-        </Overlay>
-      </Route>
+        <Message text="Please add at least one expense before viewing the dashboard." />
+      </section>
+    );
+  else
+    return (
+      <section id="dashboard">
+        {!areAnyFieldsEnabled && (
+          <Message
+            text="Please enable at least one field in your settings to see more advanced statistics."
+            shouldFadeOut={true}
+          />
+        )}
 
-      <div className="flex-group chart-and-summary">
-        <div className="flex-group summary-and-wheel">
-          {areAnyFieldsEnabled && (
-            <ExpenseSummary
+        <Route path="/dashboard/add-expense">
+          <Overlay closeOverlay={history.goBack}>
+            <AddExpenseModal closeOverlay={history.goBack} />
+          </Overlay>
+        </Route>
+
+        {areAnyFieldsEnabled && (
+          <div className="flex-group chart-and-summary">
+            <div className="flex-group summary-and-wheel">
+              <ExpenseSummary
+                expenses={expenses}
+                categories={categories}
+                locations={locations}
+                sources={sources}
+                userdata={user.userdata}
+                filter={filter}
+                changeFilter={changeFilter}
+              />
+
+              <BudgetWheel expenses={expenses} userdata={user.userdata} filter={filter} />
+            </div>
+
+            <Chart
               expenses={expenses}
               categories={categories}
               locations={locations}
               sources={sources}
               userdata={user.userdata}
-              filter={filter}
-              changeFilter={changeFilter}
             />
-          )}
-
-          <BudgetWheel expenses={expenses} userdata={user.userdata} filter={filter} />
-        </div>
-
-        {areAnyFieldsEnabled && (
-          <Chart
-            expenses={expenses}
-            categories={categories}
-            locations={locations}
-            sources={sources}
-            userdata={user.userdata}
-          />
+          </div>
         )}
-      </div>
 
-      <RecentExpenses
-        deleteExpense={deleteExpense}
-        editExpense={editExpense}
-        expenses={expenses}
-        categories={categories}
-        locations={locations}
-        sources={sources}
-        userdata={user.userdata}
-        addMessage={props.addMessage}
-      />
+        <RecentExpenses
+          deleteExpense={deleteExpense}
+          editExpense={editExpense}
+          expenses={expenses}
+          categories={categories}
+          locations={locations}
+          sources={sources}
+          userdata={user.userdata}
+          addMessage={props.addMessage}
+        />
 
-      <button className="floating-button" onClick={() => history.push('/dashboard/add-expense')}>
-        +
-      </button>
-    </section>
-  );
+        <button className="floating-button" onClick={() => history.push('/dashboard/add-expense')}>
+          +
+        </button>
+      </section>
+    );
 };
 
 const mapStateToProps = state => ({

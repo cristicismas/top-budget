@@ -57,8 +57,6 @@ export class Fields extends Component {
   };
 
   handleAddField = (type, name, color) => {
-    const { history } = this.props;
-
     switch (type) {
       case 'category':
         this.props.addCategory({ name, color });
@@ -72,8 +70,6 @@ export class Fields extends Component {
       default:
         break;
     }
-
-    history.goBack();
   };
 
   handleDelete = () => {
@@ -114,12 +110,14 @@ export class Fields extends Component {
           <Toggle handleChange={() => this.props.toggleField('showCategories')} toggled={showCategories} />
         </div>
 
-        <OptionsRemoveGroup
-          objects={categories}
-          type="categories"
-          dim={!showCategories}
-          handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
-        />
+        {categories.length > 0 && (
+          <OptionsRemoveGroup
+            objects={categories}
+            type="categories"
+            dim={!showCategories}
+            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
+          />
+        )}
 
         <div className="field-header">
           <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('location')}>
@@ -129,12 +127,14 @@ export class Fields extends Component {
           <Toggle handleChange={() => this.props.toggleField('showLocations')} toggled={showLocations} />
         </div>
 
-        <OptionsRemoveGroup
-          objects={locations}
-          type="locations"
-          dim={!showLocations}
-          handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
-        />
+        {locations.length > 0 && (
+          <OptionsRemoveGroup
+            objects={locations}
+            type="locations"
+            dim={!showLocations}
+            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
+          />
+        )}
 
         <div className="field-header">
           <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('source')}>
@@ -144,12 +144,14 @@ export class Fields extends Component {
           <Toggle handleChange={() => this.props.toggleField('showSources')} toggled={showSources} />
         </div>
 
-        <OptionsRemoveGroup
-          objects={sources}
-          type="sources"
-          dim={!showSources}
-          handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
-        />
+        {sources.length > 0 && (
+          <OptionsRemoveGroup
+            objects={sources}
+            type="sources"
+            dim={!showSources}
+            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
+          />
+        )}
 
         <button
           onClick={() => history.push('/settings/confirm-delete')}

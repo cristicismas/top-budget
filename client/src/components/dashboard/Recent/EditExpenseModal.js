@@ -102,7 +102,7 @@ const EditExpenseField = props => {
         />
       </div>
 
-      {showCategories && (
+      {showCategories && categories.length > 0 && (
         <OptionsGroup
           label="Category"
           type="category"
@@ -112,7 +112,7 @@ const EditExpenseField = props => {
         />
       )}
 
-      {showLocations && (
+      {showLocations && locations.length > 0 && (
         <OptionsGroup
           label="Location"
           type="location"
@@ -122,7 +122,7 @@ const EditExpenseField = props => {
         />
       )}
 
-      {showSources && (
+      {showSources && sources.length > 0 && (
         <OptionsGroup
           label="Source"
           type="source"

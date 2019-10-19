@@ -60,9 +60,7 @@ export const authenticate = (credentials, type) => (dispatch, getState) => {
 
       dispatch(finishLoading());
 
-      if (type === AUTH_TYPES.SIGN_UP) {
-        dispatch(addMessage('Welcome!.', MESSAGE_TYPES.SUCCESS));
-      } else {
+      if (type === AUTH_TYPES.LOG_IN) {
         dispatch(addMessage('Welcome back!', MESSAGE_TYPES.SUCCESS));
       }
     })
