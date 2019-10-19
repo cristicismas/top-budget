@@ -30,8 +30,10 @@ class App extends Component {
     AOS.init();
 
     // Listen for route changes to reset position
-    this.props.history.listen(() => {
-      window.scrollTo(0, 0);
+    this.props.history.listen(location => {
+      if (location.pathname === '/dashboard' || location.pathname === '/settings') {
+        window.scrollTo(0, 0);
+      }
     });
 
     // Fetch user and then the data
