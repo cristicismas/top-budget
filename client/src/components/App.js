@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AOS from 'aos';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import 'aos/dist/aos.css';
 
@@ -25,8 +26,15 @@ import Overlay from './general/Overlay';
 
 class App extends Component {
   componentDidMount() {
+    // Initialize Animate-On-Scroll library
     AOS.init();
 
+    // Listen for route changes to reset position
+    this.props.history.listen(() => {
+      window.scrollTo(0, 0);
+    });
+
+    // Fetch user and then the data
     this.props.loadUser().then(() => {
       if (this.props.user.isAuthenticated) {
         this.props.getExpenses();
@@ -44,44 +52,42 @@ class App extends Component {
     const { isLoading } = app;
 
     return (
-      <Router>
-        <div className="App">
-          <Header />
+      <div className="App">
+        <Header />
 
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
 
-            <Route exact path={['/signup', '/login']}>
-              <AuthForm
-                getExpenses={() => this.props.getExpenses()}
-                getCategories={() => this.props.getCategories()}
-                getLocations={() => this.props.getLocations()}
-                getSources={() => this.props.getSources()}
-              />
-            </Route>
+          <Route exact path={['/signup', '/login']}>
+            <AuthForm
+              getExpenses={() => this.props.getExpenses()}
+              getCategories={() => this.props.getCategories()}
+              getLocations={() => this.props.getLocations()}
+              getSources={() => this.props.getSources()}
+            />
+          </Route>
 
-            <Route path="/dashboard">{isAuthenticated === false ? <Redirect to="/signup" /> : <Dashboard />}</Route>
+          <Route path="/dashboard">{isAuthenticated === false ? <Redirect to="/signup" /> : <Dashboard />}</Route>
 
-            <Route path="/settings">{isAuthenticated === false ? <Redirect to="/signup" /> : <Settings />}</Route>
+          <Route path="/settings">{isAuthenticated === false ? <Redirect to="/signup" /> : <Settings />}</Route>
 
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
 
-          {messages.map((message, index) => (
-            <Message key={`message-${index}`} {...message} clearMessages={clearMessages} />
-          ))}
+        {messages.map((message, index) => (
+          <Message key={`message-${index}`} {...message} clearMessages={clearMessages} />
+        ))}
 
-          {isLoading && (
-            <Overlay isTransparent={true} hideCloseOverlayButton={true}>
-              <Loading />
-            </Overlay>
-          )}
-        </div>
-      </Router>
+        {isLoading && (
+          <Overlay isTransparent={true} hideCloseOverlayButton={true}>
+            <Loading />
+          </Overlay>
+        )}
+      </div>
     );
   }
 }
@@ -105,4 +111,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(withRouter(App));
