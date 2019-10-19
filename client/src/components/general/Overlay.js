@@ -1,5 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import Icon from './Icon';
+import ICONS from '../../constants/icons';
 import './Overlay.css';
 
 const useOutsideClickDetector = (ref, closeOverlay) => {
@@ -47,7 +49,7 @@ const Overlay = props => {
       <div className="overlay" style={overlayStyle} ref={hideCloseOverlayButton ? null : overlayRef}>
         {!props.hideCloseOverlayButton && (
           <button type="button" className="close-overlay-btn" onClick={() => props.closeOverlay()}>
-            ✕
+            <Icon className="close-overlay-icon" icon={ICONS.CROSS} size={20} fill="#eee" />
           </button>
         )}
         {props.children}
