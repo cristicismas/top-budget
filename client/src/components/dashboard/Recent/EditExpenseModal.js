@@ -115,7 +115,6 @@ const EditExpenseField = props => {
 
       {showCategories && categories.length > 0 && (
         <FieldsGroup
-          label="Category"
           type="category"
           objects={categories}
           handleAddField={() => {}}
@@ -125,7 +124,6 @@ const EditExpenseField = props => {
 
       {showLocations && locations.length > 0 && (
         <FieldsGroup
-          label="Location"
           type="location"
           objects={locations}
           handleAddField={() => {}}
@@ -135,7 +133,6 @@ const EditExpenseField = props => {
 
       {showSources && sources.length > 0 && (
         <FieldsGroup
-          label="Source"
           type="source"
           objects={sources}
           handleAddField={() => {}}

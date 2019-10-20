@@ -1,9 +1,10 @@
 import React from 'react';
 import Field from './Field';
+import { capitalize } from '../../utils/strings';
 import './FieldsGroup.css';
 
 const FieldsGroup = props => {
-  const { type, label, objects } = props;
+  const { type, objects } = props;
 
   const fields = objects.map(object => (
     <Field
@@ -16,7 +17,7 @@ const FieldsGroup = props => {
 
   return (
     <div className="fields-group">
-      <h2 className="fields-label">{label}</h2>
+      <h2 className="fields-label">{capitalize(type)}</h2>
       <div className="fields" id={type}>
         {fields}
       </div>

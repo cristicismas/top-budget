@@ -109,7 +109,6 @@ export class AddExpenseForm extends Component {
 
         {showCategories && categories.length > 0 && (
           <FieldsGroup
-            label="Category"
             type="category"
             objects={categories}
             handleFieldClick={(type, object) => this.handleFieldClick(type, object.id)}
@@ -118,7 +117,6 @@ export class AddExpenseForm extends Component {
 
         {showLocations && locations.length > 0 && (
           <FieldsGroup
-            label="Location"
             type="location"
             objects={locations}
             handleFieldClick={(type, object) => this.handleFieldClick(type, object.id)}
@@ -127,7 +125,6 @@ export class AddExpenseForm extends Component {
 
         {showSources && sources.length > 0 && (
           <FieldsGroup
-            label="Source"
             type="source"
             objects={sources}
             handleFieldClick={(type, object) => this.handleFieldClick(type, object.id)}
