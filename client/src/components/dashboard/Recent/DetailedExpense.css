@@ -45,12 +45,6 @@
   align-items: center;
 }
 
-.detailed-expense .expense-info .details-right {
-  width: 100%;
-  margin-left: 0;
-  justify-content: flex-end;
-}
-
 .detailed-expense .details-right .amount {
   white-space: nowrap;
 }
@@ -80,6 +74,12 @@
     background-color: #1a1a22;
     width: 100%;
     margin: 10px 10px 10px 0;
+  }
+
+  .detailed-expense .expense-info .details-right {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-end;
   }
 
   .detailed-expense .expense-details .details-right {
