@@ -1,5 +1,5 @@
 #add-expense #add-expense-modal {
-  width: 450px;
+  width: 450px !important;
   padding: 20px;
   text-align: center;
   margin: auto;
@@ -23,6 +23,6 @@
 
 @media only screen and (max-width: 550px) {
   #add-expense #add-expense-modal {
-    width: 100%;
+    width: 100% !important;
   }
 }
