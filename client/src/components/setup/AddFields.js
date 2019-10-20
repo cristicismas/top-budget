@@ -5,7 +5,7 @@ import TITLES from '../../constants/addFieldsTitles';
 import EXAMPLES from '../../constants/fieldExamples';
 import './AddFields.css';
 
-import AddFieldModal from '../general/AddFieldModal';
+import AddFieldForm from '../general/AddFieldForm';
 import Option from '../general/Option';
 
 import { addCategory } from '../../store/actions/categories';
@@ -37,7 +37,7 @@ const AddFields = props => {
       <h2 className="sub-title">{TITLES[field.label.toUpperCase()]}</h2>
       <p className="field-examples">Examples: {EXAMPLES[field.label.toUpperCase()]}, etc.</p>
 
-      <AddFieldModal
+      <AddFieldForm
         type={field.type}
         handleAddField={(type, name, color) => field.addField({ name, color })}
         closeOverlay={() => {}}

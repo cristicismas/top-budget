@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { capitalize } from '../../utils/strings';
-import './AddFieldModal.css';
+import './AddFieldForm.css';
 
-const AddFieldModal = props => {
+const AddFieldForm = props => {
   const { type } = props;
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const AddFieldModal = props => {
   if (type === null) return <Redirect to="/settings" />;
 
   return (
-    <section id="add-field-form">
+    <form id="add-field-form" onSubmit={handleSubmit}>
       <h3 className="add-field-title">Add {capitalize(type)}</h3>
 
       <div className="form-group">
@@ -59,11 +59,11 @@ const AddFieldModal = props => {
         />
       </div>
 
-      <button className="add-field-cta" type="button" onClick={handleSubmit}>
+      <button className="add-field-cta" type="submit">
         Confirm
       </button>
-    </section>
+    </form>
   );
 };
 
-export default AddFieldModal;
+export default AddFieldForm;

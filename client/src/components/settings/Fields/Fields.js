@@ -11,7 +11,7 @@ import { addSource } from '../../../store/actions/sources';
 import Toggle from './Toggle';
 import OptionsRemoveGroup from './OptionsRemoveGroup';
 import Overlay from '../../general/Overlay';
-import AddFieldModal from '../../general/AddFieldModal';
+import AddFieldForm from '../../general/AddFieldForm';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 
 export class Fields extends Component {
@@ -168,7 +168,7 @@ export class Fields extends Component {
 
         <Route path="/settings/add-field">
           <Overlay closeOverlay={history.goBack}>
-            <AddFieldModal
+            <AddFieldForm
               type={fieldToAdd}
               handleAddField={(type, name, color) => this.handleAddField(type, name, color)}
               closeOverlay={history.goBack}
