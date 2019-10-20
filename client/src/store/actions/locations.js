@@ -9,7 +9,7 @@ import { tokenConfig } from './user';
 export const getLocations = () => (dispatch, getState) => {
   dispatch(beginLoading());
 
-  apiCall('get', 'locations', tokenConfig(getState))
+  return apiCall('get', 'locations', tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_LOCATIONS,

@@ -9,7 +9,7 @@ import { tokenConfig } from './user';
 export const getCategories = () => (dispatch, getState) => {
   dispatch(beginLoading());
 
-  apiCall('get', 'categories', tokenConfig(getState))
+  return apiCall('get', 'categories', tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_CATEGORIES,

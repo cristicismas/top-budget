@@ -1,7 +1,8 @@
-import { APP_LOADING, APP_LOADED } from '../actions/actionTypes';
+import { APP_LOADING, APP_LOADED, APP_DATA_FETCHED } from '../actions/actionTypes';
 
 const initialState = {
-  isLoading: false
+  isLoading: false,
+  isDataFetched: false
 };
 
 export default function(state = initialState, action) {
@@ -15,6 +16,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isLoading: false
+      };
+    case APP_DATA_FETCHED:
+      return {
+        ...state,
+        isDataFetched: true
       };
     default:
       return state;

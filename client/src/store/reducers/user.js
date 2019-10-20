@@ -4,7 +4,7 @@ import FIELDS from '../../constants/fields';
 const initialState = {
   token: localStorage.getItem('token') || null,
   isAuthenticated: null,
-  isLoading: false,
+  isFetched: false,
   userdata: {
     currency: 'USD',
     budget: 0,
@@ -25,21 +25,19 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isAuthenticated: true,
-        isLoading: false,
+        isFetched: true,
         userdata: action.payload
       };
     case USER_UPDATED:
       return {
         ...state,
-        isLoading: false,
         userdata: action.payload
       };
     case AUTH_SUCCESS:
       return {
         ...state,
         ...action.payload,
-        isAuthenticated: true,
-        isLoading: false
+        isAuthenticated: true
       };
     case AUTH_FAIL:
     case LOGOUT_SUCCESS:
@@ -47,10 +45,8 @@ export default function(state = initialState, action) {
         ...state,
         token: null,
         userdata: null,
-        isAuthenticated: false,
-        isLoading: false
+        isAuthenticated: false
       };
-
     default:
       return state;
   }

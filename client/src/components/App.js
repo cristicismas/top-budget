@@ -21,6 +21,7 @@ import { getSources } from '../store/actions/sources';
 
 import { addMessage, clearMessages } from '../store/actions/messages';
 import { loadUser } from '../store/actions/user';
+import { allDataFetched } from '../store/actions/app';
 
 import Setup from './setup/Setup';
 import Overlay from './general/Overlay';
@@ -39,11 +40,12 @@ class App extends Component {
 
     // Fetch user and then the data
     this.props.loadUser().then(() => {
-      if (this.props.user.isAuthenticated) {
-        this.props.getExpenses();
-        this.props.getCategories();
-        this.props.getLocations();
-        this.props.getSources();
+      const { user, getExpenses, getCategories, getLocations, getSources, allDataFetched } = this.props;
+
+      if (user.isAuthenticated) {
+        Promise.all([getExpenses(), getCategories(), getLocations(), getSources()]).then(() => {
+          allDataFetched();
+        });
       }
     });
   }
@@ -52,50 +54,51 @@ class App extends Component {
     const { app, messages, clearMessages, user } = this.props;
 
     const { isAuthenticated } = user;
-    const { isLoading } = app;
+    const { isLoading, isDataFetched } = app;
 
-    return (
-      <div className="App">
-        <Header />
+    if (isLoading || !isDataFetched)
+      return (
+        <Overlay isTransparent={true} hideCloseOverlayButton={true}>
+          <Loading />
+        </Overlay>
+      );
+    else
+      return (
+        <div className="App">
+          <Header />
 
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
 
-          <Route exact path={['/signup', '/login']}>
-            <AuthForm
-              getExpenses={() => this.props.getExpenses()}
-              getCategories={() => this.props.getCategories()}
-              getLocations={() => this.props.getLocations()}
-              getSources={() => this.props.getSources()}
-            />
-          </Route>
+            <Route exact path={['/signup', '/login']}>
+              <AuthForm
+                getExpenses={() => this.props.getExpenses()}
+                getCategories={() => this.props.getCategories()}
+                getLocations={() => this.props.getLocations()}
+                getSources={() => this.props.getSources()}
+              />
+            </Route>
 
-          <Route path="/setup">
-            <Setup />
-          </Route>
+            <Route path="/setup">
+              <Setup />
+            </Route>
 
-          <Route path="/dashboard">{isAuthenticated === false ? <Redirect to="/signup" /> : <Dashboard />}</Route>
+            <Route path="/dashboard">{isAuthenticated ? <Dashboard /> : <Redirect to="/login" />}</Route>
 
-          <Route path="/settings">{isAuthenticated === false ? <Redirect to="/signup" /> : <Settings />}</Route>
+            <Route path="/settings">{isAuthenticated ? <Settings /> : <Redirect to="/login" />}</Route>
 
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
 
-        {messages.map((message, index) => (
-          <Message key={`message-${index}`} {...message} clearMessages={clearMessages} />
-        ))}
-
-        {isLoading && (
-          <Overlay isTransparent={true} hideCloseOverlayButton={true}>
-            <Loading />
-          </Overlay>
-        )}
-      </div>
-    );
+          {messages.map((message, index) => (
+            <Message key={`message-${index}`} {...message} clearMessages={clearMessages} />
+          ))}
+        </div>
+      );
   }
 }
 
@@ -112,7 +115,8 @@ const mapDispatchToProps = {
   getSources,
   addMessage,
   clearMessages,
-  loadUser
+  loadUser,
+  allDataFetched
 };
 
 export default connect(

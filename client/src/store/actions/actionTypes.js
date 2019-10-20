@@ -5,6 +5,7 @@ export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const APP_LOADING = 'APP_LOADING';
 export const APP_LOADED = 'APP_LOADED';
+export const APP_DATA_FETCHED = 'APP_DATA_FETCHED';
 
 export const USER_LOADED = 'USER_LOADED';
 export const USER_UPDATED = 'USER_UPDATED';

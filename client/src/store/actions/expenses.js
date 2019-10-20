@@ -9,7 +9,7 @@ import { tokenConfig } from './user';
 export const getExpenses = () => (dispatch, getState) => {
   dispatch(beginLoading());
 
-  apiCall('get', 'expenses', tokenConfig(getState))
+  return apiCall('get', 'expenses', tokenConfig(getState))
     .then(res => {
       const expenses = res.map(expense => {
         return {
