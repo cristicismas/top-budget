@@ -21,8 +21,11 @@ const allReducers = combineReducers({
 
 export default (state, action) => {
   if (action.type === LOGOUT_SUCCESS) {
-    state = undefined;
+    state = {
+      ...state,
+      app: { isLoading: false, isDataFetched: true }
+    };
   }
 
   return allReducers(state, action);
-}
+};

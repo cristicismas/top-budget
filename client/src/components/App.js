@@ -46,6 +46,8 @@ class App extends Component {
         Promise.all([getExpenses(), getCategories(), getLocations(), getSources()]).then(() => {
           allDataFetched();
         });
+      } else {
+        allDataFetched();
       }
     });
   }
