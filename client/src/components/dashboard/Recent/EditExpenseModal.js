@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import TYPES from '../../../constants/messageTypes';
 import '../../general/ExpenseModal.css';
 
-import OptionsGroup from '../../general/OptionsGroup';
+import FieldsGroup from '../../general/FieldsGroup';
 
 const EditExpenseField = props => {
   const { categories, locations, sources } = props;
@@ -44,7 +44,7 @@ const EditExpenseField = props => {
     }
   };
 
-  const handleOptionClick = (type, id) => {
+  const handleFieldClick = (type, id) => {
     let setSelectedField = null;
 
     // Get the right setSelectedField function
@@ -52,31 +52,31 @@ const EditExpenseField = props => {
     else if (type === 'location') setSelectedField = setLocation;
     else setSelectedField = setSource;
 
-    const selectedOption = document.getElementById(`${type}-${id}`);
+    const selectedField = document.getElementById(`${type}-${id}`);
 
-    // If option is already selected, unselect it.
-    if (selectedOption) {
-      if (selectedOption.classList.contains('selected')) {
+    // If field is already selected, unselect it.
+    if (selectedField) {
+      if (selectedField.classList.contains('selected')) {
         setSelectedField(null);
       } else {
-        const optionParent = document.getElementById(type);
-        const optionSiblings = optionParent.childNodes;
+        const fieldParent = document.getElementById(type);
+        const fieldSiblings = fieldParent.childNodes;
 
-        for (let i = 0; i < optionSiblings.length; i++) {
-          optionSiblings[i].classList.remove('selected');
+        for (let i = 0; i < fieldSiblings.length; i++) {
+          fieldSiblings[i].classList.remove('selected');
         }
 
         setSelectedField(id);
       }
 
-      selectedOption.classList.toggle('selected');
+      selectedField.classList.toggle('selected');
     }
   };
 
   useEffect(() => {
-    handleOptionClick('category', expense.category);
-    handleOptionClick('location', expense.location);
-    handleOptionClick('source', expense.source);
+    handleFieldClick('category', expense.category);
+    handleFieldClick('location', expense.location);
+    handleFieldClick('source', expense.source);
   }, [expense]);
 
   const shouldModalBeLarge =
@@ -114,32 +114,32 @@ const EditExpenseField = props => {
       </div>
 
       {showCategories && categories.length > 0 && (
-        <OptionsGroup
+        <FieldsGroup
           label="Category"
           type="category"
           objects={categories}
           handleAddField={() => {}}
-          handleOptionClick={(type, object) => handleOptionClick(type, object.id)}
+          handleFieldClick={(type, object) => handleFieldClick(type, object.id)}
         />
       )}
 
       {showLocations && locations.length > 0 && (
-        <OptionsGroup
+        <FieldsGroup
           label="Location"
           type="location"
           objects={locations}
           handleAddField={() => {}}
-          handleOptionClick={(type, object) => handleOptionClick(type, object.id)}
+          handleFieldClick={(type, object) => handleFieldClick(type, object.id)}
         />
       )}
 
       {showSources && sources.length > 0 && (
-        <OptionsGroup
+        <FieldsGroup
           label="Source"
           type="source"
           objects={sources}
           handleAddField={() => {}}
-          handleOptionClick={(type, object) => handleOptionClick(type, object.id)}
+          handleFieldClick={(type, object) => handleFieldClick(type, object.id)}
         />
       )}
 

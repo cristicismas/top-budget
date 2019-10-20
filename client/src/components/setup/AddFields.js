@@ -6,7 +6,7 @@ import EXAMPLES from '../../constants/fieldExamples';
 import './AddFields.css';
 
 import AddFieldForm from '../general/AddFieldForm';
-import Option from '../general/Option';
+import Field from '../general/Field';
 
 import { addCategory } from '../../store/actions/categories';
 import { addLocation } from '../../store/actions/locations';
@@ -29,7 +29,7 @@ const AddFields = props => {
     field = { type: 'source', label: 'sources', addField: field => props.addSource(field) };
 
   const fieldsList = props[field.label].map(object => (
-    <Option type={object.name} object={object} handleOptionClick={() => {}} key={`${object.name}-${object.id}`} />
+    <Field type={object.name} object={object} handleFieldClick={() => {}} key={`${object.name}-${object.id}`} />
   ));
 
   return (
@@ -43,9 +43,7 @@ const AddFields = props => {
         closeOverlay={() => {}}
       />
 
-      <ul id="fields-list">
-        {fieldsList}
-      </ul>
+      <ul id="fields-list">{fieldsList}</ul>
     </section>
   );
 };

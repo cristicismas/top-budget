@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TYPES from '../../constants/messageTypes';
 import './ExpenseModal.css';
 
-import OptionsGroup from './OptionsGroup';
+import FieldsGroup from './FieldsGroup';
 
 import { addExpense } from '../../store/actions/expenses';
 
@@ -21,25 +21,25 @@ export class AddExpenseForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleOptionClick(type, id) {
-    const selectedOption = document.getElementById(`${type}-${id}`);
+  handleFieldClick(type, id) {
+    const selectedField = document.getElementById(`${type}-${id}`);
 
-    if (selectedOption.classList.contains('selected')) {
-      // If option is already selected, unselect it.
+    if (selectedField.classList.contains('selected')) {
+      // If field is already selected, unselect it.
       this.setState({ [type]: null });
     } else {
-      // If option isn't selected, select it and remove the selected class from other siblings.
-      const optionParent = document.getElementById(type);
-      const optionSiblings = optionParent.childNodes;
+      // If field isn't selected, select it and remove the selected class from other siblings.
+      const fieldParent = document.getElementById(type);
+      const fieldSiblings = fieldParent.childNodes;
 
-      for (let i = 0; i < optionSiblings.length; i++) {
-        optionSiblings[i].classList.remove('selected');
+      for (let i = 0; i < fieldSiblings.length; i++) {
+        fieldSiblings[i].classList.remove('selected');
       }
 
       this.setState({ [type]: id });
     }
 
-    selectedOption.classList.toggle('selected');
+    selectedField.classList.toggle('selected');
   }
 
   clearForm() {
@@ -50,12 +50,12 @@ export class AddExpenseForm extends Component {
       source: null
     });
 
-    const selectedOptions = document.querySelectorAll('.selected');
+    const selectedFields = document.querySelectorAll('.selected');
 
-    for (let i = 0; i < selectedOptions.length; i++) {
-      const currentOption = selectedOptions[i];
+    for (let i = 0; i < selectedFields.length; i++) {
+      const currentField = selectedFields[i];
 
-      currentOption.classList.remove('selected');
+      currentField.classList.remove('selected');
     }
   }
 
@@ -110,29 +110,29 @@ export class AddExpenseForm extends Component {
         </div>
 
         {showCategories && categories.length > 0 && (
-          <OptionsGroup
+          <FieldsGroup
             label="Category"
             type="category"
             objects={categories}
-            handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
+            handleFieldClick={(type, object) => this.handleFieldClick(type, object.id)}
           />
         )}
 
         {showLocations && locations.length > 0 && (
-          <OptionsGroup
+          <FieldsGroup
             label="Location"
             type="location"
             objects={locations}
-            handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
+            handleFieldClick={(type, object) => this.handleFieldClick(type, object.id)}
           />
         )}
 
         {showSources && sources.length > 0 && (
-          <OptionsGroup
+          <FieldsGroup
             label="Source"
             type="source"
             objects={sources}
-            handleOptionClick={(type, object) => this.handleOptionClick(type, object.id)}
+            handleFieldClick={(type, object) => this.handleFieldClick(type, object.id)}
           />
         )}
 

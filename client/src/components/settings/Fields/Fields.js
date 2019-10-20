@@ -9,7 +9,7 @@ import { addLocation } from '../../../store/actions/locations';
 import { addSource } from '../../../store/actions/sources';
 
 import Toggle from './Toggle';
-import OptionsRemoveGroup from './OptionsRemoveGroup';
+import FieldsRemoveGroup from './FieldsRemoveGroup';
 import Overlay from '../../general/Overlay';
 import AddFieldForm from '../../general/AddFieldForm';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
@@ -26,10 +26,10 @@ export class Fields extends Component {
     };
   }
 
-  handleOptionClick = (type, object) => {
-    const options = document.getElementById(`${type}-${object.id}`);
+  handleFieldClick = (type, object) => {
+    const fields = document.getElementById(`${type}-${object.id}`);
 
-    if (options.classList.contains('selected')) {
+    if (fields.classList.contains('selected')) {
       const currentStateArray = [...this.state[type]];
       const indexToRemove = currentStateArray.indexOf(object.id);
 
@@ -40,7 +40,7 @@ export class Fields extends Component {
       this.setState({ [type]: [...this.state[type], object.id] });
     }
 
-    options.classList.toggle('selected');
+    fields.classList.toggle('selected');
   };
 
   handleAddFieldButton = fieldToAdd => {
@@ -103,7 +103,7 @@ export class Fields extends Component {
         <h2 className="sub-title">Remove or Disable Fields</h2>
 
         <div className={`field-header ${showCategories ? '' : 'disabled'}`}>
-          <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('category')}>
+          <button type="button" className="add-field-button" onClick={() => this.handleAddFieldButton('category')}>
             +
           </button>
           <h2 className="field-title">Categories</h2>
@@ -111,16 +111,16 @@ export class Fields extends Component {
         </div>
 
         {categories.length > 0 && (
-          <OptionsRemoveGroup
+          <FieldsRemoveGroup
             objects={categories}
             type="categories"
             dim={!showCategories}
-            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
+            handleFieldClick={(type, object) => this.handleFieldClick(type, object)}
           />
         )}
 
         <div className={`field-header ${showLocations ? '' : 'disabled'}`}>
-          <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('location')}>
+          <button type="button" className="add-field-button" onClick={() => this.handleAddFieldButton('location')}>
             +
           </button>
           <h2 className="field-title">Locations</h2>
@@ -128,16 +128,16 @@ export class Fields extends Component {
         </div>
 
         {locations.length > 0 && (
-          <OptionsRemoveGroup
+          <FieldsRemoveGroup
             objects={locations}
             type="locations"
             dim={!showLocations}
-            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
+            handleFieldClick={(type, object) => this.handleFieldClick(type, object)}
           />
         )}
 
         <div className={`field-header ${showSources ? '' : 'disabled'}`}>
-          <button type="button" className="add-option-button" onClick={() => this.handleAddFieldButton('source')}>
+          <button type="button" className="add-field-button" onClick={() => this.handleAddFieldButton('source')}>
             +
           </button>
           <h2 className="field-title">Sources</h2>
@@ -145,17 +145,17 @@ export class Fields extends Component {
         </div>
 
         {sources.length > 0 && (
-          <OptionsRemoveGroup
+          <FieldsRemoveGroup
             objects={sources}
             type="sources"
             dim={!showSources}
-            handleOptionClick={(type, object) => this.handleOptionClick(type, object)}
+            handleFieldClick={(type, object) => this.handleFieldClick(type, object)}
           />
         )}
 
         <button
           onClick={() => history.push('/settings/confirm-delete')}
-          id="delete-options-btn"
+          id="delete-fields-btn"
           className={buttonEnabled ? '' : 'disabled'}>
           Delete Selected
         </button>

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import { capitalize } from '../../utils/strings';
 import './AddFieldForm.css';
 
@@ -12,7 +11,9 @@ const AddFieldForm = props => {
     if (fieldNameInput) fieldNameInput.focus();
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    
     const nameInput = document.getElementById(`${type}-name`);
     const colorInput = document.getElementById(`${type}-color`);
 
@@ -29,8 +30,6 @@ const AddFieldForm = props => {
       nameInput.setCustomValidity('This field is required.');
     }
   };
-
-  if (type === null) return <Redirect to="/settings" />;
 
   return (
     <form id="add-field-form" onSubmit={handleSubmit}>

@@ -17,7 +17,7 @@
   top: 15px;
 }
 
-#fields .field-header .add-option-button {
+#fields .field-header .add-field-button {
   background-color: #008cff;
   background: linear-gradient(to bottom right, #00ccff, #7330e0);
   border-radius: 50%;
@@ -33,11 +33,11 @@
   text-align: center;
 }
 
-#fields .options {
+#fields .fields {
   margin-left: 40px;
 }
 
-#fields #delete-options-btn {
+#fields #delete-fields-btn {
   margin: 20px auto 0;
   display: block;
   padding: 10px 15px;
@@ -49,22 +49,22 @@
   transition: all 0.2s;
 }
 
-#fields #delete-options-btn:hover {
+#fields #delete-fields-btn:hover {
   border: 2px solid #b13030;
   box-shadow: 0px 0px 12px rgba(189, 23, 23, 0.6);
 }
 
-#fields #delete-options-btn:active {
+#fields #delete-fields-btn:active {
   box-shadow: 0px 0px 15px rgba(189, 23, 23, 0.6);
 }
 
-#fields #delete-options-btn.disabled {
+#fields #delete-fields-btn.disabled {
   border: 2px solid #2c2c3a;
   color: #666;
   cursor: default;
 }
 
-#fields #delete-options-btn.disabled:hover {
+#fields #delete-fields-btn.disabled:hover {
   box-shadow: none;
   border: 2px solid #2c2c3a;
 }
@@ -78,14 +78,14 @@
     top: 10px;
   }
 
-  #fields .field-header .add-option-button {
+  #fields .field-header .add-field-button {
     width: 30px;
     height: 30px;
     margin-left: 10px;
     font-size: 20px;
   }
 
-  #fields .options {
+  #fields .fields {
     margin-left: 20px;
   }
 }
@@ -95,7 +95,7 @@
     margin-left: 10px;
   }
 
-  #fields .options {
+  #fields .fields {
     margin-left: 10px;
   }
 }

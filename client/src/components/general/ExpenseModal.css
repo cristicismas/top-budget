@@ -26,11 +26,11 @@
   border: 1px solid #3d1eca;
 }
 
-.expense-modal .form-group * {
+.expense-modal * {
   font-weight: 400;
 }
 
-.expense-modal .form-group .add-option-button {
+.expense-modal .form-group .add-field-button {
   display: none;
 }
 
@@ -38,7 +38,7 @@
   margin-bottom: 30px;
 }
 
-.expense-modal .form-group .options {
+.expense-modal .fields {
   margin: 0;
 }
 
