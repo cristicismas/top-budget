@@ -1,0 +1,44 @@
+#setup {
+  padding: 50px;
+}
+
+#setup .accent {
+  color: #6041ec;
+}
+
+#setup .title,
+#setup .sub-title {
+  max-width: 800px;
+  margin: 25px auto 75px;
+  text-align: center;
+  font-weight: normal;
+}
+
+#setup .title {
+  font-size: 35px;
+}
+
+#setup .sub-title {
+  font-size: 30px;
+  color: #ccc;
+}
+
+@media only screen and (max-width: 750px) {
+  #setup .title {
+    font-size: 30px;
+  }
+
+  #setup .sub-title {
+    font-size: 25px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #setup {
+    padding: 50px 20px;
+  }
+
+  #setup .sub-title {
+    font-size: 22px;
+  }
+}

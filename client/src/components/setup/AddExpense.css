@@ -1,0 +1,28 @@
+#add-expense #add-expense-modal {
+  width: 450px;
+  padding: 20px;
+  text-align: center;
+  margin: auto;
+  background-color: #1a1a24;
+}
+
+#add-expense #add-expense-modal .title {
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 35px;
+}
+
+#add-expense #add-expense-modal h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#add-expense .option {
+  margin: 0 5px 10px 5px;
+}
+
+@media only screen and (max-width: 550px) {
+  #add-expense #add-expense-modal {
+    width: 100%;
+  }
+}

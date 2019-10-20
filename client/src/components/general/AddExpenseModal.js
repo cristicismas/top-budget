@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TYPES from '../../constants/messageTypes';
 import './ExpenseModal.css';
 
-import OptionsGroup from '../general/OptionsGroup';
+import OptionsGroup from './OptionsGroup';
 
 import { addExpense } from '../../store/actions/expenses';
 

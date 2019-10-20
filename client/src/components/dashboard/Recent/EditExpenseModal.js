@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import TYPES from '../../../constants/messageTypes';
-import '../ExpenseModal.css';
+import '../../general/ExpenseModal.css';
 
 import OptionsGroup from '../../general/OptionsGroup';
 

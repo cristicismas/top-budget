@@ -1,8 +1,9 @@
-.options {
+#fields .options {
   margin-bottom: 50px;
+  justify-content: flex-start;
   transition: all 0.2s;
 }
 
-.options.dim {
+#fields .options.dim {
   opacity: 0.3;
 }

@@ -11,7 +11,7 @@ import { addSource } from '../../../store/actions/sources';
 import Toggle from './Toggle';
 import OptionsRemoveGroup from './OptionsRemoveGroup';
 import Overlay from '../../general/Overlay';
-import AddFieldModal from './AddFieldModal';
+import AddFieldModal from '../../general/AddFieldModal';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 
 export class Fields extends Component {

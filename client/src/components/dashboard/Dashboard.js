@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Route, useHistory } from 'react-router-dom';
+import { Route, Redirect, useHistory } from 'react-router-dom';
 import './Dashboard.css';
 
-import AddExpenseModal from './AddExpenseModal';
+import AddExpenseModal from '../general/AddExpenseModal';
 import ExpenseSummary from './Summary/ExpenseSummary';
 import BudgetWheel from './BudgetWheel';
 import Chart from './Chart';
@@ -24,23 +24,7 @@ const Dashboard = props => {
 
   const areAnyFieldsEnabled = showCategories || showLocations || showSources;
 
-  if (!expenses.length)
-    return (
-      <main id="dashboard">
-        <button className="floating-button" onClick={() => history.push('/dashboard/add-expense')}>
-          +
-        </button>
-
-        <Route path="/dashboard/add-expense">
-          <Overlay closeOverlay={history.goBack}>
-            <AddExpenseModal closeOverlay={history.goBack} />
-          </Overlay>
-        </Route>
-
-        <Message text="Please add at least one expense before viewing the dashboard." />
-      </main>
-    );
-  else
+  if (expenses.length || categories.length || locations.length || sources.length)
     return (
       <main id="dashboard">
         {!areAnyFieldsEnabled && (
@@ -98,6 +82,7 @@ const Dashboard = props => {
         </button>
       </main>
     );
+  else return <Redirect to="/setup" />;
 };
 
 const mapStateToProps = state => ({

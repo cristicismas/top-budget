@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { capitalize } from '../../../utils/strings';
+import { capitalize } from '../../utils/strings';
 import './AddFieldModal.css';
 
 const AddFieldModal = props => {

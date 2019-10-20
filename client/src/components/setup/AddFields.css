@@ -1,0 +1,47 @@
+#add-fields .field-examples {
+  text-align: center;
+  color: #aaa;
+  font-size: 20px;
+}
+
+#add-fields .option {
+  margin: 0 5px 15px 5px;
+}
+
+#add-fields #add-field-form {
+  width: auto;
+  margin: auto;
+  text-align: center;
+  width: 450px;
+  background-color: #1a1a24;
+}
+
+#add-fields #add-field-form input[type='color'] {
+  width: 272px;
+  margin: 10px auto;
+}
+
+#add-fields #fields-list {
+  max-width: 400px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 0;
+}
+
+@media only screen and (max-width: 550px) {
+  #add-fields #add-field-form {
+    padding: 30px;
+    width: 100%;
+  }
+
+  #add-fields #add-field-form .add-field-title {
+    margin-top: 0px;
+    margin-bottom: 50px;
+  }
+
+  #add-fields #add-field-form input[type='color'] {
+    width: 100%;
+  }
+}
