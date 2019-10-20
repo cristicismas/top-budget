@@ -9,8 +9,17 @@
   margin: 0 15px 15px;
 }
 
+#nav-buttons button:hover .icon,
+#nav-buttons button:active .icon {
+  fill: #775cf0;
+}
+
 #nav-buttons button.disabled {
   color: #aaa;
+}
+
+#nav-buttons button.disabled .icon {
+  fill: #555;
 }
 
 #nav-buttons button.disabled {
@@ -22,4 +31,24 @@
 #nav-buttons button.disabled:hover {
   box-shadow: none;
   border: 2px solid #2c2c3a;
+}
+
+#nav-buttons .icon {
+  transition: all .2s;
+  position: relative;
+  top: 4px;
+}
+
+#nav-buttons .back-arrow {
+  transform: rotate(90deg);
+  right: 10px;
+}
+
+#nav-buttons .next-arrow {
+  transform: rotate(-90deg);
+  left: 10px;
+}
+
+#nav-buttons .check-icon {
+  left: 10px;
 }
