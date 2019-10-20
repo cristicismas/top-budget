@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ICONS from '../../constants/icons';
 import Icon from '../general/Icon';
 import { Link } from 'react-router-dom';
@@ -13,7 +14,9 @@ const scrollToFeatures = () => {
   });
 };
 
-const Hero = () => {
+const Hero = props => {
+  const { isAuthenticated } = props.user;
+
   return (
     <section id="hero">
       <div id="intro" data-aos="fade-down">
@@ -21,14 +24,22 @@ const Hero = () => {
         <h2 className="subtitle">Manage your expenses with ease.</h2>
       </div>
 
-      <div className="cta-buttons">
-        <Link to="/dashboard" data-aos="fade-right" className="secondary">
-          Dashboard
-        </Link>
-        <Link to="/signup" data-aos="fade-left" className="primary">
-          Get Started
-        </Link>
-      </div>
+      {isAuthenticated ? (
+        <div className="cta-buttons">
+          <Link to="/dashboard" data-aos="fade-right" className="primary">
+            Dashboard
+          </Link>
+        </div>
+      ) : (
+        <div className="cta-buttons">
+          <Link to="/login" data-aos="fade-right" className="secondary">
+            Log in
+          </Link>
+          <Link to="/signup" data-aos="fade-left" className="primary">
+            Get Started
+          </Link>
+        </div>
+      )}
 
       <button type="button" className="scroll-down-btn" onClick={scrollToFeatures}>
         <Icon icon={ICONS.ARROW} size={45} fill="#eee" />
@@ -37,4 +48,11 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Hero);
