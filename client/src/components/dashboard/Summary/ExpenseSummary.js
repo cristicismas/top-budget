@@ -43,9 +43,10 @@ const ExpenseSummary = props => {
 
   // Reverse sort fields by value
   const sortedFields = useCallback(
-    fieldsAndNotDefined.sort((a, b) => {
-      return calculateFieldValue(b, fieldType, expenses, filter) - calculateFieldValue(a, fieldType, expenses, filter);
-    }),
+    fieldsAndNotDefined.sort(
+      (a, b) =>
+        calculateFieldValue(b, fieldType, expenses, filter) - calculateFieldValue(a, fieldType, expenses, filter)
+    ),
     [fieldsAndNotDefined, fieldType, expenses, filter]
   );
 
