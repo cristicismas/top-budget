@@ -1,15 +1,23 @@
 {
   "short_name": "Top Budget",
   "name": "Top Budget",
+  "description": "An easy-to-use expense manager.",
+  "categories": [
+    "productivity",
+    "lifestyle",
+    "business",
+    "shopping",
+    "utilities"
+  ],
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "favicon.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#15161d",
+  "background_color": "#15161d"
 }
