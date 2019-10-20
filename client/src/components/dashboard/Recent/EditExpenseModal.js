@@ -79,10 +79,21 @@ const EditExpenseField = props => {
     handleOptionClick('source', expense.source);
   }, [expense]);
 
+  const shouldModalBeLarge =
+    (showCategories && categories.length > 3) ||
+    (showLocations && locations.length > 3) ||
+    (showSources && sources.length > 3);
+
+  const modalStyle = shouldModalBeLarge
+    ? {}
+    : {
+        width: 'auto'
+      };
+
   if (expense.id === null) return <Redirect to="/dashboard" />;
 
   return (
-    <form id="edit-expense-modal" className="expense-modal" onSubmit={e => handleSubmit(e)}>
+    <form id="edit-expense-modal" className="expense-modal" style={modalStyle} onSubmit={e => handleSubmit(e)}>
       <h2 className="title">Edit Expense</h2>
 
       <div className="form-group">
