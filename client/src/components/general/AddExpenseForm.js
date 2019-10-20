@@ -7,7 +7,7 @@ import OptionsGroup from './OptionsGroup';
 
 import { addExpense } from '../../store/actions/expenses';
 
-export class AddExpenseModal extends Component {
+export class AddExpenseForm extends Component {
   constructor(props) {
     super(props);
 
@@ -89,7 +89,7 @@ export class AddExpenseModal extends Component {
         };
 
     return (
-      <form id="add-expense-modal" className="expense-modal" style={modalStyle} onSubmit={this.handleSubmit}>
+      <form id="add-expense-form" className="expense-modal" style={modalStyle} onSubmit={this.handleSubmit}>
         <h2 className="title">Add Expense</h2>
 
         <div className="form-group">
@@ -154,4 +154,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { addExpense }
-)(AddExpenseModal);
+)(AddExpenseForm);

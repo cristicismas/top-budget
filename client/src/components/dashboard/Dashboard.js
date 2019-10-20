@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect, useHistory } from 'react-router-dom';
 import './Dashboard.css';
 
-import AddExpenseModal from '../general/AddExpenseModal';
+import AddExpenseForm from '../general/AddExpenseForm';
 import ExpenseSummary from './Summary/ExpenseSummary';
 import BudgetWheel from './BudgetWheel';
 import Chart from './Chart';
@@ -36,7 +36,7 @@ const Dashboard = props => {
 
         <Route path="/dashboard/add-expense">
           <Overlay closeOverlay={history.goBack}>
-            <AddExpenseModal closeOverlay={history.goBack} />
+            <AddExpenseForm closeOverlay={history.goBack} />
           </Overlay>
         </Route>
 

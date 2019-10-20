@@ -1,14 +1,14 @@
 import React from 'react';
 import './AddExpense.css';
 
-import AddExpenseModal from '../general/AddExpenseModal';
+import AddExpenseForm from '../general/AddExpenseForm';
 
 const AddExpense = () => {
   return (
     <section id="add-expense">
       <h2 className="sub-title">Well done! This is the last step. Please add at least one expense.</h2>
 
-      <AddExpenseModal
+      <AddExpenseForm
         addExpense={() => {}}
         closeOverlay={() => {}}
         addMessage={() => {}}
