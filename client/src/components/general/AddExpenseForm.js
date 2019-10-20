@@ -32,8 +32,8 @@ export class AddExpenseForm extends Component {
       const fieldParent = document.getElementById(type);
       const fieldSiblings = fieldParent.childNodes;
 
-      for (let i = 0; i < fieldSiblings.length; i++) {
-        fieldSiblings[i].classList.remove('selected');
+      for (let sibling of fieldSiblings) {
+        sibling.classList.remove('selected');
       }
 
       this.setState({ [type]: id });
@@ -52,10 +52,8 @@ export class AddExpenseForm extends Component {
 
     const selectedFields = document.querySelectorAll('.selected');
 
-    for (let i = 0; i < selectedFields.length; i++) {
-      const currentField = selectedFields[i];
-
-      currentField.classList.remove('selected');
+    for (let selectedField of selectedFields) {
+      selectedField.classList.remove('selected');
     }
   }
 

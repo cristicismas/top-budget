@@ -62,8 +62,8 @@ const EditExpenseField = props => {
         const fieldParent = document.getElementById(type);
         const fieldSiblings = fieldParent.childNodes;
 
-        for (let i = 0; i < fieldSiblings.length; i++) {
-          fieldSiblings[i].classList.remove('selected');
+        for (let sibling of fieldSiblings) {
+          sibling.classList.remove('selected');
         }
 
         setSelectedField(id);
