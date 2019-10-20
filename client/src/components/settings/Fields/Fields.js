@@ -162,7 +162,7 @@ export class Fields extends Component {
 
         <Route path="/settings/confirm-delete">
           <Overlay closeOverlay={history.goBack}>
-            <ConfirmDeleteModal handleDelete={() => this.handleDelete()} />
+            <ConfirmDeleteModal closeOverlay={history.goBack} handleDelete={() => this.handleDelete()} />
           </Overlay>
         </Route>
 

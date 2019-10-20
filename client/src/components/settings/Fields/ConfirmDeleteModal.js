@@ -12,9 +12,14 @@ const ConfirmDeleteModal = props => {
         Deleting fields is an irreversible action.
       </p>
 
-      <button id="confirm-delete-btn" onClick={props.handleDelete}>
-        Confirm
-      </button>
+      <div className="buttons-group">
+        <button id="cancel-btn" onClick={props.closeOverlay}>
+          Cancel
+        </button>
+        <button id="confirm-delete-btn" onClick={props.handleDelete}>
+          Confirm
+        </button>
+      </div>
     </section>
   );
 };

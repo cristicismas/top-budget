@@ -12,15 +12,24 @@
   font-size: 18px;
 }
 
-#confirm-delete #confirm-delete-btn {
+#confirm-delete .buttons-group {
   margin: 40px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#confirm-delete .buttons-group > * {
   display: block;
   padding: 10px 15px;
   font-size: 18px;
+  margin: 0 15px;
+}
+
+#confirm-delete #confirm-delete-btn {
   background-color: #15131a;
   border: 2px solid #b13030;
   color: #ee3636;
-  cursor: pointer;
   transition: all 0.2s;
 }
 
