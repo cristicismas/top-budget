@@ -26,7 +26,7 @@ const Dashboard = props => {
 
   if (!expenses.length)
     return (
-      <section id="dashboard">
+      <main id="dashboard">
         <button className="floating-button" onClick={() => history.push('/dashboard/add-expense')}>
           +
         </button>
@@ -38,11 +38,11 @@ const Dashboard = props => {
         </Route>
 
         <Message text="Please add at least one expense before viewing the dashboard." />
-      </section>
+      </main>
     );
   else
     return (
-      <section id="dashboard">
+      <main id="dashboard">
         {!areAnyFieldsEnabled && (
           <Message
             text="Please enable at least one field in your settings to see more advanced statistics."
@@ -96,7 +96,7 @@ const Dashboard = props => {
         <button className="floating-button" onClick={() => history.push('/dashboard/add-expense')}>
           +
         </button>
-      </section>
+      </main>
     );
 };
 

@@ -88,7 +88,7 @@ export class Settings extends Component {
     const { categories, locations, sources, user } = this.props;
 
     return (
-      <section id="settings">
+      <main id="settings">
         <h1 className="title">Settings</h1>
 
         <Info user={user} logout={() => this.props.logout()} />
@@ -126,7 +126,7 @@ export class Settings extends Component {
           locations={locations}
           sources={sources}
         />
-      </section>
+      </main>
     );
   }
 }
