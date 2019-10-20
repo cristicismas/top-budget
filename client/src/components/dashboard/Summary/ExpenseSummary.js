@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import FIELDS from '../../../constants/fields';
 import { getCurrency } from '../../../utils/currency';
 import { calculateBarWidth, calculateFieldValue } from '../../../utils/summary';
@@ -42,13 +42,14 @@ const ExpenseSummary = props => {
   ];
 
   // Reverse sort fields by value
-  const sortedFields = useMemo(() => {
-    return fieldsAndNotDefined.sort((a, b) => {
+  const sortedFields = useCallback(
+    fieldsAndNotDefined.sort((a, b) => {
       return calculateFieldValue(b, fieldType, expenses, filter) - calculateFieldValue(a, fieldType, expenses, filter);
-    });
-  }, [fieldsAndNotDefined, fieldType, expenses, filter]);
+    }),
+    [fieldsAndNotDefined, fieldType, expenses, filter]
+  );
 
-  const topFieldValue = useMemo(() => calculateFieldValue(sortedFields[0], fieldType, expenses, filter), [
+  const topFieldValue = useCallback(calculateFieldValue(sortedFields[0], fieldType, expenses, filter), [
     sortedFields,
     fieldType,
     expenses,

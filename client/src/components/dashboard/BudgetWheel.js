@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback } from 'react';
 import ICON from '../../constants/icons';
 import Icon from '../general/Icon';
 import './BudgetWheel.css';
@@ -16,9 +16,9 @@ const BudgetWheel = props => {
 
   const currencySymbol = getCurrency(userdata);
 
-  const budgetForFilter = useMemo(() => getBudgetForFilter(userdata.budget, filter), [userdata.budget, filter]);
-  const sumOfExpenses = useMemo(() => getSumOfExpensesForTimeline(expenses, filter), [expenses, filter]);
-  const progress = useMemo(() => getFillPercentage(sumOfExpenses, budgetForFilter), [sumOfExpenses, budgetForFilter]);
+  const budgetForFilter = useCallback(getBudgetForFilter(userdata.budget, filter), [userdata.budget, filter]);
+  const sumOfExpenses = useCallback(getSumOfExpensesForTimeline(expenses, filter), [expenses, filter]);
+  const progress = useCallback(getFillPercentage(sumOfExpenses, budgetForFilter), [sumOfExpenses, budgetForFilter]);
 
   const WHEEL = getWheelGeometryData(progress);
 
