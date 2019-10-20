@@ -22,17 +22,22 @@ const DetailedExpense = props => {
   });
 
   const expenseTime = moment(expense.date).format('h:mm a');
-
   const currency = getCurrency(userdata);
+
+  const shouldShowCategories = showCategories && categories.length > 0;
+  const shouldShowLocations = showLocations && locations.length > 0;
+  const shouldShowSources = showSources && sources.length > 0;
+
+  const showDetails = shouldShowLocations || shouldShowSources;
 
   return (
     <div className="detailed-expense" onClick={props.onClick}>
       <div className="expense-info flex-group">
         <span className="expense-time">{expenseTime}</span>
 
-        {showCategories && <ExpenseField field={category} />}
+        {shouldShowCategories && <ExpenseField field={category} />}
 
-        {!(showLocations || showSources) ? (
+        {!showDetails && (
           <div className="details-right flex-group">
             <span className="amount">
               {currency} {expense.value}
@@ -46,17 +51,17 @@ const DetailedExpense = props => {
               ✕
             </button>
           </div>
-        ) : null}
+        )}
       </div>
 
-      {showLocations || showSources ? (
+      {showDetails && (
         <div className="expense-details flex-group">
           <div className="details-left flex-group">
-            {showLocations && <ExpenseField field={location} />}
+            {shouldShowLocations && <ExpenseField field={location} />}
 
-            {showLocations && showSources ? <span>/</span> : null}
+            {shouldShowLocations && shouldShowSources && <span>/</span>}
 
-            {showSources && <ExpenseField field={source} />}
+            {shouldShowSources && <ExpenseField field={source} />}
           </div>
 
           <div className="details-right flex-group">
@@ -73,7 +78,7 @@ const DetailedExpense = props => {
             </button>
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 };
