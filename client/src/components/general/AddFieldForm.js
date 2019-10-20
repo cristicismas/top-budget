@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { capitalize } from '../../utils/strings';
 import './AddFieldForm.css';
 
 const AddFieldForm = props => {
   const { type } = props;
+
+  const [name, setName] = useState('');
+  const [color, setColor] = useState('#1e2f87');
 
   useEffect(() => {
     const fieldNameInput = document.getElementById(`${type}-name`);
@@ -13,21 +16,16 @@ const AddFieldForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    
-    const nameInput = document.getElementById(`${type}-name`);
-    const colorInput = document.getElementById(`${type}-color`);
+    const fieldNameInput = document.getElementById(`${type}-name`);
 
-    const fieldName = nameInput.value;
-    const fieldColor = colorInput.value;
+    if (name.trim()) {
+      props.handleAddField(type, name, color);
+      fieldNameInput.setCustomValidity('');
 
-    if (fieldName.trim()) {
-      props.handleAddField(type, fieldName, fieldColor);
-      nameInput.setCustomValidity('');
-
-      document.getElementById(`${type}-name`).value = '';
+      setName('');
       props.closeOverlay();
     } else {
-      nameInput.setCustomValidity('This field is required.');
+      fieldNameInput.setCustomValidity('This field is required.');
     }
   };
 
@@ -40,6 +38,8 @@ const AddFieldForm = props => {
         <input
           type="text"
           name="field-name"
+          value={name}
+          onChange={e => setName(e.target.value)}
           className="add-field-input"
           placeholder={capitalize(type)}
           id={`${type}-name`}
@@ -52,7 +52,8 @@ const AddFieldForm = props => {
           type="color"
           name="field-color"
           className="add-field-input"
-          defaultValue="#1e2f87"
+          value={color}
+          onChange={e => setColor(e.target.value)}
           placeholder={capitalize(type)}
           id={`${type}-color`}
         />
