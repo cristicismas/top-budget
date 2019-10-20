@@ -45,7 +45,13 @@
   align-items: center;
 }
 
-.detailed-expense .expense-details .details-right .amount {
+.detailed-expense .expense-info .details-right {
+  width: 100%;
+  margin-left: 0;
+  justify-content: flex-end;
+}
+
+.detailed-expense .details-right .amount {
   white-space: nowrap;
 }
 
