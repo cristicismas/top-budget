@@ -17,7 +17,7 @@ const FieldsGroup = props => {
 
   return (
     <div className="fields-group">
-      <h2 className="fields-label">{capitalize(type)}</h2>
+      <h2 className="fields-label">{capitalize(type)}:</h2>
       <div className="fields" id={type}>
         {fields}
       </div>
