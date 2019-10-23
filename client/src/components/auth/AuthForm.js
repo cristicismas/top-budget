@@ -46,7 +46,7 @@ const AuthForm = props => {
     <main id="auth">
       <h2 id="form-title">{formAction}</h2>
 
-      <form id="auth-form" onSubmit={handleSubmit}>
+      <form id="auth-form" method="post" onSubmit={handleSubmit}>
         {formType === AUTH_TYPES.SIGN_UP ? (
           <div className="form-group">
             <label htmlFor="email">Email:</label>

@@ -30,7 +30,7 @@ const AddFieldForm = props => {
   };
 
   return (
-    <form id="add-field-form" onSubmit={handleSubmit}>
+    <form id="add-field-form" method="post" onSubmit={handleSubmit}>
       <h3 className="add-field-title">Add {capitalize(type)}</h3>
 
       <div className="form-group">

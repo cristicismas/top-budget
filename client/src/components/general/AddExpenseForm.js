@@ -87,7 +87,7 @@ export class AddExpenseForm extends Component {
         };
 
     return (
-      <form id="add-expense-form" className="expense-modal" style={modalStyle} onSubmit={this.handleSubmit}>
+      <form id="add-expense-form" className="expense-modal" style={modalStyle} method="post" onSubmit={this.handleSubmit}>
         <h2 className="title">Add Expense</h2>
 
         <div className="form-group">

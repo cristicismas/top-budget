@@ -93,7 +93,7 @@ const EditExpenseField = props => {
   if (expense.id === null) return <Redirect to="/dashboard" />;
 
   return (
-    <form id="edit-expense-modal" className="expense-modal" style={modalStyle} onSubmit={e => handleSubmit(e)}>
+    <form id="edit-expense-modal" className="expense-modal" style={modalStyle} method="post" onSubmit={e => handleSubmit(e)}>
       <h2 className="title">Edit Expense</h2>
 
       <div className="form-group">
