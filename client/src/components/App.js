@@ -96,9 +96,9 @@ class App extends Component {
             </Route>
           </Switch>
 
-          {messages.map((message, index) => (
-            <Message key={`message-${index}`} {...message} clearMessages={clearMessages} />
-          ))}
+          {messages.length > 0 && (
+            <Message {...messages[messages.length - 1]} clearMessages={clearMessages} />
+          )}
         </div>
       );
   }
