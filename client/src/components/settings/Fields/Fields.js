@@ -4,14 +4,14 @@ import { withRouter } from 'react-router';
 import { Route } from 'react-router-dom';
 import './Fields.css';
 
-import { addCategory } from '../../../store/actions/categories';
-import { addLocation } from '../../../store/actions/locations';
-import { addSource } from '../../../store/actions/sources';
+import { addCategory, editCategory } from '../../../store/actions/categories';
+import { addLocation, editLocation } from '../../../store/actions/locations';
+import { addSource, editSource } from '../../../store/actions/sources';
 
 import Toggle from './Toggle';
 import FieldsRemoveGroup from './FieldsRemoveGroup';
 import Overlay from '../../general/Overlay';
-import AddFieldForm from '../../general/AddFieldForm';
+import FieldForm from '../../general/FieldForm';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 
 export class Fields extends Component {
@@ -22,7 +22,8 @@ export class Fields extends Component {
       categories: [],
       locations: [],
       sources: [],
-      fieldToAdd: null
+      fieldToAdd: null,
+      fieldToEdit: null
     };
   }
 
@@ -43,6 +44,38 @@ export class Fields extends Component {
     fields.classList.toggle('selected');
   };
 
+  handleEditFieldButton = (type, object) => {
+    const { history } = this.props;
+
+    this.setState(
+      {
+        fieldToEdit: {
+          type,
+          object
+        }
+      },
+      () => {
+        history.push('/settings/edit-field');
+      }
+    );
+  };
+
+  handleEditField = field => {
+    switch (field.type) {
+      case 'categories':
+        this.props.editCategory(field);
+        break;
+      case 'locations':
+        this.props.editLocation(field);
+        break;
+      case 'sources':
+        this.props.editSource(field);
+        break;
+      default:
+        break;
+    }
+  };
+
   handleAddFieldButton = fieldToAdd => {
     const { history } = this.props;
 
@@ -56,16 +89,16 @@ export class Fields extends Component {
     );
   };
 
-  handleAddField = (type, name, color) => {
-    switch (type) {
+  handleAddField = field => {
+    switch (field.type) {
       case 'category':
-        this.props.addCategory({ name, color });
+        this.props.addCategory(field);
         break;
       case 'location':
-        this.props.addLocation({ name, color });
+        this.props.addLocation(field);
         break;
       case 'source':
-        this.props.addSource({ name, color });
+        this.props.addSource(field);
         break;
       default:
         break;
@@ -93,14 +126,14 @@ export class Fields extends Component {
   };
 
   render() {
-    const { fieldToAdd } = this.state;
+    const { fieldToAdd, fieldToEdit } = this.state;
     const { history, categories, locations, sources, showCategories, showLocations, showSources } = this.props;
 
     const buttonEnabled = this.state.categories.length || this.state.locations.length || this.state.sources.length;
 
     return (
       <section id="fields">
-        <h2 className="sub-title">Remove or Disable Fields</h2>
+        <h2 className="sub-title">Fields</h2>
 
         <div className={`field-header ${showCategories ? '' : 'disabled'}`}>
           <button type="button" className="add-field-button" onClick={() => this.handleAddFieldButton('category')}>
@@ -115,7 +148,8 @@ export class Fields extends Component {
             objects={categories}
             type="categories"
             dim={!showCategories}
-            handleFieldClick={(type, object) => this.handleFieldClick(type, object)}
+            handleFieldClick={this.handleFieldClick}
+            handleEditFieldButton={this.handleEditFieldButton}
           />
         )}
 
@@ -132,7 +166,8 @@ export class Fields extends Component {
             objects={locations}
             type="locations"
             dim={!showLocations}
-            handleFieldClick={(type, object) => this.handleFieldClick(type, object)}
+            handleFieldClick={this.handleFieldClick}
+            handleEditFieldButton={this.handleEditFieldButton}
           />
         )}
 
@@ -149,7 +184,8 @@ export class Fields extends Component {
             objects={sources}
             type="sources"
             dim={!showSources}
-            handleFieldClick={(type, object) => this.handleFieldClick(type, object)}
+            handleFieldClick={this.handleFieldClick}
+            handleEditFieldButton={this.handleEditFieldButton}
           />
         )}
 
@@ -168,9 +204,16 @@ export class Fields extends Component {
 
         <Route path="/settings/add-field">
           <Overlay closeOverlay={history.goBack}>
-            <AddFieldForm
-              type={fieldToAdd}
-              handleAddField={(type, name, color) => this.handleAddField(type, name, color)}
+            <FieldForm type={fieldToAdd} handleSubmit={this.handleAddField} closeOverlay={history.goBack} />
+          </Overlay>
+        </Route>
+
+        <Route path="/settings/edit-field">
+          <Overlay closeOverlay={history.goBack}>
+            <FieldForm
+              type={fieldToEdit ? fieldToEdit.type : null}
+              field={fieldToEdit ? fieldToEdit.object : null}
+              handleSubmit={this.handleEditField}
               closeOverlay={history.goBack}
             />
           </Overlay>
@@ -185,6 +228,9 @@ export default connect(
   {
     addCategory,
     addLocation,
-    addSource
+    addSource,
+    editCategory,
+    editLocation,
+    editSource
   }
 )(withRouter(Fields));

@@ -8,7 +8,7 @@
   margin: 0 5px 15px 5px;
 }
 
-#add-fields #add-field-form {
+#add-fields #field-form {
   width: auto;
   margin: auto;
   text-align: center;
@@ -16,7 +16,7 @@
   background-color: #1a1a24;
 }
 
-#add-fields #add-field-form input[type='color'] {
+#add-fields #field-form input[type='color'] {
   width: 272px;
   margin: 10px auto;
 }
@@ -31,17 +31,17 @@
 }
 
 @media only screen and (max-width: 550px) {
-  #add-fields #add-field-form {
+  #add-fields #field-form {
     padding: 30px;
     width: 100%;
   }
 
-  #add-fields #add-field-form .add-field-title {
+  #add-fields #field-form .field-title {
     margin-top: 0px;
     margin-bottom: 50px;
   }
 
-  #add-fields #add-field-form input[type='color'] {
+  #add-fields #field-form input[type='color'] {
     width: 100%;
   }
 }

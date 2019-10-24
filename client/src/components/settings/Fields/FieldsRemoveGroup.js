@@ -11,6 +11,8 @@ const FieldsRemoveGroup = props => {
       type={type}
       object={object}
       handleFieldClick={() => props.handleFieldClick(type, object)}
+      handleEditFieldButton={() => props.handleEditFieldButton(type, object)}
+      isEditable={true}
       key={object.id}
       toDelete={true}
     />

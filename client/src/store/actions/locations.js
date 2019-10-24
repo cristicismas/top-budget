@@ -1,4 +1,4 @@
-import { GET_LOCATIONS, DELETE_LOCATION, ADD_LOCATION } from './actionTypes';
+import { GET_LOCATIONS, DELETE_LOCATION, EDIT_LOCATION, ADD_LOCATION } from './actionTypes';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
@@ -37,6 +37,21 @@ export const deleteLocation = id => (dispatch, getState) => {
     })
     .catch(err => {
       dispatch(addMessage('There was a problem deleting the location.', MESSAGE_TYPES.ERROR));
+    });
+};
+
+export const editLocation = location => (dispatch, getState) => {
+  apiCall('patch', `locations/${location.id}/`, location, tokenConfig(getState))
+    .then(res => {
+      dispatch({
+        type: EDIT_LOCATION,
+        payload: res
+      });
+
+      dispatch(addMessage('Location edited with success.', MESSAGE_TYPES.SUCCESS));
+    })
+    .catch(err => {
+      dispatch(addMessage('There was a problem editing the location.', MESSAGE_TYPES.ERROR));
     });
 };
 

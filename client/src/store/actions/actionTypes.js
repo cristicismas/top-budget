@@ -19,12 +19,15 @@ export const DELETE_MESSAGES = 'DELETE_MESSAGES';
 
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+export const EDIT_CATEGORY = 'EDIT_CATEGORY';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 
 export const GET_LOCATIONS = 'GET_LOCATIONS';
 export const DELETE_LOCATION = 'DELETE_LOCATION';
+export const EDIT_LOCATION = 'EDIT_LOCATION';
 export const ADD_LOCATION = 'ADD_LOCATION';
 
 export const GET_SOURCES = 'GET_SOURCES';
 export const DELETE_SOURCE = 'DELETE_SOURCE';
+export const EDIT_SOURCE = 'EDIT_SOURCE';
 export const ADD_SOURCE = 'ADD_SOURCE';

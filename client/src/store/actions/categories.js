@@ -1,4 +1,4 @@
-import { GET_CATEGORIES, DELETE_CATEGORY, ADD_CATEGORY } from './actionTypes';
+import { GET_CATEGORIES, DELETE_CATEGORY, EDIT_CATEGORY, ADD_CATEGORY } from './actionTypes';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
@@ -37,6 +37,21 @@ export const deleteCategory = id => (dispatch, getState) => {
     })
     .catch(err => {
       dispatch(addMessage('There was a problem deleting the category.', MESSAGE_TYPES.ERROR));
+    });
+};
+
+export const editCategory = category => (dispatch, getState) => {
+  apiCall('patch', `categories/${category.id}/`, category, tokenConfig(getState))
+    .then(res => {
+      dispatch({
+        type: EDIT_CATEGORY,
+        payload: res
+      });
+
+      dispatch(addMessage('Category edited with success.', MESSAGE_TYPES.SUCCESS));
+    })
+    .catch(err => {
+      dispatch(addMessage('There was a problem editing the category.', MESSAGE_TYPES.ERROR));
     });
 };
 

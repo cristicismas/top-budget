@@ -1,18 +1,18 @@
-#add-field-form {
+#field-form {
   padding: 60px;
 }
 
-#add-field-form .add-field-title {
+#field-form .field-title {
   margin-top: -30px;
   margin-bottom: 50px;
   font-size: 23px;
 }
 
-#add-field-form .form-group label {
+#field-form .form-group label {
   font-size: 20px;
 }
 
-#add-field-form .add-field-input {
+#field-form .field-input {
   display: block;
   margin-bottom: 30px;
   margin-top: 10px;
@@ -25,7 +25,7 @@
   border: 1px solid #2c2c3a;
 }
 
-#add-field-form input[type='color'] {
+#field-form input[type='color'] {
   height: 40px;
   width: 100%;
   background-color: transparent;
@@ -34,7 +34,7 @@
   padding: 0;
 }
 
-#add-field-form .add-field-cta {
+#field-form .field-cta {
   width: 100px;
   margin: 20px auto 0;
   display: block;
@@ -47,31 +47,31 @@
   transition: all 0.2s;
 }
 
-#add-field-form .add-field-cta:hover {
+#field-form .field-cta:hover {
   border: 2px solid #3d1eca;
   box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
 }
 
-#add-field-form .add-field-cta:active {
+#field-form .field-cta:active {
   color: #775cf0;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
 
 @media only screen and (max-width: 550px) {
-  #add-field-form {
+  #field-form {
     padding: 90px 40px 40px;
   }
 
-  #add-field-form .add-field-title {
+  #field-form .field-title {
     margin-top: -20px;
     margin-bottom: 80px;
   }
 
-  #add-field-form .add-field-input {
+  #field-form .field-input {
     width: 100%;
   }
 
-  #add-field-form .add-field-cta {
+  #field-form .field-cta {
     margin-top: 50px;
     font-size: 16px;
   }

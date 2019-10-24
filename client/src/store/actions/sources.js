@@ -1,4 +1,4 @@
-import { GET_SOURCES, DELETE_SOURCE, ADD_SOURCE } from './actionTypes';
+import { GET_SOURCES, DELETE_SOURCE, EDIT_SOURCE, ADD_SOURCE } from './actionTypes';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 import { apiCall } from '../../utils/api';
 
@@ -37,6 +37,21 @@ export const deleteSource = id => (dispatch, getState) => {
     })
     .catch(err => {
       dispatch(addMessage('There was a problem deleting the source.', MESSAGE_TYPES.ERROR));
+    });
+};
+
+export const editSource = source => (dispatch, getState) => {
+  apiCall('patch', `sources/${source.id}/`, source, tokenConfig(getState))
+    .then(res => {
+      dispatch({
+        type: EDIT_SOURCE,
+        payload: res
+      });
+
+      dispatch(addMessage('Source edited with success.', MESSAGE_TYPES.SUCCESS));
+    })
+    .catch(err => {
+      dispatch(addMessage('There was a problem editing the source.', MESSAGE_TYPES.ERROR));
     });
 };
 

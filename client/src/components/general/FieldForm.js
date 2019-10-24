@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { capitalize } from '../../utils/strings';
-import './AddFieldForm.css';
+import './FieldForm.css';
 
-const AddFieldForm = props => {
-  const { type } = props;
+const FieldForm = props => {
+  const { type, field } = props;
 
-  const [name, setName] = useState('');
-  const [color, setColor] = useState('#1e2f87');
+  // Type is not defined on page refresh, so close the overlay on page refresh.
+  if (!type) props.closeOverlay();
+
+  const [name, setName] = useState(field ? field.name : '');
+  const [color, setColor] = useState(field ? field.color : '#1e2f87');
 
   useEffect(() => {
     const fieldNameInput = document.getElementById(`${type}-name`);
@@ -19,7 +22,19 @@ const AddFieldForm = props => {
     const fieldNameInput = document.getElementById(`${type}-name`);
 
     if (name.trim()) {
-      props.handleAddField(type, name, color);
+      const submitData = field ? {
+        type,
+        id: field.id,
+        name,
+        color
+      } : {
+        type,
+        name,
+        color
+      };
+
+      props.handleSubmit(submitData);
+
       fieldNameInput.setCustomValidity('');
 
       setName('');
@@ -29,9 +44,11 @@ const AddFieldForm = props => {
     }
   };
 
+  const formTitle = field ? `Edit ${capitalize(type)}` : `Add ${capitalize(type)}`;
+
   return (
-    <form id="add-field-form" method="post" onSubmit={handleSubmit}>
-      <h3 className="add-field-title">Add {capitalize(type)}</h3>
+    <form id="field-form" method="post" onSubmit={handleSubmit}>
+      <h3 className="field-title">{formTitle}</h3>
 
       <div className="form-group">
         <label htmlFor="field-name">{capitalize(type)}:</label>
@@ -40,7 +57,7 @@ const AddFieldForm = props => {
           name="field-name"
           value={name}
           onChange={e => setName(e.target.value)}
-          className="add-field-input"
+          className="field-input"
           placeholder={capitalize(type)}
           id={`${type}-name`}
         />
@@ -51,7 +68,7 @@ const AddFieldForm = props => {
         <input
           type="color"
           name="field-color"
-          className="add-field-input"
+          className="field-input"
           value={color}
           onChange={e => setColor(e.target.value)}
           placeholder={capitalize(type)}
@@ -59,11 +76,11 @@ const AddFieldForm = props => {
         />
       </div>
 
-      <button className="add-field-cta" type="submit">
+      <button className="field-cta" type="submit">
         Confirm
       </button>
     </form>
   );
 };
 
-export default AddFieldForm;
+export default FieldForm;
