@@ -30,7 +30,7 @@
   font-weight: bold;
 }
 
-#features #get-started-btn {
+#features #features-cta {
   width: 140px;
   text-align: center;
   margin: 50px 0;
@@ -45,7 +45,7 @@
   border: 2px solid #3d1eca;
 }
 
-#features #get-started-btn:hover {
+#features #features-cta:hover {
   border: 2px solid #3d1eca;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
@@ -98,7 +98,7 @@
     margin-bottom: 50px;
   }
 
-  #features #get-started-btn {
+  #features #features-cta {
     margin: 100px auto;
   }
 }

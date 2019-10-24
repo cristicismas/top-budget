@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Features.css';
 
@@ -6,7 +7,9 @@ import wallet from '../../images/wallet.svg';
 import graph from '../../images/graph.svg';
 import plan from '../../images/plan.svg';
 
-const Features = () => {
+const Features = props => {
+  const { isAuthenticated } = props.user;
+
   return (
     <section id="features">
       <section className="feature">
@@ -44,13 +47,26 @@ const Features = () => {
             account and you're good to go!
           </p>
 
-          <Link to="signup" id="get-started-btn">
-            Get Started
-          </Link>
+          {isAuthenticated ? (
+            <Link to="dashboard" id="features-cta">
+              Dashboard
+            </Link>
+          ) : (
+            <Link to="signup" id="features-cta">
+              Get Started
+            </Link>
+          )}
         </div>
       </section>
     </section>
   );
 };
 
-export default Features;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Features);
