@@ -96,29 +96,46 @@ export const getDatasets = (fields, fieldType, expenses) => {
   return datasets;
 };
 
-export const getChartOptions = () => {
-  return {
-    maintainAspectRatio: false,
-    scales: {
-      xAxes: [
-        {
-          stacked: true,
-          barPercentage: 0.8,
-          gridLines: {
-            color: 'rgba(100, 100, 100, .2)'
+export const chartOptions = {
+  maintainAspectRatio: false,
+  legend: {
+    labels: {
+      filter: (currentLabel, chartData) => {
+        const { datasets } = chartData;
+        const { datasetIndex } = currentLabel;
+
+        let shouldDisplayLabel = false;
+
+        for (let value of datasets[datasetIndex].data) {
+          if (value > 0) {
+            shouldDisplayLabel = true;
+            break;
           }
         }
-      ],
-      yAxes: [
-        {
-          stacked: true,
-          gridLines: {
-            color: 'rgba(100, 100, 100, .2)'
-          }
-        }
-      ]
+
+        return shouldDisplayLabel;
+      }
     }
-  };
+  },
+  scales: {
+    xAxes: [
+      {
+        stacked: true,
+        barPercentage: 0.8,
+        gridLines: {
+          color: 'rgba(100, 100, 100, .2)'
+        }
+      }
+    ],
+    yAxes: [
+      {
+        stacked: true,
+        gridLines: {
+          color: 'rgba(100, 100, 100, .2)'
+        }
+      }
+    ]
+  }
 };
 
 export const getLastSevenDays = () => {

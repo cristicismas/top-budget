@@ -3,9 +3,7 @@ import FIELDS from '../../constants/fields';
 import { Bar } from 'react-chartjs-2';
 import './Chart.css';
 
-import { getDatasets, getChartOptions, getLastSevenDays } from '../../utils/chart';
-
-const chartOptions = getChartOptions();
+import { getDatasets, chartOptions, getLastSevenDays } from '../../utils/chart';
 
 const Chart = props => {
   const { categories, locations, sources, expenses, userdata } = props;
