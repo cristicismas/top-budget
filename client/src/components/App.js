@@ -26,6 +26,18 @@ import { allDataFetched } from '../store/actions/app';
 import Setup from './setup/Setup';
 import Overlay from './general/Overlay';
 
+const handleDisableAnimations = disableAnimations => {
+  const body = document.body;
+
+  if (disableAnimations) {
+    body.classList.add('disable-animations');
+  } else {
+    if (body.classList.contains('disable-animations')) {
+      body.classList.remove('disable-animations');
+    }
+  }
+}
+
 class App extends Component {
   componentDidMount() {
     // Initialize Animate-On-Scroll library
@@ -43,9 +55,7 @@ class App extends Component {
       const { user, getExpenses, getCategories, getLocations, getSources, allDataFetched } = this.props;
 
       if (user.isAuthenticated) {
-        if (user.userdata.disableAnimations) {
-          document.body.classList.add('disable-animations');
-        }
+        handleDisableAnimations(user.userdata.disableAnimations);
 
         Promise.all([getExpenses(), getCategories(), getLocations(), getSources()]).then(() => {
           allDataFetched();
@@ -54,6 +64,11 @@ class App extends Component {
         allDataFetched();
       }
     });
+  }
+
+  componentDidUpdate() {
+    const { disableAnimations } = this.props.user.userdata;
+    handleDisableAnimations(disableAnimations);
   }
 
   render() {
