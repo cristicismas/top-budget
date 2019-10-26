@@ -50,6 +50,10 @@ const Dashboard = () => {
           </Overlay>
         </Route>
 
+        <button id="new-expense-btn" onClick={() => history.push('/dashboard/add-expense')}>
+          Add Expense
+        </button>
+
         {areAnyFieldsEnabled && (
           <div className="flex-group chart-and-summary">
             <div className="flex-group summary-and-wheel">
