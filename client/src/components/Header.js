@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ICONS from '../constants/icons';
+import walletIcon from '../images/wallet-icon.svg';
 import './Header.css';
 
 import Icon from './general/Icon';
@@ -14,7 +15,10 @@ const Header = () => {
   return (
     <header>
       <h1>
-        <Link to="/">TopBudget</Link>
+        <Link to="/">
+          <img src={walletIcon} alt="Wallet Icon" className="header-icon" />
+          TopBudget
+        </Link>
       </h1>
 
       {isAuthenticated ? (

@@ -7,6 +7,21 @@ header {
 
 header h1 {
   margin: 10px;
+  white-space: nowrap;
+}
+
+header h1 .header-icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  position: relative;
+  top: 10px;
+  transform: rotate(-5deg);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+header h1:hover .header-icon {
+  transform: rotate(355deg);
 }
 
 header nav a {
@@ -43,7 +58,7 @@ header nav a.active:before {
   transform: scaleX(1);
 }
 
-@media only screen and (max-width: 570px) {
+@media only screen and (max-width: 650px) {
   header {
     flex-direction: column;
     text-align: center;
