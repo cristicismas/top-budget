@@ -22,10 +22,9 @@ const useOutsideClickDetector = (ref, closeOverlay) => {
   });
 };
 
-const modalRoot = document.getElementById('modal-root');
-
 const Overlay = props => {
   const { hideCloseOverlayButton } = props;
+  const modalRoot = document.getElementById('modal-root');
 
   const overlayRef = useRef(null);
   useOutsideClickDetector(overlayRef, props.closeOverlay);
