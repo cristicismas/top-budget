@@ -51,9 +51,7 @@
 .detailed-expense .details-right .delete-expense {
   background-color: transparent;
   border: none;
-  color: #eee;
-  padding: 0;
-  margin-left: 10px;
+  padding: 0 10px;
   font-size: 16px;
   opacity: 0.5;
   cursor: pointer;
@@ -64,8 +62,12 @@
 .detailed-expense .details-right .delete-expense:hover,
 .detailed-expense .details-right .delete-expense:active {
   opacity: 1;
-  color: #ee3636;
   box-shadow: none;
+}
+
+.detailed-expense .details-right .delete-expense:hover .delete-expense-icon,
+.detailed-expense .details-right .delete-expense:active .delete-expense-icon {
+  fill: #ee3636;
 }
 
 @media only screen and (max-width: 550px) {

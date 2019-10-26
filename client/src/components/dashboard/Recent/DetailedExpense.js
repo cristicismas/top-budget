@@ -1,8 +1,10 @@
 import React from 'react';
 import moment from 'moment';
+import ICONS from '../../../constants/icons';
 import { getCurrency } from '../../../utils/currency';
 import './DetailedExpense.css';
 
+import Icon from '../../general/Icon';
 import ExpenseField from './ExpenseField';
 
 const DetailedExpense = props => {
@@ -74,7 +76,7 @@ const DetailedExpense = props => {
                 e.stopPropagation();
                 props.deleteExpense(expense.id);
               }}>
-              ✕
+              <Icon className="delete-expense-icon" icon={ICONS.CROSS} size={10} fill="#eee" />
             </button>
           </div>
         </div>
