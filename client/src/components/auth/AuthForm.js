@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { authenticate } from '../../store/actions/user';
 import AUTH_TYPES from '../../constants/auth';
 import './AuthForm.css';
@@ -97,6 +97,22 @@ const AuthForm = props => {
           {formAction}
         </button>
       </form>
+
+      {formType === AUTH_TYPES.LOG_IN ? (
+        <div className="change-auth-type">
+          Do you want to create a new account?
+          <Link to="/signup">
+            <div className="accent"> Sign up instead.</div>
+          </Link>
+        </div>
+      ) : (
+        <div className="change-auth-type">
+          Already have an account?
+          <Link to="/login">
+            <div className="accent"> Log in instead.</div>
+          </Link>
+        </div>
+      )}
     </main>
   );
 };

@@ -18,7 +18,7 @@ const Features = props => {
         <div data-aos="fade-left" className="text">
           <h3 className="title">Never lose track of your expenses again.</h3>
           <p className="description">
-            With TopBudget, you can easily track every penny you spend and avoid unpleasant surprises.
+            With TopBudget, you can easily track every penny you spend and avoid unexpected surprises.
           </p>
         </div>
       </section>
@@ -28,7 +28,7 @@ const Features = props => {
           <h3 className="title">Easily visualize your budget and spendings.</h3>
 
           <p className="description">
-            If you choose us, you get access to essential graphs that can help you understand exactly how you spend your
+            If you choose us, you get access to essential tools that can help you understand exactly how you spend your
             money.
           </p>
         </div>

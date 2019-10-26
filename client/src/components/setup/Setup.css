@@ -2,10 +2,6 @@
   padding: 50px;
 }
 
-#setup .accent {
-  color: #6041ec;
-}
-
 #setup .title,
 #setup .sub-title {
   max-width: 800px;
