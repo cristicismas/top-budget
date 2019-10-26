@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <div className="copyright">
         Copyright © 2019 | made by
-        <a href="https://cristicismas.github.io" target="_blank" className="accent">
+        <a href="https://cristicismas.github.io" target="_blank" rel="noopener noreferrer" className="accent">
           Cristi Cismas
         </a>
       </div>
