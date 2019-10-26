@@ -83,9 +83,7 @@ class App extends Component {
               />
             </Route>
 
-            <Route path="/setup">
-              <Setup />
-            </Route>
+            <Route path="/setup">{isAuthenticated ? <Setup /> : <Redirect to="/login" />}</Route>
 
             <Route path="/dashboard">{isAuthenticated ? <Dashboard /> : <Redirect to="/login" />}</Route>
 
@@ -96,9 +94,7 @@ class App extends Component {
             </Route>
           </Switch>
 
-          {messages.length > 0 && (
-            <Message {...messages[messages.length - 1]} clearMessages={clearMessages} />
-          )}
+          {messages.length > 0 && <Message {...messages[messages.length - 1]} clearMessages={clearMessages} />}
         </div>
       );
   }
