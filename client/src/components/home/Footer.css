@@ -1,0 +1,17 @@
+footer {
+  padding: 15px;
+  font-size: 17px;
+  margin: 0;
+}
+
+footer .copyright {
+  text-align: center;
+}
+
+footer .copyright a {
+  margin-left: 5px;
+}
+
+footer .copyright a:hover {
+  color: #8b71ff;
+}
