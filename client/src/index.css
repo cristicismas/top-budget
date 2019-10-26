@@ -3,6 +3,19 @@
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: 0.5px;
   transition: all 0.2s;
+  scrollbar-color: #2c2c3a #15161d;
+}
+
+*::-webkit-scrollbar {
+  width: 13px;
+}
+
+*::-webkit-scrollbar-track-piece  {
+  background-color: #15161d;
+}
+
+*::-webkit-scrollbar-thumb:vertical {
+  background-color: #2c2c3a;
 }
 
 /* Override AOS transition-property */
