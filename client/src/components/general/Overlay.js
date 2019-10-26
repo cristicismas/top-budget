@@ -22,6 +22,15 @@ const useOutsideClickDetector = (ref, closeOverlay) => {
   });
 };
 
+const useScrollDetector = closeOverlay => {
+  useEffect(() => {
+    document.addEventListener('scroll', closeOverlay);
+    return () => {
+      document.removeEventListener('scroll', closeOverlay);
+    };
+  });
+};
+
 const Overlay = props => {
   const { hideCloseOverlayButton } = props;
   const modalRoot = document.getElementById('modal-root');
@@ -29,15 +38,7 @@ const Overlay = props => {
   const overlayRef = useRef(null);
   useOutsideClickDetector(overlayRef, props.closeOverlay);
 
-  // When component mounts, disable scrolling on 'body'
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      // When component unmounts, enable scrolling.
-      document.body.style.overflow = 'auto';
-    };
-  });
+  useScrollDetector(props.closeOverlay);
 
   const overlayStyle = {
     backgroundColor: props.isTransparent ? 'transparent' : '#1a1a24'
