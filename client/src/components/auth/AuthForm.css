@@ -57,6 +57,7 @@
 #auth .change-auth-type {
   margin-top: 10px;
   font-size: 18px;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
