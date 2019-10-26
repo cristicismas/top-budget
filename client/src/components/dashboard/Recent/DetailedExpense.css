@@ -6,7 +6,6 @@
 .detailed-expense {
   margin: 10px 20px;
   cursor: pointer;
-  transition: all 0.2s;
   padding: 10px;
   border-left: 4px solid #2f2f5c;
 }

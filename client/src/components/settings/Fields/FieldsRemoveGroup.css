@@ -1,7 +1,6 @@
 #fields .fields {
   margin-bottom: 50px;
   justify-content: flex-start;
-  transition: all 0.2s;
 }
 
 #fields .fields.dim {

@@ -14,7 +14,6 @@
   border: none;
   border-bottom: 2px solid transparent;
   color: #aaa;
-  transition: all 0.2s;
   padding-bottom: 5px;
   cursor: pointer;
 }

@@ -30,7 +30,6 @@
   background-color: #15131a;
   border: 2px solid #b13030;
   color: #ee3636;
-  transition: all 0.2s;
 }
 
 #confirm-delete #confirm-delete-btn:hover {

@@ -2,6 +2,19 @@
   box-sizing: border-box;
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+
+/* Override AOS transition-property */
+html:not(.no-js) [data-aos^='fade'][data-aos^='fade'] {
+  transition-property: all !important;
+}
+
+body.disable-animations *,
+body.disable-animations *::before,
+body.disable-animations *::after {
+  transition: all 0s !important;
+  animation-duration: 0s !important;
 }
 
 body {
@@ -21,7 +34,6 @@ button {
   border: 2px solid #2c2c3a;
   color: #eee;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
 button:hover {
@@ -37,7 +49,6 @@ button:active {
 a {
   color: #ddd;
   text-decoration: none;
-  transition: all 0.2s;
 }
 
 a:hover {

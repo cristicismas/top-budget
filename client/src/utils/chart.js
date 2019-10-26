@@ -96,46 +96,61 @@ export const getDatasets = (fields, fieldType, expenses) => {
   return datasets;
 };
 
-export const chartOptions = {
-  maintainAspectRatio: false,
-  legend: {
-    labels: {
-      filter: (currentLabel, chartData) => {
-        const { datasets } = chartData;
-        const { datasetIndex } = currentLabel;
+export const getChartOptions = disableAnimations => {
+  const defaultChartOptions = {
+    maintainAspectRatio: false,
+    legend: {
+      labels: {
+        filter: (currentLabel, chartData) => {
+          const { datasets } = chartData;
+          const { datasetIndex } = currentLabel;
 
-        let shouldDisplayLabel = false;
+          let shouldDisplayLabel = false;
 
-        for (let value of datasets[datasetIndex].data) {
-          if (value > 0) {
-            shouldDisplayLabel = true;
-            break;
+          for (let value of datasets[datasetIndex].data) {
+            if (value > 0) {
+              shouldDisplayLabel = true;
+              break;
+            }
+          }
+
+          return shouldDisplayLabel;
+        }
+      }
+    },
+    scales: {
+      xAxes: [
+        {
+          stacked: true,
+          barPercentage: 0.8,
+          gridLines: {
+            color: 'rgba(100, 100, 100, .2)'
           }
         }
-
-        return shouldDisplayLabel;
-      }
+      ],
+      yAxes: [
+        {
+          stacked: true,
+          gridLines: {
+            color: 'rgba(100, 100, 100, .2)'
+          }
+        }
+      ]
     }
-  },
-  scales: {
-    xAxes: [
-      {
-        stacked: true,
-        barPercentage: 0.8,
-        gridLines: {
-          color: 'rgba(100, 100, 100, .2)'
-        }
-      }
-    ],
-    yAxes: [
-      {
-        stacked: true,
-        gridLines: {
-          color: 'rgba(100, 100, 100, .2)'
-        }
-      }
-    ]
-  }
+  };
+
+  if (disableAnimations) {
+    return {
+      ...defaultChartOptions,
+      animation: {
+        duration: 0
+      },
+      hover: {
+        animationDuration: 0
+      },
+      responsiveAnimationDuration: 0
+    };
+  } else return defaultChartOptions;
 };
 
 export const getLastSevenDays = () => {

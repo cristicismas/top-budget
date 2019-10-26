@@ -18,6 +18,7 @@ class UserData(models.Model):
     showCategories = models.BooleanField(default=True)
     showLocations = models.BooleanField(default=True)
     showSources = models.BooleanField(default=True)
+    disableAnimations = models.BooleanField(default=False)
     primaryField = models.CharField(max_length=10, choices=PRIMARY_FIELD_TYPES, default=CATEGORIES)
 
     def __str__(self):

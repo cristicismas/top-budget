@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Settings.css';
 
+import Performance from './Performance';
 import Info from './Info';
 import Currency from './Currency';
 import Budget from './Budget';
@@ -84,7 +85,15 @@ export class Settings extends Component {
   }
 
   render() {
-    const { currency, budget, primaryField, showCategories, showLocations, showSources } = this.state;
+    const {
+      currency,
+      budget,
+      primaryField,
+      showCategories,
+      showLocations,
+      showSources,
+      disableAnimations
+    } = this.state;
     const { categories, locations, sources, user } = this.props;
 
     return (
@@ -92,6 +101,13 @@ export class Settings extends Component {
         <h1 className="title">Settings</h1>
 
         <Info user={user} logout={() => this.props.logout()} />
+
+        <Performance
+          areAnimationsDisabled={disableAnimations}
+          disableAnimations={() => {
+            this.setState({ disableAnimations: !disableAnimations }, () => this.handleSave());
+          }}
+        />
 
         <Currency
           changeCurrency={newCurrency => {

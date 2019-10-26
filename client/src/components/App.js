@@ -43,6 +43,10 @@ class App extends Component {
       const { user, getExpenses, getCategories, getLocations, getSources, allDataFetched } = this.props;
 
       if (user.isAuthenticated) {
+        if (user.userdata.disableAnimations) {
+          document.body.classList.add('disable-animations');
+        }
+
         Promise.all([getExpenses(), getCategories(), getLocations(), getSources()]).then(() => {
           allDataFetched();
         });

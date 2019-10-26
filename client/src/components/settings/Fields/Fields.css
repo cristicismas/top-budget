@@ -1,7 +1,6 @@
 #fields .field-header {
   display: flex;
   margin-left: 20px;
-  transition: all .2s;
 }
 
 #fields .field-header.disabled {
@@ -46,7 +45,6 @@
   border: 2px solid #b13030;
   color: #ee3636;
   cursor: pointer;
-  transition: all 0.2s;
 }
 
 #fields #delete-fields-btn:hover {

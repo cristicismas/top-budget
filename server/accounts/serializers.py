@@ -13,7 +13,7 @@ class UserDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserData
-        fields = ('currency', 'budget', 'showCategories', 'showLocations', 'showSources', 'primaryField', 'credentials')
+        fields = ('currency', 'budget', 'showCategories', 'showLocations', 'showSources', 'disableAnimations', 'primaryField', 'credentials')
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:

@@ -46,6 +46,7 @@ class UserViewSet(viewsets.ModelViewSet):
             showCategories = request.data['showCategories'],
             showLocations = request.data['showLocations'],
             showSources = request.data['showSources'],
+            disableAnimations = request.data['disableAnimations'],
             primaryField = request.data['primaryField']
         )
 

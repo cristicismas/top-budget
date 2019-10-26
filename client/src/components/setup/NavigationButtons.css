@@ -34,7 +34,6 @@
 }
 
 #nav-buttons .icon {
-  transition: all .2s;
   position: relative;
   top: 4px;
 }

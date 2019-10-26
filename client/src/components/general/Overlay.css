@@ -44,16 +44,11 @@
   padding: 20px;
   cursor: pointer;
   z-index: 10;
-  transition: all 0.2s;
 }
 
 .overlay .close-overlay-btn:hover,
 .overlay .close-overlay-btn:active {
   box-shadow: none;
-}
-
-.overlay .close-overlay-icon {
-  transition: all .2s;
 }
 
 .overlay .close-overlay-btn:hover .close-overlay-icon {

@@ -11,6 +11,7 @@ const initialState = {
     showCategories: true,
     showLocations: true,
     showSources: true,
+    disableAnimations: false,
     primaryField: FIELDS.CATEGORIES,
     credentials: {
       email: '',
