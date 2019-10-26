@@ -17,11 +17,13 @@ import { addMessage } from '../../store/actions/messages';
 const Dashboard = () => {
   const dispatch = useDispatch();
 
-  const expenses = useSelector(state => state.expenses);
-  const categories = useSelector(state => state.categories);
-  const locations = useSelector(state => state.locations);
-  const sources = useSelector(state => state.sources);
-  const user = useSelector(state => state.user);
+  const { expenses, categories, locations, sources, user } = useSelector(state => ({
+    expenses: state.expenses,
+    categories: state.categories,
+    locations: state.locations,
+    sources: state.sources,
+    user: state.user
+  }));
 
   const { showCategories, showLocations, showSources } = user.userdata;
 

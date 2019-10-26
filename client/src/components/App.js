@@ -43,9 +43,11 @@ const App = props => {
 
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.user);
-  const app = useSelector(state => state.app);
-  const messages = useSelector(state => state.messages);
+  const { user, app, messages } = useSelector(state => ({
+    user: state.user,
+    app: state.app,
+    messages: state.messages
+  }));
 
   useEffect(() => {
     // Initialize Animate-On-Scroll library
