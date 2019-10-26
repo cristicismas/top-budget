@@ -24,9 +24,15 @@ const useOutsideClickDetector = (ref, closeOverlay) => {
 
 const useScrollDetector = closeOverlay => {
   useEffect(() => {
-    document.addEventListener('scroll', closeOverlay);
+    if (window.innerWidth >= 550) {
+      document.addEventListener('scroll', closeOverlay);
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+
     return () => {
       document.removeEventListener('scroll', closeOverlay);
+      document.body.style.overflow = 'auto';
     };
   });
 };
