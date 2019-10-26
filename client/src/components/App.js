@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
-import { withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import 'aos/dist/aos.css';
@@ -38,10 +38,9 @@ const handleDisableAnimations = disableAnimations => {
   }
 };
 
-const App = props => {
-  const { history } = props;
-
+const App = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { user, app, messages } = useSelector(state => ({
     user: state.user,
@@ -124,4 +123,4 @@ const App = props => {
     );
 };
 
-export default withRouter(App);
+export default App;
