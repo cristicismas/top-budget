@@ -34,11 +34,11 @@ const Features = () => {
           </p>
         </div>
 
-        <img data-aos="fade-left" src={graph} alt="Wallet Illustration" className="illustration" />
+        <img data-aos="fade-left" src={graph} alt="Graph Illustration" className="illustration" />
       </section>
 
       <section className="feature">
-        <img data-aos="fade-right" src={plan} alt="Wallet Illustration" className="illustration" />
+        <img data-aos="fade-right" src={plan} alt="Plan Illustration" className="illustration" />
 
         <div data-aos="fade-left" className="text">
           <h3 className="title">Save money.</h3>
