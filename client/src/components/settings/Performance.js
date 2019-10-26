@@ -1,20 +1,16 @@
 import React from 'react';
+import Toggle from './Toggle';
 import './Performance.css';
 
-const Performance = ({ disableAnimations, areAnimationsDisabled }) => {
+const Performance = ({ toggleDisableAnimations, areAnimationsDisabled }) => {
   return (
     <section id="performance">
       <h2 className="sub-title">Performance</h2>
 
-      {areAnimationsDisabled ? (
-        <button id="disable-animations-btn" onClick={disableAnimations}>
-          Enable animations
-        </button>
-      ) : (
-        <button id="disable-animations-btn" onClick={disableAnimations}>
-          Disable animations
-        </button>
-      )}
+      <div className="performance-group">
+        <h2 className="animations">Animations</h2>
+        <Toggle handleChange={toggleDisableAnimations} toggled={!areAnimationsDisabled} />
+      </div>
     </section>
   );
 };

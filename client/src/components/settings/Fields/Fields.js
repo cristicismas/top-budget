@@ -8,7 +8,7 @@ import { addCategory, editCategory } from '../../../store/actions/categories';
 import { addLocation, editLocation } from '../../../store/actions/locations';
 import { addSource, editSource } from '../../../store/actions/sources';
 
-import Toggle from './Toggle';
+import Toggle from '../Toggle';
 import FieldsRemoveGroup from './FieldsRemoveGroup';
 import Overlay from '../../general/Overlay';
 import FieldForm from '../../general/FieldForm';

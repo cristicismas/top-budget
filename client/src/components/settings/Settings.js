@@ -104,7 +104,7 @@ export class Settings extends Component {
 
         <Performance
           areAnimationsDisabled={disableAnimations}
-          disableAnimations={() => {
+          toggleDisableAnimations={() => {
             this.setState({ disableAnimations: !disableAnimations }, () => this.handleSave());
           }}
         />

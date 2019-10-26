@@ -1,4 +1,3 @@
-#performance #disable-animations-btn {
-  margin-top: 20px;
-  padding: 5px 15px;
+#performance .performance-group > * {
+  display: inline;
 }
