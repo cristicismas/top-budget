@@ -43,9 +43,9 @@ export default function(state = initialState, action) {
     case AUTH_FAIL:
     case LOGOUT_SUCCESS:
       return {
-        ...state,
+        ...initialState,
         token: null,
-        userdata: null,
+        isFetched: true,
         isAuthenticated: false
       };
     default:

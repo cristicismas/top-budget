@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import AOS from 'aos';
 import { withRouter } from 'react-router';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import 'aos/dist/aos.css';
 
 import Loading from './general/Loading';
@@ -19,7 +19,7 @@ import { getCategories } from '../store/actions/categories';
 import { getLocations } from '../store/actions/locations';
 import { getSources } from '../store/actions/sources';
 
-import { addMessage, clearMessages } from '../store/actions/messages';
+import { clearMessages } from '../store/actions/messages';
 import { loadUser } from '../store/actions/user';
 import { allDataFetched } from '../store/actions/app';
 
@@ -36,107 +36,97 @@ const handleDisableAnimations = disableAnimations => {
       body.classList.remove('disable-animations');
     }
   }
-}
+};
 
-class App extends Component {
-  componentDidMount() {
+const App = props => {
+  const { history } = props;
+
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => state.user);
+  const app = useSelector(state => state.app);
+  const messages = useSelector(state => state.messages);
+
+  useEffect(() => {
     // Initialize Animate-On-Scroll library
     AOS.init();
 
     // Listen for route changes to reset position
-    this.props.history.listen(location => {
+    history.listen(location => {
       if (location.pathname === '/dashboard' || location.pathname === '/settings') {
         window.scrollTo(0, 0);
       }
     });
 
     // Fetch user and then the data
-    this.props.loadUser().then(() => {
-      const { user, getExpenses, getCategories, getLocations, getSources, allDataFetched } = this.props;
-
+    dispatch(loadUser()).then(() => {
       if (user.isAuthenticated) {
-        handleDisableAnimations(user.userdata.disableAnimations);
-
-        Promise.all([getExpenses(), getCategories(), getLocations(), getSources()]).then(() => {
-          allDataFetched();
+        Promise.all([
+          dispatch(getExpenses()),
+          dispatch(getCategories()),
+          dispatch(getLocations()),
+          dispatch(getSources())
+        ]).then(() => {
+          dispatch(allDataFetched());
         });
       } else {
-        allDataFetched();
+        if (user.isFetched) dispatch(allDataFetched());
       }
     });
-  }
+  }, [dispatch, history, user.isAuthenticated, user.isFetched]);
 
-  componentDidUpdate() {
-    const { disableAnimations } = this.props.user.userdata;
-    handleDisableAnimations(disableAnimations);
-  }
+  const { disableAnimations } = user.userdata;
 
-  render() {
-    const { app, messages, clearMessages, user } = this.props;
+  useEffect(() => {
+    if (user.isAuthenticated) {
+      handleDisableAnimations(disableAnimations);
+    }
+  }, [user.isAuthenticated, disableAnimations]);
 
-    const { isAuthenticated } = user;
-    const { isLoading, isDataFetched } = app;
+  const { isAuthenticated } = user;
+  const { isLoading, isDataFetched } = app;
 
-    if (isLoading || !isDataFetched)
-      return (
-        <Overlay isTransparent={true} hideCloseOverlayButton={true}>
-          <Loading />
-        </Overlay>
-      );
-    else
-      return (
-        <div className="App">
-          <Header />
+  if (isLoading || !isDataFetched)
+    return (
+      <Overlay isTransparent={true} hideCloseOverlayButton={true}>
+        <Loading />
+      </Overlay>
+    );
+  else
+    return (
+      <div className="App">
+        <Header />
 
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
 
-            <Route exact path={['/signup', '/login']}>
-              <AuthForm
-                getExpenses={() => this.props.getExpenses()}
-                getCategories={() => this.props.getCategories()}
-                getLocations={() => this.props.getLocations()}
-                getSources={() => this.props.getSources()}
-              />
-            </Route>
+          <Route exact path={['/signup', '/login']}>
+            <AuthForm
+              getExpenses={() => dispatch(getExpenses())}
+              getCategories={() => dispatch(getCategories())}
+              getLocations={() => dispatch(getLocations())}
+              getSources={() => dispatch(getSources())}
+            />
+          </Route>
 
-            <Route path="/setup">{isAuthenticated ? <Setup /> : <Redirect to="/login" />}</Route>
+          <Route path="/setup">{isAuthenticated ? <Setup /> : <Redirect to="/login" />}</Route>
 
-            <Route path="/dashboard">{isAuthenticated ? <Dashboard /> : <Redirect to="/login" />}</Route>
+          <Route path="/dashboard">{isAuthenticated ? <Dashboard /> : <Redirect to="/login" />}</Route>
 
-            <Route path="/settings">{isAuthenticated ? <Settings /> : <Redirect to="/login" />}</Route>
+          <Route path="/settings">{isAuthenticated ? <Settings /> : <Redirect to="/login" />}</Route>
 
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
 
-          {messages.length > 0 && <Message {...messages[messages.length - 1]} clearMessages={clearMessages} />}
-        </div>
-      );
-  }
-}
-
-const mapStateToProps = state => ({
-  user: state.user,
-  app: state.app,
-  messages: state.messages
-});
-
-const mapDispatchToProps = {
-  getExpenses,
-  getCategories,
-  getLocations,
-  getSources,
-  addMessage,
-  clearMessages,
-  loadUser,
-  allDataFetched
+        {messages.length > 0 && (
+          <Message {...messages[messages.length - 1]} clearMessages={dispatch(clearMessages)} />
+        )}
+      </div>
+    );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(App));
+export default withRouter(App);

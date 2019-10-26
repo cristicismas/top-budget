@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Redirect, useHistory } from 'react-router-dom';
 import './Dashboard.css';
 
@@ -12,9 +12,17 @@ import Message from '../general/Message';
 import Overlay from '../general/Overlay';
 
 import { deleteExpense, editExpense } from '../../store/actions/expenses';
+import { addMessage } from '../../store/actions/messages';
 
-const Dashboard = props => {
-  const { expenses, categories, locations, sources, user, deleteExpense, editExpense } = props;
+const Dashboard = () => {
+  const dispatch = useDispatch();
+
+  const expenses = useSelector(state => state.expenses);
+  const categories = useSelector(state => state.categories);
+  const locations = useSelector(state => state.locations);
+  const sources = useSelector(state => state.sources);
+  const user = useSelector(state => state.user);
+
   const { showCategories, showLocations, showSources } = user.userdata;
 
   const lastFilter = localStorage.getItem('lastFilter') ? localStorage.getItem('lastFilter') : 'WEEK';
@@ -67,14 +75,14 @@ const Dashboard = props => {
         )}
 
         <RecentExpenses
-          deleteExpense={deleteExpense}
-          editExpense={editExpense}
+          deleteExpense={id => dispatch(deleteExpense(id))}
+          editExpense={newExpense => dispatch(editExpense(newExpense))}
           expenses={expenses}
           categories={categories}
           locations={locations}
           sources={sources}
           userdata={user.userdata}
-          addMessage={props.addMessage}
+          addMessage={message => dispatch(addMessage(message))}
         />
 
         <button className="floating-button" onClick={() => history.push('/dashboard/add-expense')}>
@@ -85,15 +93,4 @@ const Dashboard = props => {
   else return <Redirect to="/setup" />;
 };
 
-const mapStateToProps = state => ({
-  user: state.user,
-  expenses: state.expenses,
-  categories: state.categories,
-  locations: state.locations,
-  sources: state.sources
-});
-
-export default connect(
-  mapStateToProps,
-  { deleteExpense, editExpense }
-)(Dashboard);
+export default Dashboard;

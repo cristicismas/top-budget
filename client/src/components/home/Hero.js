@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ICONS from '../../constants/icons';
 import Icon from '../general/Icon';
 import { Link } from 'react-router-dom';
@@ -14,8 +14,9 @@ const scrollToFeatures = () => {
   });
 };
 
-const Hero = props => {
-  const { isAuthenticated } = props.user;
+const Hero = () => {
+  const user = useSelector(state => state.user);
+  const { isAuthenticated } = user;
 
   return (
     <section id="hero">
@@ -48,11 +49,4 @@ const Hero = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  user: state.user
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(Hero);
+export default Hero;

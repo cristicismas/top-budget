@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ICONS from '../constants/icons';
 import './Header.css';
 
 import Icon from './general/Icon';
 
-const Header = ({ user }) => {
+const Header = () => {
+  const user = useSelector(state => state.user);
   const { isAuthenticated } = user;
   const { pathname } = useLocation();
 
@@ -41,11 +42,4 @@ const Header = ({ user }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  user: state.user
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(Header);
+export default Header;

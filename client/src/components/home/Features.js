@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Features.css';
 
@@ -7,8 +7,9 @@ import wallet from '../../images/wallet.svg';
 import graph from '../../images/graph.svg';
 import plan from '../../images/plan.svg';
 
-const Features = props => {
-  const { isAuthenticated } = props.user;
+const Features = () => {
+  const user = useSelector(state => state.user);
+  const { isAuthenticated } = user;
 
   return (
     <section id="features">
@@ -62,11 +63,4 @@ const Features = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  user: state.user
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(Features);
+export default Features;

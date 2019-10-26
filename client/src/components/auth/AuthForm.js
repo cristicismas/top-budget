@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { authenticate } from '../../store/actions/user';
 import AUTH_TYPES from '../../constants/auth';
@@ -8,6 +8,7 @@ import './AuthForm.css';
 const AuthForm = props => {
   const history = useHistory();
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
 
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -17,15 +18,16 @@ const AuthForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const { authenticate } = props;
 
-    authenticate(
-      {
-        username,
-        email,
-        password
-      },
-      formType
+    dispatch(
+      authenticate(
+        {
+          username,
+          email,
+          password
+        },
+        formType
+      )
     ).then(() => {
       if (formType === AUTH_TYPES.LOG_IN) {
         props.getExpenses();
@@ -117,9 +119,4 @@ const AuthForm = props => {
   );
 };
 
-export default connect(
-  null,
-  {
-    authenticate
-  }
-)(AuthForm);
+export default AuthForm;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../../store/actions/messages';
 import ICONS from '../../constants/icons';
 import './NavigationButtons.css';
@@ -8,14 +8,17 @@ import './NavigationButtons.css';
 import Icon from '../general/Icon';
 
 const NavigationButtons = props => {
-  const { expenses, showBack, showNext } = props;
+  const { showBack, showNext } = props;
+  const expenses = useSelector(state => state.expenses);
+
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleDashboardClick = () => {
     if (expenses.length) {
       history.push('/dashboard');
     } else {
-      props.addMessage('Please add at least one expense before continuing.');
+      dispatch(addMessage('Please add at least one expense before continuing.'));
     }
   };
 
@@ -41,11 +44,4 @@ const NavigationButtons = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  expenses: state.expenses
-});
-
-export default connect(
-  mapStateToProps,
-  { addMessage }
-)(NavigationButtons);
+export default NavigationButtons;
