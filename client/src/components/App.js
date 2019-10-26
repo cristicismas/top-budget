@@ -103,12 +103,7 @@ const App = props => {
           </Route>
 
           <Route exact path={['/signup', '/login']}>
-            <AuthForm
-              getExpenses={() => dispatch(getExpenses())}
-              getCategories={() => dispatch(getCategories())}
-              getLocations={() => dispatch(getLocations())}
-              getSources={() => dispatch(getSources())}
-            />
+            <AuthForm />
           </Route>
 
           <Route path="/setup">{isAuthenticated ? <Setup /> : <Redirect to="/login" />}</Route>
@@ -122,9 +117,7 @@ const App = props => {
           </Route>
         </Switch>
 
-        {messages.length > 0 && (
-          <Message {...messages[messages.length - 1]} clearMessages={dispatch(clearMessages)} />
-        )}
+        {messages.length > 0 && <Message {...messages[messages.length - 1]} clearMessages={dispatch(clearMessages)} />}
       </div>
     );
 };

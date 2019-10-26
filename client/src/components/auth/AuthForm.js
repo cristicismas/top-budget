@@ -30,11 +30,6 @@ const AuthForm = props => {
       )
     ).then(() => {
       if (formType === AUTH_TYPES.LOG_IN) {
-        props.getExpenses();
-        props.getCategories();
-        props.getLocations();
-        props.getSources();
-
         history.push('/dashboard');
       } else {
         history.push('/setup');

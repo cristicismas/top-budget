@@ -10,7 +10,8 @@ export default function(state = initialState, action) {
     case APP_LOADING:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        isDataFetched: false
       };
     case APP_LOADED:
       return {
