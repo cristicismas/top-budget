@@ -39,7 +39,7 @@ body {
   color: #eee;
 }
 
-button {
+button:not(.add-field-button) {
   display: block;
   padding: 10px 25px;
   font-size: 20px;
@@ -49,12 +49,12 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:not(.add-field-button):hover {
   border: 2px solid #3d1eca;
   box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
 }
 
-button:active {
+button:not(.add-field-button):active {
   color: #775cf0;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
@@ -76,4 +76,20 @@ a:hover {
 .bold {
   color: #eee;
   font-weight: bold;
+}
+
+.add-field-button {
+  background-color: #008cff;
+  background: linear-gradient(to bottom right, #00ccff, #7330e0);
+  border-radius: 50%;
+  border: none;
+  color: #eee;
+  padding: 0;
+  width: 35px;
+  height: 35px;
+  margin: 15px;
+  font-size: 25px;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: center;
 }

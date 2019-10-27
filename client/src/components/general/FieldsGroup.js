@@ -4,7 +4,7 @@ import { capitalize } from '../../utils/strings';
 import './FieldsGroup.css';
 
 const FieldsGroup = props => {
-  const { type, objects } = props;
+  const { type, objects, showAddFieldButton } = props;
 
   const fields = objects.map(object => (
     <Field
@@ -17,7 +17,15 @@ const FieldsGroup = props => {
 
   return (
     <div className="fields-group">
-      <h2 className="fields-label">{capitalize(type)}:</h2>
+      <h2 className="fields-label">
+        {capitalize(type)}
+        
+        {showAddFieldButton && (
+          <button type="button" onClick={() => props.handleAddFieldClick(type)} className="add-field-button">
+            +
+          </button>
+        )}
+      </h2>
       <div className="fields" id={type}>
         {fields}
       </div>

@@ -16,22 +16,6 @@
   top: 15px;
 }
 
-#fields .field-header .add-field-button {
-  background-color: #008cff;
-  background: linear-gradient(to bottom right, #00ccff, #7330e0);
-  border-radius: 50%;
-  border: none;
-  color: #eee;
-  padding: 0;
-  width: 35px;
-  height: 35px;
-  margin: 15px;
-  font-size: 25px;
-  overflow: hidden;
-  cursor: pointer;
-  text-align: center;
-}
-
 #fields .fields {
   margin-left: 40px;
 }

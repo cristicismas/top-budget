@@ -49,6 +49,7 @@
 .overlay .close-overlay-btn:hover,
 .overlay .close-overlay-btn:active {
   box-shadow: none;
+  border: none;
 }
 
 .overlay .close-overlay-btn:hover .close-overlay-icon {

@@ -72,7 +72,7 @@ export class AddExpenseForm extends Component {
   }
 
   render() {
-    const { categories, locations, sources, user } = this.props;
+    const { categories, locations, sources, user, showAddFieldButton } = this.props;
     const { showCategories, showLocations, showSources } = user.userdata;
 
     const shouldModalBeLarge =
@@ -112,6 +112,8 @@ export class AddExpenseForm extends Component {
             type="category"
             objects={categories}
             handleFieldClick={(type, object) => this.handleFieldClick(type, object.id)}
+            handleAddFieldClick={type => this.props.handleAddFieldClick(type)}
+            showAddFieldButton={showAddFieldButton}
           />
         )}
 
@@ -120,6 +122,8 @@ export class AddExpenseForm extends Component {
             type="location"
             objects={locations}
             handleFieldClick={(type, object) => this.handleFieldClick(type, object.id)}
+            handleAddFieldClick={type => this.props.handleAddFieldClick(type)}
+            showAddFieldButton={showAddFieldButton}
           />
         )}
 
@@ -128,6 +132,8 @@ export class AddExpenseForm extends Component {
             type="source"
             objects={sources}
             handleFieldClick={(type, object) => this.handleFieldClick(type, object.id)}
+            handleAddFieldClick={type => this.props.handleAddFieldClick(type)}
+            showAddFieldButton={showAddFieldButton}
           />
         )}
 

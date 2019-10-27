@@ -30,11 +30,7 @@
   font-weight: 400;
 }
 
-.expense-modal .form-group .add-field-button {
-  display: none;
-}
-
-.expense-modal .form-group {
+.expense-modal .fields-group {
   margin-bottom: 30px;
 }
 
