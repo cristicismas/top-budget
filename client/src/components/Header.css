@@ -2,12 +2,12 @@ header {
   background-color: #15131a;
   padding: 10px 30px 20px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 header h1 {
   margin: 10px;
-  white-space: nowrap;
 }
 
 header h1 .header-icon {
