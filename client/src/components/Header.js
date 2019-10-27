@@ -36,9 +36,11 @@ const Header = () => {
         <nav>
           <Link className={pathname.includes('signup') ? 'active' : null} to="/signup">
             Sign Up
+            <Icon className="nav-icon" size={25} fill="#eee" icon={ICONS.SIGN_UP} />
           </Link>
           <Link className={pathname.includes('login') ? 'active' : null} to="/login">
             Log In
+            <Icon className="nav-icon" size={25} fill="#eee" icon={ICONS.LOG_IN} />
           </Link>
         </nav>
       )}
