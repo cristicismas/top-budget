@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import AOS from 'aos';
 import { useHistory } from 'react-router';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import 'aos/dist/aos.css';
 
+import Header from './Header';
+import Home from './home/Home';
+
 import Loading from './general/Loading';
 import Message from './general/Message';
-import Header from './Header';
 import NotFound from './NotFound';
-import Home from './home/Home';
-import AuthForm from './auth/AuthForm';
-import Dashboard from './dashboard/Dashboard';
-import Settings from './settings/Settings';
+import Setup from './setup/Setup';
+import Overlay from './general/Overlay';
 
 import { getExpenses } from '../store/actions/expenses';
 import { getCategories } from '../store/actions/categories';
@@ -22,9 +22,6 @@ import { getSources } from '../store/actions/sources';
 import { clearMessages } from '../store/actions/messages';
 import { loadUser } from '../store/actions/user';
 import { allDataFetched } from '../store/actions/app';
-
-import Setup from './setup/Setup';
-import Overlay from './general/Overlay';
 
 const handleDisableAnimations = disableAnimations => {
   const body = document.body;
@@ -37,6 +34,10 @@ const handleDisableAnimations = disableAnimations => {
     }
   }
 };
+
+const Dashboard = lazy(() => import('./dashboard/Dashboard'));
+const AuthForm = lazy(() => import('./auth/AuthForm'));
+const Settings = lazy(() => import('./settings/Settings'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -87,36 +88,39 @@ const App = () => {
   const { isAuthenticated } = user;
   const { isLoading, isDataFetched } = app;
 
-  if (isLoading || !isDataFetched)
-    return (
-      <Overlay isTransparent={true} hideCloseOverlayButton={true}>
-        <Loading />
-      </Overlay>
-    );
+  const LoadingOverlay = () => (
+    <Overlay isTransparent={true} hideCloseOverlayButton={true}>
+      <Loading />
+    </Overlay>
+  );
+
+  if (isLoading || !isDataFetched) return <LoadingOverlay />;
   else
     return (
       <div className="App">
         <Header />
 
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+        <Suspense fallback={<LoadingOverlay />}>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
 
-          <Route exact path={['/signup', '/login']}>
-            <AuthForm />
-          </Route>
+            <Route exact path={['/signup', '/login']}>
+              <AuthForm />
+            </Route>
 
-          <Route path="/setup">{isAuthenticated ? <Setup /> : <Redirect to="/login" />}</Route>
+            <Route path="/setup">{isAuthenticated ? <Setup /> : <Redirect to="/login" />}</Route>
 
-          <Route path="/dashboard">{isAuthenticated ? <Dashboard /> : <Redirect to="/login" />}</Route>
+            <Route path="/dashboard">{isAuthenticated ? <Dashboard /> : <Redirect to="/login" />}</Route>
 
-          <Route path="/settings">{isAuthenticated ? <Settings /> : <Redirect to="/login" />}</Route>
+            <Route path="/settings">{isAuthenticated ? <Settings /> : <Redirect to="/login" />}</Route>
 
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </Suspense>
 
         {messages.length > 0 && <Message {...messages[messages.length - 1]} clearMessages={dispatch(clearMessages)} />}
       </div>
