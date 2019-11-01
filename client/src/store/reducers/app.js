@@ -2,7 +2,7 @@ import { APP_LOADING, APP_LOADED, APP_DATA_FETCHED } from '../actions/actionType
 
 const initialState = {
   isLoading: false,
-  isDataFetched: false
+  isAllDataFetched: false
 };
 
 export default function(state = initialState, action) {
@@ -11,7 +11,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isLoading: true,
-        isDataFetched: false
+        isAllDataFetched: false
       };
     case APP_LOADED:
       return {
@@ -21,7 +21,7 @@ export default function(state = initialState, action) {
     case APP_DATA_FETCHED:
       return {
         ...state,
-        isDataFetched: true
+        isAllDataFetched: true
       };
     default:
       return state;

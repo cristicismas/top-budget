@@ -23,7 +23,7 @@ export default (state, action) => {
   if (action.type === LOGOUT_SUCCESS) {
     state = {
       ...state,
-      app: { isLoading: false, isDataFetched: true }
+      app: { isLoading: false, isAllDataFetched: true }
     };
   }
 

@@ -39,6 +39,12 @@ const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 const AuthForm = lazy(() => import('./auth/AuthForm'));
 const Settings = lazy(() => import('./settings/Settings'));
 
+const LoadingOverlay = () => (
+  <Overlay isTransparent={true} hideCloseOverlayButton={true}>
+    <Loading />
+  </Overlay>
+);
+
 const App = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -86,15 +92,9 @@ const App = () => {
   }, [user.isAuthenticated, disableAnimations]);
 
   const { isAuthenticated } = user;
-  const { isLoading, isDataFetched } = app;
+  const { isAllDataFetched } = app;
 
-  const LoadingOverlay = () => (
-    <Overlay isTransparent={true} hideCloseOverlayButton={true}>
-      <Loading />
-    </Overlay>
-  );
-
-  if (isLoading || !isDataFetched) return <LoadingOverlay />;
+  if (!isAllDataFetched) return <LoadingOverlay />;
   else
     return (
       <div className="App">
