@@ -107,7 +107,7 @@ const App = () => {
             </Route>
 
             <Route exact path={['/signup', '/login']}>
-              <AuthForm />
+              {!isAuthenticated ? <AuthForm /> : <Redirect to="/dashboard" />}
             </Route>
 
             <Route path="/setup">{isAuthenticated ? <Setup /> : <Redirect to="/login" />}</Route>
