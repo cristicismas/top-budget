@@ -1,22 +1,36 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../store/store.js';
 
 import App from '../components/App';
 
-it('renders wrapped App without crashing', () => {
-  const body = document.querySelector('body');
-  
-  const appRoot = document.createElement('div');
-  const modalRoot = document.createElement('div');
+let appRoot = null;
+let modalRoot = null;
+
+beforeEach(() => {
+  appRoot = document.createElement('div');
+  modalRoot = document.createElement('div');
+
   modalRoot.setAttribute('id', 'modal-root');
 
-  body.appendChild(appRoot);
-  body.appendChild(modalRoot);
-  
-  ReactDOM.render(
+  document.body.appendChild(appRoot);
+  document.body.appendChild(modalRoot);
+});
+
+afterEach(() => {
+  unmountComponentAtNode(appRoot);
+  appRoot.remove();
+  appRoot = null;
+
+  unmountComponentAtNode(modalRoot);
+  modalRoot.remove();
+  modalRoot = null;
+});
+
+it('renders wrapped App without crashing', () => {
+  render(
     <Provider store={store}>
       <Router>
         <App />
@@ -24,7 +38,4 @@ it('renders wrapped App without crashing', () => {
     </Provider>,
     appRoot
   );
-
-  ReactDOM.unmountComponentAtNode(appRoot);
-  ReactDOM.unmountComponentAtNode(modalRoot);
 });
