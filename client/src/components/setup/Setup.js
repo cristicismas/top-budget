@@ -3,7 +3,7 @@ import { Route, useHistory, useLocation } from 'react-router-dom';
 import './Setup.css';
 
 import NavigationButtons from './NavigationButtons';
-import ChooseFields from './AddFields';
+import AddFields from './AddFields';
 import AddExpense from './AddExpense';
 
 const setupRoutes = [
@@ -68,8 +68,8 @@ const Setup = () => {
         </div>
       </Route>
 
-      <Route path="/setup/add-fields">
-        <ChooseFields />
+      <Route path="/setup/add-fields/:fieldType">
+        <AddFields />
       </Route>
 
       <Route exact path="/setup/add-expenses">

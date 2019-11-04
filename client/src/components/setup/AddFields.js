@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import TITLES from '../../constants/addFieldsTitles';
 import EXAMPLES from '../../constants/fieldExamples';
 import './AddFields.css';
@@ -13,33 +13,36 @@ import { addLocation } from '../../store/actions/locations';
 import { addSource } from '../../store/actions/sources';
 
 const AddFields = props => {
-  const { pathname } = useLocation();
+  const { fieldType } = useParams();
 
-  let field = {
-    type: '',
-    label: '',
-    addField: () => {}
-  };
+  const handleAddField = field => {
+    switch (fieldType) {
+      case 'categories':
+        props.addCategory(field);
+        break;
+      case 'locations':
+        props.addCategory(field);
+        break;
+      case 'sources':
+        props.addCategory(field);
+        break;
+      default:
+        break;
+    }
+  }
 
-  if (pathname.includes('categories'))
-    field = { type: 'category', label: 'categories', addField: field => props.addCategory(field) };
-  else if (pathname.includes('locations'))
-    field = { type: 'location', label: 'locations', addField: field => props.addLocation(field) };
-  else if (pathname.includes('sources'))
-    field = { type: 'source', label: 'sources', addField: field => props.addSource(field) };
-
-  const fieldsList = props[field.label].map(object => (
+  const fieldsList = props[fieldType].map(object => (
     <Field type={object.name} object={object} handleFieldClick={() => {}} key={`${object.name}-${object.id}`} />
   ));
 
   return (
     <section id="add-fields">
-      <h2 className="sub-title">{TITLES[field.label.toUpperCase()]}</h2>
-      <p className="field-examples">Examples: {EXAMPLES[field.label.toUpperCase()]}, etc.</p>
+      <h2 className="sub-title">{TITLES[fieldType.toUpperCase()]}</h2>
+      <p className="field-examples">Examples: {EXAMPLES[fieldType.toUpperCase()]}, etc.</p>
 
       <FieldForm
-        type={field.type}
-        handleSubmit={newField => field.addField(newField)}
+        type={fieldType}
+        handleSubmit={newField => handleAddField(newField)}
         closeOverlay={() => {}}
       />
 
