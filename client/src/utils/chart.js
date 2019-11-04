@@ -122,7 +122,6 @@ export const getChartOptions = disableAnimations => {
       xAxes: [
         {
           stacked: true,
-          barPercentage: 0.8,
           gridLines: {
             color: 'rgba(100, 100, 100, .2)'
           }
@@ -160,5 +159,6 @@ export const getLastSevenDays = () => {
     const newDate = moment().subtract(i, 'days');
     days.push(newDate);
   }
+
   return days;
 };
