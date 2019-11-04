@@ -22,10 +22,10 @@ const AddFields = props => {
         props.addCategory(field);
         break;
       case 'locations':
-        props.addLocations(field);
+        props.addLocation(field);
         break;
       case 'sources':
-        props.addSources(field);
+        props.addSource(field);
         break;
       default:
         break;
