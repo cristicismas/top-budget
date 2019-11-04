@@ -56,7 +56,6 @@ const RecentExpenses = props => {
       <Route path="/dashboard/edit-expense">
         <Overlay closeOverlay={history.goBack}>
           <EditExpenseField
-            closeOverlay={history.goBack}
             addMessage={props.addMessage}
             editExpense={props.editExpense}
             categories={categories}

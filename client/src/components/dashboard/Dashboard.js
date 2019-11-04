@@ -70,17 +70,13 @@ const Dashboard = () => {
 
         <Route path="/dashboard/add-expense">
           <Overlay closeOverlay={history.goBack}>
-            <AddExpenseForm
-              showAddFieldButton={true}
-              handleAddFieldClick={handleAddFieldClick}
-              closeOverlay={history.goBack}
-            />
+            <AddExpenseForm showAddFieldButton={true} handleAddFieldClick={handleAddFieldClick} />
           </Overlay>
         </Route>
 
         <Route path="/dashboard/add-field">
           <Overlay closeOverlay={history.goBack}>
-            <FieldForm type={fieldToAdd} handleSubmit={handleAddField} closeOverlay={history.goBack} />
+            <FieldForm type={fieldToAdd} handleSubmit={handleAddField} />
           </Overlay>
         </Route>
 

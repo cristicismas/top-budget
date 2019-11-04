@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { Children, cloneElement, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Icon from './Icon';
 import ICONS from '../../constants/icons';
@@ -50,6 +50,10 @@ const Overlay = props => {
     backgroundColor: props.isTransparent ? 'transparent' : '#1a1a24'
   };
 
+  const childrenWithCloseOverlay = Children.map(props.children, child =>
+    cloneElement(child, { closeOverlay: props.closeOverlay })
+  );
+
   return createPortal(
     <div className="overlay-container" style={{ height: window.innerHeight }}>
       <div className="overlay" style={overlayStyle} ref={hideCloseOverlayButton ? null : overlayRef}>
@@ -58,7 +62,7 @@ const Overlay = props => {
             <Icon className="close-overlay-icon" icon={ICONS.CROSS} size={20} fill="#eee" />
           </button>
         )}
-        {props.children}
+        {childrenWithCloseOverlay}
       </div>
     </div>,
     modalRoot

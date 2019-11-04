@@ -198,13 +198,13 @@ export class Fields extends Component {
 
         <Route path="/settings/confirm-delete">
           <Overlay closeOverlay={history.goBack}>
-            <ConfirmDeleteModal closeOverlay={history.goBack} handleDelete={() => this.handleDelete()} />
+            <ConfirmDeleteModal handleDelete={() => this.handleDelete()} />
           </Overlay>
         </Route>
 
         <Route path="/settings/add-field">
           <Overlay closeOverlay={history.goBack}>
-            <FieldForm type={fieldToAdd} handleSubmit={this.handleAddField} closeOverlay={history.goBack} />
+            <FieldForm type={fieldToAdd} handleSubmit={this.handleAddField} />
           </Overlay>
         </Route>
 
@@ -214,7 +214,6 @@ export class Fields extends Component {
               type={fieldToEdit ? fieldToEdit.type : null}
               field={fieldToEdit ? fieldToEdit.object : null}
               handleSubmit={this.handleEditField}
-              closeOverlay={history.goBack}
             />
           </Overlay>
         </Route>
