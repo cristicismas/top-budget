@@ -39,7 +39,7 @@ const AddFields = props => {
 
       <FieldForm
         type={field.type}
-        handleSubmit={(type, name, color) => field.addField({ name, color })}
+        handleSubmit={newField => field.addField(newField)}
         closeOverlay={() => {}}
       />
 
