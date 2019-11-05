@@ -57,29 +57,32 @@ const ExpenseSummary = props => {
     filter
   ]);
 
-  const fieldGroups = sortedFields.map(field => {
-    const fieldValue = calculateFieldValue(field, fieldType, expenses, filter);
-    const barWidth = calculateBarWidth(fieldValue, topFieldValue);
+  const fieldGroups = useCallback(
+    sortedFields.map(field => {
+      const fieldValue = calculateFieldValue(field, fieldType, expenses, filter);
+      const barWidth = calculateBarWidth(fieldValue, topFieldValue);
 
-    if (!fieldValue) return null;
+      if (!fieldValue) return null;
 
-    return (
-      <div className="field-group" key={`field-group-${field.id}`}>
-        <li className="field-label">
-          {currencySymbol}
-          <div className="field-value">{fieldValue}</div>
-          {field.name}
-        </li>
-        <div
-          className="expense-bar"
-          style={{
-            backgroundColor: field.color,
-            width: !isNaN(barWidth) ? barWidth : 250
-          }}
-        />
-      </div>
-    );
-  });
+      return (
+        <div className="field-group" key={`field-group-${field.id}`}>
+          <li className="field-label">
+            {currencySymbol}
+            <div className="field-value">{fieldValue}</div>
+            {field.name}
+          </li>
+          <div
+            className="expense-bar"
+            style={{
+              backgroundColor: field.color,
+              width: !isNaN(barWidth) ? barWidth : 250
+            }}
+          />
+        </div>
+      );
+    }),
+    [sortedFields]
+  );
 
   let fieldGroupsLength = 0;
 

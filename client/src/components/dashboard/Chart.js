@@ -1,9 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import FIELDS from '../../constants/fields';
 import { Bar } from 'react-chartjs-2';
 import './Chart.css';
 
 import { getDatasets, getChartOptions, getLastSevenDays } from '../../utils/chart';
+
+const BarChart = memo(({ data, options }) => <Bar data={data} options={options} />);
 
 const Chart = props => {
   const { categories, locations, sources, expenses, userdata } = props;
@@ -37,11 +39,11 @@ const Chart = props => {
     labels: labels
   };
 
-  const chartOptions = getChartOptions(userdata.disableAnimations);
+  const chartOptions = useCallback(getChartOptions(userdata.disableAnimations), [userdata.disableAnimations]);
 
   return (
     <section id="expense-chart">
-      <Bar data={chartData} options={chartOptions} />
+      <BarChart data={chartData} options={chartOptions} />
     </section>
   );
 };
