@@ -13,6 +13,7 @@
 
 #hero #intro {
   margin-bottom: 50px;
+  padding: 5px;
 }
 
 #hero #intro .title {
@@ -110,8 +111,16 @@
     margin-bottom: 50px;
   }
 
+  #hero #intro .subtitle {
+    font-size: 25px;
+  }
+
   #hero .cta-buttons {
     justify-content: center;
+  }
+  
+  #hero .cta-buttons > *:first-child {
+    margin-right: 0;
   }
 
   #hero .hero-image {
