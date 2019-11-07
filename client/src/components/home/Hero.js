@@ -1,4 +1,5 @@
 import React from 'react';
+import heroGraph from '../../images/hero-graph.svg';
 import { useSelector } from 'react-redux';
 import ICONS from '../../constants/icons';
 import Icon from '../general/Icon';
@@ -20,27 +21,33 @@ const Hero = () => {
 
   return (
     <section id="hero">
-      <div id="intro" data-aos="fade-down">
-        <h1 className="title">TopBudget</h1>
-        <h2 className="subtitle">Manage your expenses with ease.</h2>
-      </div>
+      <div className="flex-group">
+        <div className="text">
+          <div id="intro">
+            <h1 className="title">TopBudget</h1>
+            <h2 className="subtitle">Manage your expenses with ease.</h2>
+          </div>
 
-      {isAuthenticated ? (
-        <div className="cta-buttons">
-          <Link to="/dashboard" data-aos="fade-right" className="primary">
-            Dashboard
-          </Link>
+          {isAuthenticated ? (
+            <div className="cta-buttons">
+              <Link to="/dashboard" className="primary">
+                Dashboard
+              </Link>
+            </div>
+          ) : (
+            <div className="cta-buttons">
+              <Link to="/login" className="secondary">
+                Log in
+              </Link>
+              <Link to="/signup" className="primary">
+                Get Started
+              </Link>
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="cta-buttons">
-          <Link to="/login" data-aos="fade-right" className="secondary">
-            Log in
-          </Link>
-          <Link to="/signup" data-aos="fade-left" className="primary">
-            Get Started
-          </Link>
-        </div>
-      )}
+
+        <img src={heroGraph} alt="Bar Chart" className="hero-image" />
+      </div>
 
       <button type="button" className="scroll-down-btn" onClick={scrollToFeatures}>
         <Icon icon={ICONS.ARROW} size={45} fill="#eee" />

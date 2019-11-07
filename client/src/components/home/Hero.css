@@ -1,11 +1,17 @@
 #hero {
   min-height: calc(100vh - 90px);
+  padding-top: 20vh;
+}
+
+#hero .flex-group {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
 }
 
 #hero #intro {
-  text-align: center;
-  padding-top: 25vh;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 #hero #intro .title {
@@ -21,14 +27,11 @@
 
 #hero .cta-buttons {
   display: flex;
-  justify-content: center;
-  align-content: center;
 }
 
 #hero .cta-buttons > * {
   width: 130px;
   text-align: center;
-  margin: 50px 25px;
   display: block;
   padding: 10px;
   font-size: 20px;
@@ -37,6 +40,10 @@
   color: #eee;
   cursor: pointer;
   border: 2px solid #3d1eca;
+}
+
+#hero .cta-buttons > *:first-child {
+  margin-right: 30px;
 }
 
 #hero .cta-buttons .secondary {
@@ -53,6 +60,11 @@
   border: 2px solid #3d1eca;
   box-shadow: none;
   color: #eee;
+}
+
+#hero .hero-image {
+  width: 50vw;
+  max-height: 600px;
 }
 
 #hero .scroll-down-btn {
@@ -86,40 +98,33 @@
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1200px) {
+  #hero .flex-group {
+    justify-content: center;
+    flex-direction: column;
+  }
+
   #hero #intro {
     text-align: center;
-    padding-top: 200px;
-    margin-bottom: 100px;
-  }
-
-  #hero #intro .title {
-    font-size: 45px;
-  }
-
-  #hero #intro .subtitle {
-    font-size: 25px;
+    margin-bottom: 50px;
   }
 
   #hero .cta-buttons {
-    flex-direction: column-reverse;
-    align-items: center;
-    margin-bottom: 100px;
+    justify-content: center;
   }
 
-  #hero .cta-buttons > * {
-    margin: 15px auto;
-  }
-}
-
-@media only screen and (max-height: 950px) {
-  #hero #intro {
-    padding-top: 100px;
-    margin-bottom: 50px;
+  #hero .hero-image {
+    position: relative;
+    opacity: .5;
+    max-height: auto;
+    width: 90vw;
+    top: -350px;
+    z-index: -1;
   }
 }
 
-@media only screen and (max-height: 800px) {
+@media only screen and (max-width: 1200px) and (max-height: 700px),
+only screen and (max-width: 600px) and (max-height: 830px) {
   #hero .scroll-down-btn {
     display: none;
   }
