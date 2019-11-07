@@ -44,8 +44,8 @@
   border: 2px solid #3d1eca;
 }
 
-#hero .cta-buttons > *:first-child {
-  margin-right: 30px;
+#hero .cta-buttons > *:nth-child(2) {
+  margin-left: 30px;
 }
 
 #hero .cta-buttons .secondary {
@@ -117,10 +117,6 @@
 
   #hero .cta-buttons {
     justify-content: center;
-  }
-  
-  #hero .cta-buttons > *:first-child {
-    margin-right: 0;
   }
 
   #hero .hero-image {
