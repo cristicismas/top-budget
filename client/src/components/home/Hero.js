@@ -22,7 +22,7 @@ const Hero = () => {
   return (
     <section id="hero">
       <div className="flex-group">
-        <div className="text">
+        <div className="text" data-aos="fade-right">
           <div id="intro">
             <h1 className="title">TopBudget</h1>
             <h2 className="subtitle">Manage your expenses with ease.</h2>
@@ -46,7 +46,7 @@ const Hero = () => {
           )}
         </div>
 
-        <img src={heroGraph} alt="Bar Chart" className="hero-image" />
+        <img src={heroGraph} data-aos="fade-left" alt="Bar Chart" className="hero-image" />
       </div>
 
       <button type="button" className="scroll-down-btn" onClick={scrollToFeatures}>

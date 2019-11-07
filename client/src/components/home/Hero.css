@@ -1,6 +1,7 @@
 #hero {
   min-height: calc(100vh - 90px);
   padding-top: 20vh;
+  overflow-x: hidden;
 }
 
 #hero .flex-group {
