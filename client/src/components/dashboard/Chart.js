@@ -43,9 +43,7 @@ const Chart = props => {
     });
   });
 
-  if (isChartEmpty) {
-    return <Message text="Please add a new expense to view your chart data." shouldFadeOut={true} />;
-  } else {
+  if (!isChartEmpty) {
     const labels = getLastSevenDays().map(day => day.format('ddd'));
 
     const chartData = {
@@ -60,7 +58,7 @@ const Chart = props => {
         <BarChart data={chartData} options={chartOptions} />
       </section>
     );
-  }
+  } else return null;
 };
 
 export default Chart;
