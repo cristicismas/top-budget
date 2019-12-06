@@ -39,44 +39,46 @@ const BudgetWheel = props => {
     }
   }
 
-  return (
-    <div id="budget-wheel">
-      <p className="wheel-numbers">
-        <span className="spent">
-          {currencySymbol} {Math.round(sumOfExpenses)}
-        </span>
-        / {Math.round(budgetForFilter)}
-      </p>
+  if (progress)
+    return (
+      <div id="budget-wheel">
+        <p className="wheel-numbers">
+          <span className="spent">
+            {currencySymbol} {Math.round(sumOfExpenses)}
+          </span>
+          / {Math.round(budgetForFilter)}
+        </p>
 
-      <Icon icon={wheelIcon} size={60} fill={wheelColor} className="wheel-icon" />
+        <Icon icon={wheelIcon} size={60} fill={wheelColor} className="wheel-icon" />
 
-      <svg height={WHEEL.radius * 2} width={WHEEL.radius * 2} className="wheel">
-        <circle
-          id="placeholder-circle"
-          stroke="#232323"
-          fill="transparent"
-          strokeWidth={WHEEL.stroke}
-          strokeDasharray={WHEEL.circumference + ' ' + WHEEL.circumference}
-          style={{ strokeDashoffset: 0 }}
-          r={WHEEL.normalizedRadius}
-          cx={WHEEL.radius}
-          cy={WHEEL.radius}
-        />
+        <svg height={WHEEL.radius * 2} width={WHEEL.radius * 2} className="wheel">
+          <circle
+            id="placeholder-circle"
+            stroke="#232323"
+            fill="transparent"
+            strokeWidth={WHEEL.stroke}
+            strokeDasharray={WHEEL.circumference + ' ' + WHEEL.circumference}
+            style={{ strokeDashoffset: 0 }}
+            r={WHEEL.normalizedRadius}
+            cx={WHEEL.radius}
+            cy={WHEEL.radius}
+          />
 
-        <circle
-          id="progress-circle"
-          stroke={wheelColor}
-          fill="transparent"
-          strokeWidth={WHEEL.stroke}
-          strokeDasharray={WHEEL.circumference + ' ' + WHEEL.circumference}
-          style={{ strokeDashoffset: !isNaN(WHEEL.strokeDashoffset) ? WHEEL.strokeDashoffset : WHEEL.circumference }}
-          r={WHEEL.normalizedRadius}
-          cx={WHEEL.radius}
-          cy={WHEEL.radius}
-        />
-      </svg>
-    </div>
-  );
+          <circle
+            id="progress-circle"
+            stroke={wheelColor}
+            fill="transparent"
+            strokeWidth={WHEEL.stroke}
+            strokeDasharray={WHEEL.circumference + ' ' + WHEEL.circumference}
+            style={{ strokeDashoffset: !isNaN(WHEEL.strokeDashoffset) ? WHEEL.strokeDashoffset : WHEEL.circumference }}
+            r={WHEEL.normalizedRadius}
+            cx={WHEEL.radius}
+            cy={WHEEL.radius}
+          />
+        </svg>
+      </div>
+    );
+  else return null;
 };
 
 export default BudgetWheel;

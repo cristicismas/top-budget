@@ -2,6 +2,13 @@
   margin-bottom: 50px;
 }
 
+#expense-summary #empty-summary-message {
+  margin-left: 60px;
+  margin-top: 50px;
+  font-size: 20px;
+  text-align: center;
+}
+
 #expense-summary .summary {
   margin-left: 60px;
 }
@@ -46,6 +53,15 @@
 }
 
 @media only screen and (max-width: 800px) {
+  #expense-summary #empty-summary-message {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  #expense-summary #filters {
+    justify-content: center;
+  }
+
   #expense-summary .summary {
     margin: 0;
   }

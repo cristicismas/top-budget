@@ -94,7 +94,11 @@ const ExpenseSummary = props => {
     <section id="expense-summary">
       <FilterButtons filter={filter} changeFilter={changeFilter} />
 
-      <ul className="summary">{showAllFields ? fieldGroups : fieldGroups.slice(0, 4)}</ul>
+      {fieldGroupsLength ? (
+        <ul className="summary">{showAllFields ? fieldGroups : fieldGroups.slice(0, 4)}</ul>
+      ) : (
+        <p id="empty-summary-message">You haven't added any expenses this {filter.toLowerCase()}.</p>
+      )}
 
       {fieldGroupsLength > 4 ? (
         <button onClick={() => toggleShowAll(!showAllFields)} id="show-all">
