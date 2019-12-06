@@ -1,4 +1,5 @@
 import React, { useCallback, memo } from 'react';
+import Message from '../general/Message';
 import FIELDS from '../../constants/fields';
 import { Bar } from 'react-chartjs-2';
 import './Chart.css';
@@ -32,20 +33,34 @@ const Chart = props => {
 
   const datasets = useCallback(getDatasets(fields, fieldType, expenses), [fields, fieldType, expenses]);
 
-  const labels = getLastSevenDays().map(day => day.format('ddd'));
+  let isChartEmpty = true;
 
-  const chartData = {
-    datasets,
-    labels: labels
-  };
+  datasets.forEach(dataset => {
+    dataset.data.forEach(value => {
+      if (value !== 0) {
+        isChartEmpty = false;
+      }
+    });
+  });
 
-  const chartOptions = useCallback(getChartOptions(userdata.disableAnimations), [userdata.disableAnimations]);
+  if (isChartEmpty) {
+    return <Message text="Please add a new expense to view your chart data." shouldFadeOut={true} />;
+  } else {
+    const labels = getLastSevenDays().map(day => day.format('ddd'));
 
-  return (
-    <section id="expense-chart">
-      <BarChart data={chartData} options={chartOptions} />
-    </section>
-  );
+    const chartData = {
+      datasets,
+      labels: labels
+    };
+
+    const chartOptions = getChartOptions(userdata.disableAnimations);
+
+    return (
+      <section id="expense-chart">
+        <BarChart data={chartData} options={chartOptions} />
+      </section>
+    );
+  }
 };
 
 export default Chart;
