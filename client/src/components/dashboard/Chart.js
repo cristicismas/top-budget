@@ -1,5 +1,4 @@
 import React, { useCallback, memo } from 'react';
-import Message from '../general/Message';
 import FIELDS from '../../constants/fields';
 import { Bar } from 'react-chartjs-2';
 import './Chart.css';
