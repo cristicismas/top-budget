@@ -21,7 +21,7 @@
   margin-right: 15px;
   margin-bottom: 15px;
   background-color: #15131a;
-  border: 1px solid #2c2c3a;
+  border: 1px dashed #8d3333;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s;
@@ -29,6 +29,14 @@
 
 .field:hover {
   border: 1px solid #aaa;
+}
+
+.field.edit-mode {
+  border: 1px dashed #006ac0;
+}
+
+.field.edit-mode:hover {
+  border-style: solid;
 }
 
 .field.selected {

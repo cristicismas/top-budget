@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ICONS from '../../../constants/icons';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Route } from 'react-router-dom';
@@ -8,6 +9,7 @@ import { addCategory, editCategory } from '../../../store/actions/categories';
 import { addLocation, editLocation } from '../../../store/actions/locations';
 import { addSource, editSource } from '../../../store/actions/sources';
 
+import Icon from '../../general/Icon';
 import Toggle from '../Toggle';
 import FieldsRemoveGroup from './FieldsRemoveGroup';
 import Overlay from '../../general/Overlay';
@@ -19,32 +21,47 @@ export class Fields extends Component {
     super(props);
 
     this.state = {
-      categories: [],
-      locations: [],
-      sources: [],
+      fieldsToRemove: {
+        categories: [],
+        locations: [],
+        sources: []
+      },
       fieldToAdd: null,
-      fieldToEdit: null
+      fieldToEdit: null,
+      editMode: true
     };
   }
 
   handleFieldClick = (type, object) => {
-    const fields = document.getElementById(`${type}-${object.id}`);
+    if (this.state.editMode) {
+      this.handleEditField(type, object);
+    } else {
+      this.handleRemoveFields(type, object);
+    }
+  };
 
-    if (fields.classList.contains('selected')) {
-      const currentStateArray = [...this.state[type]];
+  handleRemoveFields = (type, object) => {
+    const { fieldsToRemove } = this.state;
+
+    const domFields = document.getElementById(`${type}-${object.id}`);
+
+    if (domFields.classList.contains('selected')) {
+      const currentStateArray = [...fieldsToRemove[type]];
       const indexToRemove = currentStateArray.indexOf(object.id);
 
       currentStateArray.splice(indexToRemove, 1);
 
-      this.setState({ [type]: currentStateArray });
+      const updatedFields = { ...fieldsToRemove, [type]: currentStateArray };
+      this.setState({ fieldsToRemove: updatedFields });
     } else {
-      this.setState({ [type]: [...this.state[type], object.id] });
+      const updatedFields = { ...fieldsToRemove, [type]: [...fieldsToRemove[type], object.id] };
+      this.setState({ fieldsToRemove: updatedFields });
     }
 
-    fields.classList.toggle('selected');
+    domFields.classList.toggle('selected');
   };
 
-  handleEditFieldButton = (type, object) => {
+  handleEditField = (type, object) => {
     const { history } = this.props;
 
     this.setState(
@@ -60,7 +77,7 @@ export class Fields extends Component {
     );
   };
 
-  handleEditField = field => {
+  editField = field => {
     switch (field.type) {
       case 'categories':
         this.props.editCategory(field);
@@ -106,7 +123,7 @@ export class Fields extends Component {
   };
 
   handleDelete = () => {
-    const { categories, locations, sources } = this.state;
+    const { categories, locations, sources } = this.state.fieldsToRemove;
     const { history } = this.props;
 
     categories.forEach(id => this.props.deleteCategory(id));
@@ -115,9 +132,11 @@ export class Fields extends Component {
 
     this.setState(
       {
-        categories: [],
-        locations: [],
-        sources: []
+        fieldsToRemove: {
+          categories: [],
+          locations: [],
+          sources: []
+        }
       },
       () => {
         history.goBack();
@@ -126,25 +145,50 @@ export class Fields extends Component {
   };
 
   render() {
-    const { fieldToAdd, fieldToEdit } = this.state;
+    const { fieldToAdd, fieldToEdit, fieldsToRemove, editMode } = this.state;
     const { history, categories, locations, sources, showCategories, showLocations, showSources } = this.props;
 
-    const buttonEnabled = this.state.categories.length || this.state.locations.length || this.state.sources.length;
+    const buttonEnabled =
+      fieldsToRemove.categories.length || fieldsToRemove.locations.length || fieldsToRemove.sources.length;
 
     return (
       <section id="fields">
-        <h2 className="sub-title">Fields</h2>
+        <h2 className="sub-title">
+          Fields
+          {editMode ? (
+            <button
+              type="button"
+              className="action-button edit-fields-button"
+              title="Edit Mode"
+              onClick={() => this.setState({ editMode: !editMode })}>
+              <Icon size={16} fill="#fff" icon={ICONS.EDIT} className="icon" />
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="action-button remove-fields-button"
+              title="Remove Mode"
+              onClick={() => this.setState({ editMode: !editMode })}>
+              <Icon size={16} fill="#fff" icon={ICONS.CROSS} className="icon" />
+            </button>
+          )}
+        </h2>
 
         <div className={`field-header ${showCategories ? '' : 'disabled'}`}>
-          <button type="button" className="add-field-button" onClick={() => this.handleAddFieldButton('category')}>
-            +
+          <button
+            type="button"
+            className="action-button add-field-button"
+            onClick={() => this.handleAddFieldButton('category')}>
+            <Icon size={16} fill="#fff" icon={ICONS.PLUS} className="icon" />
           </button>
+
           <h2 className="field-title">Categories</h2>
           <Toggle handleChange={() => this.props.toggleField('showCategories')} toggled={showCategories} />
         </div>
 
         {categories.length > 0 && (
           <FieldsRemoveGroup
+            editMode={editMode}
             objects={categories}
             type="categories"
             dim={!showCategories}
@@ -154,15 +198,20 @@ export class Fields extends Component {
         )}
 
         <div className={`field-header ${showLocations ? '' : 'disabled'}`}>
-          <button type="button" className="add-field-button" onClick={() => this.handleAddFieldButton('location')}>
-            +
+          <button
+            type="button"
+            className="action-button add-field-button"
+            onClick={() => this.handleAddFieldButton('location')}>
+            <Icon size={16} fill="#fff" icon={ICONS.PLUS} className="icon" />
           </button>
+
           <h2 className="field-title">Locations</h2>
           <Toggle handleChange={() => this.props.toggleField('showLocations')} toggled={showLocations} />
         </div>
 
         {locations.length > 0 && (
           <FieldsRemoveGroup
+            editMode={editMode}
             objects={locations}
             type="locations"
             dim={!showLocations}
@@ -172,15 +221,20 @@ export class Fields extends Component {
         )}
 
         <div className={`field-header ${showSources ? '' : 'disabled'}`}>
-          <button type="button" className="add-field-button" onClick={() => this.handleAddFieldButton('source')}>
-            +
+          <button
+            type="button"
+            className="action-button add-field-button"
+            onClick={() => this.handleAddFieldButton('source')}>
+            <Icon size={16} fill="#fff" icon={ICONS.PLUS} className="icon" />
           </button>
+
           <h2 className="field-title">Sources</h2>
           <Toggle handleChange={() => this.props.toggleField('showSources')} toggled={showSources} />
         </div>
 
         {sources.length > 0 && (
           <FieldsRemoveGroup
+            editMode={editMode}
             objects={sources}
             type="sources"
             dim={!showSources}
@@ -190,7 +244,7 @@ export class Fields extends Component {
         )}
 
         <button
-          onClick={() => history.push('/settings/confirm-delete')}
+          onClick={buttonEnabled ? () => history.push('/settings/confirm-delete') : () => {}}
           id="delete-fields-btn"
           className={buttonEnabled ? '' : 'disabled'}>
           Delete Selected
@@ -213,7 +267,7 @@ export class Fields extends Component {
             <FieldForm
               type={fieldToEdit ? fieldToEdit.type : null}
               field={fieldToEdit ? fieldToEdit.object : null}
-              handleSubmit={this.handleEditField}
+              handleSubmit={this.editField}
             />
           </Overlay>
         </Route>
@@ -222,14 +276,11 @@ export class Fields extends Component {
   }
 }
 
-export default connect(
-  null,
-  {
-    addCategory,
-    addLocation,
-    addSource,
-    editCategory,
-    editLocation,
-    editSource
-  }
-)(withRouter(Fields));
+export default connect(null, {
+  addCategory,
+  addLocation,
+  addSource,
+  editCategory,
+  editLocation,
+  editSource
+})(withRouter(Fields));

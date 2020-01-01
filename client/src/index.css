@@ -39,7 +39,7 @@ body {
   color: #eee;
 }
 
-button:not(.add-field-button) {
+button:not(.action-button) {
   display: block;
   padding: 10px 25px;
   font-size: 20px;
@@ -49,12 +49,12 @@ button:not(.add-field-button) {
   cursor: pointer;
 }
 
-button:not(.add-field-button):hover {
+button:not(.action-button):hover {
   border: 2px solid #3d1eca;
   box-shadow: 0px 0px 12px rgba(119, 92, 240, 0.2);
 }
 
-button:not(.add-field-button):active {
+button:not(.action-button):active {
   color: #775cf0;
   box-shadow: 0px 0px 15px rgba(119, 92, 240, 0.4);
 }
@@ -78,7 +78,10 @@ a:hover {
   font-weight: bold;
 }
 
-.add-field-button {
+.action-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #008cff;
   background: linear-gradient(to bottom right, #00ccff, #7330e0);
   border-radius: 50%;
@@ -87,9 +90,18 @@ a:hover {
   padding: 0;
   width: 35px;
   height: 35px;
-  margin: 15px;
+  margin: 15px 0 15px 15px;
   font-size: 25px;
   overflow: hidden;
   cursor: pointer;
   text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .action-button {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 20px;
+  }
 }

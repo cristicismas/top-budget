@@ -1,3 +1,30 @@
+#fields .sub-title {
+  display: flex;
+}
+
+#fields .sub-title .action-button {
+  position: relative;
+  margin: 0 0 0 10px;
+  z-index: 1;
+}
+
+#fields .sub-title .action-button::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to bottom right, #ee3636, #7330e0);
+  z-index: -1;
+  transition: opacity 0.2s linear;
+  opacity: 0;
+}
+
+#fields .sub-title .remove-fields-button::before {
+  opacity: 1;
+}
+
 #fields .field-header {
   display: flex;
   margin-left: 20px;
@@ -9,6 +36,7 @@
 
 #fields .field-title {
   display: inline;
+  margin-left: 15px;
 }
 
 #fields .field-header .toggle {
@@ -58,13 +86,6 @@
 
   #fields .field-header .toggle {
     top: 10px;
-  }
-
-  #fields .field-header .add-field-button {
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
-    font-size: 20px;
   }
 
   #fields .fields {

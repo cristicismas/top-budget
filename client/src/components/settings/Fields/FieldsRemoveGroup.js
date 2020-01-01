@@ -4,15 +4,14 @@ import './FieldsRemoveGroup.css';
 import Field from '../../general/Field';
 
 const FieldsRemoveGroup = props => {
-  const { type, objects, dim } = props;
+  const { type, objects, dim, editMode } = props;
 
   const fields = objects.map(object => (
     <Field
+      editMode={editMode}
       type={type}
       object={object}
       handleFieldClick={() => props.handleFieldClick(type, object)}
-      handleEditFieldButton={() => props.handleEditFieldButton(type, object)}
-      isEditable={true}
       key={object.id}
       toDelete={true}
     />

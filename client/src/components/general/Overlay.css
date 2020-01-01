@@ -1,5 +1,6 @@
 .overlay-container {
   background-color: rgba(22, 22, 22, 0.7);
+  z-index: 10;
   position: fixed;
   height: 100vh;
   width: 100vw;
