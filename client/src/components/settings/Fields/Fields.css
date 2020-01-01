@@ -10,7 +10,7 @@
 
 #fields .sub-title .action-button::before {
   position: absolute;
-  content: "";
+  content: '';
   top: 0;
   right: 0;
   bottom: 0;
@@ -31,7 +31,7 @@
 }
 
 #fields .field-header.disabled {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 #fields .field-title {
@@ -46,6 +46,14 @@
 
 #fields .fields {
   margin-left: 40px;
+}
+
+#fields .field {
+  border: 1px dashed #8d3333;
+}
+
+#fields .field.edit-mode {
+  border: 1px dashed #006ac0;
 }
 
 #fields #delete-fields-btn {
