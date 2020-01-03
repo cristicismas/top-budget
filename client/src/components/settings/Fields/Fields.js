@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ICONS from '../../../constants/icons';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Route } from 'react-router-dom';
+import { capitalize, getSingularForm } from '../../../utils/strings';
 import './Fields.css';
 
 import { addCategory, editCategory } from '../../../store/actions/categories';
@@ -15,6 +16,8 @@ import FieldsRemoveGroup from './FieldsRemoveGroup';
 import Overlay from '../../general/Overlay';
 import FieldForm from '../../general/FieldForm';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
+
+const FIELD_TYPES = ['categories', 'locations', 'sources'];
 
 export class Fields extends Component {
   constructor(props) {
@@ -146,10 +149,39 @@ export class Fields extends Component {
 
   render() {
     const { fieldToAdd, fieldToEdit, fieldsToRemove, editMode } = this.state;
-    const { history, categories, locations, sources, showCategories, showLocations, showSources } = this.props;
+    const { categories, locations, sources } = fieldsToRemove;
+    const { history } = this.props;
 
-    const buttonEnabled =
-      fieldsToRemove.categories.length || fieldsToRemove.locations.length || fieldsToRemove.sources.length;
+    const buttonEnabled = categories.length || locations.length || sources.length;
+
+    const FieldsGroups = FIELD_TYPES.map(field => {
+      const showFields = this.props[`show${capitalize(field)}`];
+
+      return (
+        <Fragment key={field}>
+          <div className={`field-header ${showFields ? '' : 'disabled'}`}>
+            <button
+              type="button"
+              className="action-button add-field-button"
+              onClick={() => this.handleAddFieldButton(getSingularForm(field))}>
+              <Icon size={16} fill="#fff" icon={ICONS.PLUS} className="icon" />
+            </button>
+
+            <h2 className="field-title">{capitalize(field)}</h2>
+            <Toggle handleChange={() => this.props.toggleField(`show${capitalize(field)}`)} toggled={showFields} />
+          </div>
+
+          <FieldsRemoveGroup
+            editMode={editMode}
+            objects={this.props[field]}
+            type={field}
+            dim={!showFields}
+            handleFieldClick={this.handleFieldClick}
+            handleEditFieldButton={this.handleEditFieldButton}
+          />
+        </Fragment>
+      );
+    });
 
     return (
       <section id="fields">
@@ -174,74 +206,7 @@ export class Fields extends Component {
           )}
         </h2>
 
-        <div className={`field-header ${showCategories ? '' : 'disabled'}`}>
-          <button
-            type="button"
-            className="action-button add-field-button"
-            onClick={() => this.handleAddFieldButton('category')}>
-            <Icon size={16} fill="#fff" icon={ICONS.PLUS} className="icon" />
-          </button>
-
-          <h2 className="field-title">Categories</h2>
-          <Toggle handleChange={() => this.props.toggleField('showCategories')} toggled={showCategories} />
-        </div>
-
-        {categories.length > 0 && (
-          <FieldsRemoveGroup
-            editMode={editMode}
-            objects={categories}
-            type="categories"
-            dim={!showCategories}
-            handleFieldClick={this.handleFieldClick}
-            handleEditFieldButton={this.handleEditFieldButton}
-          />
-        )}
-
-        <div className={`field-header ${showLocations ? '' : 'disabled'}`}>
-          <button
-            type="button"
-            className="action-button add-field-button"
-            onClick={() => this.handleAddFieldButton('location')}>
-            <Icon size={16} fill="#fff" icon={ICONS.PLUS} className="icon" />
-          </button>
-
-          <h2 className="field-title">Locations</h2>
-          <Toggle handleChange={() => this.props.toggleField('showLocations')} toggled={showLocations} />
-        </div>
-
-        {locations.length > 0 && (
-          <FieldsRemoveGroup
-            editMode={editMode}
-            objects={locations}
-            type="locations"
-            dim={!showLocations}
-            handleFieldClick={this.handleFieldClick}
-            handleEditFieldButton={this.handleEditFieldButton}
-          />
-        )}
-
-        <div className={`field-header ${showSources ? '' : 'disabled'}`}>
-          <button
-            type="button"
-            className="action-button add-field-button"
-            onClick={() => this.handleAddFieldButton('source')}>
-            <Icon size={16} fill="#fff" icon={ICONS.PLUS} className="icon" />
-          </button>
-
-          <h2 className="field-title">Sources</h2>
-          <Toggle handleChange={() => this.props.toggleField('showSources')} toggled={showSources} />
-        </div>
-
-        {sources.length > 0 && (
-          <FieldsRemoveGroup
-            editMode={editMode}
-            objects={sources}
-            type="sources"
-            dim={!showSources}
-            handleFieldClick={this.handleFieldClick}
-            handleEditFieldButton={this.handleEditFieldButton}
-          />
-        )}
+        {FieldsGroups}
 
         <button
           onClick={buttonEnabled ? () => history.push('/settings/confirm-delete') : () => {}}
