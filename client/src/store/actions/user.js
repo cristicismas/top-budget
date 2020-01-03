@@ -2,7 +2,7 @@ import { USER_LOADED, USER_UPDATED, AUTH_SUCCESS, AUTH_FAIL, LOGOUT_SUCCESS } fr
 import AUTH_TYPES from '../../constants/auth';
 import MESSAGE_TYPES from '../../constants/messageTypes';
 
-import { beginLoading, finishLoading } from './app';
+import { beginLoading, finishLoading, allDataFetched } from './app';
 import { addMessage } from './messages';
 import { apiCall } from '../../utils/api';
 
@@ -59,6 +59,7 @@ export const authenticate = (credentials, type) => (dispatch, getState) => {
       });
 
       dispatch(finishLoading());
+      dispatch(allDataFetched());
 
       if (type === AUTH_TYPES.LOG_IN) {
         const { username } = res.userdata.credentials;
@@ -68,6 +69,7 @@ export const authenticate = (credentials, type) => (dispatch, getState) => {
     })
     .catch(err => {
       dispatch(finishLoading());
+      dispatch(allDataFetched());
 
       if (type === AUTH_TYPES.SIGN_UP) {
         dispatch(
