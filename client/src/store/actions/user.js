@@ -72,11 +72,19 @@ export const authenticate = (credentials, type) => (dispatch, getState) => {
       dispatch(allDataFetched());
 
       if (type === AUTH_TYPES.SIGN_UP) {
+        const errorMessage = err.username
+          ? err.username
+          : 'An unexpected error happened. Please try again later or contact an administrator.';
+          
         dispatch(
-          addMessage('That email / username has already been taken, or your email is invalid.', MESSAGE_TYPES.ERROR)
+          addMessage(errorMessage, MESSAGE_TYPES.ERROR)
         );
       } else {
-        dispatch(addMessage('Password or username are wrong.', MESSAGE_TYPES.ERROR));
+        const errorMessage = err.non_field_errors
+          ? err.non_field_errors
+          : 'An unexpected error happened. Please try again later or contact an administrator.';
+
+        dispatch(addMessage(errorMessage, MESSAGE_TYPES.ERROR));
       }
     });
 };
