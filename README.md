@@ -1,5 +1,7 @@
 # TopBudget
 
+![TopBudget Image](https://cristicismas.github.io/images/topbudget.png)
+
 Hi! TopBudget is an expense manager and tracker, that I've built in my free time. This project uses ReactJS on the front-end and Django (DRF) on the back-end.
 
 Before starting the project up, you need to have `npm`, `pipenv` and `python3` installed.
